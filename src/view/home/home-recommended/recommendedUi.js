@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-function RecommendedUi() {
+function RecommendedUi(props) {
   return (
     <div className="home-recommended">
       <div className="content">
@@ -17,23 +17,27 @@ function RecommendedUi() {
               <Link className="item-link" to="">热榜</Link>
             </li>
             <div className="time-choice">
-              <div className="dropdown-toggle">
+              <div className="dropdown-toggle" onClick={props.timeToggle}>
                 3天内
+                <i className={`icon-arrow ${props.dropDownShow ? 'icon-arrow-lower' : ''}`}></i>
               </div>
-              <ul className="dropdown-menu">
-                <li className="dropdown-menu-item">
-                  <Link className="item-link" to="">3天内</Link>
-                </li>
-                <li className="dropdown-menu-item">
-                  <Link className="item-link" to="">7天内</Link>
-                </li>
-                <li className="dropdown-menu-item">
-                  <Link className="item-link" to="">30天内</Link>
-                </li>
-                <li className="dropdown-menu-item">
-                  <Link className="item-link" to="">全部</Link>
-                </li>
-              </ul>
+              {
+                props.dropDownShow &&
+                <ul className="dropdown-menu">
+                  <li className="dropdown-menu-item">
+                    <span className="item-text">3天内</span>
+                  </li>
+                  <li className="dropdown-menu-item">
+                    <span className="item-text">7天内</span>
+                  </li>
+                  <li className="dropdown-menu-item">
+                    <span className="item-text">30天内</span>
+                  </li>
+                  <li className="dropdown-menu-item">
+                    <span className="item-text">全部</span>
+                  </li>
+                </ul>
+              }
             </div>
           </ul>
         </div>
