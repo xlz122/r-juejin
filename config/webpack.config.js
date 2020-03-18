@@ -354,6 +354,8 @@ module.exports = function(webpackEnv) {
         ...(modules.webpackAliases || {}),
         // 文件路径别名
         '@': path.resolve(__dirname, '../src'),
+        '@api': path.resolve(__dirname, '../src/api'),
+        '@axios': path.resolve(__dirname, '../src/axios'),
         '@images': path.resolve(__dirname, '../src/images'),
         '@router': path.resolve(__dirname, '../src/router'),
         '@store': path.resolve(__dirname, '../src/store'),

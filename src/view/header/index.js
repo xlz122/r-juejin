@@ -1,27 +1,20 @@
 import React, { Component, Fragment } from 'react';
-import { Link } from 'react-router-dom';
 // 引入react-redux连接器
 import { connect } from 'react-redux';
+import { getHeaderNav } from '@api/header/index.js';
+import { navListAction, homeNavAction } from '@store/actionCreators';
 import HeaderUi from './headerUi.js';
-import Login from '../login';
-import { navListAction } from '@store/actionCreators';
+import Login from '@view/login';
 
 class Header extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      navListData: [
-        { id: 1, title: '首页', link: '/' },
-        { id: 2, title: '沸点', link: '/boiling-point' },
-        { id: 3, title: '话题', link: '/topic-of-conversation' },
-        { id: 4, title: '小册', link: '/brochure' },
-        { id: 5, title: '活动', link: '/activity' },
-      ],
+      navListData: [], //nav列表数据
       articleStatus: false, // 写文章弹框
       loginType: 'login', // 登录/注册
       loginStatus: false // 登录弹框
     }
-    this.getNavListDom = this.getNavListDom.bind(this);
     // 搜索
     this.searchArticle = this.searchArticle.bind(this);
     // 写文章
@@ -37,6 +30,11 @@ class Header extends Component {
   componentDidMount() {
     // 绑定监听事件
     document.addEventListener('click', this.setArticleShow);
+    // 获取nav列表数据
+    getHeaderNav()
+      .then(res => {
+        this.setState({ navListData: res.data });
+      })
   }
 
   componentWillUnmount() {
@@ -48,7 +46,9 @@ class Header extends Component {
     return (
       <Fragment>
         <HeaderUi
-          getNavListDom={this.getNavListDom}
+          navListData={this.state.navListData}
+          navListActiveIndex={this.props.navListActiveIndex}
+          navListChange={this.props.navListChange}
           searchArticle={this.searchArticle}
           articleShow={this.articleShow}
           articleStatus={this.state.articleStatus}
@@ -66,25 +66,6 @@ class Header extends Component {
         }
       </Fragment>
     );
-  }
-
-  // 获取navListDom
-  getNavListDom() {
-    const { navListData } =  this.state;
-    const { navListActiveIndex, navListChange } =  this.props;
-    const navlistDom = navListData.map((item, index) => {
-      return (
-        <li
-          className={`li-item ${index === parseInt(navListActiveIndex) ? 'li-active-item ' : ''}`}
-          key={index + item}
-          onClick={() => {navListChange(index)}}
-        >
-          <Link className="item-link" to={item.link}>{item.title}</Link>
-          <span className="auxiliary"></span>
-        </li>
-      );
-    })
-    return navlistDom;
   }
 
   // 搜索
@@ -144,10 +125,15 @@ const stateToProps = (state) => {
 
 const dispatchToProps = (dispatch) => {
   return {
+    // 设置头部导航下标
     navListChange(index) {
       sessionStorage.setItem('navListActiveIndex', index);
       const action = navListAction(index);
       dispatch(action);
+      // 重置首页二级导航下标
+      sessionStorage.setItem('homeNavActionIndex', 0);
+      const action1 = homeNavAction(0);
+      dispatch(action1);
     }
   }
 }

@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import { Route, Link } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 // 引入react-redux连接器
 import { connect } from 'react-redux';
 import './index.less';
 // 主页导航依赖
-import homeNavJson from './home-nav/json';
-import HomeNavUi from './home-nav';
+import { homeNavList } from '@api/home';
 import { homeNavAction } from '@store/actionCreators';
+import HomeNavUi from './home-nav';
 
 // 引入组件
 import asyncComponent from '@router/asyncComponent.js';
@@ -19,16 +19,24 @@ class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      homeNavData: homeNavJson
+      homeNavData: []
     }
     // 主页导航
-    this.getHomeNavDom = this.getHomeNavDom.bind(this);
     this.homeNavMouseOver = this.homeNavMouseOver.bind(this);
     this.homeNavMouseOut = this.homeNavMouseOut.bind(this);
     this.homeNavDetailsJump = this.homeNavDetailsJump.bind(this);
   }
 
-  componentWillMount() {
+  componentDidMount() {
+    // 获取首页导航数据
+    homeNavList()
+      .then(res => {
+        this.setState({ homeNavData: res.data });
+      })
+  }
+
+  // componentWillMount 即将被废弃 需要使用 UNSAFE_componentWillMount
+  UNSAFE_componentWillMount() {
     // 对主页导航数据进行修改
     let list = this.state.homeNavData;
     list.map(item => item.isShow = false);
@@ -39,7 +47,12 @@ class Home extends Component {
     return (
       <div className="home">
         <HomeNavUi
-          getHomeNavDom={this.getHomeNavDom}
+          homeNavData={this.state.homeNavData}
+          homeNavActionIndex={this.props.homeNavActionIndex}
+          homeNavChange={this.props.homeNavChange}
+          homeNavMouseOver={this.homeNavMouseOver}
+          homeNavMouseOut={this.homeNavMouseOut}
+          homeNavDetailsJump={this.homeNavDetailsJump}
         />
         <div className="home-container">
           <Route exact path="/home" component={HomeRecommended} />
@@ -49,50 +62,6 @@ class Home extends Component {
         </div>
       </div>
     );
-  }
-
-  // 获取submenuDom
-  getHomeNavDom() {
-    const { homeNavData } =  this.state;
-    const { homeNavActionIndex, homeNavChange } =  this.props;
-    const homeNavDom = homeNavData.map((item, index) => {
-      return (
-        <li
-          className={`li-item ${index === parseInt(homeNavActionIndex) ? 'li-active-item ' : ''}`}
-          key={index + item}
-          onClick={() => { homeNavChange(index) }}
-          onMouseOver={() => { this.homeNavMouseOver(index) }}
-          onMouseLeave={() => { this.homeNavMouseOut(index) }}
-        >
-          <Link className="item-link" to={item.link}>{item.title}</Link>
-          <span className="auxiliary"></span>
-          {
-            // 存在子项 && 是否显示 && 是否选中项
-            item.children && item.isShow && index !== parseInt(homeNavActionIndex) &&
-            <ul className="list-details">
-              {
-                item.children.map((i, ind) => {
-                  // 去除第一项全部
-                  if (ind === 0) {
-                    return false;
-                  }
-                  return (
-                    <li
-                      className="details-item"
-                      key={ind + i}
-                    >
-                      <Link className="details-link" to="" onClick={this.homeNavDetailsJump}>{i.title}</Link>
-                      <span className="auxiliary"></span>
-                    </li>
-                  )
-                })
-              }
-            </ul>
-          }
-        </li>
-      );
-    })
-    return homeNavDom;
   }
 
   // 主页导航划过
@@ -124,6 +93,7 @@ const stateToProps = (state) => {
 
 const dispatchToProps = (dispatch) => {
   return {
+    // 设置首页导航下标
     homeNavChange(index) {
       sessionStorage.setItem('homeNavActionIndex', index);
       const action = homeNavAction(index);

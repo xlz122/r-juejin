@@ -10,6 +10,7 @@ import articleIcon from '@images/header/article-icon.svg';
 import ArticleUi from '@view/header/article';
 
 function HeaderUi(props) {
+  const { navListData, navListActiveIndex, navListChange } = props;
   return (
     <div className="header-container">
       <Link className="logo-bg" to="/">
@@ -17,7 +18,20 @@ function HeaderUi(props) {
         <span className="auxiliary"></span>
       </Link>
       <ul className="nav-list">
-        {props.getNavListDom()}
+        {
+          navListData.map((item, index) => {
+            return (
+              <li
+                className={`li-item ${index === parseInt(navListActiveIndex) ? 'li-active-item ' : ''}`}
+                key={index + item}
+                onClick={() => {navListChange(index)}}
+              >
+                <Link className="item-link" to={item.link}>{item.title}</Link>
+                <span className="auxiliary"></span>
+              </li>
+            );
+          })
+        }
       </ul>
       <div className="nav-search">
         <div className="search-container">
