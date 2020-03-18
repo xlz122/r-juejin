@@ -4,7 +4,7 @@ class HttpRequest {
   // 请求配置
   getInsideConfig() {
     const config = {
-      baseURL: 'http://192.168.27.1:3000',
+      baseURL: 'http://localhost:3000',
       // 允许跨域带token
       withCredentials: true, 
       // 请求超时
@@ -25,14 +25,14 @@ class HttpRequest {
   interceptors(instance) {
     // 请求拦截
     instance.interceptors.request.use(config => {
-      return config;
+      return Promise.resolve(config);
     }, error => {
       return Promise.reject(error);
     })
     // 响应拦截
     instance.interceptors.response.use(res => {
       const data = res.data;
-      return data
+      return Promise.resolve(data);
     }, error => {
       return Promise.reject(error);
     })

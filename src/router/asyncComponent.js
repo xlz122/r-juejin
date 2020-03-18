@@ -4,7 +4,6 @@ export default function asyncComponent(importComponent) {
   class AsyncComponent extends Component {
     constructor(props) {
       super(props);
-
       this.state = {
         component: null
       };
@@ -12,7 +11,7 @@ export default function asyncComponent(importComponent) {
 
     async componentDidMount() {
       if(this.hasLoadedComponent()){
-          return;
+        return;
       }
       const { default: component } = await importComponent();
       this.setState({
@@ -21,7 +20,7 @@ export default function asyncComponent(importComponent) {
     }
 
     hasLoadedComponent() {
-        return this.state.component !== null;
+      return this.state.component !== null;
     }
     componentWillUnmount(){
       this.setState = (state,callback)=>{
@@ -31,7 +30,6 @@ export default function asyncComponent(importComponent) {
 
     render() {
       const C = this.state.component;
-
       return C ? <C {...this.props} /> : null;
     }
   }
