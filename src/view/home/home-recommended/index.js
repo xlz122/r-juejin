@@ -1,78 +1,102 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import './index.less';
-import { homeRecommendNavList } from '@api/home';
-import RecommendedUi from './recommendedUi';
+import { setHomeCategoryNav } from '@store/actionCreators';
+import CategoryNav from '../category-nav';
 
 class HomeRecommended extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      recommendNavList: [], // 首页推荐导航数据
-      categoryNavActive: 0, // 推荐导航选中下标
-      timeChoiceShow: false, // 控制热榜时间选择显示
-      dropDownShow: false, // 控制热榜时间下拉菜单显示
-      dropDownTitle: '' // 热榜显示title
+      navListData: this.props.categoryNavData, // 导航列表数据
+      navActiveIndex: 0, // 导航选中下标
+      timeChoiceShow: false, // 时间选择显隐
+      timeChoiceTitle: '', // 时间选择title
+      timeChoiceMenuShow: false, // 时间选择下拉菜单显隐
     }
-    // 导航
-    this.categoryNavClick = this.categoryNavClick.bind(this);
-    // 热榜
-    this.timeToggle = this.timeToggle.bind(this);
+    // 导航切换
+    this.navListChange = this.navListChange.bind(this);
+    // 时间选择菜单显隐
+    this.timeChoiceToggle = this.timeChoiceToggle.bind(this);
     // 时间选择
     this.timeChoiceClick = this.timeChoiceClick.bind(this);
+    // 分类导航的数据是异步的,进行订阅更新
+    // 问题：无法通过context拿到store
+    // this.categoryNavDataChange = this.categoryNavDataChange.bind(this);
+    // context.subscribe(this.categoryNavDataChange);
   }
+
+  // categoryNavDataChange() {
+  //   this.setState({ navListData: this.props.categoryNavData })
+  // }
 
   componentDidMount() {
-    // 获取首页推荐导航数据
-    homeRecommendNavList()
-      .then(res => {
-        this.setState({ recommendNavList: res.data });
-        this.setState({ dropDownTitle: res.data.timeChoice[0].time });
-      })
+    // 获取导航数据
+    this.props.getCategoryNavData();
   }
 
-  render() { 
+  render() {
     return (
-      <Fragment>
-        <RecommendedUi
-          recommendNavList={this.state.recommendNavList}
-          categoryNavActive={this.state.categoryNavActive}
-          categoryNavClick={this.categoryNavClick}
-          timeChoiceShow={this.state.timeChoiceShow}
-          timeChoiceClick={this.timeChoiceClick}
-          dropDownShow={this.state.dropDownShow}
-          dropDownTitle={this.state.dropDownTitle}
-          timeToggle={this.timeToggle}
-        />
-      </Fragment>  
+      <div className="home-recommended">
+        <div className="content">
+          <CategoryNav
+            navListData={this.props.navListData}
+            navActiveIndex={this.state.navActiveIndex}
+            navListChange={this.navListChange}
+            timeChoiceToggle={this.timeChoiceToggle}
+            timeChoiceShow={this.state.timeChoiceShow}
+            timeChoiceTitle={this.state.timeChoiceTitle}
+            timeChoiceMenuShow={this.state.timeChoiceMenuShow}
+            timeChoiceClick={this.timeChoiceClick}
+          />
+        </div>
+        <div className="sidebar"></div>
+      </div>
     );
   }
 
   // 导航切换
-  categoryNavClick(index) {
-    this.setState({ categoryNavActive: index });
+  navListChange(index) {
+    this.setState({ navActiveIndex: index });
     if (index === 2) {
       this.setState({ timeChoiceShow: true });
     } else {
       this.setState({ timeChoiceShow: false });
-      this.setState({ dropDownTitle: this.state.recommendNavList.timeChoice[0].time });
+      this.setState({ timeChoiceTitle: this.props.navListData.timeChoice[0].time });
     }
   }
 
-  // 热榜时间菜单显隐
-  timeToggle() {
-    let { dropDownShow } = this.state;
-    if (dropDownShow) {
-      this.setState({ dropDownShow: false });
+  // 时间选择菜单显隐
+  timeChoiceToggle() {
+    let { timeChoiceMenuShow } = this.state;
+    if (timeChoiceMenuShow) {
+      this.setState({ timeChoiceMenuShow: false });
     } else {
-      this.setState({ dropDownShow: true });
+      this.setState({ timeChoiceMenuShow: true });
     }
   }
 
-  // 热榜时间选择
+  // 时间选择
   timeChoiceClick(item, index) {
-    this.setState({ dropDownTitle: item.time });
-    this.setState({ dropDownShow: false });
+    this.setState({ timeChoiceTitle: item.time });
+    this.setState({ timeChoiceMenuShow: false });
+  }
+}
+
+const stateToProps = (state) => {
+  return {
+    navListData: state.categoryNavData
+  }
+}
+
+const dispatchToProps = (dispatch) => {
+  return {
+    // 获取分类导航数据
+    getCategoryNavData() {
+      const action = setHomeCategoryNav();
+      dispatch(action);
+    }
   }
 }
  
-export default HomeRecommended;
+export default connect(stateToProps, dispatchToProps)(HomeRecommended);

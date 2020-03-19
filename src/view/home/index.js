@@ -4,7 +4,7 @@ import { Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import './index.less';
 // 主页导航依赖
-import { homeNavList } from '@api/home';
+import { getHomeNavList } from '@api/home';
 import { homeNavAction } from '@store/actionCreators';
 import HomeNavUi from './home-nav';
 
@@ -29,7 +29,7 @@ class Home extends Component {
 
   componentDidMount() {
     // 获取首页导航数据
-    homeNavList()
+    getHomeNavList()
       .then(res => {
         this.setState({ homeNavData: res.data });
       })
