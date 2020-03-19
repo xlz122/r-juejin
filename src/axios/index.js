@@ -1,15 +1,24 @@
 import axios from 'axios';
 
 class HttpRequest {
-  // 请求配置
+  constructor(externalConfig) {
+    // 外部配置
+    this.externalConfig = externalConfig;
+  }
+  // 内部配置
   getInsideConfig() {
-    const config = {
-      baseURL: 'http://localhost:3000',
+    let config = {
+      // 基础路径
+      baseURL: '',
       // 允许跨域带token
       withCredentials: true, 
       // 请求超时
-      timeout: 5000
+      timeout: 5000,
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8',
+      }
     }
+    config = { ...config, ...this.externalConfig };
     return config
   }
 
@@ -39,6 +48,9 @@ class HttpRequest {
   }
 }
 
-const Axios = new HttpRequest();
+// 设置代理（webpackDevServer.config.js）可启用
+const Axios = new HttpRequest({
+  // baseURL: '/api'
+});
 
 export default Axios;
