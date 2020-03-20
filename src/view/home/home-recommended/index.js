@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import './index.less';
-import { setHomeCategoryNav } from '@store/actionCreators';
+import { getHomeCategoryNav } from '@api/home';
 import CategoryNav from '../category-nav';
+import './index.less';
 
 class HomeRecommended extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      navListData: this.props.categoryNavData, // 导航列表数据
+      navListData: [], // 导航列表数据
       navActiveIndex: 0, // 导航选中下标
       timeChoiceShow: false, // 时间选择显隐
       timeChoiceTitle: '', // 时间选择title
@@ -20,19 +19,14 @@ class HomeRecommended extends Component {
     this.timeChoiceToggle = this.timeChoiceToggle.bind(this);
     // 时间选择
     this.timeChoiceClick = this.timeChoiceClick.bind(this);
-    // 分类导航的数据是异步的,进行订阅更新
-    // 问题：无法通过context拿到store
-    // this.categoryNavDataChange = this.categoryNavDataChange.bind(this);
-    // context.subscribe(this.categoryNavDataChange);
   }
 
-  // categoryNavDataChange() {
-  //   this.setState({ navListData: this.props.categoryNavData })
-  // }
-
   componentDidMount() {
-    // 获取导航数据
-    this.props.getCategoryNavData();
+    // 获取分类导航数据
+    getHomeCategoryNav()
+      .then(res => {
+        this.setState({ navListData: res.data });
+      })
   }
 
   render() {
@@ -40,7 +34,7 @@ class HomeRecommended extends Component {
       <div className="home-recommended">
         <div className="content">
           <CategoryNav
-            navListData={this.props.navListData}
+            navListData={this.state.navListData}
             navActiveIndex={this.state.navActiveIndex}
             navListChange={this.navListChange}
             timeChoiceToggle={this.timeChoiceToggle}
@@ -62,7 +56,7 @@ class HomeRecommended extends Component {
       this.setState({ timeChoiceShow: true });
     } else {
       this.setState({ timeChoiceShow: false });
-      this.setState({ timeChoiceTitle: this.props.navListData.timeChoice[0].time });
+      this.setState({ timeChoiceTitle: this.state.navListData.timeChoice[0].time });
     }
   }
 
@@ -83,20 +77,4 @@ class HomeRecommended extends Component {
   }
 }
 
-const stateToProps = (state) => {
-  return {
-    navListData: state.categoryNavData
-  }
-}
-
-const dispatchToProps = (dispatch) => {
-  return {
-    // 获取分类导航数据
-    getCategoryNavData() {
-      const action = setHomeCategoryNav();
-      dispatch(action);
-    }
-  }
-}
- 
-export default connect(stateToProps, dispatchToProps)(HomeRecommended);
+export default HomeRecommended;

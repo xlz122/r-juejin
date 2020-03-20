@@ -3,9 +3,9 @@ import Axios from '@axios';
 /**
  * @desc 获取首页导航数据
 */
-export const getHomeNavList = () => {
+export const getHomeNav = () => {
   return Axios.request({
-    url: '/json/home/nav-list.json',
+    url: '/json/home/home-nav.json',
     methods: 'get'
   })
 }

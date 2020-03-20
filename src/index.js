@@ -1,10 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-// import App from './App.js';
-import App from '@/App.js';
+import store from '@store';
+import { Provider } from 'react-redux';
+import AppRouter from '@router';
 import './index.css';
 
 ReactDOM.render(
-  <App />,
+  <Provider store={store}>
+    <AppRouter />
+  </Provider>,
   document.getElementById('root')
 )

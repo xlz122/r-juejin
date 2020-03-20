@@ -5,7 +5,7 @@ import  Axios from '@axios';
 */
 export const getHeaderNav = () => {
   return Axios.request({
-    url:  '/json/header/nav-list.json',
+    url:  '/json/header/header-nav.json',
     methods: 'get'
   })
 }

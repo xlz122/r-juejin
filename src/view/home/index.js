@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
-// 引入react-redux连接器
-import { connect } from 'react-redux';
-import './index.less';
-// 主页导航依赖
-import { getHomeNavList } from '@api/home';
-import { homeNavAction } from '@store/actionCreators';
+import lodash from 'lodash';
+import { getHomeNav } from '@api/home';
 import HomeNavUi from './home-nav';
+import './index.less';
 
 // 引入组件
 import asyncComponent from '@router/asyncComponent.js';
@@ -29,27 +26,19 @@ class Home extends Component {
 
   componentDidMount() {
     // 获取首页导航数据
-    getHomeNavList()
+    getHomeNav()
       .then(res => {
+        // 数据存储前进行数据修改
+        res.data.map(item => item.isShow = false);
         this.setState({ homeNavData: res.data });
       })
   }
 
-  // componentWillMount 即将被废弃 需要使用 UNSAFE_componentWillMount
-  UNSAFE_componentWillMount() {
-    // 对主页导航数据进行修改
-    let list = this.state.homeNavData;
-    list.map(item => item.isShow = false);
-    this.setState({ homeNavData: list });
-  }
-
-  render() { 
+  render() {
     return (
       <div className="home">
         <HomeNavUi
           homeNavData={this.state.homeNavData}
-          homeNavActionIndex={this.props.homeNavActionIndex}
-          homeNavChange={this.props.homeNavChange}
           homeNavMouseOver={this.homeNavMouseOver}
           homeNavMouseOut={this.homeNavMouseOut}
           homeNavDetailsJump={this.homeNavDetailsJump}
@@ -66,14 +55,14 @@ class Home extends Component {
 
   // 主页导航划过
   homeNavMouseOver(index) {
-    let list = this.state.homeNavData;
+    let list = lodash.cloneDeep(this.state.homeNavData);
     list[index].isShow = true;
     this.setState({ homeNavData: list });
   }
 
   // 主页导航划出
   homeNavMouseOut(index) {
-    let list = this.state.homeNavData;
+    let list = lodash.cloneDeep(this.state.homeNavData);
     list[index].isShow = false;
     this.setState({ homeNavData: list });
   }
@@ -84,22 +73,5 @@ class Home extends Component {
     alert('点击了详情跳转');
   }
 }
-
-const stateToProps = (state) => {
-  return {
-    homeNavActionIndex: state.homeNavActionIndex
-  }
-}
-
-const dispatchToProps = (dispatch) => {
-  return {
-    // 设置首页导航下标
-    homeNavChange(index) {
-      sessionStorage.setItem('homeNavActionIndex', index);
-      const action = homeNavAction(index);
-      dispatch(action);
-    }
-  }
-}
  
-export default connect(stateToProps, dispatchToProps)(Home);
+export default Home;

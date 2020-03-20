@@ -36,6 +36,7 @@ function CategoryNav(props) {
               timeChoiceMenuShow &&
               <ul className="dropdown-menu">
                 {
+                  timeChoice &&
                   timeChoice.map((item, index) => {
                     return (
                       <li
@@ -56,5 +57,5 @@ function CategoryNav(props) {
     </div>
   )
 }
-
+ 
 export default CategoryNav;

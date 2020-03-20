@@ -1,8 +1,5 @@
 import React, { Component, Fragment } from 'react';
-// 引入react-redux连接器
-import { connect } from 'react-redux';
 import { getHeaderNav } from '@api/header/index.js';
-import { navListAction, homeNavAction } from '@store/actionCreators';
 import HeaderUi from './headerUi.js';
 import Login from '@view/login';
 
@@ -47,8 +44,6 @@ class Header extends Component {
       <Fragment>
         <HeaderUi
           navListData={this.state.navListData}
-          navListActiveIndex={this.props.navListActiveIndex}
-          navListChange={this.props.navListChange}
           searchArticle={this.searchArticle}
           articleShow={this.articleShow}
           articleStatus={this.state.articleStatus}
@@ -116,26 +111,5 @@ class Header extends Component {
   }
 
 }
-
-const stateToProps = (state) => {
-  return {
-    navListActiveIndex: state.navListActiveIndex
-  }
-}
-
-const dispatchToProps = (dispatch) => {
-  return {
-    // 设置头部导航下标
-    navListChange(index) {
-      sessionStorage.setItem('navListActiveIndex', index);
-      const action = navListAction(index);
-      dispatch(action);
-      // 重置首页二级导航下标
-      sessionStorage.setItem('homeNavActionIndex', 0);
-      const action1 = homeNavAction(0);
-      dispatch(action1);
-    }
-  }
-}
  
-export default connect(stateToProps, dispatchToProps)(Header);
+export default Header;
