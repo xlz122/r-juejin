@@ -50,7 +50,7 @@ class HttpRequest {
 
 // 设置代理（webpackDevServer.config.js）可启用
 const Axios = new HttpRequest({
-  // baseURL: '/api'
+  baseURL: '/api'
 });
 
 export default Axios;

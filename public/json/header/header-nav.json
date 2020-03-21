@@ -1,9 +1,0 @@
-{
-  "data": [
-    { "id": 1, "title": "首页", "link": "/" },
-    { "id": 2, "title": "沸点", "link": "/boiling-point" },
-    { "id": 3, "title": "话题", "link": "/topic-of-conversation" },
-    { "id": 4, "title": "小册", "link": "/brochure" },
-    { "id": 5, "title": "活动", "link": "/activity" }
-  ]
-}

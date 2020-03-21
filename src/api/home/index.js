@@ -5,7 +5,7 @@ import Axios from '@axios';
 */
 export const getHomeNav = () => {
   return Axios.request({
-    url: '/json/home/home-nav.json',
+    url: '/home/nav-list',
     methods: 'get'
   })
 }
@@ -15,7 +15,7 @@ export const getHomeNav = () => {
 */
 export const getHomeCategoryNav = () => {
   return Axios.request({
-    url: '/json/home/category-nav.json',
+    url: '/home/category-nav-list',
     methods: 'get'
   })
 }
