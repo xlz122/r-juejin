@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { getHomeCategoryNav, getHomeEntryList } from '@api/home';
 import CategoryNav from '../category-nav';
-import List from '../entry-list';
+import EntryListUi from '../entry-list';
+import SidebarUi from '../sidebar';
 import './index.less';
 
 class HomeRecommended extends Component {
@@ -56,7 +57,7 @@ class HomeRecommended extends Component {
             timeChoiceMenuShow={this.state.timeChoiceMenuShow}
             timeChoiceClick={this.timeChoiceClick}
           />
-          <List
+          <EntryListUi
             entryList={this.state.entryList}
             adEntryItemClick={this.adEntryItemClick}
             columnEntryItemClick={this.columnEntryItemClick}
@@ -64,7 +65,9 @@ class HomeRecommended extends Component {
             commentsCountClick={this.commentsCountClick}
           />
         </div>
-        <div className="sidebar"></div>
+        <div className="sidebar">
+          <SidebarUi />
+        </div>
       </div>
     );
   }

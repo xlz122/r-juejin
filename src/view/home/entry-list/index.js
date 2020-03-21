@@ -1,10 +1,9 @@
 import React from 'react';
 import './index.less';
 
-function List(props) {
+function EntryListUi(props) {
   const { adEntryList, columnEntryList } = props.entryList;
   const { adEntryItemClick, columnEntryItemClick, likeCountClick, commentsCountClick } = props;
-  console.log(adEntryList)
   return (
     <div className="entry-list">
       <ul className="ad-entry-list">
@@ -104,4 +103,4 @@ function List(props) {
   )
 }
 
-export default List;
+export default EntryListUi;
