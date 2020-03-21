@@ -54,6 +54,7 @@ class Home extends Component {
   }
 
   // 主页导航划过
+  // 深拷贝：解决子组件使用connect之后，父组件更新，不会触发子组件更新
   homeNavMouseOver(index) {
     let list = lodash.cloneDeep(this.state.homeNavData);
     list[index].isShow = true;

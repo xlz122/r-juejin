@@ -7,7 +7,7 @@ var logger = require('morgan');
 // 头部接口文件
 var headerRouter = require('./routes/header/index');
 // 首页接口文件
-var headerRouter = require('./routes/home/index');
+var homeRouter = require('./routes/home/index');
 
 var app = express();
 
@@ -27,7 +27,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // 头部接口
 app.use('/header', headerRouter);
 // 首页接口
-app.use('/home', headerRouter);
+app.use('/home', homeRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

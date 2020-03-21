@@ -19,3 +19,13 @@ export const getHomeCategoryNav = () => {
     methods: 'get'
   })
 }
+
+/**
+ * @desc 获取首页 - 条目列表数据
+*/
+export const getHomeEntryList = () => {
+  return Axios.request({
+    url: '/home/entry-list',
+    methods: 'get'
+  })
+}
