@@ -1,157 +1,109 @@
-import React from 'react';
-// 侧边广告
-import sidebarBanner1 from '@images/home/home-sidebar-advertisement1.jpg';
-import sidebarBanner2 from '@images/home/home-sidebar-advertisement2.jpg';
-// 侧边下载二维码
-import sidebarQeCode from '@images/home/home-sidebar-qr-code.png';
-// 侧边喜欢
-import sidebarLinkImg1 from '@images/home/home-sidebar-link-section-img1.png';
-import sidebarLinkImg2 from '@images/home/home-sidebar-link-section-img2.png';
-import sidebarLinkImg3 from '@images/home/home-sidebar-link-section-img3.png';
-import sidebarLinkImg4 from '@images/home/home-sidebar-link-section-img4.png';
-import sidebarLinkImg5 from '@images/home/home-sidebar-link-section-img5.png';
-// 关注我们
-import sidebarFollowImg1 from '@images/home/home-sidebar-follow-img1.png';
-import sidebarFollowImg2 from '@images/home/home-sidebar-follow-img2.png';
-import sidebarFollowImg3 from '@images/home/home-sidebar-follow-img3.png';
-import sidebarFollowImg4 from '@images/home/home-sidebar-follow-img4.png';
-import './index.less';
+import React, { Component, Fragment } from 'react';
+import { accountLogin, accountRegister } from '@api/header';
+import { createDB, insertData, getAllData } from '@indexDB';
+import SideBarUi from './sidebarUi';
 
-function SidebarUi() {
-  return (
-    <div className="sidebar-container">
-      {/* 注册部分 */}
-      <div className="auth-section">
-        <div className="title">
-          掘金 - juejin.im
-        </div>
-        <div className="slogan">
-          一个帮助开发者成长的社区
-        </div>
-        <div className="input-group">
-          <div className="input-box">
-            <input className="input" type="text" placeholder="用户名" />
-          </div>
-          <div className="input-box">
-            <input className="input" placeholder="手机号" />
-          </div>
-          <div className="input-box">
-            <input className="input" placeholder="密码（不少于6位）" />
-          </div>
-          <button className="submit-btn">立即注册</button>
-        </div>
-        <div className="agreement-box">
-          <p>注册登录即表示</p>
-          <span>同意</span>
-          <span className="clickable">用户协议</span>
-          <span>、</span>
-          <span className="clickable">隐私政策</span>
-        </div>
-      </div>
-      {/* 广告部分 */}
-      <div className="banner-section">
-        <div className="banner-link">
-          <img className="img" src={sidebarBanner1} alt="banner" />
-        </div>
-      </div>
-      <div className="banner-section">
-        <div className="banner-link">
-          <img className="img" src={sidebarBanner2} alt="banner" />
-        </div>
-      </div>
-      {/* 标签 */}
-      <div className="sidebar-tags">
-        <div className="header">
-          <span className="title">热门标签</span>
-          <span className="right-text">查看全部</span>
-        </div>
-        <ul className="content">
-          <li className="item">架构</li>
-          <li className="item">开源</li>
-          <li className="item">算法</li>
-          <li className="item">GitHub</li>
-          <li className="item">面试</li>
-          <li className="item">代码规范</li>
-          <li className="item">产品</li>
-          <li className="item">掘金翻译计划</li>
-        </ul>
-      </div>
-      {/* 下载 */}
-      <div className="download">
-        <img className="img" src={sidebarQeCode} alt="download" />
-        <div className="content-box">
-          <div className="headline">下载掘金客户端</div> 
-          <div className="desc">一个帮助开发者成长的社区</div> 
-        </div>
-      </div>
-      {/* 喜欢 */}
-      <ul className="link-section">
-        <li className="item">
-          <img className="img" src={sidebarLinkImg1} alt="link-section" />
-          <span className="text">收藏集</span>
-        </li>
-        <li className="item">
-          <img className="img" src={sidebarLinkImg2} alt="link-section" />
-          <span className="text">掘金社区漫游指南</span>
-        </li>
-        <li className="item">
-          <img className="img" src={sidebarLinkImg3} alt="link-section" />
-          <span className="text">下载掘金浏览器插件</span>
-        </li>
-        <li className="item">
-          <img className="img" src={sidebarLinkImg4} alt="link-section" />
-          <span className="text">前往掘金翻译计划</span>
-        </li>
-        <li className="item">
-          <img className="img" src={sidebarLinkImg5} alt="link-section" />
-          <span className="text">商务合作</span>
-        </li>
-      </ul>
-      {/* 关注我们 */}
-      <div className="follow-section">
-        <div>关注我们</div>
-        <ul className="account-list">
-          <li className="item">
-            <img className="img" src={sidebarFollowImg1} alt="follow" />
-          </li>
-          <li className="item">
-            <img className="img" src={sidebarFollowImg2} alt="follow" />
-          </li>
-          <li className="item">
-            <img className="img" src={sidebarFollowImg3} alt="follow" />
-          </li>
-          <li className="item">
-            <img className="img" src={sidebarFollowImg4} alt="follow" />
-          </li>
-        </ul>
-      </div>
-      {/* 更多 */}
-      <div className="more-section">
-        <ul className="more-list">
-          <li className="item">关于</li>
-          <li className="item">招聘</li>
-          <li className="item">商务合作</li>
-          <li className="item last-item">友情链接</li>
-        </ul>
-        <ul className="more-list">
-          <li className="item">用户协议</li>
-          <li className="item last-item">隐私政策</li>
-        </ul>
-        <ul className="more-list">
-          <li className="item last-item">©2020 掘金</li>
-        </ul>
-        <ul className="more-list">
-          <li className="item last-item">Powered by QingCloud</li>
-        </ul>
-        <ul className="more-list">
-          <li className="item last-item">津ICP备15003202号-2</li>
-        </ul>
-        <ul className="more-list">
-          <li className="item last-item">京公网安备11010802026719号-2</li>
-        </ul>
-      </div>
-    </div>
-  )
+class SideBar extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      registerAccountValue: '', // 注册账号value
+      registerPhoneValue: '', // 注册手机号value
+      registerPasswordValue: '' // 注册密码value
+    }
+    // 注册部分
+    this.registerAccountChange = this.registerAccountChange.bind(this);
+    this.registerPhoneChange = this.registerPhoneChange.bind(this);
+    this.registerPasswordChange = this.registerPasswordChange.bind(this);
+    this.register = this.register.bind(this);
+  }
+
+  render() {
+    return (
+      <Fragment>
+        <SideBarUi
+          registerAccountValue={this.state.registerAccountValue}
+          registerAccountChange={this.registerAccountChange}
+          registerPhoneValue={this.state.registerPhoneValue}
+          registerPhoneChange={this.registerPhoneChange}
+          registerPasswordValue={this.registerPasswordValue}
+          registerPasswordChange={this.registerPasswordChange}
+          register={this.register}
+        />
+      </Fragment>
+    );
+  }
+
+  // 注册账号
+  registerAccountChange(e) {
+    this.setState({ registerAccountValue: e.target.value });
+  }
+
+  // 注册手机号
+  registerPhoneChange(e) {
+    this.setState({ registerPhoneValue: e.target.value });
+  }
+
+  // 注册密码
+  registerPasswordChange(e) {
+    this.setState({ registerPasswordValue: e.target.value });
+  }
+  
+  // 注册
+  register() {
+    let { registerAccountValue: username, registerPhoneValue: phone, registerPasswordValue: password } = this.state;
+    // 数据校验
+    let reg = /^[1][3,4,5,7,8,9][0-9]{9}$/;
+    if (!username) {
+      alert('请输入账号！');
+      return false;
+    } else if (!phone) {
+      alert('请输入手机号！');
+      return false;
+    } else if (phone && !reg.test(phone)) {
+      alert('请输入正确的手机号！');
+      return false;
+    } else if (!password || password.length < 6) {
+      alert('请输入密码');
+      return false;
+    }
+
+    accountRegister({
+      username,
+      phone,
+      password
+    })
+      .then(res => {
+        let indexedDB = window.indexedDB || window.webkitIndexedDB || window.mozIndexedDB || window.msIndexedDB;
+        if( !indexedDB ){
+          throw Error('当前浏览器不支持 indexed 数据库, 请更换高级浏览器！！！');
+        } else {
+          createDB('juejinDB', 'user' , 1);
+          // 进行数据查询
+          getAllData('juejinDB', 'user', (data) => {
+            if (data.length === 0) {
+              // 第一次注册直接添加
+              insertData('juejinDB', 'user', { username, phone, password });
+              alert('注册成功!');
+            } else {
+              // 后续添加进行对比
+              let userResult = data.find(item => res.data.username === item.username);
+              let phoneResult = data.find(item => res.data.phone === item.phone);
+              console.log(userResult )
+              console.log(phoneResult )
+              if (userResult) {
+                alert('账号已存在！');
+              } else if (phoneResult) {
+                alert('手机号已被注册，请更换手机号!');
+              } else {
+                insertData('juejinDB', 'user', { username, phone, password });
+                alert('注册成功!');
+              }
+            }
+          })
+        }
+      })
+  }
 }
-
-export default SidebarUi;
+ 
+export default SideBar;

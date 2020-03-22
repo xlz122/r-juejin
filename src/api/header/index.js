@@ -6,6 +6,35 @@ import  Axios from '@axios';
 export const getHeaderNav = () => {
   return Axios.request({
     url:  '/header/nav-list',
-    methods: 'get'
+    method: 'get'
+  })
+}
+
+/**
+ * @desc 账号登录
+ * @params username - 用户名
+ * @desc password - 密码
+*/
+export const accountLogin = ({ username, password }) => {
+  const data = { username, password };
+  return Axios.request({
+    url:  '/header/login',
+    method: 'post',
+    data
+  })
+}
+
+/**
+ * @desc 账号注册
+ * @params username - 用户名
+ * @desc phone - 手机号
+ * @desc password - 密码
+*/
+export const accountRegister = ({ username, phone, password }) => {
+  const data = { username, phone, password };
+  return Axios.request({
+    url:  '/header/register',
+    method: 'post',
+    data
   })
 }

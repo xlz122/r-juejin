@@ -29,7 +29,7 @@ function LoginUi(props) {
             <img className="panfish-img" src={setPanfishImgType(props.panfishImgType)} alt="panfish" />
           }
         </div>
-        <div className="close-btn" onClick={props.close}>
+        <div className="close-btn" title="关闭" onClick={props.close}>
           X
         </div>
         <div className="panel">
@@ -45,7 +45,7 @@ function LoginUi(props) {
                   onChange={props.accountChange}
                   onFocus={props.accountFocus}
                   onBlur={props.accountBlur}
-                  placeholder="请输入账号，root"
+                  placeholder="请输入账号或手机号"
                 />
                 <input
                   className="input-item"
@@ -54,7 +54,7 @@ function LoginUi(props) {
                   onChange={props.passwordChange}
                   onFocus={props.passwordFocus}
                   onBlur={props.passwordBlur}
-                  placeholder="请输入密码，123456"
+                  placeholder="请输入密码"
                 />
               </div>
               <button className="submit-btn" onClick={props.submit}>登录</button>
@@ -75,6 +75,13 @@ function LoginUi(props) {
                 <input
                   className="input-item"
                   type="text"
+                  value={props.registerPhoneValue}
+                  onChange={props.registerPhoneChange}
+                  placeholder="请输入手机号"
+                />
+                <input
+                  className="input-item"
+                  type="text"
                   value={props.registerPasswordValue}
                   onChange={props.registerPasswordChange}
                   placeholder="请输入密码，不少于6位"
@@ -90,7 +97,7 @@ function LoginUi(props) {
             <Fragment>
               <span>没有账号？</span>
               <span className="clickable" onClick={() => {props.logonHandover('login')}}>注册</span>
-              <span className="clickable forget-password">忘记密码</span>
+              <span className="clickable forget-password" onClick={props.forgetPassword}>忘记密码</span>
             </Fragment>
           }
           {

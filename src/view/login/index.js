@@ -1,4 +1,6 @@
 import React, { Component, Fragment } from 'react';
+import { accountLogin, accountRegister } from '@api/header';
+import { createDB, insertData, getAllData } from '@indexDB';
 import LoginUi from './loginUi.js';
 
 class Login extends Component {
@@ -11,6 +13,7 @@ class Login extends Component {
       accountValue: '', // 登录账号value
       passwordValue: '', // 登录密码value
       registerAccountValue: '', // 注册账号value
+      registerPhoneValue: '', // 注册手机号value
       registerPasswordValue: '' // 注册密码value
     }
 
@@ -26,8 +29,11 @@ class Login extends Component {
     this.submit = this.submit.bind(this);
     // 注册部分
     this.registerAccountChange = this.registerAccountChange.bind(this);
+    this.registerPhoneChange = this.registerPhoneChange.bind(this);
     this.registerPasswordChange = this.registerPasswordChange.bind(this);
     this.register = this.register.bind(this);
+    // 忘记密码
+    this.forgetPassword = this.forgetPassword.bind(this);
   }
 
   // 可以监听到父组件props变化
@@ -71,9 +77,12 @@ class Login extends Component {
           submit={this.submit}
           registerAccountValue={this.state.registerAccountValue}
           registerAccountChange={this.registerAccountChange}
+          registerPhoneValue={this.state.registerPhoneValue}
+          registerPhoneChange={this.registerPhoneChange}
           registerPasswordValue={this.registerPasswordValue}
           registerPasswordChange={this.registerPasswordChange}
           register={this.register}
+          forgetPassword={this.forgetPassword}
         />
       </Fragment>
     );
@@ -124,24 +133,47 @@ class Login extends Component {
 
   // 登录
   submit() {
-    if (!this.state.accountValue) {
+    let { accountValue: username, passwordValue: password } = this.state;
+    // 数据校验
+    if (!username) {
       this.setState({ panfishImgType: 2 });
       alert('请输入账号!');
-    } else if (!this.state.accountValue) {
+    } else if (!password) {
       this.setState({ panfishImgType: 2 });
       alert('请输入密码!');
-    } else {
-      if (this.state.accountValue === 'root' && this.state.passwordValue === 123456) {
-        alert('密码正确');
-      } else {
-        alert('密码错误');
-      }
     }
+
+    accountLogin({
+      username,
+      password
+    })
+      .then(res => {
+        // 进行数据查询
+        getAllData('juejinDB', 'user', (data) => {
+          let userResult = data.find(item => res.data.username === item.username);
+          let phoneResult = data.find(item => res.data.username === item.phone);
+          if (userResult || phoneResult) {
+            if (userResult.password === password) {
+              this.props.close();
+              alert('登录成功');
+            } else {
+              alert('请检查用户名或者密码是否正确！');
+            }
+          } else {
+            alert('请检查用户名或者密码是否正确！');
+          }
+        })
+      })
   }
 
   // 注册账号
   registerAccountChange(e) {
     this.setState({ registerAccountValue: e.target.value });
+  }
+
+  // 注册手机号
+  registerPhoneChange(e) {
+    this.setState({ registerPhoneValue: e.target.value });
   }
 
   // 注册密码
@@ -151,7 +183,65 @@ class Login extends Component {
   
   // 注册
   register() {
-    alert('点击了注册');
+    let { registerAccountValue: username, registerPhoneValue: phone, registerPasswordValue: password } = this.state;
+    // 数据校验
+    let reg = /^[1][3,4,5,7,8,9][0-9]{9}$/;
+    if (!username) {
+      alert('请输入账号！');
+      return false;
+    } else if (!phone) {
+      alert('请输入手机号！');
+      return false;
+    } else if (phone && !reg.test(phone)) {
+      alert('请输入正确的手机号！');
+      return false;
+    } else if (!password || password.length < 6) {
+      alert('请输入密码');
+      return false;
+    }
+
+    accountRegister({
+      username,
+      phone,
+      password
+    })
+      .then(res => {
+        let indexedDB = window.indexedDB || window.webkitIndexedDB || window.mozIndexedDB || window.msIndexedDB;
+        if( !indexedDB ){
+          throw Error('当前浏览器不支持 indexed 数据库, 请更换高级浏览器！！！');
+        } else {
+          createDB('juejinDB', 'user' , 1);
+          // 进行数据查询
+          getAllData('juejinDB', 'user', (data) => {
+            if (data.length === 0) {
+              // 第一次注册直接添加
+              insertData('juejinDB', 'user', { username, phone, password });
+              this.props.close();
+              alert('注册成功!');
+            } else {
+              // 后续添加进行对比
+              let userResult = data.find(item => res.data.username === item.username);
+              let phoneResult = data.find(item => res.data.phone === item.phone);
+              console.log(userResult )
+              console.log(phoneResult )
+              if (userResult) {
+                alert('账号已存在！');
+              } else if (phoneResult) {
+                alert('手机号已被注册，请更换手机号!');
+              } else {
+                insertData('juejinDB', 'user', { username, phone, password });
+                this.props.close();
+                alert('注册成功!');
+              }
+            }
+          })
+        }
+      })
+  }
+
+  // 忘记密码
+  forgetPassword() {
+    alert('暂不支持找回密码，请重新注册！');
   }
 }
  

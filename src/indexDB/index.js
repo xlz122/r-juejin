@@ -87,8 +87,10 @@ export function getAllData(dbName, objectStoreName, callback) {
         data.push(result.value);
         result.continue();
       } else {
-        if (callback) {
+        if (callback && data) {
           callback(data);
+        } else {
+          callback('未查询到数据!')
         }
       }
     }

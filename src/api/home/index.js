@@ -16,7 +16,7 @@ export const getHomeNav = () => {
 export const getHomeCategoryNav = () => {
   return Axios.request({
     url: '/home/category-nav-list',
-    methods: 'get'
+    method: 'get'
   })
 }
 
@@ -27,7 +27,7 @@ export const getHomeEntryList = ({ page, pageSize, entryType, entryTime }) => {
   const params = { page, pageSize, entryType, entryTime };
   return Axios.request({
     url: '/home/entry-list',
-    methods: 'get',
+    method: 'get',
     params
   })
 }
