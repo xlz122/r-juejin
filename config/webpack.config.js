@@ -357,6 +357,7 @@ module.exports = function(webpackEnv) {
         '@api': path.resolve(__dirname, '../src/api'),
         '@axios': path.resolve(__dirname, '../src/axios'),
         '@images': path.resolve(__dirname, '../src/images'),
+        '@indexDB': path.resolve(__dirname, '../src/indexDB'),
         '@router': path.resolve(__dirname, '../src/router'),
         '@store': path.resolve(__dirname, '../src/store'),
         '@view': path.resolve(__dirname, '../src/view'),

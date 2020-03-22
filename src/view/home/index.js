@@ -3,6 +3,7 @@ import { Route } from 'react-router-dom';
 import lodash from 'lodash';
 import { getHomeNav } from '@api/home';
 import HomeNavUi from './home-nav';
+import { createDB, insertData, getAllData, updateData, clearAllData, deleteDB } from '@indexDB';
 import './index.less';
 
 // 引入组件
@@ -25,6 +26,23 @@ class Home extends Component {
   }
 
   componentDidMount() {
+    // 数据库操作
+    var indexedDB = window.indexedDB || window.webkitIndexedDB || window.mozIndexedDB || window.msIndexedDB;
+    if( !indexedDB ){
+      throw Error('当前不支持 indexed 数据库');
+    } else {
+      createDB('juejinDB', 'account' , 1);
+      // insertData('juejinDB', 'account', { username: 'xlz13', password: 1235456, phoneNumber: 14798980339 });
+      // updateData('juejinDB', 'account', { username: 'xlz13', value: '12563' }, () => {
+      //   console.log('数据更新完成');
+      // });
+      // getAllData('juejinDB', 'account', (data) => {
+      //   console.log(data)
+      // })
+      // clearAllData('juejinDB', 'account');
+      // deleteDB('juejinDB')
+    }
+
     // 获取首页导航数据
     getHomeNav()
       .then(res => {
