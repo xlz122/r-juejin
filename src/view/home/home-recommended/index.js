@@ -14,8 +14,14 @@ class HomeRecommended extends Component {
       timeChoiceShow: false, // 时间选择显隐
       timeChoiceTitle: '', // 时间选择title
       timeChoiceMenuShow: false, // 时间选择下拉菜单显隐
+      page: 1, // 列表条目页数
+      pageSize: 15, // 列表条目条数
+      entryType: 0, // 条目类型
+      entryTime: '', // 条目时间
       entryList: [] // 列表条目数据
     }
+    // 数据获取
+    this.getEntryList = this.getEntryList.bind(this);
     // 导航切换
     this.navListChange = this.navListChange.bind(this);
     // 时间选择菜单显隐
@@ -37,10 +43,7 @@ class HomeRecommended extends Component {
         this.setState({ navListData: res.data });
       })
     // 获取列表条目数据
-    getHomeEntryList()
-      .then(res => {
-        this.setState({ entryList: res.data });
-      })
+    this.getEntryList();
   }
 
   render() {
@@ -72,15 +75,40 @@ class HomeRecommended extends Component {
     );
   }
 
+  // 获取列表条目数据
+  getEntryList() {
+    getHomeEntryList({
+      page: this.state.page,
+      pageSize: this.state.pageSize,
+      entryType: this.state.entryType,
+      entryTime: this.state.entryTime
+    })
+      .then(res => {
+        this.setState({ entryList: res.data });
+      })
+      .catch(() => {
+        this.setState({ entryList: [] });
+      })
+  }
+
   // 导航切换
   navListChange(index) {
-    this.setState({ navActiveIndex: index });
     if (index === 2) {
       this.setState({ timeChoiceShow: true });
     } else {
-      this.setState({ timeChoiceShow: false });
-      this.setState({ timeChoiceTitle: this.state.navListData.timeChoice[0].time });
+      this.setState({
+        timeChoiceShow: false,
+        timeChoiceTitle: this.state.navListData.timeChoice[0].time
+      });
     }
+    this.setState({
+      navActiveIndex: index,
+      page: 1,
+      pageSize: 15,
+      entryType: index
+    }, () => {
+      this.getEntryList();
+    });
   }
 
   // 时间选择菜单显隐
@@ -95,8 +123,15 @@ class HomeRecommended extends Component {
 
   // 时间选择
   timeChoiceClick(item, index) {
-    this.setState({ timeChoiceTitle: item.time });
-    this.setState({ timeChoiceMenuShow: false });
+    this.setState({
+      timeChoiceTitle: item.time,
+      timeChoiceMenuShow: false,
+      page: 1,
+      pageSize: 15,
+      entryTime: index
+    }, () => {
+      this.getEntryList();
+    });
   }
 
   // 广告条目点击

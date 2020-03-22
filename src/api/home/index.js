@@ -23,9 +23,11 @@ export const getHomeCategoryNav = () => {
 /**
  * @desc 获取首页 - 条目列表数据
 */
-export const getHomeEntryList = () => {
+export const getHomeEntryList = ({ page, pageSize, entryType, entryTime }) => {
+  const params = { page, pageSize, entryType, entryTime };
   return Axios.request({
     url: '/home/entry-list',
-    methods: 'get'
+    methods: 'get',
+    params
   })
 }

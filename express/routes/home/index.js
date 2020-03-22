@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var Mock = require('mockjs');
 
 /* 首页导航 */
 router.get('/nav-list', function(req, res, next) {
@@ -220,185 +221,70 @@ router.get('/category-nav-list', function(req, res, next) {
 /* 首页 - 列表条目 */
 router.get('/entry-list', function(req, res, next) {
   // 广告列表条目
-  let data = {
-    data: {
-      adEntryList:[
-        {
-          username: '掘金酱',
-          time: '1天前',
-          imageUrl: 'https://user-gold-cdn.xitu.io/1584673233867129f343a0923f95c5424833e5e6dae2c.jpg?imageView2/1/w/120/h/120/q/85/format/webp/interlace/1',
-          title: '面试不用愁，掘友能解忧，一批大厂面试经验新鲜出炉啦~',
-          bstract: '有面试需求的小伙伴再也不用发愁找不到攻略啦。这一次面试，掘友帮你忙。'
-        }
-      ],
-      columnEntryList: [
-        {
-          username: '好学习吧丶',
-          time: '3天前',
-          name: '前端',
-          imageUrl: '',
-          title: '面试官：你了解过移动端适配吗？',
-          likeCount: 803,
-          commentsCount: 96
-        },
-        {
-          username: '写代码像蔡徐抻',
-          time: '2天前',
-          name: '前端',
-          imageUrl: 'https://user-gold-cdn.xitu.io/2020/3/15/170de7847a612d40?imageView2/1/w/120/h/120/q/85/format/webp/interlace/1',
-          title: 'Promise/async/Generator实现原理解析 | 9k字',
-          likeCount: 542,
-          commentsCount: 37
-        },
-        {
-          username: '写代码像蔡徐抻',
-          time: '1天前',
-          name: '面试/阿里巴巴',
-          imageUrl: '',
-          title: '阿里前端攻城狮们写了一份前端面试题答案，请查收',
-          likeCount: 448,
-          commentsCount: 58
-        },
-        {
-          username: '好学习吧丶',
-          time: '3天前',
-          name: '前端',
-          imageUrl: '',
-          title: '面试官：你了解过移动端适配吗？',
-          likeCount: 803,
-          commentsCount: 96
-        },
-        {
-          username: '写代码像蔡徐抻',
-          time: '2天前',
-          name: '前端',
-          imageUrl: 'https://user-gold-cdn.xitu.io/2020/3/15/170de7847a612d40?imageView2/1/w/120/h/120/q/85/format/webp/interlace/1',
-          title: 'Promise/async/Generator实现原理解析 | 9k字',
-          likeCount: 542,
-          commentsCount: 37
-        },
-        {
-          username: '写代码像蔡徐抻',
-          time: '1天前',
-          name: '面试/阿里巴巴',
-          imageUrl: '',
-          title: '阿里前端攻城狮们写了一份前端面试题答案，请查收',
-          likeCount: 448,
-          commentsCount: 58
-        },
-        {
-          username: '好学习吧丶',
-          time: '3天前',
-          name: '前端',
-          imageUrl: '',
-          title: '面试官：你了解过移动端适配吗？',
-          likeCount: 803,
-          commentsCount: 96
-        },
-        {
-          username: '写代码像蔡徐抻',
-          time: '2天前',
-          name: '前端',
-          imageUrl: 'https://user-gold-cdn.xitu.io/2020/3/15/170de7847a612d40?imageView2/1/w/120/h/120/q/85/format/webp/interlace/1',
-          title: 'Promise/async/Generator实现原理解析 | 9k字',
-          likeCount: 542,
-          commentsCount: 37
-        },
-        {
-          username: '写代码像蔡徐抻',
-          time: '1天前',
-          name: '面试/阿里巴巴',
-          imageUrl: '',
-          title: '阿里前端攻城狮们写了一份前端面试题答案，请查收',
-          likeCount: 448,
-          commentsCount: 58
-        },
-        {
-          username: '好学习吧丶',
-          time: '3天前',
-          name: '前端',
-          imageUrl: '',
-          title: '面试官：你了解过移动端适配吗？',
-          likeCount: 803,
-          commentsCount: 96
-        },
-        {
-          username: '写代码像蔡徐抻',
-          time: '2天前',
-          name: '前端',
-          imageUrl: 'https://user-gold-cdn.xitu.io/2020/3/15/170de7847a612d40?imageView2/1/w/120/h/120/q/85/format/webp/interlace/1',
-          title: 'Promise/async/Generator实现原理解析 | 9k字',
-          likeCount: 542,
-          commentsCount: 37
-        },
-        {
-          username: '写代码像蔡徐抻',
-          time: '1天前',
-          name: '面试/阿里巴巴',
-          imageUrl: '',
-          title: '阿里前端攻城狮们写了一份前端面试题答案，请查收',
-          likeCount: 448,
-          commentsCount: 58
-        },
-        {
-          username: '好学习吧丶',
-          time: '3天前',
-          name: '前端',
-          imageUrl: '',
-          title: '面试官：你了解过移动端适配吗？',
-          likeCount: 803,
-          commentsCount: 96
-        },
-        {
-          username: '写代码像蔡徐抻',
-          time: '2天前',
-          name: '前端',
-          imageUrl: 'https://user-gold-cdn.xitu.io/2020/3/15/170de7847a612d40?imageView2/1/w/120/h/120/q/85/format/webp/interlace/1',
-          title: 'Promise/async/Generator实现原理解析 | 9k字',
-          likeCount: 542,
-          commentsCount: 37
-        },
-        {
-          username: '写代码像蔡徐抻',
-          time: '1天前',
-          name: '面试/阿里巴巴',
-          imageUrl: '',
-          title: '阿里前端攻城狮们写了一份前端面试题答案，请查收',
-          likeCount: 448,
-          commentsCount: 58
-        },
-        {
-          username: '好学习吧丶',
-          time: '3天前',
-          name: '前端',
-          imageUrl: '',
-          title: '面试官：你了解过移动端适配吗？',
-          likeCount: 803,
-          commentsCount: 96
-        },
-        {
-          username: '写代码像蔡徐抻',
-          time: '2天前',
-          name: '前端',
-          imageUrl: 'https://user-gold-cdn.xitu.io/2020/3/15/170de7847a612d40?imageView2/1/w/120/h/120/q/85/format/webp/interlace/1',
-          title: 'Promise/async/Generator实现原理解析 | 9k字',
-          likeCount: 542,
-          commentsCount: 37
-        },
-        {
-          username: '写代码像蔡徐抻',
-          time: '1天前',
-          name: '面试/阿里巴巴',
-          imageUrl: '',
-          title: '阿里前端攻城狮们写了一份前端面试题答案，请查收',
-          likeCount: 448,
-          commentsCount: 58
-        }
-      ]
+  let adEntryList = [
+    {
+      username: '掘金酱',
+      time: '1天前',
+      imageUrl: 'https://user-gold-cdn.xitu.io/1584673233867129f343a0923f95c5424833e5e6dae2c.jpg?imageView2/1/w/120/h/120/q/85/format/webp/interlace/1',
+      title: '面试不用愁，掘友能解忧，一批大厂面试经验新鲜出炉啦~',
+      bstract: '有面试需求的小伙伴再也不用发愁找不到攻略啦。这一次面试，掘友帮你忙。'
     }
+  ];
+  // 专栏数据数组
+  let usernameArr = ['冴羽', '承志', '元宵大师', '高德技术', 'Taoye', '美团技术团队', '拇指笔记', '老齐Py', '帅地', '晓飞的算法工程笔记"'];
+  let timeArr = ['1分钟前', '8分钟前', '30分钟前', '56分钟前', '8小时前', '1天前', '2天前', '3天前'];
+  let nameArr = ['前端', '后端', '面试/阿里巴巴', 'Java', 'Android', '阅读', 'iOS', '机器学习', '数据结构', 'Python'];
+  let imageUrlArr = [
+    'https://user-gold-cdn.xitu.io/2020/3/15/170de7847a612d40?imageView2/1/w/120/h/120/q/85/format/webp/interlace/1',
+    'https://user-gold-cdn.xitu.io/2020/3/10/170c1d00b13f92ad?imageView2/1/w/120/h/120/q/85/format/webp/interlace/1',
+    'https://user-gold-cdn.xitu.io/2020/3/2/17098f2cc313203e?imageView2/1/w/120/h/120/q/85/format/webp/interlace/1',
+    'https://user-gold-cdn.xitu.io/2020/3/21/170fc70d174bf234?imageView2/1/w/120/h/120/q/85/format/webp/interlace/1',
+    'https://user-gold-cdn.xitu.io/2020/3/17/170e76487639afeb?imageView2/1/w/120/h/120/q/85/format/webp/interlace/1',
+    'https://user-gold-cdn.xitu.io/2020/3/21/170fc5faf22462b6?imageView2/1/w/120/h/120/q/85/format/webp/interlace/1',
+    'https://user-gold-cdn.xitu.io/2020/3/19/170f03ff14f6a922?imageView2/1/w/120/h/120/q/85/format/webp/interlace/1',
+    '',
+    '',
+    ''
+  ];
+  let titleArr = [
+    '阿里前端攻城狮们写了一份前端面试题答案，请查收',
+    'Android 布 局 翻 译 器',
+    'Java 14 发布了，不使用"class"也能定义类了？还顺手要干掉Lombok！',
+    '一口气说出 6种，@Transactional注解的失效场景',
+    '跨域总结:从CORS到Ngni',
+    '把 GitHub 放入口袋，“开箱”官方客户端',
+    '微信支付跨平台软件架构',
+    '机器学习:决策树入门之泰坦尼克号案例',
+    '硬核数据结构，让你从B树理解到B+树',
+    'Python——五分钟带你弄懂迭代器与生成器，夯实代码能力'
+  ];
+  let likeCountArr = [37, 58, 63, 73, 97, 143, 386, 521, 538, 843 ];
+  let commentsCountArr = [1, 9, 10, 13, 16, 24, 26, 37, 38, 76]
+  // 数据处理
+  let columnEntryList = [];
+  let page = req.query.page; // 页数
+  let pageSize = req.query.pageSize; // 条数
+  let len = (1000 - pageSize * (page - 1)) < pageSize ? (1000 - pageSize * (page - 1)) : pageSize; // 返回条数
+  for (i = 0; i < len; i++) {
+    columnEntryList.push(
+      Mock.mock({
+        'id': (page - 1) * pageSize + (i + 1),
+        'username|1': usernameArr,
+        'time|1': timeArr,
+        'name|1': nameArr,
+        'imageUrl|1': imageUrlArr,
+        'title|1': titleArr,
+        'likeCount|1': likeCountArr,
+        'commentsCount|1': commentsCountArr
+      })
+    )
   }
-
-  res.json(data);
+  res.json({
+    data: {
+      adEntryList,
+      columnEntryList
+    }
+  });
 });
 
 module.exports = router;
