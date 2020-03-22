@@ -16,21 +16,18 @@ router.get('/nav-list', function(req, res, next) {
 
 /* 登录 */
 router.post('/login', function(req, res, next) {
-  let params = Object.keys(req.body);
-  params = params[0].split(',');
-  params = JSON.parse(params);
+  // let params = Object.keys(req.body);
+  // params = params[0].split(',');
+  // params = JSON.parse(params);
   res.json({
-    data: params
+    data: req.body
   });
 });
 
 /* 注册 */
 router.post('/register', function(req, res, next) {
-  let params = Object.keys(req.body);
-  params = params[0].split(',');
-  params = JSON.parse(params);
   res.json({
-    data: params
+    data: req.body
   });
 });
 

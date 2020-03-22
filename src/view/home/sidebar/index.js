@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { accountLogin, accountRegister } from '@api/header';
+import { accountRegister } from '@api/header';
 import { createDB, insertData, getAllData } from '@indexDB';
 import SideBarUi from './sidebarUi';
 

@@ -15,7 +15,7 @@ class HttpRequest {
       // 请求超时
       timeout: 5000,
       headers: {
-        'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8',
+        'Content-Type': 'application/json;charset=UTF-8',
       }
     }
     config = { ...config, ...this.externalConfig };

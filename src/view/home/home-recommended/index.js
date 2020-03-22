@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { getHomeCategoryNav, getHomeEntryList } from '@api/home';
 import CategoryNav from '../category-nav';
 import EntryListUi from '../entry-list';
-import Sidebar from '../sidebar';
+import SidebarUi from '../sidebar';
 import './index.less';
 
 class HomeRecommended extends Component {
@@ -69,7 +69,7 @@ class HomeRecommended extends Component {
           />
         </div>
         <div className="sidebar">
-          <Sidebar />
+          <SidebarUi />
         </div>
       </div>
     );
