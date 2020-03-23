@@ -235,13 +235,13 @@ router.get('/entry-list', function(req, res, next) {
   let timeArr = ['1分钟前', '8分钟前', '30分钟前', '56分钟前', '8小时前', '1天前', '2天前', '3天前'];
   let nameArr = ['前端', '后端', '面试/阿里巴巴', 'Java', 'Android', '阅读', 'iOS', '机器学习', '数据结构', 'Python'];
   let imageUrlArr = [
-    'https://user-gold-cdn.xitu.io/2020/3/15/170de7847a612d40?imageView2/1/w/120/h/120/q/85/format/webp/interlace/1',
-    'https://user-gold-cdn.xitu.io/2020/3/10/170c1d00b13f92ad?imageView2/1/w/120/h/120/q/85/format/webp/interlace/1',
-    'https://user-gold-cdn.xitu.io/2020/3/2/17098f2cc313203e?imageView2/1/w/120/h/120/q/85/format/webp/interlace/1',
-    'https://user-gold-cdn.xitu.io/2020/3/21/170fc70d174bf234?imageView2/1/w/120/h/120/q/85/format/webp/interlace/1',
-    'https://user-gold-cdn.xitu.io/2020/3/17/170e76487639afeb?imageView2/1/w/120/h/120/q/85/format/webp/interlace/1',
-    'https://user-gold-cdn.xitu.io/2020/3/21/170fc5faf22462b6?imageView2/1/w/120/h/120/q/85/format/webp/interlace/1',
-    'https://user-gold-cdn.xitu.io/2020/3/19/170f03ff14f6a922?imageView2/1/w/120/h/120/q/85/format/webp/interlace/1',
+    'http://localhost:9000/images/home/column-entry-list-image1.jpg',
+    'http://localhost:9000/images/home/column-entry-list-image2.jpg',
+    'http://localhost:9000/images/home/column-entry-list-image3.jpg',
+    'http://localhost:9000/images/home/column-entry-list-image4.jpg',
+    'http://localhost:9000/images/home/column-entry-list-image5.jpg',
+    'http://localhost:9000/images/home/column-entry-list-image6.jpg',
+    'http://localhost:9000/images/home/column-entry-list-image7.jpg',
     '',
     '',
     ''

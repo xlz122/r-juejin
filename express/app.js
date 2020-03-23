@@ -21,6 +21,7 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+// 配置express静态文件目录
 app.use(express.static(path.join(__dirname, 'public')));
 
 // 配置 body-parser 中间件 (插件, 专门用来解析表单 POST 请求)
