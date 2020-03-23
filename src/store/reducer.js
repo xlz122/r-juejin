@@ -2,15 +2,15 @@ import lodash from 'lodash';
 import { HEADER_NAV_LIST, HOME_NAV_LIST } from './actionTypes.js';
 
 const defaultState = {
-  navListActiveIndex: sessionStorage.getItem('navListActiveIndex') || 0, // 主导航栏下标
-  homeNavActionIndex: sessionStorage.getItem('homeNavActionIndex') || 0 // 导航栏(submenu)下标
+  headerNavActiveIndex: sessionStorage.getItem('headerNavActiveIndex') || 0, // 头部导航栏下标
+  homeNavActionIndex: sessionStorage.getItem('homeNavActionIndex') || 0 // 首页导航栏下标
 };
 
 export default (state = defaultState, action) => {
   // 设置主导航栏下标
   if (action.type === HEADER_NAV_LIST) {
     let cloneState = lodash.cloneDeep(state);
-    cloneState.navListActiveIndex = action.index;
+    cloneState.headerNavActiveIndex = action.index;
     return cloneState;
   }
 

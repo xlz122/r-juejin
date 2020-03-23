@@ -10,6 +10,8 @@ var bodyParser = require('body-parser');
 var headerRouter = require('./routes/header/index');
 // 首页接口文件
 var homeRouter = require('./routes/home/index');
+// 小册接口文件
+var brochureRouter = require('./routes/brochure/index');
 
 var app = express();
 
@@ -35,6 +37,8 @@ app.use(bodyParser.json())
 app.use('/header', headerRouter);
 // 首页接口
 app.use('/home', homeRouter);
+// 小册接口
+app.use('/brochure', brochureRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -7,7 +7,7 @@ router.get('/nav-list', function(req, res, next) {
     data: [
       { title: '首页', link: '/' },
       { title: '沸点', link: '/boiling-point' },
-      { title: '话题', link: '/topic-of-conversation' },
+      { title: '话题', link: '/topic' },
       { title: '小册', link: '/brochure' },
       { title: '活动', link: '/activity' }
     ]

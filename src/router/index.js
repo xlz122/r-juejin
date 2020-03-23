@@ -22,7 +22,7 @@ function AppRouter() {
         <Switch>
           <Route path="/home" component={Home} />
           <Route path="/boiling-point" component={boilingPoint} />
-          <Route path="/topic-of-conversation" component={Topic} />
+          <Route path="/topic" component={Topic} />
           <Route path="/brochure" component={Brochure} />
           <Route path="/activity" component={Activity} />
           <Redirect from="/" to="/home" />

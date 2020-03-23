@@ -4,23 +4,23 @@ import { connect } from 'react-redux';
 import { homeNavAction } from '@store/actionCreators';
 import './index.less';
 
-function HomeNavUi(props) {
+function NavUi(props) {
   // 父组件传递
-  const { homeNavData, homeNavMouseOver, homeNavMouseOut } =  props;
+  const { navData, navMouseOver, navMouseOut, navDetailsJump } =  props;
   // redux传递
   const { homeNavActionIndex, homeNavIndexChange } = props;
   return (
-    <div className="home-nav">
-      <ul className="home-nav-list">
+    <div className="nav-container">
+      <ul className="nav-list">
         {
-          homeNavData.map((item, index) => {
+          navData.map((item, index) => {
             return (
               <li
                 className={`li-item ${index === parseInt(homeNavActionIndex) ? 'li-active-item ' : ''}`}
                 key={index + item}
                 onClick={() => { homeNavIndexChange(index) }}
-                onMouseOver={() => { homeNavMouseOver(index) }}
-                onMouseLeave={() => { homeNavMouseOut(index) }}
+                onMouseOver={() => { navMouseOver(index) }}
+                onMouseLeave={() => { navMouseOut(index) }}
               >
                 <Link className="item-link" to={item.link}>{item.title}</Link>
                 <span className="auxiliary"></span>
@@ -39,7 +39,7 @@ function HomeNavUi(props) {
                             className="details-item"
                             key={ind + i}
                           >
-                            <Link className="details-link" to="" onClick={props.homeNavDetailsJump}>{i.title}</Link>
+                            <Link className="details-link" to="" onClick={navDetailsJump}>{i.title}</Link>
                             <span className="auxiliary"></span>
                           </li>
                         )
@@ -73,4 +73,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(HomeNavUi);
+export default connect(mapStateToProps, mapDispatchToProps)(NavUi);
