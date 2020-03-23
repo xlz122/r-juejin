@@ -18,7 +18,8 @@ class HttpRequest {
         'Content-Type': 'application/json;charset=UTF-8',
       }
     }
-    config = { ...config, ...this.externalConfig };
+    // config = { ...config, ...this.externalConfig };
+    config = Object.assign(config, this.externalConfig);
     return config
   }
 
