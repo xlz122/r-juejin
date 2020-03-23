@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
+import TopicUi from './topicUi';
 
 class Topic extends Component {
   render() { 
-    return (<div>Topic</div>);
+    return (
+      <TopicUi />
+    );
   }
 }
  
