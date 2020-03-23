@@ -225,7 +225,7 @@ router.get('/entry-list', function(req, res, next) {
     {
       username: '掘金酱',
       time: '1天前',
-      imageUrl: 'https://user-gold-cdn.xitu.io/1584673233867129f343a0923f95c5424833e5e6dae2c.jpg?imageView2/1/w/120/h/120/q/85/format/webp/interlace/1',
+      imageUrl: 'http://localhost:9000/images/home/column-entry-list-ad.jpg',
       title: '面试不用愁，掘友能解忧，一批大厂面试经验新鲜出炉啦~',
       bstract: '有面试需求的小伙伴再也不用发愁找不到攻略啦。这一次面试，掘友帮你忙。'
     }
@@ -240,8 +240,8 @@ router.get('/entry-list', function(req, res, next) {
     'http://localhost:9000/images/home/column-entry-list-image3.jpg',
     'http://localhost:9000/images/home/column-entry-list-image4.jpg',
     'http://localhost:9000/images/home/column-entry-list-image5.jpg',
-    'http://localhost:9000/images/home/column-entry-list-image6.jpg',
-    'http://localhost:9000/images/home/column-entry-list-image7.jpg',
+    '',
+    '',
     '',
     '',
     ''
