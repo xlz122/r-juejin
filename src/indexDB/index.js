@@ -18,7 +18,6 @@ export function createDB(dbName, objectStoreName, version) {
   }
   //数据库版本更新时的回调函数
   request.onupgradeneeded = function(event) {
-    console.log(objectStoreName)
     let db = event.target.result;
     // 创建信息对象存储空间,指定keyPath选项为Id(即主键为Id)
     db.createObjectStore(objectStoreName, {
@@ -36,6 +35,16 @@ export function createDB(dbName, objectStoreName, version) {
  */
 export function insertData(dbName, objectStoreName, params) {
   let request = indexedDB.open(dbName); //打开数据库并构建数据
+
+  // 创建数据库表
+  request.onupgradeneeded = function(event) {
+    let db = event.target.result;
+    // 创建信息对象存储空间,指定keyPath选项为Id(即主键为Id)
+    db.createObjectStore(objectStoreName, {
+      keyPath: "id",
+      autoIncrement: true
+    })
+  }
 	
 	//数据库打开成功的回调函数
 	request.onsuccess = function(event){
@@ -72,6 +81,17 @@ export function insertData(dbName, objectStoreName, params) {
 export function getAllData(dbName, objectStoreName, callback) {
   // 打开数据库
   let request = indexedDB.open(dbName);
+
+  // 创建数据库表
+  request.onupgradeneeded = function(event) {
+    let db = event.target.result;
+    // 创建信息对象存储空间,指定keyPath选项为Id(即主键为Id)
+    db.createObjectStore(objectStoreName, {
+      keyPath: "id",
+      autoIncrement: true
+    })
+  }
+
   // 请求打开数据库的回调函数
   request.onsuccess = function(success){
     let db = success.target.result;
@@ -109,6 +129,17 @@ export function getAllData(dbName, objectStoreName, callback) {
 export function updateData(dbName, objectStoreName, newsData, callback) {
   // 打开数据库
   let request = indexedDB.open(dbName);
+
+  // 创建数据库表
+  request.onupgradeneeded = function(event) {
+    let db = event.target.result;
+    // 创建信息对象存储空间,指定keyPath选项为Id(即主键为Id)
+    db.createObjectStore(objectStoreName, {
+      keyPath: "id",
+      autoIncrement: true
+    })
+  }
+
   // 请求打开数据库的回调函数
   request.onsuccess = function (success) {
     // 获取到数据库的表

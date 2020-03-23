@@ -138,9 +138,11 @@ class Login extends Component {
     if (!username) {
       this.setState({ panfishImgType: 2 });
       alert('请输入账号!');
+      return false;
     } else if (!password) {
       this.setState({ panfishImgType: 2 });
       alert('请输入密码!');
+      return false;
     }
 
     accountLogin({
@@ -160,7 +162,7 @@ class Login extends Component {
               alert('请检查用户名或者密码是否正确！');
             }
           } else {
-            alert('请检查用户名或者密码是否正确！');
+            alert('该账号没有被注册！');
           }
         })
       })
@@ -222,8 +224,6 @@ class Login extends Component {
               // 后续添加进行对比
               let userResult = data.find(item => res.data.username === item.username);
               let phoneResult = data.find(item => res.data.phone === item.phone);
-              console.log(userResult )
-              console.log(phoneResult )
               if (userResult) {
                 alert('账号已存在！');
               } else if (phoneResult) {
