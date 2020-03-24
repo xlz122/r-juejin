@@ -280,12 +280,15 @@ router.get('/entry-list', function(req, res, next) {
       })
     )
   }
-  res.json({
-    data: {
-      adEntryList,
-      columnEntryList
-    }
-  });
+  // 模拟延迟返回数据
+  setTimeout(() => {
+    res.json({
+      data: {
+        adEntryList,
+        columnEntryList
+      }
+    });
+  }, 500);
 });
 
 module.exports = router;

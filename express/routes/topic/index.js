@@ -83,9 +83,11 @@ router.get('/topic-list', function(req, res, next) {
     itemArr = itemArr.sort(() => Math.random() -0.5);
     data = data.concat(itemArr);
   }
-  res.json({
-    data
-  });
+  setTimeout(() => {
+    res.json({
+      data
+    });
+  }, 500);
 });
 
 module.exports = router;

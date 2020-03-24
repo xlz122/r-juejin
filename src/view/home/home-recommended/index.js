@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Skeleton } from 'antd';
 import { getHomeCategoryNav, getHomeEntryList } from '@api/home';
 import CategoryNav from '../category-nav';
 import EntryListUi from '../entry-list';
@@ -9,6 +10,7 @@ class HomeRecommended extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      loading: false, // 骨架屏loading
       navListData: [], // 导航列表数据
       navActiveIndex: 0, // 导航选中下标
       timeChoiceShow: false, // 时间选择显隐
@@ -60,13 +62,15 @@ class HomeRecommended extends Component {
             timeChoiceMenuShow={this.state.timeChoiceMenuShow}
             timeChoiceClick={this.timeChoiceClick}
           />
-          <EntryListUi
-            entryList={this.state.entryList}
-            adEntryItemClick={this.adEntryItemClick}
-            columnEntryItemClick={this.columnEntryItemClick}
-            likeCountClick={this.likeCountClick}
-            commentsCountClick={this.commentsCountClick}
-          />
+          <Skeleton active loading={this.state.loading} paragraph={{ rows: 2 }}>
+            <EntryListUi
+              entryList={this.state.entryList}
+              adEntryItemClick={this.adEntryItemClick}
+              columnEntryItemClick={this.columnEntryItemClick}
+              likeCountClick={this.likeCountClick}
+              commentsCountClick={this.commentsCountClick}
+            />
+          </Skeleton>
         </div>
         <div className="sidebar">
           <SidebarUi />
@@ -77,6 +81,7 @@ class HomeRecommended extends Component {
 
   // 获取列表条目数据
   getEntryList() {
+    this.setState({ loading: true });
     getHomeEntryList({
       page: this.state.page,
       pageSize: this.state.pageSize,
@@ -84,10 +89,13 @@ class HomeRecommended extends Component {
       entryTime: this.state.entryTime
     })
       .then(res => {
+        console.log(res)
         this.setState({ entryList: res.data });
+        this.setState({ loading: false });
       })
       .catch(() => {
         this.setState({ entryList: [] });
+        this.setState({ loading: false });
       })
   }
 
