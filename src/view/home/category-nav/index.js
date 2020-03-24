@@ -2,11 +2,11 @@ import React from 'react';
 import './index.less';
 
 function CategoryNav(props) {
-  // 导航json数据
+  // json数据
   const { list, timeChoice } = props.navListData;
-  // 导航属性
+  // 属性
   const { navActiveIndex, timeChoiceShow, timeChoiceTitle, timeChoiceMenuShow } = props;
-  // 导航事件
+  // 事件
   const { navListChange, timeChoiceToggle, timeChoiceClick } = props;
   return (
     <div className="category-nav">

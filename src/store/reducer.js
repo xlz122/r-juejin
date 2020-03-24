@@ -1,9 +1,9 @@
 import lodash from 'lodash';
-import { HEADER_NAV_LIST, HOME_NAV_LIST } from './actionTypes.js';
+import { HEADER_NAV_LIST, CHILD_NAV_BAR } from './actionTypes.js';
 
 const defaultState = {
   headerNavActiveIndex: sessionStorage.getItem('headerNavActiveIndex') || 0, // 头部导航栏下标
-  homeNavActionIndex: sessionStorage.getItem('homeNavActionIndex') || 0 // 首页导航栏下标
+  childNavBarActionIndex: sessionStorage.getItem('childNavBarActionIndex') || 0 // 子导航栏下标
 };
 
 export default (state = defaultState, action) => {
@@ -14,10 +14,10 @@ export default (state = defaultState, action) => {
     return cloneState;
   }
 
-  // 设置导航栏(submenu)下标
-  if (action.type === HOME_NAV_LIST) {
+  // 设置子导航栏下标
+  if (action.type === CHILD_NAV_BAR) {
     let cloneState = lodash.cloneDeep(state);
-    cloneState.homeNavActionIndex = action.index;
+    cloneState.childNavBarActionIndex = action.index;
     return cloneState;
   }
 

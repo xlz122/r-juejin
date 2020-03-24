@@ -16,9 +16,6 @@ router.get('/nav-list', function(req, res, next) {
 
 /* 登录 */
 router.post('/login', function(req, res, next) {
-  // let params = Object.keys(req.body);
-  // params = params[0].split(',');
-  // params = JSON.parse(params);
   res.json({
     data: req.body
   });

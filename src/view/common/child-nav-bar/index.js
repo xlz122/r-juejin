@@ -1,24 +1,24 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { homeNavAction } from '@store/actionCreators';
+import { childNavBarAction } from '@store/actionCreators';
 import './index.less';
 
 function NavUi(props) {
   // 父组件传递
   const { navData, navMouseOver, navMouseOut, navDetailsJump } =  props;
   // redux传递
-  const { homeNavActionIndex, homeNavIndexChange } = props;
+  const { childNavBarActionIndex, childNavBarIndexChange } = props;
   return (
-    <div className="nav-container">
+    <div className="child-nav-bar">
       <ul className="nav-list">
         {
           navData.map((item, index) => {
             return (
               <li
-                className={`li-item ${index === parseInt(homeNavActionIndex) ? 'li-active-item ' : ''}`}
+                className={`li-item ${index === parseInt(childNavBarActionIndex) ? 'li-active-item ' : ''}`}
                 key={index + item}
-                onClick={() => { homeNavIndexChange(index) }}
+                onClick={() => { childNavBarIndexChange(index) }}
                 onMouseOver={() => { navMouseOver(index) }}
                 onMouseLeave={() => { navMouseOut(index) }}
               >
@@ -26,7 +26,7 @@ function NavUi(props) {
                 <span className="auxiliary"></span>
                 {
                   // 存在子项 && 是否显示 && 是否选中项
-                  item.children && item.isShow && index !== parseInt(homeNavActionIndex) &&
+                  item.children && item.isShow && index !== parseInt(childNavBarActionIndex) &&
                   <ul className="list-details">
                     {
                       item.children.map((i, ind) => {
@@ -58,16 +58,16 @@ function NavUi(props) {
 
 const mapStateToProps = (state) => {
   return {
-    homeNavActionIndex: state.homeNavActionIndex
+    childNavBarActionIndex: state.childNavBarActionIndex
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    // 设置首页导航下标
-    homeNavIndexChange(index) {
-      sessionStorage.setItem('homeNavActionIndex', index);
-      const action = homeNavAction(index);
+    // 设置子导航下标
+    childNavBarIndexChange(index) {
+      sessionStorage.setItem('childNavBarActionIndex', index);
+      const action = childNavBarAction(index);
       dispatch(action);
     }
   }

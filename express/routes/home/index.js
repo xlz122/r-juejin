@@ -2,8 +2,8 @@ var express = require('express');
 var router = express.Router();
 var Mock = require('mockjs');
 
-/* 首页导航 */
-router.get('/nav-list', function(req, res, next) {
+/* 首页子导航 */
+router.get('/child-nav-bar', function(req, res, next) {
   res.json({
     data: [
       {
@@ -199,7 +199,7 @@ router.get('/nav-list', function(req, res, next) {
   });
 });
 
-/* 首页导航 */
+/* 首页分类导航 */
 router.get('/category-nav-list', function(req, res, next) {
   res.json({
     data: {
@@ -234,12 +234,13 @@ router.get('/entry-list', function(req, res, next) {
   let usernameArr = ['冴羽', '承志', '元宵大师', '高德技术', 'Taoye', '美团技术团队', '拇指笔记', '老齐Py', '帅地', '晓飞的算法工程笔记"'];
   let timeArr = ['1分钟前', '8分钟前', '30分钟前', '56分钟前', '8小时前', '1天前', '2天前', '3天前'];
   let nameArr = ['前端', '后端', '面试/阿里巴巴', 'Java', 'Android', '阅读', 'iOS', '机器学习', '数据结构', 'Python'];
+  let imageUrl = 'http://localhost:9000/images/home';
   let imageUrlArr = [
-    'http://localhost:9000/images/home/column-entry-list-image1.jpg',
-    'http://localhost:9000/images/home/column-entry-list-image2.jpg',
-    'http://localhost:9000/images/home/column-entry-list-image3.jpg',
-    'http://localhost:9000/images/home/column-entry-list-image4.jpg',
-    'http://localhost:9000/images/home/column-entry-list-image5.jpg',
+    `${imageUrl}/column-entry-list-image1.jpg`,
+    `${imageUrl}/column-entry-list-image2.jpg`,
+    `${imageUrl}/column-entry-list-image3.jpg`,
+    `${imageUrl}/column-entry-list-image4.jpg`,
+    `${imageUrl}/column-entry-list-image5.jpg`,
     '',
     '',
     '',

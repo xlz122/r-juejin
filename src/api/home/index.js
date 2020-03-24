@@ -1,11 +1,11 @@
 import Axios from '@axios';
 
 /**
- * @desc 获取首页导航数据
+ * @desc 获取首页子导航数据
 */
-export const getHomeNav = () => {
+export const getHomeChildNav = () => {
   return Axios.request({
-    url: '/home/nav-list',
+    url: '/home/child-nav-bar',
     methods: 'get'
   })
 }

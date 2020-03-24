@@ -2,7 +2,9 @@ import React from 'react';
 import './index.less';
 
 function EntryListUi(props) {
+  // 数据
   const { adEntryList, columnEntryList } = props.entryList;
+  // 事件
   const { adEntryItemClick, columnEntryItemClick, likeCountClick, commentsCountClick } = props;
   return (
     <div className="entry-list">

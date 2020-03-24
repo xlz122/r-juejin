@@ -10,6 +10,8 @@ var bodyParser = require('body-parser');
 var headerRouter = require('./routes/header/index');
 // 首页接口文件
 var homeRouter = require('./routes/home/index');
+// 话题接口文件
+var topicRouter = require('./routes/topic/index');
 // 小册接口文件
 var brochureRouter = require('./routes/brochure/index');
 
@@ -37,6 +39,8 @@ app.use(bodyParser.json())
 app.use('/header', headerRouter);
 // 首页接口
 app.use('/home', homeRouter);
+// 话题接口
+app.use('/topic', topicRouter);
 // 小册接口
 app.use('/brochure', brochureRouter);
 

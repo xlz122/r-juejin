@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 /* 小册导航 */
-router.get('/nav-list', function(req, res, next) {
+router.get('/child-nav-bar', function(req, res, next) {
   res.json({
     data: [
       {

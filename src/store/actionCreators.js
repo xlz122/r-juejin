@@ -1,4 +1,4 @@
-import { HEADER_NAV_LIST, HOME_NAV_LIST } from './actionTypes';
+import { HEADER_NAV_LIST, CHILD_NAV_BAR } from './actionTypes';
 
 // 设置头部主导航栏下标
 export const headerNavAction = (index) => ({
@@ -6,8 +6,8 @@ export const headerNavAction = (index) => ({
   index
 });
 
-// 设置首页导航下标
-export const homeNavAction = (index) => ({
-  type: HOME_NAV_LIST,
+// 设置子导航栏下标
+export const childNavBarAction = (index) => ({
+  type: CHILD_NAV_BAR,
   index
 });

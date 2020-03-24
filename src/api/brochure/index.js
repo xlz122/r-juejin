@@ -1,11 +1,11 @@
 import Axios from '@axios';
 
 /**
- * @desc 获取小册导航数据
+ * @desc 获取小册子导航数据
 */
-export const getBrochureNav = () => {
+export const getBrochureChildNav = () => {
   return Axios.request({
-    url: '/brochure/nav-list',
+    url: '/brochure/child-nav-bar',
     methods: 'get'
   })
 }

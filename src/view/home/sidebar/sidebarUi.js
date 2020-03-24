@@ -18,7 +18,9 @@ import sidebarFollowImg4 from '@images/home/home-sidebar-follow-img4.png';
 import './index.less';
 
 function SidebarUi(props) {
+  // 数据
   const { registerAccountValue, registerPhoneValue, registerPasswordValue } = props;
+  // 事件
   const { registerAccountChange, registerPhoneChange, registerPasswordChange, register } = props;
   return (
     <div className="sidebar-container">

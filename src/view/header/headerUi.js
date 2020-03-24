@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { headerNavAction, homeNavAction } from '@store/actionCreators';
+import { headerNavAction, childNavBarAction } from '@store/actionCreators';
 // logo
 import logoBg from '@images/header/logo.svg';
 // 搜索icon
@@ -79,9 +79,9 @@ const mapDispatchToProps = (dispatch) => {
       sessionStorage.setItem('headerNavActiveIndex', index);
       const action = headerNavAction(index);
       dispatch(action);
-      // 头部导航更改时，重置首页二级导航下标
-      sessionStorage.setItem('homeNavActionIndex', 0);
-      const action1 = homeNavAction(0);
+      // 头部导航更改时，重置子导航下标
+      sessionStorage.setItem('childNavBarActionIndex', 0);
+      const action1 = childNavBarAction(0);
       dispatch(action1);
     }
   }
