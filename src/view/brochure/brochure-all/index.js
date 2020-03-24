@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import BooksList from '../books-list';
 import Sidebar from '../sidebar';
 import './index.less';
 
@@ -7,6 +8,7 @@ class BrochureAll extends Component {
     return (
       <div className="brochure-all">
         <div className="content">
+          <BooksList />
         </div>
         <div className="sidebar">
           <Sidebar />
