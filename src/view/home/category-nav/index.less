@@ -5,21 +5,34 @@
   .nav-list {
     display: inline-block;
     padding: 0 12px;
+    margin-bottom: 0;
     line-height: 1;
     vertical-align: top;
     .li-item {
+      position: relative;
       display: inline-block;
       padding: 5px 14px;
-      border-right: 1px solid hsla(0, 0%, 59.2%, 0.2);
       font-size: 14px;
       cursor: pointer;
       vertical-align: middle;
       .item-text {
         color: #909097;
       }
+      &::after {
+        position: absolute;
+        top: 40%;
+        right: 0;
+        content: "|";
+        width: 1px;
+        height: 10px;
+        color: hsla(0, 0%, 59.2%, 0.2);
+        transform: translateY(-50%);
+      }
     }
     .li-last-item {
-      border-right: none;
+      &::after {
+        content: "";
+      }
     }
     .li-active-item {
       .item-text {
