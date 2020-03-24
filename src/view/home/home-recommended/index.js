@@ -62,7 +62,7 @@ class HomeRecommended extends Component {
             timeChoiceMenuShow={this.state.timeChoiceMenuShow}
             timeChoiceClick={this.timeChoiceClick}
           />
-          <Skeleton active loading={this.state.loading} paragraph={{ rows: 2 }}>
+          <Skeleton active loading={this.state.loading} paragraph={{ rows: 2 }} style={{ background: 'red' }}>
             <EntryListUi
               entryList={this.state.entryList}
               adEntryItemClick={this.adEntryItemClick}
@@ -89,7 +89,6 @@ class HomeRecommended extends Component {
       entryTime: this.state.entryTime
     })
       .then(res => {
-        console.log(res)
         this.setState({ entryList: res.data });
         this.setState({ loading: false });
       })
