@@ -75,7 +75,6 @@ class Message extends Component {
     list.push({ type, title });
     self.setState({ listData: list });
     // 定时清除
-    let time = self.state.time;
     let timer = setTimeout(() => {
       list.splice(0, 1);
       self.setState({ listData: list });
