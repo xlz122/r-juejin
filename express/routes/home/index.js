@@ -225,7 +225,7 @@ router.get('/entry-list', function(req, res, next) {
     {
       username: '掘金酱',
       time: '1天前',
-      imageUrl: 'http://localhost:9000/images/home/column-entry-list-ad.jpg',
+      imgUrl: 'http://localhost:9000/images/home/column-entry-list-ad.jpg',
       title: '面试不用愁，掘友能解忧，一批大厂面试经验新鲜出炉啦~',
       bstract: '有面试需求的小伙伴再也不用发愁找不到攻略啦。这一次面试，掘友帮你忙。'
     }
@@ -234,13 +234,13 @@ router.get('/entry-list', function(req, res, next) {
   let usernameArr = ['冴羽', '承志', '元宵大师', '高德技术', 'Taoye', '美团技术团队', '拇指笔记', '老齐Py', '帅地', '晓飞的算法工程笔记"'];
   let timeArr = ['1分钟前', '8分钟前', '30分钟前', '56分钟前', '8小时前', '1天前', '2天前', '3天前'];
   let nameArr = ['前端', '后端', '面试/阿里巴巴', 'Java', 'Android', '阅读', 'iOS', '机器学习', '数据结构', 'Python'];
-  let imageUrl = 'http://localhost:9000/images/home';
+  let imageBaseUrl = 'http://localhost:9000/images/home';
   let imageUrlArr = [
-    `${imageUrl}/column-entry-list-image1.jpg`,
-    `${imageUrl}/column-entry-list-image2.jpg`,
-    `${imageUrl}/column-entry-list-image3.jpg`,
-    `${imageUrl}/column-entry-list-image4.jpg`,
-    `${imageUrl}/column-entry-list-image5.jpg`,
+    `${imageBaseUrl}/column-entry-list-image1.jpg`,
+    `${imageBaseUrl}/column-entry-list-image2.jpg`,
+    `${imageBaseUrl}/column-entry-list-image3.jpg`,
+    `${imageBaseUrl}/column-entry-list-image4.jpg`,
+    `${imageBaseUrl}/column-entry-list-image5.jpg`,
     '',
     '',
     '',
@@ -273,7 +273,7 @@ router.get('/entry-list', function(req, res, next) {
         'username|1': usernameArr,
         'time|1': timeArr,
         'name|1': nameArr,
-        'imageUrl|1': imageUrlArr,
+        'imgUrl|1': imageUrlArr,
         'title|1': titleArr,
         'likeCount|1': likeCountArr,
         'commentsCount|1': commentsCountArr

@@ -1,72 +1,61 @@
 import React from 'react';
 import './index.less';
 
-function BooksList() {
+function BooksList(props) {
+  const { listData } = props;
   return (
-    <ul className="books-list">
-      <li className="item">
-        <div className="poster">
-          <img className="img" src="https://user-gold-cdn.xitu.io/2020/3/17/170e7beafa4229ba?imageView2/1/w/200/h/280/q/95/format/webp/interlace/1" alt="poster" />
-        </div>
-        <div className="info">
-          <div className="title">Uniapp 从入门到进阶</div>
-          <div className="desc">从基础到实战，详细讲解跨平台应用开发的方方面面，包含 Uniapp 开发常用知识点，基础 api，前端交互、组件封装，后端 Nodejs 开发、前后端联调和调优部署，是一套非常全面的综合课程。</div>
-          <div className="author">
-            <div className="author-info">
-              <img className="hero" src="https://user-gold-cdn.xitu.io/2019/10/15/16dcffa18bbe40c3?imageView2/1/w/100/h/100/q/85/format/webp/interlace/1" alt="interlace" />
-              <span className="username">阿面</span>
-              <img className="rank" src="https://b-gold-cdn.xitu.io/v3/static/img/lv-1.636691c.svg" alt="" />
-            </div>
-            <div className="author-desc">广州某电商公司资深前端</div>
-          </div>
-          <div className="other">
-            <div className="price">￥29.9</div>
-            <ul className="messages">
-              <li className="message-item">
-                30小节
+    <div className="books">
+      <ul className="books-list">
+        {
+          listData &&
+          listData.map((item, index) => {
+            return (
+              <li
+                className="item"
+                key={index + item}
+              >
+                <div className="poster">
+                  <img className="img" src={item.imgUrl} alt="poster" />
+                </div>
+                <div className="info">
+                  <div className="title">{item.title}</div>
+                  <div className="desc">{item.desc}</div>
+                  <div className="author">
+                    <div className="author-info">
+                      <img className="hero" src={item.authorUrl} alt="interlace" />
+                      <span className="username">{item.username}</span>
+                      <img className="rank" src={item.gradeImgUrl} alt="" />
+                    </div>
+                    <div className="author-desc">{item.authorDesc}</div>
+                  </div>
+                  <div className="other">
+                    <div className="price">￥{item.price}</div>
+                    <ul className="messages">
+                      <li className="message-item">
+                        {item.chapter}小节
+                      </li>
+                      <li className="message-item">
+                        阅读时长{item.read}
+                      </li>
+                      <li className="message-item message-last-item">
+                        {item.purchaseCount}人已购买
+                      </li>
+                    </ul>
+                  </div>
+                </div>
               </li>
-              <li className="message-item">
-                阅读时长271分
-              </li>
-              <li className="message-item message-last-item">
-                人已购买
-              </li>
-            </ul>
-          </div>
-        </div>
-      </li>
-      <li className="item">
-        <div className="poster">
-          <img className="img" src="https://user-gold-cdn.xitu.io/2020/3/17/170e7beafa4229ba?imageView2/1/w/200/h/280/q/95/format/webp/interlace/1" alt="poster" />
-        </div>
-        <div className="info">
-          <div className="title">Uniapp 从入门到进阶</div>
-          <div className="desc">从基础到实战，详细讲解跨平台应用开发的方方面面，包含 Uniapp 开发常用知识点，基础 api，前端交互、组件封装，后端 Nodejs 开发、前后端联调和调优部署，是一套非常全面的综合课程。</div>
-          <div className="author">
-            <div className="author-info">
-              <img className="hero" src="https://user-gold-cdn.xitu.io/2019/10/15/16dcffa18bbe40c3?imageView2/1/w/100/h/100/q/85/format/webp/interlace/1" alt="interlace" />
-              <span className="username">阿面</span>
-              <img className="rank" src="https://b-gold-cdn.xitu.io/v3/static/img/lv-1.636691c.svg" alt="" />
-            </div>
-            <div className="author-desc">广州某电商公司资深前端</div>
-          </div>
-          <div className="other">
-            <div className="price">￥29.9</div>
-            <ul className="messages">
-              <li className="message-item">
-                30小节
-              </li>
-              <li className="message-item">
-                阅读时长271分
-              </li>
-              <li className="message-item message-last-item">
-                人已购买
-              </li>
-            </ul>
-          </div>
-        </div>
-      </li>
-    </ul>
+            )
+          })
+        }
+      </ul>
+      <div className="register-info">
+        <span className="text">©2020 掘金</span>
+        <span className="text"> | </span>
+        <span className="text">津ICP备15003202号-2</span>
+        <span className="text"> | </span>
+        <span className="text">京公网安备11010802026719号</span>
+      </div>
+    </div>
   )
 }
 

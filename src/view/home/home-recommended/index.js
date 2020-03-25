@@ -62,7 +62,7 @@ class HomeRecommended extends Component {
             timeChoiceMenuShow={this.state.timeChoiceMenuShow}
             timeChoiceClick={this.timeChoiceClick}
           />
-          <Skeleton active loading={this.state.loading} paragraph={{ rows: 2 }} style={{ background: 'red' }}>
+          <Skeleton active loading={this.state.loading} paragraph={{ rows: 2 }}>
             <EntryListUi
               entryList={this.state.entryList}
               adEntryItemClick={this.adEntryItemClick}

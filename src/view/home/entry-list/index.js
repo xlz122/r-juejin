@@ -37,7 +37,7 @@ function EntryListUi(props) {
                     </div>
                   </div>
                   <div className="info-img">
-                    <img className="img" src={item.imageUrl} alt="tag" />
+                    <img className="img" src={item.imgUrl} alt="tag" />
                   </div>
                 </div>
           </li>
@@ -91,8 +91,8 @@ function EntryListUi(props) {
                   </div>
                   <div className="info-img">
                     {
-                      item.imageUrl &&
-                      <img className="img" src={item.imageUrl} alt="column" />
+                      item.imgUrl &&
+                      <img className="img" src={item.imgUrl} alt="column" />
                     }
                   </div>
                 </div>
