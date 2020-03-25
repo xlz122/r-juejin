@@ -3,6 +3,9 @@ import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-d
 import asyncComponent from './asyncComponent';
 import './index.less';
 
+// 引入全局弹框组件
+const Message = asyncComponent(() => import('@view/common/message'));
+
 // 按需引入
 // 目前使用node12版本创建的react项目，使用低版本node版本创建的react项目，如（8.9.1）会报错，import语法不支持
 const Home = asyncComponent(() => import('@view/home'));
@@ -28,6 +31,7 @@ function AppRouter() {
           <Redirect from="/" to="/home" />
         </Switch>
       </div>
+      <Message />
     </Router>
   )
 }

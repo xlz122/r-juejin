@@ -16,6 +16,7 @@ class BrochureAll extends Component {
     }
     // 列表
     this.getBooksList = this.getBooksList.bind(this);
+    this.bookClick = this.bookClick.bind(this);
   }
 
   componentDidMount() {
@@ -29,6 +30,7 @@ class BrochureAll extends Component {
           <Skeleton active loading={this.state.loading} paragraph={{ rows: 2 }} style={{ background: 'red' }}>
             <BooksList
               listData={this.state.listData}
+              bookClick={this.bookClick}
             />
           </Skeleton>
         </div>
@@ -54,6 +56,11 @@ class BrochureAll extends Component {
         this.setState({ listData: [] });
         this.setState({ loading: false });
       })
+  }
+
+  // 书籍列表点击
+  bookClick() {
+    alert('书籍列表点击');
   }
 }
  

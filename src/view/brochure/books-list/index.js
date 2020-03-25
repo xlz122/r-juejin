@@ -3,6 +3,7 @@ import './index.less';
 
 function BooksList(props) {
   const { listData } = props;
+  const { bookClick } = props;
   return (
     <div className="books">
       <ul className="books-list">
@@ -13,6 +14,7 @@ function BooksList(props) {
               <li
                 className="item"
                 key={index + item}
+                onClick={bookClick}
               >
                 <div className="poster">
                   <img className="img" src={item.imgUrl} alt="poster" />
@@ -50,9 +52,9 @@ function BooksList(props) {
       </ul>
       <div className="register-info">
         <span className="text">©2020 掘金</span>
-        <span className="text"> | </span>
+        <span> | </span>
         <span className="text">津ICP备15003202号-2</span>
-        <span className="text"> | </span>
+        <span> | </span>
         <span className="text">京公网安备11010802026719号</span>
       </div>
     </div>

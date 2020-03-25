@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import store from '@store';
 import { Provider } from 'react-redux';
 import AppRouter from '@router';
+// 引入全局方法
+import './global';
 import './index.css';
 
 ReactDOM.render(

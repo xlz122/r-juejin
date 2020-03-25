@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Skeleton } from 'antd';
 import { getTopicList } from '@api/topic';
 import TopicUi from './topicUi';
 
@@ -7,7 +6,6 @@ class Topic extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      loading: false, // 骨架屏loading
       listData: []
     }
     // 标题
@@ -17,24 +15,20 @@ class Topic extends Component {
   }
   
   componentDidMount() {
-    this.setState({ loading: true });
     getTopicList()
       .then(res => {
         this.setState({ listData: res.data });
-        this.setState({ loading: false });
       })
   }
 
   render() { 
     return (
       <div className="topic">
-        <Skeleton active loading={this.state.loading} paragraph={{ rows: 2 }}>
-          <TopicUi
-            listData={this.state.listData}
-            titleClick={this.titleClick}
-            followClick={this.followClick}
-          />
-      </Skeleton>
+        <TopicUi
+          listData={this.state.listData}
+          titleClick={this.titleClick}
+          followClick={this.followClick}
+        />
       </div>
     );
   }
