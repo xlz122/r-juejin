@@ -15,6 +15,11 @@ class Topic extends Component {
   }
   
   componentDidMount() {
+    // 动态计算当前页面高度
+    let pageHeight = document.querySelector(".topic");
+    if (pageHeight) {
+      pageHeight.style.minHeight = (window.innerHeight - pageHeight.offsetTop) + 'px';
+    }
     getTopicList()
       .then(res => {
         this.setState({ listData: res.data });

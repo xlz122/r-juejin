@@ -22,6 +22,11 @@ class Brochure extends Component {
   }
 
   componentDidMount() {
+    // 动态计算当前页面高度
+    let pageHeight = document.querySelector(".brochure");
+    if (pageHeight) {
+      pageHeight.style.minHeight = (window.innerHeight - pageHeight.offsetTop) + 'px';
+    }
     // 获取导航数据
     getBrochureChildNav()
       .then(res => {

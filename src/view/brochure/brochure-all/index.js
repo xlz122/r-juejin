@@ -26,11 +26,6 @@ class BrochureAll extends Component {
   componentDidMount() {
     // 进行scroll事件的注册，绑定一个函数，让这个函数进行监听处理
     window.addEventListener('scroll', this.bindHandleScroll);
-    // 动态计算当前页面高度
-    let brochureAll = document.querySelector(".brochure-all");
-    if (brochureAll) {
-      brochureAll.style.minHeight = (window.innerHeight - brochureAll.offsetParent.offsetTop) + 'px';
-    }
     this.getBooksList();
   }
 

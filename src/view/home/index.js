@@ -22,6 +22,11 @@ class Home extends Component {
   }
 
   componentDidMount() {
+    // 动态计算当前页面高度
+    let pageHeight = document.querySelector(".home");
+    if (pageHeight) {
+      pageHeight.style.minHeight = (window.innerHeight - pageHeight.offsetTop) + 'px';
+    }
     // 获取导航数据
     getHomeChildNav()
       .then(res => {
