@@ -1,4 +1,8 @@
 import React, { Component } from 'react';
+import PinNav from './pin-nav';
+import PinList from './pin-list';
+import Sidebar from './sidebar';
+import './index.less';
 
 class BoilingPoint extends Component {
   componentDidMount() {
@@ -12,7 +16,17 @@ class BoilingPoint extends Component {
   render() { 
     return (
       <div className="boiling-point">
-        BoilingPoint
+        <div className="boiling-point-container">
+          <div className="dock-nav">
+            <PinNav />
+          </div>
+          <div className="content">
+            <PinList />
+          </div>
+          <div className="sidebar">
+            <Sidebar />
+          </div>
+        </div>
       </div>
     );
   }
