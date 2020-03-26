@@ -220,7 +220,7 @@ router.get('/category-nav-list', function(req, res, next) {
 
 /* 首页 - 列表条目 */
 router.get('/entry-list', function(req, res, next) {
-  // 广告列表条目
+  // 广告列表条目数据
   let adEntryList = [
     {
       username: '掘金酱',
@@ -230,55 +230,199 @@ router.get('/entry-list', function(req, res, next) {
       bstract: '有面试需求的小伙伴再也不用发愁找不到攻略啦。这一次面试，掘友帮你忙。'
     }
   ];
-  // 专栏数据数组
-  let usernameArr = ['冴羽', '承志', '元宵大师', '高德技术', 'Taoye', '美团技术团队', '拇指笔记', '老齐Py', '帅地', '晓飞的算法工程笔记"'];
-  let timeArr = ['1分钟前', '8分钟前', '30分钟前', '56分钟前', '8小时前', '1天前', '2天前', '3天前'];
-  let nameArr = ['前端', '后端', '面试/阿里巴巴', 'Java', 'Android', '阅读', 'iOS', '机器学习', '数据结构', 'Python'];
   let imageBaseUrl = 'http://localhost:9000/images/home';
-  let imageUrlArr = [
-    `${imageBaseUrl}/column-entry-list-image1.jpg`,
-    `${imageBaseUrl}/column-entry-list-image2.jpg`,
-    `${imageBaseUrl}/column-entry-list-image3.jpg`,
-    `${imageBaseUrl}/column-entry-list-image4.jpg`,
-    `${imageBaseUrl}/column-entry-list-image5.jpg`,
-    '',
-    '',
-    '',
-    '',
-    ''
+  let itemArr = [
+    {
+      username: 'Keely',
+      time: '23小时前',
+      name: 'JavaScript',
+      imgUrl: '',
+      title: '鼠标选中文本划词高亮、再次选中划词取消高亮效果',
+      likeCount: 10,
+      commentsCount: 3
+    },
+    {
+      username: '敖丙',
+      time: '44分钟前',
+      name: '面试/Java',
+      imgUrl: `${imageBaseUrl}/column-entry-list-image1.jpg`,
+      title: '面试官：说一下公平锁和非公平锁的区别？',
+      likeCount: 75,
+      commentsCount: 7
+    },
+    {
+      username: '晨曦时梦见兮',
+      time: '12小时前',
+      name: '面试/前端',
+      imgUrl: '',
+      title: '写给女朋友的中级前端面试秘籍（含详细答案，15k级别）',
+      likeCount: 110,
+      commentsCount: 27
+    },
+    {
+      username: '神三元',
+      time: '3天前',
+      name: 'JavaScript/前端',
+      imgUrl: `${imageBaseUrl}/column-entry-list-image3.jpg`,
+      title: '（建议精读）HTTP灵魂之问，巩固你的 HTTP 知识体系',
+      likeCount: 876,
+      commentsCount: 36
+    },
+    {
+      username: '冴羽',
+      time: '15小时前',
+      name: '面试',
+      imgUrl: '',
+      title: '面试被问项目经验不用慌，按这个步骤回答绝对惊艳',
+      likeCount: 76,
+      commentsCount: 8
+    },
+    {
+      username: 'jsonchao',
+      time: '2天前',
+      name: 'Android',
+      imgUrl: `${imageBaseUrl}/column-entry-list-image4.jpg`,
+      title: '深入探索 Android 内存优化（炼狱级别）',
+      likeCount: 199,
+      commentsCount: 34
+    },
+    {
+      username: '夜幕降临耶',
+      time: '23小时前',
+      name: 'iOS',
+      imgUrl: '',
+      title: 'iOS底层原理：weak的实现原理',
+      likeCount: 10,
+      commentsCount: 2
+    },
+    {
+      username: '给我点阳光就灿烂',
+      time: '1天前',
+      name: '人工智能',
+      imgUrl: `${imageBaseUrl}/column-entry-list-image2.jpg`,
+      title: 'iOS底层原理：weak的实现原理',
+      likeCount: 10,
+      commentsCount: 2
+    },
+    {
+      username: '沉默王二',
+      time: '1天前',
+      name: '程序员',
+      imgUrl: '',
+      title: '你也看不起做外包的程序员？',
+      likeCount: 28,
+      commentsCount: 4
+    },
+    {
+      username: '_yuanhao',
+      time: '10天前',
+      name: 'GitHub',
+      imgUrl: `${imageBaseUrl}/column-entry-list-image5.jpg`,
+      title: '2020 还不会泡 Github 你就落伍了',
+      likeCount: 127,
+      commentsCount: 52
+    },
+    {
+      username: '胡志武98',
+      time: '11分钟前',
+      name: '微信小程序',
+      imgUrl: '',
+      title: '使用发布订阅模式+globalData实现小程序全局实时状态管理',
+      likeCount: 12,
+      commentsCount: 2
+    },
+    {
+      username: '芦半山',
+      time: '2小时前',
+      name: 'Android',
+      imgUrl: '',
+      title: 'Android消息机制的冷门知识点',
+      likeCount: 6,
+      commentsCount: 2
+    },
+    {
+      username: '树酱',
+      time: '21小时前',
+      name: '前端',
+      imgUrl: '',
+      title: '前端Nginx那些事',
+      likeCount: 144,
+      commentsCount: 5
+    },
+    {
+      username: '秋天不落叶',
+      time: '1天前',
+      name: 'TypeScript',
+      imgUrl: '',
+      title: '【开源】一个 React + TS 项目模板',
+      likeCount: 79,
+      commentsCount: 20
+    },
+    {
+      username: 'felixa',
+      time: '33分钟前',
+      name: 'iOS',
+      imgUrl: '',
+      title: 'Runloop分享',
+      likeCount: 4,
+      commentsCount: 2
+    },
+    {
+      username: 'NanBox',
+      time: '20小时前',
+      name: 'Android',
+      imgUrl: '',
+      title: '杀不掉的知乎 - 聊一聊 Android 的多任务',
+      likeCount: 53,
+      commentsCount: 18
+    },
+    {
+      username: '敖丙',
+      time: '1天前',
+      name: '面试/程序员',
+      imgUrl: '',
+      title: '《我们一起进大厂》系列-大厂需求研发/开发流程',
+      likeCount: 53,
+      commentsCount: 18
+    },
+    {
+      username: '风平浪静如码',
+      time: '4小时前',
+      name: 'Java',
+      imgUrl: '',
+      title: '知己知彼，百战不殆：“金三银四”横扫BAT面试之Spring108问！',
+      likeCount: 332,
+      commentsCount: 20
+    },
+    {
+      username: 'M了个C',
+      time: '2小时前',
+      name: 'iOS',
+      imgUrl: '',
+      title: 'iOS探索--类的结构分析(二)',
+      likeCount: 205,
+      commentsCount: 35
+    },
+    {
+      username: '好学习吧丶',
+      time: '2天前',
+      name: '前端',
+      imgUrl: '',
+      title: '面试官：你了解过移动端适配吗？',
+      likeCount: 1067,
+      commentsCount: 122
+    }
   ];
-  let titleArr = [
-    '阿里前端攻城狮们写了一份前端面试题答案，请查收',
-    'Android 布 局 翻 译 器',
-    'Java 14 发布了，不使用"class"也能定义类了？还顺手要干掉Lombok！',
-    '一口气说出 6种，@Transactional注解的失效场景',
-    '跨域总结:从CORS到Ngni',
-    '把 GitHub 放入口袋，“开箱”官方客户端',
-    '微信支付跨平台软件架构',
-    '机器学习:决策树入门之泰坦尼克号案例',
-    '硬核数据结构，让你从B树理解到B+树',
-    'Python——五分钟带你弄懂迭代器与生成器，夯实代码能力'
-  ];
-  let likeCountArr = [37, 58, 63, 73, 97, 143, 386, 521, 538, 843 ];
-  let commentsCountArr = [1, 9, 10, 13, 16, 24, 26, 37, 38, 76]
   // 数据处理
   let columnEntryList = [];
   let page = req.query.page; // 页数
   let pageSize = req.query.pageSize; // 条数
   let len = (1000 - pageSize * (page - 1)) < pageSize ? (1000 - pageSize * (page - 1)) : pageSize; // 返回条数
   for (i = 0; i < len; i++) {
-    columnEntryList.push(
-      Mock.mock({
-        'id': (page - 1) * pageSize + (i + 1),
-        'username|1': usernameArr,
-        'time|1': timeArr,
-        'name|1': nameArr,
-        'imgUrl|1': imageUrlArr,
-        'title|1': titleArr,
-        'likeCount|1': likeCountArr,
-        'commentsCount|1': commentsCountArr
-      })
-    )
+    // 随机返回数组一项
+    let n = Math.floor(Math.random() * itemArr.length + 1) - 1;
+    itemArr[n].id = (page - 1) * pageSize + (i + 1);
+    columnEntryList.push(itemArr[n]);
   }
   // 模拟延迟返回数据
   setTimeout(() => {

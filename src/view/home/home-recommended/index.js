@@ -20,8 +20,12 @@ class HomeRecommended extends Component {
       pageSize: 15, // 列表条目条数
       entryType: 0, // 条目类型
       entryTime: '', // 条目时间
-      entryList: [] // 列表条目数据
+      entryList: [], // 列表条目数据
+      look: true, // 分页请求开关
+      pageLoading: false // 分页时的loading
     }
+    // 滚动条监听
+    this.bindHandleScroll = this.bindHandleScroll.bind(this);
     // 数据获取
     this.getEntryList = this.getEntryList.bind(this);
     // 导航切换
@@ -39,6 +43,8 @@ class HomeRecommended extends Component {
   }
 
   componentDidMount() {
+    // 进行scroll事件的注册，绑定一个函数，让这个函数进行监听处理
+    window.addEventListener('scroll', this.bindHandleScroll);
     // 获取分类导航数据
     getHomeCategoryNav()
       .then(res => {
@@ -46,6 +52,11 @@ class HomeRecommended extends Component {
       })
     // 获取列表条目数据
     this.getEntryList();
+  }
+
+  componentWillUnmount(){
+    // 进行scroll事件的注销
+    window.removeEventListener('scroll', this.bindHandleScroll);
   }
 
   render() {
@@ -70,6 +81,7 @@ class HomeRecommended extends Component {
               likeCountClick={this.likeCountClick}
               commentsCountClick={this.commentsCountClick}
             />
+            <Skeleton active loading={this.state.pageLoading} paragraph={{ rows: 2 }}></Skeleton>
           </Skeleton>
         </div>
         <div className="sidebar">
@@ -77,6 +89,49 @@ class HomeRecommended extends Component {
         </div>
       </div>
     );
+  }
+
+  bindHandleScroll(event) {
+    // 总的滚动的高度
+    let scrollHeight = (event.srcElement ? event.srcElement.documentElement.scrollHeight : false)
+                      || (event.srcElement ? event.srcElement.body.scrollHeight : 0);
+    // 视口高度
+    let clientHeight = (event.srcElement ? event.srcElement.documentElement.clientHeight : false)
+                      || (event.srcElement ? event.srcElement.body.clientHeight : 0);
+    // 当前滚动的高度
+    let scrollTop = (event.srcElement ? event.srcElement.documentElement.scrollTop : false)
+                    || (event.srcElement ? event.srcElement.body.scrollTop : 0);
+    // 距离底部高度(总的高度 - 视口高度 - 滚动高度)
+    let bottomHeight = scrollHeight - clientHeight - scrollTop;
+    if (bottomHeight <= 60 && this.state.look) {
+      // 分页数据请求
+      let page = this.state.page;
+      page++;
+      this.setState({
+        look: false,
+        pageLoading: true,
+        page,
+        pageSize: 6
+      });
+      getHomeEntryList({
+        page: this.state.page,
+        pageSize: this.state.pageSize,
+        entryType: this.state.entryType,
+        entryTime: this.state.entryTime
+      })
+        .then(res => {
+          let entryList = this.state.entryList;
+          entryList.columnEntryList = entryList.columnEntryList.concat(res.data.columnEntryList);
+          this.setState({
+            look: true,
+            pageLoading: false,
+            entryList
+          });
+        })
+        .catch(() => {
+          this.setState({ look: true });
+        })
+    }
   }
 
   // 获取列表条目数据
@@ -89,12 +144,16 @@ class HomeRecommended extends Component {
       entryTime: this.state.entryTime
     })
       .then(res => {
-        this.setState({ entryList: res.data });
-        this.setState({ loading: false });
+        this.setState({
+          entryList: res.data,
+          loading: false
+        });
       })
       .catch(() => {
-        this.setState({ entryList: [] });
-        this.setState({ loading: false });
+        this.setState({
+          entryList: [],
+          loading: false
+        });
       })
   }
 

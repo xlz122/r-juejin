@@ -168,14 +168,83 @@ router.get('/books-list', function(req, res, next) {
       chapter: 22,
       read: '331分',
       purchaseCount: 1914
-    }
+    },
+    {
+      imgUrl: `${imageBaseUrl}/book-image11.jpg`,
+      title: '程序员职业小白书 —— 如何规划和经营你的职业',
+      desc: '职业上的错误是不能回滚的，将陪伴你一生，帮助每一位程序员规划自己的职业生涯',
+      authorUrl: `${imageBaseUrl}/author-image11.jpg`,
+      username: 'Easy',
+      gradeImgUrl: `${imageBaseUrl}/grade-image2.svg`,
+      authorDesc: '方糖气球博主，曾创业帮上千名程序员找到知名公司工作',
+      price: 29.9,
+      chapter: 14,
+      read: '83分30秒',
+      purchaseCount: 2400
+    },
+    {
+      imgUrl: `${imageBaseUrl}/book-image12.jpg`,
+      title: '数字货币与区块链原理',
+      desc: '深入了解区块链、挖矿、钱包、签名等技术原理，对未来的数字货币世界做好准备',
+      authorUrl: `${imageBaseUrl}/author-image12.jpg`,
+      username: '廖雪峰',
+      gradeImgUrl: `${imageBaseUrl}/grade-image4.svg`,
+      authorDesc: '软件架构师，精通数字货币和区块链',
+      price: 29.9,
+      chapter: 5,
+      read: '37分30秒',
+      purchaseCount: 1080
+    },
+    {
+      imgUrl: `${imageBaseUrl}/book-image13.jpg`,
+      title: '响应式编程 —— RxJava 高阶指南',
+      desc: '研究响应式编程，探讨 ReactiveX 的底层概念和 RxJava 的高阶问题',
+      authorUrl: `${imageBaseUrl}/author-image13.jpg`,
+      username: '拉丁吴',
+      gradeImgUrl: `${imageBaseUrl}/grade-image5.svg`,
+      authorDesc: '糗事百科 Android工程师，喜欢研究问题',
+      price: 9.9,
+      chapter: 11,
+      read: '91分30秒',
+      purchaseCount: 1481
+    },
+    {
+      imgUrl: `${imageBaseUrl}/book-image14.jpg`,
+      title: '如何使用 Canvas 制作出炫酷的网页背景特效',
+      desc: '从零开始学习 Canvas 相关知识，分析其特效，最终制作出炫酷的网页背景',
+      authorUrl: `${imageBaseUrl}/author-image14.jpg`,
+      username: 'sunshine小小倩',
+      gradeImgUrl: `${imageBaseUrl}/grade-image6.svg`,
+      authorDesc: '饿了么 RMB FE',
+      price: 9.9,
+      chapter: 9,
+      read: '71分30秒',
+      purchaseCount: 3808
+    },
+    {
+      imgUrl: `${imageBaseUrl}/book-image15.jpg`,
+      title: '用 npm script 打造超溜的前端工作流',
+      desc: '抛弃笨重的构建工具，拥抱轻巧而不失强大的 npm script，随小册赠送视频版教程。',
+      authorUrl: `${imageBaseUrl}/author-image15.jpg`,
+      username: '王仕军',
+      gradeImgUrl: `${imageBaseUrl}/grade-image5.svg`,
+      authorDesc: 'ArcBlock 资深前端工程师',
+      price: 19.9,
+      chapter: 15,
+      read: '83分30秒',
+      purchaseCount: 2551
+    },
   ];
-  // 生成40组数据
+  // 数据处理
   let data = [];
-  for (i = 0; i < 4; i++) {
-    // 混淆数组
-    itemArr = itemArr.sort(() => Math.random() -0.5);
-    data = data.concat(itemArr);
+  let page = req.query.page; // 页数
+  let pageSize = req.query.pageSize; // 条数
+  let len = (1000 - pageSize * (page - 1)) < pageSize ? (1000 - pageSize * (page - 1)) : pageSize; // 返回条数
+  for (i = 0; i < len; i++) {
+    // 随机返回数组一项
+    let n = Math.floor(Math.random() * itemArr.length + 1) - 1;
+    itemArr[n].id = (page - 1) * pageSize + (i + 1);
+    data.push(itemArr[n]);
   }
   // 模拟延迟返回数据
   setTimeout(() => {

@@ -45,6 +45,11 @@ class Home extends Component {
           <Route path="/home/backend" component={HomeRecommended} />
           <Route path="/home/frontend" component={HomeRecommended} />
           <Route path="/home/android" component={HomeRecommended} />
+          <Route path="/home/ios" component={HomeRecommended} />
+          <Route path="/home/ai" component={HomeRecommended} />
+          <Route path="/home/freebie" component={HomeRecommended} />
+          <Route path="/home/career" component={HomeRecommended} />
+          <Route path="/home/article" component={HomeRecommended} />
         </div>
       </div>
     );

@@ -43,6 +43,10 @@ class Brochure extends Component {
         <div className="brochure-container">
           <Route exact path="/brochure" component={BrochureAll} />
           <Route path="/brochure/frontend" component={BrochureAll} />
+          <Route path="/brochure/backend" component={BrochureAll} />
+          <Route path="/brochure/mobile" component={BrochureAll} />
+          <Route path="/brochure/blockchain" component={BrochureAll} />
+          <Route path="/brochure/general" component={BrochureAll} />
         </div>
       </div>
     );

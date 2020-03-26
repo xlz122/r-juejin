@@ -2,7 +2,7 @@ import React from 'react';
 import './index.less';
 
 function BooksList(props) {
-  const { listData } = props;
+  const { listData, children } = props;
   const { bookClick } = props;
   return (
     <div className="books">
@@ -49,6 +49,7 @@ function BooksList(props) {
             )
           })
         }
+        {children}
       </ul>
       <div className="register-info">
         <span className="text">©2020 掘金</span>
