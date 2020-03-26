@@ -11,6 +11,35 @@ body {
   overflow-x: auto;
 }
 
+/* 解决页面滚动条出现导致的页面跳动问题 */
+:root {
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+:root #juejin {
+  position: absolute;
+}
+
+#juejin {
+  width: 100vw;
+  overflow: hidden;
+}
+
+@media screen and (max-width: 960px) {
+  :root {
+    overflow-y: auto;
+    overflow-x: auto;
+  }
+
+  #juejin {
+    width: 100vw;
+    min-width: 960px;
+    overflow-x: auto;
+    overflow-y: auto;
+  }
+}
+
 ul li {
   list-style: none;
 }
