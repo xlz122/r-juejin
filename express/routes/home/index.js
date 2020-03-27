@@ -1,6 +1,5 @@
 var express = require('express');
 var router = express.Router();
-var Mock = require('mockjs');
 
 /* 首页子导航 */
 router.get('/child-nav-bar', function(req, res, next) {

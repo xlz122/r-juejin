@@ -10,7 +10,7 @@ const Message = asyncComponent(() => import('@view/common/message'));
 // 目前使用node12版本创建的react项目，使用低版本node版本创建的react项目，如（8.9.1）会报错，import语法不支持
 const Home = asyncComponent(() => import('@view/home'));
 const Header = asyncComponent(() => import('@view/header'));
-const boilingPoint = asyncComponent(() => import('@view/boilingPoint'));
+const BoilingPoint = asyncComponent(() => import('@view/boiling-point'));
 const Topic = asyncComponent(() => import('@view/topic'));
 const Brochure = asyncComponent(() => import('@view/brochure'));
 const Activity = asyncComponent(() => import('@view/activity'));
@@ -24,7 +24,7 @@ function AppRouter() {
       <div className="main">
         <Switch>
           <Route path="/home" component={Home} />
-          <Route path="/boiling-point" component={boilingPoint} />
+          <Route path="/boiling-point" component={BoilingPoint} />
           <Route path="/topic" component={Topic} />
           <Route path="/brochure" component={Brochure} />
           <Route path="/activity" component={Activity} />

@@ -1,33 +1,45 @@
 var express = require('express');
 var router = express.Router();
 
-/* 小册导航 */
-router.get('/child-nav-bar', function(req, res, next) {
+/* 沸点左侧导航 */
+router.get('/pin-nav', function(req, res, next) {
   res.json({
     data: [
       {
-        title: '全部',
-        link: '/brochure'
+        title: '推荐',
+        link: '/boiling-point'
       },
       {
-        title: '前端',
-        link: '/brochure/frontend'
+        title: '热门',
+        link: '/boiling-point/hot'
       },
       {
-        title: '后端',
-        link: '/brochure/backend'
+        title: '关注',
+        link: '/boiling-point/following'
       },
       {
-        title: '移动开发',
-        link: '/brochure/mobile'
+        title: '开源推荐',
+        link: '/boiling-point/open-source'
       },
       {
-        title: '区块链',
-        link: '/brochure/blockchain'
+        title: '内部招聘',
+        link: '/boiling-point/recruit'
       },
       {
-        title: '通用',
-        link: '/brochure/general'
+        title: '掘金相亲',
+        link: '/boiling-point/blind-date'
+      },
+      {
+        title: '上班摸鱼',
+        link: '/boiling-point/idle'
+      },
+      {
+        title: '应用安利',
+        link: '/boiling-point/amway'
+      },
+      {
+        title: 'New资讯',
+        link: '/boiling-point/tool'
       }
     ]
   });
