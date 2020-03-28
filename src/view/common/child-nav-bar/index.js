@@ -8,7 +8,7 @@ function NavUi(props) {
   // 父组件传递
   const { navData, navMouseOver, navMouseOut, navDetailsJump } =  props;
   // redux传递
-  const { childNavBarActionIndex, childNavBarIndexChange } = props;
+  const { childNavBarActiveIndex, childNavBarIndexChange } = props;
   return (
     <div className="child-nav-bar">
       <ul className="nav-list">
@@ -16,7 +16,7 @@ function NavUi(props) {
           navData.map((item, index) => {
             return (
               <li
-                className={`li-item ${index === parseInt(childNavBarActionIndex) ? 'li-active-item ' : ''}`}
+                className={`li-item ${index === parseInt(childNavBarActiveIndex) ? 'li-active-item ' : ''}`}
                 key={index + item}
                 onClick={() => { childNavBarIndexChange(index) }}
                 onMouseOver={() => { navMouseOver(index) }}
@@ -26,7 +26,7 @@ function NavUi(props) {
                 <span className="auxiliary"></span>
                 {
                   // 存在子项 && 是否显示 && 是否选中项
-                  item.children && item.isShow && index !== parseInt(childNavBarActionIndex) &&
+                  item.children && item.isShow && index !== parseInt(childNavBarActiveIndex) &&
                   <ul className="list-details">
                     {
                       item.children.map((i, ind) => {
@@ -58,7 +58,7 @@ function NavUi(props) {
 
 const mapStateToProps = (state) => {
   return {
-    childNavBarActionIndex: state.childNavBarActionIndex
+    childNavBarActiveIndex: state.childNavBarActiveIndex
   }
 }
 
@@ -66,7 +66,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     // 设置子导航下标
     childNavBarIndexChange(index) {
-      sessionStorage.setItem('childNavBarActionIndex', index);
+      sessionStorage.setItem('childNavBarActiveIndex', index);
       const action = childNavBarAction(index);
       dispatch(action);
     }

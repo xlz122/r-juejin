@@ -80,7 +80,7 @@ const mapDispatchToProps = (dispatch) => {
       const action = headerNavAction(index);
       dispatch(action);
       // 头部导航更改时，重置子导航下标
-      sessionStorage.setItem('childNavBarActionIndex', 0);
+      sessionStorage.setItem('childNavBarActiveIndex', 0);
       const action1 = childNavBarAction(0);
       dispatch(action1);
     }
