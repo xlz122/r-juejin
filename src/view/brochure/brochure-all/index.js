@@ -38,7 +38,7 @@ class BrochureAll extends Component {
     return (
       <div className="brochure-all">
         <div className="content">
-          <Skeleton active loading={this.state.loading} paragraph={{ rows: 2 }} style={{ background: 'red' }}>
+          <Skeleton active loading={this.state.loading} paragraph={{ rows: 2 }}>
             <BooksList
               listData={this.state.listData}
               bookClick={this.bookClick}
@@ -108,12 +108,16 @@ class BrochureAll extends Component {
       pageSize: this.state.pageSize
     })
       .then(res => {
-        this.setState({ listData: res.data });
-        this.setState({ loading: false });
+        this.setState({
+          listData: res.data,
+          loading: false
+        });
       })
       .catch(() => {
-        this.setState({ listData: [] });
-        this.setState({ loading: false });
+        this.setState({
+          listData: [],
+          loading: false
+        });
       })
   }
 

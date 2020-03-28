@@ -6,7 +6,6 @@
     position: relative;
     height: 31px;
     line-height: 31px;
-    padding: 0 12px;
     margin-top: 10px;
     font-size: 14px;
     color: #909090;
@@ -15,8 +14,10 @@
     transition: background-color .2s, color .2s;
     cursor: pointer;
     &:hover {
-      color: #007fff;
       background-color: hsla(0, 0%, 94.9%, 0.6);
+      .item-link {
+        color: #007fff;
+      }
     }
     &:nth-child(3):before {
       position: absolute;
@@ -27,16 +28,26 @@
       height: 1px;
       background: rgba(92, 96, 102, 0.1);
     }
+    .item-link {
+      display: inline-block;
+      width: 100%;
+      height: 100%;
+      color: #909090;
+    }
   }
   .li-first-item {
     margin-top: 0;
   }
   .li-active-item {
-    color: #fff;
     background-color: #007fff;
-    &:hover {
+    .item-link {
       color: #fff;
+    }
+    &:hover {
       background-color: #007fff;
+      .item-link {
+        color: #fff;
+      }
     }
   }
 }

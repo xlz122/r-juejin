@@ -16,10 +16,11 @@ class Topic extends Component {
   
   componentDidMount() {
     // 动态计算当前页面高度
-    let pageHeight = document.querySelector(".topic");
+    let pageHeight = document.querySelector('.topic');
     if (pageHeight) {
       pageHeight.style.minHeight = (window.innerHeight - pageHeight.offsetTop) + 'px';
     }
+    // 获取列表数据
     getTopicList()
       .then(res => {
         this.setState({ listData: res.data });
@@ -40,12 +41,12 @@ class Topic extends Component {
 
   // 标题
   titleClick() {
-    alert('点击了标题');
+    React.Message.info('点击了标题');
   }
 
   // 关注
   followClick() {
-    alert('点击了关注');
+    React.Message.info('点击了关注');
   }
 }
  
