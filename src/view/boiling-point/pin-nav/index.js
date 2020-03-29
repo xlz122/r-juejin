@@ -1,60 +1,28 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { boilingPointNavAction, boilingPointListAction } from '@store/actionCreators'; 
-import { getBoilingPointPinList } from '@api/boiling-point';
-import './index.less';
+import React, { Component } from 'react';
+import { getBoilingPointPinNav } from '@api/boiling-point';
+import PinNavUi from './pinNavUi';
 
-function PinNav(props) {
-  // 数据
-  const { navData, boilingPointActiveIndex } = props;
-  // 事件
-  const { navListChange } = props;
-  return (
-    <ul className="pin-nav-list">
-      {
-        navData &&
-        navData.map((item, index) => {
-          return (
-            <li
-              className={`li-item ${index === 0 ? 'li-first-item' : ''} ${index === parseInt(boilingPointActiveIndex) ? 'li-active-item': '' }`}
-              key={index + item}
-              onClick={() => { navListChange(item, index) }}
-            >
-              <Link className="item-link" to={item.link}>{item.title}</Link>
-            </li>
-          )
-        })
-      }
-    </ul>
-  )
-}
-
-const mapStateToProps = (state) => {
-  return {
-    boilingPointActiveIndex: state.boilingPointActiveIndex
+class PonList extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {  }
   }
-}
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    // 设置左侧导航下标
-    navListChange(item, index) {
-      sessionStorage.setItem('boilingPointActiveIndex', index);
-      const action = boilingPointNavAction(index);
-      dispatch(action);
-      // 获取列表数据
-      getBoilingPointPinList({
-        id: item.app_id,
-        page: 1,
-        pageSize: 10
+  componentDidMount() {
+    // 获取左侧导航数据
+    getBoilingPointPinNav()
+      .then(res => {
+        this.setState({ navData: res.data });
       })
-        .then(res => {
-          const action1 = boilingPointListAction(res.data);
-          dispatch(action1);
-        })
-    }
+  }
+
+  render() { 
+    return (
+      <PinNavUi
+        navData={this.state.navData}
+      />
+    );
   }
 }
-
-export default connect(mapStateToProps, mapDispatchToProps)(PinNav);
+ 
+export default PonList;
