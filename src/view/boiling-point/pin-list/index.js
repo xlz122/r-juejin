@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
+import { Skeleton } from 'antd';
 import PinListUi from './pinListUi';
 
 class PonList extends Component {
   constructor(props) {
     super(props);
-    this.state = {  }
+    this.state = {}
     // 关注
     this.followClick = this.followClick.bind(this);
     // 赞
@@ -15,14 +16,17 @@ class PonList extends Component {
     this.shareClick = this.shareClick.bind(this);
   }
 
-  render() { 
+  render() {
     return (
-      <PinListUi
-        followClick={this.followClick}
-        fabulousClick={this.fabulousClick}
-        commentClick={this.commentClick}
-        shareClick={this.shareClick}
-      />
+      <Skeleton active loading={this.props.listLoading} paragraph={{ rows: 2 }}>
+        <PinListUi
+          listData={this.props.listData}
+          followClick={this.followClick}
+          fabulousClick={this.fabulousClick}
+          commentClick={this.commentClick}
+          shareClick={this.shareClick}
+        />
+      </Skeleton>
     );
   }
 

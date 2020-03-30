@@ -1,17 +1,16 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import './index.less';
 
 function PinListUi(props) {
-  // redux数据
-  const { boilingPointList } = props;
-  // 父组件事件
+  // 事件
   const { followClick, fabulousClick, commentClick, shareClick } = props;
+  // 数据
+  const { listData } = props;
   return (
     <ul className="pin-list">
       {
-        boilingPointList &&
-        boilingPointList.map((item, index) => {
+        listData &&
+        listData.map((item, index) => {
           return (
             <li
               className="item"
@@ -91,10 +90,4 @@ function PinListUi(props) {
   )
 }
 
-const mapStateToProps = (state) => {
-  return {
-    boilingPointList: state.boilingPointList
-  }
-}
-
-export default connect(mapStateToProps)(PinListUi);
+export default PinListUi;
