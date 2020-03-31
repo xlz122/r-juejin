@@ -6,12 +6,12 @@ router.get('/child-nav-bar', function(req, res, next) {
   res.json({
     data: [
       {
-        id: 11,
+        web_id: 1,
         title: '推荐',
         link: '/home'
       },
       {
-        id: 12,
+        web_id: 2,
         title: '后端',
         link: '/home/backend',
         children: [
@@ -34,7 +34,7 @@ router.get('/child-nav-bar', function(req, res, next) {
         ]
       },
       {
-        id: 13,
+        web_id: 3,
         title: '前端',
         link: '/home/frontend',
         children: [
@@ -57,7 +57,7 @@ router.get('/child-nav-bar', function(req, res, next) {
         ]
       },
       {
-        id: 14,
+        web_id: 4,
         title: 'Android',
         link: '/home/android',
         children: [
@@ -80,7 +80,7 @@ router.get('/child-nav-bar', function(req, res, next) {
         ]
       },
       {
-        id: 15,
+        web_id: 5,
         title: 'iOS',
         link: '/home/ios',
         children: [
@@ -103,7 +103,7 @@ router.get('/child-nav-bar', function(req, res, next) {
         ]
       },
       {
-        id: 16,
+        web_id: 6,
         title: '人工智能',
         link: '/home/ai',
         children: [
@@ -126,7 +126,7 @@ router.get('/child-nav-bar', function(req, res, next) {
         ]
       },
       {
-        id: 17,
+        web_id: 7,
         title: '开发工具',
         link: '/home/freebie',
         children: [
@@ -149,7 +149,7 @@ router.get('/child-nav-bar', function(req, res, next) {
         ]
       },
       {
-        id: 18,
+        web_id: 8,
         title: '代码人生',
         link: '/home/career',
         children: [
@@ -172,7 +172,7 @@ router.get('/child-nav-bar', function(req, res, next) {
         ]
       },
       {
-        id: 19,
+        web_id: 9,
         title: '阅读',
         link: '/home/article',
         children: [

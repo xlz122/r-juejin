@@ -16,7 +16,7 @@ class Brochure extends Component {
       navData: [], // 导航数据
       navActiveIndex: 0, // 导航选中
       listLoading: false, // 列表loading
-      ssid: null, // 列表id
+      ssid: null, // 路由id
       page: 1, // 列表页数
       pageSize: 10, // 列表条数
       listData: [], // 列表数据
@@ -75,8 +75,8 @@ class Brochure extends Component {
         <ChildNavBar
           navData={this.state.navData}
           navActiveIndex={this.state.navActiveIndex}
-          navMouseOver={this.navMouseOver}
           navActiveChange={this.navActiveChange}
+          navMouseOver={this.navMouseOver}
           navMouseOut={this.navMouseOut}
           navDetailsJump={this.navDetailsJump}
         />

@@ -30,6 +30,10 @@ class BoilingPoint extends Component {
   }
 
   render() {
+    const childProps = {
+      listLoading: this.state.listLoading,
+      listData: this.state.listData
+    }
     return (
       <div className="boiling-point">
         <div className="boiling-point-container">
@@ -41,15 +45,15 @@ class BoilingPoint extends Component {
             />
           </div>
           <div className="content">
-            <Route exact path="/boiling-point" render={props => <PinList {...props} listLoading={this.state.listLoading} listData={this.state.listData} />} />
-            <Route exact path="/boiling-point/hot" render={props => <PinList {...props} listLoading={this.state.listLoading} listData={this.state.listData} />} />
-            <Route exact path="/boiling-point/following" render={props => <PinList {...props} listLoading={this.state.listLoading} listData={this.state.listData} />} />
-            <Route exact path="/boiling-point/open-source" render={props => <PinList {...props} listLoading={this.state.listLoading} listData={this.state.listData} />} />
-            <Route exact path="/boiling-point/recruit" render={props => <PinList {...props} listLoading={this.state.listLoading} listData={this.state.listData} />} />
-            <Route exact path="/boiling-point/blind-date" render={props => <PinList {...props} listLoading={this.state.listLoading} listData={this.state.listData} />} />
-            <Route exact path="/boiling-point/idle" render={props => <PinList {...props} listLoading={this.state.listLoading} listData={this.state.listData} />} />
-            <Route exact path="/boiling-point/amway" render={props => <PinList {...props} listLoading={this.state.listLoading} listData={this.state.listData} />} />
-            <Route exact path="/boiling-point/tool" render={props => <PinList {...props} listLoading={this.state.listLoading} listData={this.state.listData} />} />
+            <Route exact path="/boiling-point" render={props => <PinList {...props} {...childProps} />} />
+            <Route exact path="/boiling-point/hot" render={props => <PinList {...props} {...childProps} />} />
+            <Route exact path="/boiling-point/following" render={props => <PinList {...props} {...childProps} />} />
+            <Route exact path="/boiling-point/open-source" render={props => <PinList {...props} {...childProps} />} />
+            <Route exact path="/boiling-point/recruit" render={props => <PinList {...props} {...childProps} />} />
+            <Route exact path="/boiling-point/blind-date" render={props => <PinList {...props} {...childProps} />} />
+            <Route exact path="/boiling-point/idle" render={props => <PinList {...props} {...childProps} />} />
+            <Route exact path="/boiling-point/amway" render={props => <PinList {...props} {...childProps} />} />
+            <Route exact path="/boiling-point/tool" render={props => <PinList {...props} {...childProps} />} />
           </div>
           <div className="sidebar">
             <Sidebar />

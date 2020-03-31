@@ -4,7 +4,7 @@ import './index.less';
 function CategoryNav(props) {
   // json数据
   const { list, timeChoice } = props.navListData;
-  // 属性
+  // 数据
   const { navActiveIndex, timeChoiceShow, timeChoiceTitle, timeChoiceMenuShow } = props;
   // 事件
   const { navListChange, timeChoiceToggle, timeChoiceClick } = props;
