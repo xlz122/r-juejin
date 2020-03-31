@@ -16,11 +16,10 @@ function childNavBarUi(props) {
               <li
                 className={`li-item ${index === parseInt(navActiveIndex) ? 'li-active-item ' : ''}`}
                 key={index + item}
-                onClick={() => { navActiveChange(index) }}
                 onMouseOver={() => { navMouseOver(index) }}
                 onMouseLeave={() => { navMouseOut(index) }}
               >
-                <Link className="item-link" to={item.link}>{item.title}</Link>
+                <Link className="item-link" to={item.link} onClick={() => { navActiveChange(index) }}>{item.title}</Link>
                 <span className="auxiliary"></span>
                 {
                   // 存在子项 && 是否显示 && 是否选中项
