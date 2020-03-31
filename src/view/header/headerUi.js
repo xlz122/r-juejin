@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { headerNavAction, childNavBarAction } from '@store/actionCreators';
+import { headerNavAction } from '@store/actionCreators';
 // logo
 import logoBg from '@images/header/logo.svg';
 // 搜索icon
