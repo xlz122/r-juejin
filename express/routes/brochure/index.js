@@ -6,26 +6,32 @@ router.get('/child-nav-bar', function(req, res, next) {
   res.json({
     data: [
       {
+        ssid: 1,
         title: '全部',
         link: '/brochure'
       },
       {
+        ssid: 2,
         title: '前端',
         link: '/brochure/frontend'
       },
       {
+        ssid: 3,
         title: '后端',
         link: '/brochure/backend'
       },
       {
+        ssid: 4,
         title: '移动开发',
         link: '/brochure/mobile'
       },
       {
+        ssid: 5,
         title: '区块链',
         link: '/brochure/blockchain'
       },
       {
+        ssid: 6,
         title: '通用',
         link: '/brochure/general'
       }

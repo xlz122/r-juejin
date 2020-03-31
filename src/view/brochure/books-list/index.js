@@ -1,65 +1,32 @@
-import React from 'react';
-import './index.less';
+import React, { Component } from 'react';
+import { Skeleton } from 'antd';
+import BooksListUi from './booksListUi';
 
-function BooksList(props) {
-  const { listData, children } = props;
-  const { bookClick } = props;
-  return (
-    <div className="books">
-      <ul className="books-list">
-        {
-          listData &&
-          listData.map((item, index) => {
-            return (
-              <li
-                className="item"
-                key={index + item}
-                onClick={bookClick}
-              >
-                <div className="poster">
-                  <img className="img" src={item.imgUrl} alt="poster" />
-                </div>
-                <div className="info">
-                  <div className="title">{item.title}</div>
-                  <div className="desc">{item.desc}</div>
-                  <div className="author">
-                    <div className="author-info">
-                      <img className="hero" src={item.authorUrl} alt="interlace" />
-                      <span className="username">{item.username}</span>
-                      <img className="rank" src={item.gradeImgUrl} alt="" />
-                    </div>
-                    <div className="author-desc">{item.authorDesc}</div>
-                  </div>
-                  <div className="other">
-                    <div className="price">￥{item.price}</div>
-                    <ul className="messages">
-                      <li className="message-item">
-                        {item.chapter}小节
-                      </li>
-                      <li className="message-item">
-                        阅读时长{item.read}
-                      </li>
-                      <li className="message-item message-last-item">
-                        {item.purchaseCount}人已购买
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </li>
-            )
-          })
-        }
-        {children}
-      </ul>
-      <div className="register-info">
-        <span className="text">©2020 掘金</span>
-        <span> | </span>
-        <span className="text">津ICP备15003202号-2</span>
-        <span> | </span>
-        <span className="text">京公网安备11010802026719号</span>
-      </div>
-    </div>
-  )
+class BooksList extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {}
+    // 书籍列表点击
+    this.bookClick = this.bookClick.bind(this);
+  }
+
+  render() {
+    return (
+      <Skeleton active loading={this.props.listLoading} paragraph={{ rows: 2 }}>
+        <BooksListUi
+          listData={this.props.listData}
+          bookClick={this.bookClick}
+        >
+          <Skeleton active loading={this.props.pageLoading} paragraph={{ rows: 2 }}></Skeleton>
+        </BooksListUi>
+      </Skeleton>
+    );
+  }
+
+  // 书籍列表点击
+  bookClick() {
+    React.Message.info('书籍列表点击');
+  }
 }
-
+ 
 export default BooksList;

@@ -18,12 +18,12 @@ class PinNav extends Component {
     getBoilingPointPinNav()
       .then(res => {
         this.setState({ navData: res.data });
-        // 导航和路由对比，获取对应id
+        // 导航和路由对比，获取对应id，导航选中
         let app_id = null;
         res.data.forEach((item, index) => {
           if (item.link === this.props.location.pathname) {
             app_id = item.app_id;
-            this.setState({ navActiveIndex: index })
+            this.setState({ navActiveIndex: index });
           }
         })
         // 获取列表数据
