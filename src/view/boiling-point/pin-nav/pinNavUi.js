@@ -6,7 +6,7 @@ function PinNavUi(props) {
   // 数据
   const { navData, navActiveIndex } = props;
   // 事件
-  const { navListChange } = props;
+  const { navActiveChange } = props;
   return (
     <ul className="pin-nav-list">
       {
@@ -16,7 +16,7 @@ function PinNavUi(props) {
             <li
               className={`li-item ${index === 0 ? 'li-first-item' : ''} ${index === parseInt(navActiveIndex) ? 'li-active-item': '' }`}
               key={index + item}
-              onClick={() => { navListChange(item, index) }}
+              onClick={() => { navActiveChange(index) }}
             >
               <Link className="item-link" to={item.link}>{item.title}</Link>
             </li>

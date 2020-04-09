@@ -13,8 +13,8 @@ export const getBoilingPointPinNav = () => {
 /**
  * @desc 获取沸点列表数据
 */
-export const getBoilingPointPinList = ({ id, page, pageSize }) => {
-  const params = { id, page, pageSize };
+export const getBoilingPointPinList = ({ app_id, page, pageSize }) => {
+  const params = { app_id, page, pageSize };
   return Axios.request({
     url: '/boiling-point/pin-list',
     methods: 'get',

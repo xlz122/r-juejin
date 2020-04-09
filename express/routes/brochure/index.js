@@ -248,7 +248,6 @@ router.get('/books-list', function(req, res, next) {
   for (i = 0; i < len; i++) {
     // 随机返回数组一项
     let n = Math.floor(Math.random() * itemArr.length + 1) - 1;
-    itemArr[n].id = (page - 1) * pageSize + (i + 1);
     data.push(itemArr[n]);
   }
   // 模拟延迟返回数据

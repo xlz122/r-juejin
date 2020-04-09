@@ -26,6 +26,7 @@ class PonList extends Component {
           commentClick={this.commentClick}
           shareClick={this.shareClick}
         />
+        <Skeleton className="pin-list-loading" active loading={this.props.pageLoading} paragraph={{ rows: 2 }}></Skeleton>
       </Skeleton>
     );
   }
