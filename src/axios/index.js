@@ -10,7 +10,8 @@ class HttpRequest {
     let config = {
       // 基础路径
       baseURL: '',
-      // 允许跨域带token
+      // 表示跨域请求时是否需要使用凭证
+      // 允许跨域带token,cookie
       withCredentials: true, 
       // 请求超时
       timeout: 5000,

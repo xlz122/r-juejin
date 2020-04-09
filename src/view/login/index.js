@@ -137,11 +137,11 @@ class Login extends Component {
     // 数据校验
     if (!username) {
       this.setState({ panfishImgType: 2 });
-      alert('请输入账号!');
+      React.Message.error('请输入账号!');
       return false;
     } else if (!password) {
       this.setState({ panfishImgType: 2 });
-      alert('请输入密码!');
+      React.Message.error('请输入密码!');
       return false;
     }
 
@@ -157,12 +157,13 @@ class Login extends Component {
           if (userResult || phoneResult) {
             if (userResult.password === password) {
               this.props.close();
-              alert('登录成功');
+              document.cookie = `username=${username}`
+              React.Message.info('登录成功');
             } else {
-              alert('请检查用户名或者密码是否正确！');
+              React.Message.error('请检查用户名或者密码是否正确！');
             }
           } else {
-            alert('该账号没有被注册！');
+            React.Message.error('该账号没有被注册！');
           }
         })
       })
@@ -189,16 +190,16 @@ class Login extends Component {
     // 数据校验
     let reg = /^[1][3,4,5,7,8,9][0-9]{9}$/;
     if (!username) {
-      alert('请输入账号！');
+      React.Message.error('请输入账号！');
       return false;
     } else if (!phone) {
-      alert('请输入手机号！');
+      React.Message.error('请输入手机号！');
       return false;
     } else if (phone && !reg.test(phone)) {
-      alert('请输入正确的手机号！');
+      React.Message.error('请输入正确的手机号！');
       return false;
     } else if (!password || password.length < 6) {
-      alert('请输入密码');
+      React.Message.error('请输入密码');
       return false;
     }
 
@@ -219,19 +220,19 @@ class Login extends Component {
               // 第一次注册直接添加
               insertData('juejinDB', 'user', { username, phone, password });
               this.props.close();
-              alert('注册成功!');
+              React.Message.info('注册成功!');
             } else {
               // 后续添加进行对比
               let userResult = data.find(item => res.data.username === item.username);
               let phoneResult = data.find(item => res.data.phone === item.phone);
               if (userResult) {
-                alert('账号已存在！');
+                React.Message.error('账号已存在！');
               } else if (phoneResult) {
-                alert('手机号已被注册，请更换手机号!');
+                React.Message.error('手机号已被注册，请更换手机号!');
               } else {
                 insertData('juejinDB', 'user', { username, phone, password });
                 this.props.close();
-                alert('注册成功!');
+                React.Message.info('注册成功!');
               }
             }
           })
@@ -241,7 +242,7 @@ class Login extends Component {
 
   // 忘记密码
   forgetPassword() {
-    alert('暂不支持找回密码，请重新注册！');
+    React.Message.info('暂不支持找回密码，请重新注册！');
   }
 }
  

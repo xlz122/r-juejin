@@ -4,7 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 // 解析post参数插件
-var bodyParser = require('body-parser');
+// var bodyParser = require('body-parser');
 
 // 头部接口文件
 var headerRouter = require('./routes/header/index');
@@ -30,9 +30,20 @@ app.use(cookieParser());
 // 配置express静态文件目录
 app.use(express.static(path.join(__dirname, 'public')));
 
-// 配置 body-parser 中间件 (插件, 专门用来解析表单 POST 请求)
-app.use(bodyParser.urlencoded({ extended: false }))
-app.use(bodyParser.json())
+// 貌似脚手架已经默认配置过了post，所以进行注释，运行正常。
+// // 配置 body-parser 中间件 (插件, 专门用来解析表单 POST 请求)
+// app.use(bodyParser.urlencoded({ extended: false }))
+// app.use(bodyParser.json())
+
+// 携带cookie需要配置，貌似不需要,所以进行注释，运行正常。
+// app.all("*", (req, res, next) => {
+//   res.header("Access-Control-Allow-Credentials", "true"); //划重点
+//   res.header("Access-Control-Allow-Origin", "http://localhost:3000"); //这里写 * 貌似会报错,就改成请求ip了
+//   res.header("Access-Control-Allow-Headers", "Content-Type,Content-Length, Authorization, Accept,X-Requested-With");
+//   res.header("Access-Control-Allow-Methods", "PUT,POST,GET,DELETE,OPTIONS");
+//   res.header("X-Powered-By", ' 3.2.1')
+//   next();
+// })
 
 /**
  * 这里的路径作为主路径，文件里 / 作为默认路径，可写子路径

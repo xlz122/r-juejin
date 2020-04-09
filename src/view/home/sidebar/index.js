@@ -55,16 +55,16 @@ class SideBar extends Component {
     // 数据校验
     let reg = /^[1][3,4,5,7,8,9][0-9]{9}$/;
     if (!username) {
-      React.Message.info('请输入账号');
+      React.Message.error('请输入账号');
       return false;
     } else if (!phone) {
-      React.Message.info('请输入手机号');
+      React.Message.error('请输入手机号');
       return false;
     } else if (phone && !reg.test(phone)) {
       React.Message.error('请输入正确的手机号');
       return false;
     } else if (!password || password.length < 6) {
-      React.Message.info('请输入密码');
+      React.Message.error('请输入密码');
       return false;
     }
 
@@ -89,15 +89,13 @@ class SideBar extends Component {
               // 后续添加进行对比
               let userResult = data.find(item => res.data.username === item.username);
               let phoneResult = data.find(item => res.data.phone === item.phone);
-              console.log(userResult )
-              console.log(phoneResult )
               if (userResult) {
                 React.Message.error('账号已存在');
               } else if (phoneResult) {
                 React.Message.error('手机号已被注册，请更换手机号');
               } else {
                 insertData('juejinDB', 'user', { username, phone, password });
-                alert('注册成功!');
+                React.Message.info('注册成功!');
               }
             }
           })

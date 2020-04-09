@@ -16,6 +16,7 @@ router.get('/nav-list', function(req, res, next) {
 
 /* 登录 */
 router.post('/login', function(req, res, next) {
+  res.cookie("username", req.body.username, { maxAge: 900000, httpOnly: true });
   res.json({
     data: req.body
   });
