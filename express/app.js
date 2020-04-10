@@ -5,6 +5,8 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 // 解析post参数插件
 // var bodyParser = require('body-parser');
+// 前端代理失效插件
+// var proxyMiddleWare = require('http-proxy-middleware');
 
 // 头部接口文件
 var headerRouter = require('./routes/header/index');
@@ -29,6 +31,21 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 // 配置express静态文件目录
 app.use(express.static(path.join(__dirname, 'public')));
+
+// 用于配置打包后，前端代理失效问题
+// app.get('/', function (req, res) {
+// 	res.sendFile(path.join(__dirname, '', 'index.html')) // 主页面
+// })
+// var proxyPath = "localhost:9000"; // 目标后端服务地址 打包后之前的跨域代理不生效 要在此用http-proxy-middleware插件跨域
+// // var proxyPath = "http://152.136.19.14:7001"; // 目标后端服务地址 打包后之前的跨域代理不生效 要在此用http-proxy-middleware插件跨域
+// var proxyOption = {
+// 	target: proxyPath,
+// 	changeOrigoin: true,
+// 	ws: true,
+// 	pathRewrite: { '^/api': '/' } // 把拼接路径 在浏览器中转成 / 现实用是要加的
+// };
+// app.use(proxyMiddleWare(proxyOption));
+// app.use("/api", proxyMiddleWare(proxyOption)); // 这里是用可挂载中间件拼接虚拟路径  若是未打包之前的有拼路径api的就要加上
 
 // 貌似脚手架已经默认配置过了post，所以进行注释，运行正常。
 // // 配置 body-parser 中间件 (插件, 专门用来解析表单 POST 请求)
