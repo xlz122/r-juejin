@@ -28,7 +28,7 @@ class Topic extends Component {
   }
 
   componentWillUnmount() {
-    // 解决路由切换，组件被销毁，ajax进行了setState操作，setState没有得到值导致的报错问题
+    // 解决路由切换，组件被销毁，ajax请求未完成，并在请求内部进行了setState操作，setState没有得到值导致报错
     this.setState = ()=>{
       return;
     };
