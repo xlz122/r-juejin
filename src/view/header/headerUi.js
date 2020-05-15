@@ -32,7 +32,7 @@ function HeaderUi(props) {
                 key={index + item}
                 onClick={() => { navListChange(index) }}
               >
-                <Link className="item-link" to={item.link}>{item.title}</Link>
+                <Link className="item-link" to={item.link} replace>{item.title}</Link>
                 <span className="auxiliary"></span>
               </li>
             );
