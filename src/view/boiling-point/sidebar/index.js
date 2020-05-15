@@ -14,7 +14,7 @@ function Sidebar() {
               <span>630 评论</span>
             </div>
           </div>
-          <img className="image-box" src="https://user-gold-cdn.xitu.io/2020/3/17/170e757282b060b3?w=1120&h=1120&f=png&s=184709" alt="img"></img>
+          <img className="image-box" src="https://dss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3466898293,3868517763&fm=26&gp=0.jpg" alt="img"></img>
         </li>
         <li className="item">
           <div className="content-box">
@@ -24,7 +24,7 @@ function Sidebar() {
               <span>630 评论</span>
             </div>
           </div>
-          <img className="image-box" src="https://user-gold-cdn.xitu.io/2020/3/17/170e757282b060b3?w=1120&h=1120&f=png&s=184709" alt="img"></img>
+          <img className="image-box" src="https://dss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3697616914,1005229019&fm=26&gp=0.jpg" alt="img"></img>
         </li>
         <li className="item">
           <div className="content-box">
@@ -34,7 +34,7 @@ function Sidebar() {
               <span>630 评论</span>
             </div>
           </div>
-          <img className="image-box" src="https://user-gold-cdn.xitu.io/2020/3/17/170e757282b060b3?w=1120&h=1120&f=png&s=184709" alt="img"></img>
+          <img className="image-box" src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3178088305,1020264448&fm=26&gp=0.jpg" alt="img"></img>
         </li>
       </ul>
       <div className="pin-guide-link">

@@ -109,7 +109,6 @@ class Header extends Component {
   loginClose() {
     this.setState({ loginStatus: false });
   }
-
 }
  
 export default Header;

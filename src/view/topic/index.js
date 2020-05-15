@@ -27,6 +27,13 @@ class Topic extends Component {
       })
   }
 
+  componentWillUnmount() {
+    // 解决路由切换，组件被销毁，ajax进行了setState操作，setState没有得到值导致的报错问题
+    this.setState = ()=>{
+      return;
+    };
+  }
+
   render() { 
     return (
       <div className="topic">
