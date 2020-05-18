@@ -8,11 +8,14 @@ class Header extends Component {
     super(props);
     this.state = {
       navListData: [], //nav列表数据
+      searchIsFocus: false, // 搜索框时候聚焦
       articleStatus: false, // 写文章弹框
       loginType: 'login', // 登录/注册
       loginStatus: false // 登录弹框
     }
     // 搜索
+    this.searchInputFocus = this.searchInputFocus.bind(this);
+    this.searchInputBlur = this.searchInputBlur.bind(this);
     this.searchArticle = this.searchArticle.bind(this);
     // 写文章
     this.setArticleShow = this.setArticleShow.bind(this);
@@ -44,6 +47,9 @@ class Header extends Component {
       <Fragment>
         <HeaderUi
           navListData={this.state.navListData}
+          searchIsFocus={this.state.searchIsFocus}
+          searchInputFocus={this.searchInputFocus}
+          searchInputBlur={this.searchInputBlur}
           searchArticle={this.searchArticle}
           articleShow={this.articleShow}
           articleStatus={this.state.articleStatus}
@@ -63,6 +69,16 @@ class Header extends Component {
     );
   }
 
+  // 搜索框聚焦
+  searchInputFocus() {
+    this.setState({ searchIsFocus: true });
+  }
+
+  // 搜索框失去焦点
+  searchInputBlur() {
+    this.setState({ searchIsFocus: false });
+  }
+  
   // 搜索
   searchArticle() {
     React.Message.info('点击了搜索');

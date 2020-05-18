@@ -6,6 +6,7 @@ import { headerNavAction } from '@store/actionCreators';
 import logoBg from '@images/header/logo.svg';
 // 搜索icon
 import searchIcon from '@images/header/search-icon.svg';
+import searchActiveIcon from '@images/header/search-active-icon.svg';
 // 写文章
 import articleIcon from '@images/header/article-icon.svg';
 import ArticleUi from '@view/header/article';
@@ -15,6 +16,7 @@ import './index.less';
 function HeaderUi(props) {
   // 父组件传递
   const { navListData, searchArticle, articleShow, articleStatus, panelClick, articleStart, loginShow, registerShow } = props;
+  const { searchIsFocus, searchInputFocus, searchInputBlur } = props;
   // redux传递
   const { headerNavActiveIndex, navListChange } = props;
   return (
@@ -40,9 +42,14 @@ function HeaderUi(props) {
         }
       </ul>
       <div className="nav-search">
-        <div className="search-container">
-          <input className="search-input" placeholder="搜索掘金" />
-          <img className="search-icon" src={searchIcon} onClick={searchArticle} alt="search" />
+        <div className={`search-container ${searchIsFocus ? 'search-active-container' : ''}`}>
+          <input
+            className="search-input"
+            onFocus={searchInputFocus}
+            onBlur={searchInputBlur}
+            placeholder="搜索掘金"
+          />
+          <img className="search-icon" src={searchIsFocus ? searchActiveIcon : searchIcon} onClick={searchArticle} alt="search" />
         </div>
       </div>
       <div className="sidebar">
