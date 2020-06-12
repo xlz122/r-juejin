@@ -1,5 +1,24 @@
 import axios from 'axios';
 
+// 标识请求
+const getRequestIdentify = (config, isReuest = false) => {
+  let url = config.url;
+  if (isReuest) {
+    url = config.baseURL + config.url.substring(1, config.url.length);
+  }
+  return config.method === 'get' ? encodeURIComponent(url + JSON.stringify(config.params)) : encodeURIComponent(config.url + JSON.stringify(config.data));
+};
+
+// 取消重复请求
+const pending = {};
+const CancelToken = axios.CancelToken;
+const removePending = (key, isRequest = false) => {
+  if (pending[key] && isRequest) {
+    pending[key]('取消重复请求');
+  }
+  delete pending[key];
+};
+
 class HttpRequest {
   constructor(externalConfig) {
     // 外部配置
@@ -14,7 +33,7 @@ class HttpRequest {
       // 允许跨域带token,cookie
       withCredentials: true, 
       // 请求超时
-      timeout: 5000,
+      timeout: 60000,
       headers: {
         'Content-Type': 'application/json;charset=UTF-8',
       }
@@ -35,6 +54,13 @@ class HttpRequest {
   interceptors(instance) {
     // 请求拦截
     instance.interceptors.request.use(config => {
+      // 拦截重复请求(即当前正在进行的相同请求)
+      const requestData = getRequestIdentify(config, true); // 标识请求
+      removePending(requestData, true);// 取消重复请求
+      config.cancelToken = new CancelToken((c) => { // 创建当前请求的取消方法
+        pending[requestData] = c;
+      });
+
       return Promise.resolve(config);
     }, error => {
       return Promise.reject(error);
