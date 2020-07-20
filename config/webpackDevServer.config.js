@@ -104,7 +104,7 @@ module.exports = function(proxy, allowedHost) {
     // 设置代理
     proxy: {
 			'/api': {
-        target: 'http://localhost:9000',
+        target: 'http://localhost:9001',
         ws: true,
         changeOrigin: true, //是否跨域
         pathRewrite: { '^/api': '/' }
