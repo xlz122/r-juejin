@@ -2,25 +2,47 @@ import React, { useState, useEffect } from 'react';
 import './index.less';
 
 function Activity() {
-  const [count, setCount] = useState(0);
-  
-  function setCountNum() {
-    setCount(count+1);
-  }
-
-  // 相当于 componentDidMount 和 componentDidUpdate:
+  const [query, setQuery] = useState({});
   useEffect(() => {
-    // 使用浏览器的 API 更新页面标题
-    document.title = `You clicked ${count} times`;
-  });
+    console.log(query);
+  }, [query]);
+  
+  function submit() {
+    const queryData = JSON.parse(JSON.stringify(query));
+    queryData.msg = '消息';
+    setQuery(queryData);
+  }
 
   return (
     <div>
-      <p>{count}</p>
-      <button onClick={setCountNum}>count++</button>
+      <button onClick={submit}>提交</button>
     </div>
   )
 }
+
+// import React, { useState, useEffect } from 'react';
+// import './index.less';
+
+// function Activity() {
+//   const [count, setCount] = useState(0);
+  
+//   function setCountNum() {
+//     setCount(count+1);
+//   }
+
+//   // 相当于 componentDidMount 和 componentDidUpdate:
+//   useEffect(() => {
+//     // 使用浏览器的 API 更新页面标题
+//     document.title = `You clicked ${count} times`;
+//   });
+
+//   return (
+//     <div>
+//       <p>{count}</p>
+//       <button onClick={setCountNum}>count++</button>
+//     </div>
+//   )
+// }
 
 // class Activity extends Component {
 //   componentDidMount() {

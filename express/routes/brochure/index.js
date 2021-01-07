@@ -42,7 +42,7 @@ router.get('/child-nav-bar', function(req, res, next) {
 /* 小册书籍列表 */
 router.get('/books-list', function(req, res, next) {
   // 书籍数据数组
-  let imageBaseUrl = 'http://localhost:9000/images/brochure';
+  let imageBaseUrl = 'http://localhost:9001/images/brochure';
   let itemArr = [
     {
       imgUrl: `${imageBaseUrl}/book-image1.jpg`,

@@ -224,12 +224,12 @@ router.get('/entry-list', function(req, res, next) {
     {
       username: '掘金酱',
       time: '1天前',
-      imgUrl: 'http://localhost:9000/images/home/column-entry-list-ad.jpg',
+      imgUrl: 'http://localhost:9001/images/home/column-entry-list-ad.jpg',
       title: '面试不用愁，掘友能解忧，一批大厂面试经验新鲜出炉啦~',
       bstract: '有面试需求的小伙伴再也不用发愁找不到攻略啦。这一次面试，掘友帮你忙。'
     }
   ];
-  let imageBaseUrl = 'http://localhost:9000/images/home';
+  let imageBaseUrl = 'http://localhost:9001/images/home';
   let itemArr = [
     {
       username: 'Keely',

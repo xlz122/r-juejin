@@ -57,7 +57,7 @@ router.get('/pin-nav', function(req, res, next) {
 /* 小册书籍列表 */
 router.get('/pin-list', function(req, res, next) {
   // 书籍数据数组
-  let imageBaseUrl = 'http://localhost:9000/images/boiling-point';
+  let imageBaseUrl = 'http://localhost:9001/images/boiling-point';
   let itemArr = [
     {
       userImg: `${imageBaseUrl}/boiling-point-user-image1.jpg`,

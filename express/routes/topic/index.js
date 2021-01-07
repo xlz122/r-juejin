@@ -3,7 +3,7 @@ var router = express.Router();
 
 /* 话题列表 */
 router.get('/topic-list', function(req, res, next) {
-  let imageBaseUrl = 'http://localhost:9000/images/topic';
+  let imageBaseUrl = 'http://localhost:9001/images/topic';
   let itemArr = [
     {
       imgUrl: `${imageBaseUrl}/list-image1.jpg`,
