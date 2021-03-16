@@ -13,4 +13,4 @@ ReactDOM.render(
     <AppRouter />
   </Provider>,
   document.getElementById('juejin')
-)
+);
