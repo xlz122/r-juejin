@@ -1,16 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import useCallbackState from '@utils/useCallbackState';
 import './index.less';
 
 function Activity() {
-  const [query, setQuery] = useState({});
-  useEffect(() => {
-    console.log(query);
-  }, [query]);
+  const [query, setQuery] = useCallbackState({});
   
   function submit() {
     const queryData = JSON.parse(JSON.stringify(query));
     queryData.msg = '消息';
-    setQuery(queryData);
+    // 回调函数，获取最新的state
+    setQuery(queryData, data => {
+      console.log(data);
+    });
   }
 
   return (
