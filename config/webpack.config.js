@@ -352,6 +352,7 @@ module.exports = function (webpackEnv) {
         '@indexDB': path.resolve(__dirname, '../src/indexDB'),
         '@router': path.resolve(__dirname, '../src/router'),
         '@store': path.resolve(__dirname, '../src/store'),
+        '@utils': path.resolve(__dirname, '../src/utils'),
         '@view': path.resolve(__dirname, '../src/view'),
       },
       plugins: [
