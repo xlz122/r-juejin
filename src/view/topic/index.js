@@ -1,60 +1,42 @@
-import React, { Component } from 'react';
-import { getTopicList } from '@api/topic';
+import React, { useState, useEffect } from 'react';
 import TopicUi from './topicUi';
+import { getTopicList } from '@api/topic';
 
-class Topic extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      listData: []
-    }
-    // 标题
-    this.titleClick = this.titleClick.bind(this);
-    // 关注
-    this.followClick = this.followClick.bind(this);
-  }
-  
-  componentDidMount() {
-    // 动态计算当前页面高度
+function Topic() {
+  const [list, setList] = useState([]);
+
+  // 获取列表数据
+  useEffect(() => {
+    getTopicList()
+      .then(res => {
+        setList(res.data);
+      })
+  }, []);
+
+  // 动态计算当前页面高度
+  useEffect(() => {
     let pageHeight = document.querySelector('.topic');
     if (pageHeight) {
       pageHeight.style.minHeight = (window.innerHeight - pageHeight.offsetTop) + 'px';
     }
-    // 获取列表数据
-    getTopicList()
-      .then(res => {
-        this.setState({ listData: res.data });
-      })
-  }
-
-  componentWillUnmount() {
-    // 解决路由切换，组件被销毁，ajax请求未完成，并在请求内部进行了setState操作，setState没有得到值导致报错
-    this.setState = ()=>{
-      return;
-    };
-  }
-
-  render() { 
-    return (
-      <div className="topic">
-        <TopicUi
-          listData={this.state.listData}
-          titleClick={this.titleClick}
-          followClick={this.followClick}
-        />
-      </div>
-    );
-  }
+  }, []);
 
   // 标题
-  titleClick() {
-    React.Message.info('点击了标题');
+  const titleClick = function() {
+    React.Message.info('标题');
   }
 
   // 关注
-  followClick() {
-    React.Message.info('点击了关注');
+  const followClick = function() {
+    React.Message.info('关注');
   }
+  return (
+    <TopicUi
+      listData={list}
+      titleClick={titleClick}
+      followClick={followClick}
+    />
+  );
 }
- 
-export default Topic;
+
+export default React.memo(Topic);
