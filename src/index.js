@@ -6,6 +6,7 @@ import { Provider } from 'react-redux';
 import AppRouter from '@router';
 // 引入全局方法
 import './global';
+// import 'antd/dist/antd.css';
 import './index.css';
 
 ReactDOM.render(
