@@ -23,12 +23,16 @@ function topicUi(props) {
                   >
                     <img className="img" src={item.imgUrl} alt="topic" />
                     <div className="content">
-                      <div className="title-text" title={item.tooltip} onClick={titleClick}>{item.title}</div>
-                      <div className="count">{`${item.followCount} 关注 · ${item.boilingPointCount} 沸点`}</div>
+                      <div className="title-text" title={item.tooltip} onClick={titleClick}>
+                        {item.title}
+                      </div>
+                      <div className="count">
+                        {`${item.followCount} 关注 · ${item.boilingPointCount} 沸点`}
+                      </div>
                       <div className="subscribe" onClick={followClick}>+ 关注</div>
                     </div>
                   </li>
-                )
+                );
               })
             }
           </ul>
