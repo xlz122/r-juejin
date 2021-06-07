@@ -5,7 +5,7 @@ const defaultState = {
   headerNavActiveIndex: sessionStorage.getItem('headerNavActiveIndex') || 0 // 头部导航栏下标
 };
 
-export default (state = defaultState, action) => {
+const reducer = (state = defaultState, action) => {
   // 设置主导航栏下标
   if (action.type === HEADER_NAV_LIST) {
     let cloneState = lodash.cloneDeep(state);
@@ -15,3 +15,5 @@ export default (state = defaultState, action) => {
 
   return state;
 }
+
+export default reducer;

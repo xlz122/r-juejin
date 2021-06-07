@@ -86,7 +86,7 @@ function SidebarUi(props) {
           <span className="title">热门标签</span>
           <span className="right-text">查看全部</span>
         </div>
-        <ul className="content">
+        <ul className="tags-content">
           <li className="item">架构</li>
           <li className="item">开源</li>
           <li className="item">算法</li>

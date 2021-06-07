@@ -45,12 +45,12 @@ class ListContainer extends Component {
 
   // 广告条目点击
   adEntryItemClick() {
-    React.Message.info('点击了广告列表');
+    React.Message.info('广告');
   }
 
   // 专栏条目点击
   columnEntryItemClick() {
-    React.Message.info('点击了专栏列表');
+    React.Message.info('专栏');
   }
 
   // 专栏条目喜欢点击
