@@ -13,7 +13,7 @@ function topicUi(props) {
         <div className="topic-list">
           <div className="title">全部话题</div>
           <ul className="list">
-            { 
+            {
               listData &&
               listData.map((item, index) => {
                 return (
@@ -43,3 +43,4 @@ function topicUi(props) {
 }
 
 export default topicUi;
+

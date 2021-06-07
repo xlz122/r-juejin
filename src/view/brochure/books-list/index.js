@@ -28,5 +28,5 @@ class BooksList extends Component {
     React.Message.info('书籍列表点击');
   }
 }
- 
+
 export default BooksList;

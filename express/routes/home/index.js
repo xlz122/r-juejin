@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 /* 首页子导航 */
-router.get('/child-nav-bar', function(req, res, next) {
+router.get('/child-nav-bar', function (req, res, next) {
   res.json({
     data: [
       {
@@ -199,7 +199,7 @@ router.get('/child-nav-bar', function(req, res, next) {
 });
 
 /* 首页分类导航 */
-router.get('/category-nav-list', function(req, res, next) {
+router.get('/category-nav-list', function (req, res, next) {
   res.json({
     data: {
       list: [
@@ -218,7 +218,7 @@ router.get('/category-nav-list', function(req, res, next) {
 });
 
 /* 首页 - 列表条目 */
-router.get('/entry-list', function(req, res, next) {
+router.get('/entry-list', function (req, res, next) {
   // 广告列表条目数据
   let adEntryList = [
     {

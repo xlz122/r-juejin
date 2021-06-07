@@ -87,7 +87,7 @@ class Login extends Component {
       </Fragment>
     );
   }
-  
+
   // 登录/注册切换
   logonHandover(type) {
     // 用于区分父组件点击还是子组件切换
@@ -96,7 +96,7 @@ class Login extends Component {
     }
     if (type === 'login') {
       this.setState({ isLogin: false });
-    } else if(type === 'register') {
+    } else if (type === 'register') {
       this.setState({ isLogin: true });
     }
   }
@@ -183,7 +183,7 @@ class Login extends Component {
   registerPasswordChange(e) {
     this.setState({ registerPasswordValue: e.target.value });
   }
-  
+
   // 注册
   register() {
     let { registerAccountValue: username, registerPhoneValue: phone, registerPasswordValue: password } = this.state;
@@ -210,10 +210,10 @@ class Login extends Component {
     })
       .then(res => {
         let indexedDB = window.indexedDB || window.webkitIndexedDB || window.mozIndexedDB || window.msIndexedDB;
-        if( !indexedDB ){
+        if (!indexedDB) {
           throw Error('当前浏览器不支持 indexed 数据库, 请更换高级浏览器！！！');
         } else {
-          createDB('juejinDB', 'user' , 1);
+          createDB('juejinDB', 'user', 1);
           // 进行数据查询
           getAllData('juejinDB', 'user', (data) => {
             if (data.length === 0) {
@@ -245,5 +245,5 @@ class Login extends Component {
     React.Message.info('暂不支持找回密码，请重新注册！');
   }
 }
- 
+
 export default Login;

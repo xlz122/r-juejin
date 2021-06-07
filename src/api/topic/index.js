@@ -1,11 +1,11 @@
-import Axios from '@axios';
+import axios from '@axios';
 
 /**
  * @desc 获取数据
-*/
+ */
 export const getTopicList = () => {
-  return Axios.request({
+  return axios.request({
     url: '/topic/topic-list',
     methods: 'get'
-  })
+  });
 }

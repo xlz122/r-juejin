@@ -101,8 +101,8 @@ function SidebarUi(props) {
       <div className="download">
         <img className="img" src={sidebarQeCode} alt="download" />
         <div className="content-box">
-          <div className="headline">下载掘金客户端</div> 
-          <div className="desc">一个帮助开发者成长的社区</div> 
+          <div className="headline">下载掘金客户端</div>
+          <div className="desc">一个帮助开发者成长的社区</div>
         </div>
       </div>
       {/* 喜欢 */}

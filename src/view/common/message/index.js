@@ -30,7 +30,7 @@ class Message extends Component {
                 className={`message-item ${this.setClass(item.type)}`}
                 key={index + item}
               >
-                {item.title}
+                <span className="text">{item.title}</span>
               </li>
             )
           })
@@ -82,5 +82,5 @@ class Message extends Component {
     }, time);
   }
 }
- 
+
 export default Message;

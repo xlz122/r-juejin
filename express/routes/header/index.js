@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 /* 头部导航 */
-router.get('/nav-list', function(req, res, next) {
+router.get('/nav-list', function (req, res, next) {
   res.json({
     data: [
       { title: '首页', link: '/' },
@@ -15,7 +15,7 @@ router.get('/nav-list', function(req, res, next) {
 });
 
 /* 登录 */
-router.post('/login', function(req, res, next) {
+router.post('/login', function (req, res, next) {
   res.cookie("username", req.body.username, { maxAge: 900000, httpOnly: true });
   res.json({
     data: req.body
@@ -23,7 +23,7 @@ router.post('/login', function(req, res, next) {
 });
 
 /* 注册 */
-router.post('/register', function(req, res, next) {
+router.post('/register', function (req, res, next) {
   res.json({
     data: req.body
   });

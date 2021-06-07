@@ -36,7 +36,7 @@ function childNavBarUi(props) {
                             className="details-item"
                             key={ind + i}
                           >
-                            <span className="details-link" onClick={navDetailsJump}>{i.title}</span>
+                            <span className="details-link" onClick={event => { navDetailsJump(event, i.title); }}>{i.title}</span>
                             <span className="auxiliary"></span>
                           </li>
                         )

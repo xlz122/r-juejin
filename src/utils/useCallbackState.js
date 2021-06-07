@@ -8,7 +8,7 @@ function useCallbackState(od) {
     cbRef.current && cbRef.current(data);
   }, [data]);
 
-  return [data, function(d, callback) {
+  return [data, function (d, callback) {
     cbRef.current = callback;
     setData(d);
   }];

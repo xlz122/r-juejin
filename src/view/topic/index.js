@@ -22,12 +22,12 @@ function Topic() {
   }, []);
 
   // 标题
-  const titleClick = function() {
+  const titleClick = function () {
     React.Message.info('标题');
   }
 
   // 关注
-  const followClick = function() {
+  const followClick = function () {
     React.Message.info('关注');
   }
   return (

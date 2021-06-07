@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 /* 小册导航 */
-router.get('/child-nav-bar', function(req, res, next) {
+router.get('/child-nav-bar', function (req, res, next) {
   res.json({
     data: [
       {
@@ -40,7 +40,7 @@ router.get('/child-nav-bar', function(req, res, next) {
 });
 
 /* 小册书籍列表 */
-router.get('/books-list', function(req, res, next) {
+router.get('/books-list', function (req, res, next) {
   // 书籍数据数组
   let imageBaseUrl = 'http://localhost:9001/images/brochure';
   let itemArr = [

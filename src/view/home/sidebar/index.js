@@ -48,7 +48,7 @@ class SideBar extends Component {
   registerPasswordChange(e) {
     this.setState({ registerPasswordValue: e.target.value });
   }
-  
+
   // 注册
   register() {
     let { registerAccountValue: username, registerPhoneValue: phone, registerPasswordValue: password } = this.state;
@@ -75,10 +75,10 @@ class SideBar extends Component {
     })
       .then(res => {
         let indexedDB = window.indexedDB || window.webkitIndexedDB || window.mozIndexedDB || window.msIndexedDB;
-        if( !indexedDB ){
+        if (!indexedDB) {
           throw Error('当前浏览器不支持 indexed 数据库, 请更换高级浏览器！！！');
         } else {
-          createDB('juejinDB', 'user' , 1);
+          createDB('juejinDB', 'user', 1);
           // 进行数据查询
           getAllData('juejinDB', 'user', (data) => {
             if (data.length === 0) {
@@ -103,5 +103,5 @@ class SideBar extends Component {
       })
   }
 }
- 
+
 export default SideBar;

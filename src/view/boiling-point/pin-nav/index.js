@@ -7,7 +7,7 @@ class PinNav extends Component {
     this.state = {}
   }
 
-  render() { 
+  render() {
     return (
       <PinNavUi
         navData={this.props.navData}
@@ -17,5 +17,5 @@ class PinNav extends Component {
     );
   }
 }
- 
+
 export default PinNav;

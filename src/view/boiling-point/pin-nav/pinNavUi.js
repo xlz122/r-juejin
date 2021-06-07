@@ -14,7 +14,7 @@ function PinNavUi(props) {
         navData.map((item, index) => {
           return (
             <li
-              className={`li-item ${index === 0 ? 'li-first-item' : ''} ${index === parseInt(navActiveIndex) ? 'li-active-item': '' }`}
+              className={`li-item ${index === 0 ? 'li-first-item' : ''} ${index === parseInt(navActiveIndex) ? 'li-active-item' : ''}`}
               key={index + item}
               onClick={() => { navActiveChange(index) }}
             >

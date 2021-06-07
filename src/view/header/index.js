@@ -78,7 +78,7 @@ class Header extends Component {
   searchInputBlur() {
     this.setState({ searchIsFocus: false });
   }
-  
+
   // 搜索
   searchArticle() {
     React.Message.info('点击了搜索');
@@ -126,5 +126,5 @@ class Header extends Component {
     this.setState({ loginStatus: false });
   }
 }
- 
+
 export default Header;

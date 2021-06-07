@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 /* 话题列表 */
-router.get('/topic-list', function(req, res, next) {
+router.get('/topic-list', function (req, res, next) {
   let imageBaseUrl = 'http://localhost:9001/images/topic';
   let itemArr = [
     {
@@ -80,7 +80,7 @@ router.get('/topic-list', function(req, res, next) {
   let data = [];
   for (i = 0; i < 4; i++) {
     // 混淆数组
-    itemArr = itemArr.sort(() => Math.random() -0.5);
+    itemArr = itemArr.sort(() => Math.random() - 0.5);
     data = data.concat(itemArr);
   }
   // 模拟延迟返回数据

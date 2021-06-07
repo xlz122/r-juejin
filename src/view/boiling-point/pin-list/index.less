@@ -3,9 +3,11 @@
     margin-bottom: 8px;
     background-color: #fff;
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+
     .item-header-row {
       position: relative;
       padding: 16px 24px 0 20px;
+
       .user-popover-box {
         display: inline-block;
         width: 45px;
@@ -14,26 +16,31 @@
         vertical-align: middle;
         cursor: pointer;
       }
+
       .pin-header-content {
         display: inline-block;
         margin-left: 12px;
         vertical-align: middle;
+
         .title {
           font-size: 14px;
           font-weight: 600;
           color: #2e3135;
           cursor: pointer;
         }
+
         .desc {
           max-width: 288px;
           margin-top: 4px;
           font-size: 13px;
           color: #8a9aa9;
+
           .dot {
             margin: 0 6px;
           }
         }
       }
+
       .header-action {
         position: absolute;
         top: 30%;
@@ -46,17 +53,19 @@
         font-size: 13px;
         border: none;
         border: 1px solid #6cbd45;
-        background-color: #fff;    
+        background-color: #fff;
         color: #6cbd45;
         text-align: center;
         border-radius: 2px;
         outline: none;
         cursor: pointer;
+
         &:hover {
           opacity: 0.8;
         }
       }
     }
+
     .item-content-row {
       margin: 5px 77px;
       font-size: 15px;
@@ -65,17 +74,21 @@
       color: #17181a;
       overflow: hidden;
     }
+
     .item-image-row {
       margin: 7px 48px 0 77px;
       max-width: 100%;
+
       .img {
         width: 200px;
         margin-right: 6px;
         margin-bottom: 3px;
       }
     }
+
     .item-topic-row {
       margin: 10px 48px 0 77px;
+
       .item {
         display: inline-block;
         line-height: 22px;
@@ -89,12 +102,14 @@
         cursor: pointer;
       }
     }
+
     .item-action-row {
       display: flex;
       position: relative;
       height: 34px;
       margin-top: 14px;
       border-top: 1px solid #ebebeb;
+
       .like-action,
       .comment-action,
       .share-action {
@@ -106,10 +121,12 @@
         height: 100%;
         cursor: pointer;
         user-select: none;
+
         .action-title-box {
           display: flex;
           align-items: center;
           justify-content: center;
+
           &:after {
             content: "";
             position: absolute;
@@ -120,10 +137,12 @@
             height: 24px;
             background-color: #ebebeb;
           }
+
           .link-icon {
             width: 18px;
             height: 18px;
           }
+
           .action-title {
             margin-left: 4px;
             font-size: 13px;
@@ -135,6 +154,7 @@
     }
   }
 }
+
 .pin-list-loading {
   margin: -3px 0 10px 0;
 }

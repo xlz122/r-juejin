@@ -96,13 +96,13 @@ function LoginUi(props) {
             props.isLogin &&
             <Fragment>
               <span>没有账号？</span>
-              <span className="clickable" onClick={() => {props.logonHandover('login')}}>注册</span>
+              <span className="clickable" onClick={() => { props.logonHandover('login') }}>注册</span>
               <span className="clickable forget-password" onClick={props.forgetPassword}>忘记密码</span>
             </Fragment>
           }
           {
             !props.isLogin &&
-            <div className="clickable register" onClick={() => {props.logonHandover('register')}}>已有账号登录</div>
+            <div className="clickable register" onClick={() => { props.logonHandover('register') }}>已有账号登录</div>
           }
         </div>
         <div className="oauth-box">

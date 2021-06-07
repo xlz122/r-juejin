@@ -10,7 +10,7 @@ export default function asyncComponent(importComponent) {
     }
 
     async componentDidMount() {
-      if(this.hasLoadedComponent()){
+      if (this.hasLoadedComponent()) {
         return;
       }
       const { default: component } = await importComponent();
@@ -22,8 +22,8 @@ export default function asyncComponent(importComponent) {
     hasLoadedComponent() {
       return this.state.component !== null;
     }
-    componentWillUnmount(){
-      this.setState = (state,callback)=>{
+    componentWillUnmount() {
+      this.setState = (state, callback) => {
         return
       }
     }

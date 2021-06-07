@@ -51,5 +51,5 @@ class PonList extends Component {
     React.Message.info('点击了分享');
   }
 }
- 
+
 export default PonList;

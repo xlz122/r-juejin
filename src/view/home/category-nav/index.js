@@ -16,7 +16,7 @@ function CategoryNav(props) {
           list.map((item, index) => {
             return (
               <li
-                className={`li-item ${index === navActiveIndex ? 'li-active-item': '' } ${index === list.length - 1 ? 'li-last-item' : ''}`}
+                className={`li-item ${index === navActiveIndex ? 'li-active-item' : ''} ${index === list.length - 1 ? 'li-last-item' : ''}`}
                 key={index + item}
                 onClick={() => { navListChange(index) }}
               >
@@ -57,5 +57,5 @@ function CategoryNav(props) {
     </div>
   )
 }
- 
+
 export default CategoryNav;

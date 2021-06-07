@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ChildNavBarUi from './childNavBarUi';
 
 class ChildNavBar extends Component {
-  render() { 
+  render() {
     return (
       <ChildNavBarUi
         navData={this.props.navData}
@@ -15,5 +15,5 @@ class ChildNavBar extends Component {
     );
   }
 }
- 
+
 export default ChildNavBar;

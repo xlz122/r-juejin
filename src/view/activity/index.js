@@ -3,7 +3,7 @@ import useCallbackState from '@utils/useCallbackState';
 
 function Activity() {
   const [query, setQuery] = useCallbackState({});
-  
+
   function submit() {
     const queryData = JSON.parse(JSON.stringify(query));
     queryData.msg = '消息';

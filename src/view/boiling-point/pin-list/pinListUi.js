@@ -19,7 +19,7 @@ function PinListUi(props) {
               <div className="item-header-row">
                 <img className="user-popover-box" src={item.userImg} alt="user" />
                 <div className="pin-header-content">
-                <div className="title">{item.username}</div>
+                  <div className="title">{item.username}</div>
                   <div className="desc">{item.desc || ''}<span>·</span> {item.time}</div>
                 </div>
                 <div className="header-action" onClick={followClick}>关注</div>
@@ -70,16 +70,16 @@ function PinListUi(props) {
                   </div>
                 </div>
                 <div className="share-action" onClick={shareClick}>
-                <div className="action-title-box">
-                  <svg className="icon share-icon" aria-hidden="true" width="20" height="20" viewBox="0 0 20 20">
-                    <g fill="none" fillRule="evenodd">
-                      <path d="M0 0h20v20H0z"></path>
-                      <g stroke="#8A93A0" strokeLinecap="round" strokeLinejoin="round">
-                        <path d="M10 2.5v10M13.5 7h2.001c.552 0 .999.437.999.96v8.621c0 1.919-1.447 1.919-1.999 1.919H5.5c-.552 0-1.999 0-1.999-1.919v-8.62c0-.53.443-.961.999-.961H6.5M7.519 4.538L10.019 2l2.5 2.513"></path>
+                  <div className="action-title-box">
+                    <svg className="icon share-icon" aria-hidden="true" width="20" height="20" viewBox="0 0 20 20">
+                      <g fill="none" fillRule="evenodd">
+                        <path d="M0 0h20v20H0z"></path>
+                        <g stroke="#8A93A0" strokeLinecap="round" strokeLinejoin="round">
+                          <path d="M10 2.5v10M13.5 7h2.001c.552 0 .999.437.999.96v8.621c0 1.919-1.447 1.919-1.999 1.919H5.5c-.552 0-1.999 0-1.999-1.919v-8.62c0-.53.443-.961.999-.961H6.5M7.519 4.538L10.019 2l2.5 2.513"></path>
+                        </g>
                       </g>
-                    </g>
-                  </svg>
-                  <span className="action-title">分享</span></div>
+                    </svg>
+                    <span className="action-title">分享</span></div>
                 </div>
               </div>
             </li>

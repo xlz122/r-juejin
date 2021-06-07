@@ -6,7 +6,9 @@ const getRequestIdentify = (config, isReuest = false) => {
   if (isReuest) {
     url = config.baseURL + config.url.substring(1, config.url.length);
   }
-  return config.method === 'get' ? encodeURIComponent(url + JSON.stringify(config.params)) : encodeURIComponent(config.url + JSON.stringify(config.data));
+  return config.method === 'get'
+    ? encodeURIComponent(url + JSON.stringify(config.params))
+    : encodeURIComponent(config.url + JSON.stringify(config.data));
 };
 
 // 取消重复请求
@@ -31,7 +33,7 @@ class HttpRequest {
       baseURL: '',
       // 表示跨域请求时是否需要使用凭证
       // 允许跨域带token,cookie
-      withCredentials: true, 
+      withCredentials: true,
       // 请求超时
       timeout: 60000,
       headers: {
@@ -53,25 +55,29 @@ class HttpRequest {
   // 拦截器设置
   interceptors(instance) {
     // 请求拦截
-    instance.interceptors.request.use(config => {
-      // 拦截重复请求(即当前正在进行的相同请求)
-      const requestData = getRequestIdentify(config, true); // 标识请求
-      removePending(requestData, true);// 取消重复请求
-      config.cancelToken = new CancelToken((c) => { // 创建当前请求的取消方法
-        pending[requestData] = c;
-      });
+    instance.interceptors.request.use(
+      config => {
+        // 拦截重复请求(即当前正在进行的相同请求)
+        const requestData = getRequestIdentify(config, true); // 标识请求
+        removePending(requestData, true);// 取消重复请求
+        config.cancelToken = new CancelToken((c) => { // 创建当前请求的取消方法
+          pending[requestData] = c;
+        });
 
-      return Promise.resolve(config);
-    }, error => {
-      return Promise.reject(error);
-    })
+        return Promise.resolve(config);
+      },
+      error => {
+        return Promise.reject(error);
+      });
     // 响应拦截
-    instance.interceptors.response.use(res => {
-      const data = res.data;
-      return Promise.resolve(data);
-    }, error => {
-      return Promise.reject(error);
-    })
+    instance.interceptors.response.use(
+      res => {
+        const data = res.data;
+        return Promise.resolve(data);
+      },
+      error => {
+        return Promise.reject(error);
+      });
   }
 }
 

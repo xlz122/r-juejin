@@ -40,7 +40,7 @@ function EntryListUi(props) {
                     <img className="img" src={item.imgUrl} alt="tag" />
                   </div>
                 </div>
-          </li>
+              </li>
             )
           })
         }
@@ -57,7 +57,7 @@ function EntryListUi(props) {
               >
                 <div className="item-link">
                   <div className="info-box">
-                  <ul className="meta-row">
+                    <ul className="meta-row">
                       <li className="item column">
                         专栏
                       </li>

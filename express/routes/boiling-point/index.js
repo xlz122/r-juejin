@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 /* 沸点左侧导航 */
-router.get('/pin-nav', function(req, res, next) {
+router.get('/pin-nav', function (req, res, next) {
   res.json({
     data: [
       {
@@ -55,7 +55,7 @@ router.get('/pin-nav', function(req, res, next) {
 });
 
 /* 小册书籍列表 */
-router.get('/pin-list', function(req, res, next) {
+router.get('/pin-list', function (req, res, next) {
   // 书籍数据数组
   let imageBaseUrl = 'http://localhost:9001/images/boiling-point';
   let itemArr = [

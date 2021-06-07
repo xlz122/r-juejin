@@ -71,16 +71,16 @@ class Home extends Component {
       .then(res => {
         this.setState({ categoryNavListData: res.data });
       })
-    
+
     // 进行scroll事件的注册，绑定一个函数，让这个函数进行监听处理
     window.addEventListener('scroll', this.bindHandleScroll);
   }
 
-  componentWillUnmount(){
+  componentWillUnmount() {
     // 进行scroll事件的注销
     window.removeEventListener('scroll', this.bindHandleScroll);
     // 解决路由切换，组件被销毁，ajax请求未完成，并在请求内部进行了setState操作，setState没有得到值导致报错
-    this.setState = ()=>{
+    this.setState = () => {
       return;
     };
   }
@@ -140,7 +140,7 @@ class Home extends Component {
       }
     })
   }
-  
+
   // 获取列表数据
   getListData() {
     this.setState({ listLoading: true });
@@ -175,22 +175,22 @@ class Home extends Component {
   }
 
   // 导航详情跳转
-  navDetailsJump(e) {
+  navDetailsJump(e, title) {
     // 阻止事件冒泡
     e.stopPropagation();
-    React.Message.info('二级导航详情点击');
+    React.Message.info(title);
   }
 
   bindHandleScroll(event) {
     // 总的滚动的高度
     let scrollHeight = (event.srcElement ? event.srcElement.documentElement.scrollHeight : false)
-                      || (event.srcElement ? event.srcElement.body.scrollHeight : 0);
+      || (event.srcElement ? event.srcElement.body.scrollHeight : 0);
     // 视口高度
     let clientHeight = (event.srcElement ? event.srcElement.documentElement.clientHeight : false)
-                      || (event.srcElement ? event.srcElement.body.clientHeight : 0);
+      || (event.srcElement ? event.srcElement.body.clientHeight : 0);
     // 当前滚动的高度
     let scrollTop = (event.srcElement ? event.srcElement.documentElement.scrollTop : false)
-                    || (event.srcElement ? event.srcElement.body.scrollTop : 0);
+      || (event.srcElement ? event.srcElement.body.scrollTop : 0);
     // 距离底部高度(总的高度 - 视口高度 - 滚动高度)
     let bottomHeight = scrollHeight - clientHeight - scrollTop;
     if (bottomHeight <= 60 && this.state.look) {
@@ -283,5 +283,5 @@ class Home extends Component {
     })
   }
 }
- 
+
 export default Home;

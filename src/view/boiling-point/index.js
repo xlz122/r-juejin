@@ -54,11 +54,11 @@ class BoilingPoint extends Component {
     window.addEventListener('scroll', this.bindHandleScroll);
   }
 
-  componentWillUnmount(){
+  componentWillUnmount() {
     // 进行scroll事件的注销
     window.removeEventListener('scroll', this.bindHandleScroll);
     // 解决路由切换，组件被销毁，ajax请求未完成，并在请求内部进行了setState操作，setState没有得到值导致报错
-    this.setState = ()=>{
+    this.setState = () => {
       return;
     };
   }
@@ -130,13 +130,13 @@ class BoilingPoint extends Component {
   bindHandleScroll(event) {
     // 总的滚动的高度
     let scrollHeight = (event.srcElement ? event.srcElement.documentElement.scrollHeight : false)
-                      || (event.srcElement ? event.srcElement.body.scrollHeight : 0);
+      || (event.srcElement ? event.srcElement.body.scrollHeight : 0);
     // 视口高度
     let clientHeight = (event.srcElement ? event.srcElement.documentElement.clientHeight : false)
-                      || (event.srcElement ? event.srcElement.body.clientHeight : 0);
+      || (event.srcElement ? event.srcElement.body.clientHeight : 0);
     // 当前滚动的高度
     let scrollTop = (event.srcElement ? event.srcElement.documentElement.scrollTop : false)
-                    || (event.srcElement ? event.srcElement.body.scrollTop : 0);
+      || (event.srcElement ? event.srcElement.body.scrollTop : 0);
     // 距离底部高度(总的高度 - 视口高度 - 滚动高度)
     let bottomHeight = scrollHeight - clientHeight - scrollTop;
     if (bottomHeight <= 60 && this.state.look) {
@@ -169,5 +169,5 @@ class BoilingPoint extends Component {
     }
   }
 }
- 
+
 export default BoilingPoint;
