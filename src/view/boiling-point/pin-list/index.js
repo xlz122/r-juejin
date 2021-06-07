@@ -33,22 +33,22 @@ class PonList extends Component {
 
   // 关注
   followClick() {
-    React.Message.info('点击了关注');
+    React.Message.info('关注');
   }
 
   // 赞
   fabulousClick() {
-    React.Message.info('点击了赞');
+    React.Message.info('赞');
   }
 
   // 评论
   commentClick() {
-    React.Message.info('点击了评论');
+    React.Message.info('评论');
   }
 
   // 分享
   shareClick() {
-    React.Message.info('点击了分享');
+    React.Message.info('分享');
   }
 }
 

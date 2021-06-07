@@ -81,7 +81,7 @@ class Header extends Component {
 
   // 搜索
   searchArticle() {
-    React.Message.info('点击了搜索');
+    React.Message.info('搜索');
   }
 
   // 监听document点击，关闭写文章弹框
@@ -108,7 +108,7 @@ class Header extends Component {
   articleStart(e) {
     e.nativeEvent.stopImmediatePropagation();
     e.stopPropagation(); //阻止事件冒泡
-    React.Message.info('点击了写文章');
+    React.Message.info('写文章');
   }
 
   // 登录框弹出

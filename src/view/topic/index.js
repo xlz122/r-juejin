@@ -22,8 +22,8 @@ function Topic() {
   }, []);
 
   // 标题
-  const titleClick = function () {
-    React.Message.info('标题');
+  const titleClick = function (title) {
+    React.Message.info(title);
   }
 
   // 关注

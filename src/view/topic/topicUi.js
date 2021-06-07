@@ -23,7 +23,13 @@ function topicUi(props) {
                   >
                     <img className="img" src={item.imgUrl} alt="topic" />
                     <div className="content">
-                      <div className="title-text" title={item.tooltip} onClick={titleClick}>
+                      <div
+                        className="title-text"
+                        title={item.tooltip}
+                        onClick={() => {
+                          titleClick(item.title);
+                        }}
+                      >
                         {item.title}
                       </div>
                       <div className="count">

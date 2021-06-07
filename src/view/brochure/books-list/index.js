@@ -25,7 +25,7 @@ class BooksList extends Component {
 
   // 书籍列表点击
   bookClick() {
-    React.Message.info('书籍列表点击');
+    React.Message.info('书籍');
   }
 }
 
