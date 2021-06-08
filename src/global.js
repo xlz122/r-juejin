@@ -24,3 +24,7 @@ React.Message.success = function (title) {
 React.Message.error = function (title) {
   Message.prototype.error(title);
 }
+
+React.store = {
+  userInfo: {}
+};

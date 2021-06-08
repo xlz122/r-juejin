@@ -15,7 +15,7 @@ import './index.less';
 
 function HeaderUi(props) {
   // 父组件传递
-  const { navListData, searchArticle, articleShow, articleStatus, panelClick, articleStart, loginShow, registerShow, isLogin, userDropdownShow } = props;
+  const { navListData, searchArticle, articleShow, articleStatus, panelClick, articleStart, loginShow, registerShow, userDropdownShow } = props;
   const { searchIsFocus, searchInputFocus, searchInputBlur, userDropdown, logout } = props;
   // redux传递
   const { headerNavActiveIndex, navListChange } = props;
@@ -65,14 +65,15 @@ function HeaderUi(props) {
           }
         </div>
         {
-          !isLogin &&
+          !React.store.userInfo.token &&
           <div className="auth">
             <span className="text login-text" onClick={loginShow}>登录</span>
             <span className="text" onClick={registerShow}>注册</span>
+            <p>{React.store.userInfo.token}</p>
           </div>
         }
         {
-          isLogin &&
+          React.store.userInfo.token &&
           <div className="avatar" onClick={userDropdown}>
             <img className="img-avatar" src="https://user-gold-cdn.xitu.io/2020/5/29/1725f85d251ec3f1?imageView2/1/w/100/h/100/q/85/format/webp/interlace/1" alt="" />
             {

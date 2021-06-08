@@ -7,6 +7,8 @@ var logger = require('morgan');
 // var bodyParser = require('body-parser');
 
 // 头部接口文件
+var userRouter = require('./routes/user/index');
+// 头部接口文件
 var headerRouter = require('./routes/header/index');
 // 首页接口文件
 var homeRouter = require('./routes/home/index');
@@ -58,6 +60,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 /**
  * 这里的路径作为主路径，文件里 / 作为默认路径，可写子路径
  */
+// 头部接口
+app.use('/user', userRouter);
 // 头部接口
 app.use('/header', headerRouter);
 // 首页接口

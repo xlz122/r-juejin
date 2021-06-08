@@ -1,40 +1,40 @@
+import React from 'react';
 
 /**
  * @desc 创建数据库
  * @params dbName - 数据库名
- * @params dbName - 数据库 - 表名
+ * @params objectStoreName - 数据库 - 表名
  * @params version - 版本号
  */
 export function createDB(dbName, objectStoreName, version) {
-  // 数据库存在则打开,否则创建
+  // 数据库存在则打开，否则创建
   let request = indexedDB.open(dbName, version);
+  // 请求数据库成功的回调函数
+  request.onsuccess = function (success) { }
   // 请求数据库失败的回调函数
   request.onerror = function (err) {
-    console.log('打开数据库失败');
+    React.Message.error('打开数据库失败');
   }
-  // 请求数据库成功的回调函数
-  request.onsuccess = function (success) {
-    // console.log('打开数据库成功');
-  }
-  //数据库版本更新时的回调函数
+  // 数据库版本更新时的回调函数
   request.onupgradeneeded = function (event) {
     let db = event.target.result;
     // 创建信息对象存储空间,指定keyPath选项为Id(即主键为Id)
     db.createObjectStore(objectStoreName, {
       keyPath: "id",
       autoIncrement: true
-    })
+    });
   }
 }
 
 /**
  * @desc 新增数据
  * @params dbName - 数据库名称
- * @params objectStoreName - 对象仓库（表名）
+ * @params objectStoreName - 数据库 - 表名
  * @params argument - 传入的参数
  */
 export function insertData(dbName, objectStoreName, params) {
-  let request = indexedDB.open(dbName); //打开数据库并构建数据
+  // 数据库存在则打开，否则创建
+  let request = indexedDB.open(dbName); 
 
   // 创建数据库表
   request.onupgradeneeded = function (event) {
@@ -43,7 +43,7 @@ export function insertData(dbName, objectStoreName, params) {
     db.createObjectStore(objectStoreName, {
       keyPath: "id",
       autoIncrement: true
-    })
+    });
   }
 
   //数据库打开成功的回调函数
@@ -51,23 +51,22 @@ export function insertData(dbName, objectStoreName, params) {
     // 获得数据库
     let db = event.target.result;
 
-    //创建事务
+    // 创建事务
     let transaction = db.transaction(objectStoreName, "readwrite")
     request = transaction.objectStore(objectStoreName).add(params)
 
-    request.onsuccess = function (event) {
-      // console.log("添加成功！")
-    }
-    request.onerror = function (event) {
-      console.error("数据插入失败")
-    }
+    request.onsuccess = function (event) {}
 
-    transaction.onerror = function () {
-      console.error("事务未执行完成")
+    request.onerror = function (event) {
+      React.Message.error("数据插入失败")
     }
 
     transaction.oncomplete = function () {
       // console.info("事务完成!")
+    }
+
+    transaction.onerror = function () {
+      // console.error("事务未执行完成")
     }
   }
 }
@@ -75,11 +74,11 @@ export function insertData(dbName, objectStoreName, params) {
 /**
  * @desc 查询全部数据
  * @params dbName - 数据库名称
- * @params objectStoreName - 对象仓库（表名）
+ * @params objectStoreName - 数据库 - 表名
  * @params callback - 回调函数，返回查询的所有数据
  */
 export function getAllData(dbName, objectStoreName, callback) {
-  // 打开数据库
+  // 数据库存在则打开，否则创建
   let request = indexedDB.open(dbName);
 
   // 创建数据库表
@@ -115,7 +114,7 @@ export function getAllData(dbName, objectStoreName, callback) {
       }
     }
     cursor.onerror = function () {
-      console.error('查询数据失败');
+      React.Message.error('查询数据库失败');
     };
   }
 }
@@ -123,11 +122,11 @@ export function getAllData(dbName, objectStoreName, callback) {
 /**
  * @desc 更新数据
  * @params dbName - 数据库名称
- * @params objectStoreName - 对象仓库（表名）
+ * @params objectStoreName - 数据库 - 表名
  * @params callback - 回调函数,数据更新完成
  */
 export function updateData(dbName, objectStoreName, newsData, callback) {
-  // 打开数据库
+  // 数据库存在则打开，否则创建
   let request = indexedDB.open(dbName);
 
   // 创建数据库表
@@ -165,7 +164,7 @@ export function updateData(dbName, objectStoreName, newsData, callback) {
       }
     }
     cursor.onerror = function () {
-      console.error('数据更新失败');
+      React.Message.error('数据更新失败');
     };
   }
 }
@@ -173,10 +172,10 @@ export function updateData(dbName, objectStoreName, newsData, callback) {
 /**
  * @desc 清空表数据
  * @params dbName - 数据库名称
- * @params objectStoreName - 表名
+ * @params objectStoreName - 数据库 - 表名
  */
 export function clearAllData(dbName, objectStoreName) {
-  // 请求打开数据库
+  // 数据库存在则打开，否则创建
   let request = indexedDB.open(dbName);
   // 请求成功的回调函数
   request.onsuccess = function (e) {

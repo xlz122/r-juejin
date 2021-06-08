@@ -59,6 +59,16 @@ class Message extends Component {
     self.handleData(0, title);
   }
 
+  // 警告提示
+  wraning(title) {
+    self.handleData(1, title);
+  }
+
+  // 成功提示
+  success(title) {
+    self.handleData(2, title);
+  }
+
   // 错误提示
   error(title) {
     self.handleData(3, title);

@@ -12,8 +12,7 @@ class Header extends Component {
       articleStatus: false, // 写文章弹框
       loginType: 'login', // 登录/注册
       loginStatus: false, // 登录弹框
-      userDropdownShow: false, // 用户设置
-      isLogin: false
+      userDropdownShow: false // 用户设置
     }
     // 搜索
     this.searchInputFocus = this.searchInputFocus.bind(this);
@@ -62,7 +61,6 @@ class Header extends Component {
           articleStart={this.articleStart}
           loginShow={this.loginShow}
           registerShow={this.registerShow}
-          isLogin={this.state.isLogin}
           userDropdown={this.userDropdown}
           userDropdownShow={this.state.userDropdownShow}
           logout={this.logout}
