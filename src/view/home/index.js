@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import { getHomeChildNav, getHomeCategoryNav, getHomeEntryList } from '@api/home';
 import ChildNavBar from '@view/common/child-nav-bar';
+import ChildNavBarDetails from '@view/common/child-nav-bar/childNavBarDetails';
 import SidebarUi from './sidebar';
 import './index.less';
 
@@ -15,6 +16,7 @@ class Home extends Component {
     this.state = {
       navData: [], // 导航数据
       navActiveIndex: 0, // 导航选中
+      navTagActiveIndex: 0, // 标签选中
       categoryNavListData: [], // 类别导航数据
       categoryActiveIndex: 0, // 类别导航选中下标
       timeChoiceShow: false, // 类别导航时间选择显隐
@@ -35,6 +37,8 @@ class Home extends Component {
     this.navMouseOver = this.navMouseOver.bind(this);
     this.navMouseOut = this.navMouseOut.bind(this);
     this.navDetailsJump = this.navDetailsJump.bind(this);
+    // 标签
+    this.navTagActiveChange = this.navTagActiveChange.bind(this);
     // 类别导航
     this.categoryNavChange = this.categoryNavChange.bind(this);
     this.timeChoiceToggle = this.timeChoiceToggle.bind(this);
@@ -104,10 +108,17 @@ class Home extends Component {
         <ChildNavBar
           navData={this.state.navData}
           navActiveIndex={this.state.navActiveIndex}
+          navTagActiveIndex={this.state.navTagActiveIndex}
           navActiveChange={this.navActiveChange}
           navMouseOver={this.navMouseOver}
           navMouseOut={this.navMouseOut}
           navDetailsJump={this.navDetailsJump}
+        />
+        <ChildNavBarDetails
+          navData={this.state.navData}
+          navActiveIndex={this.state.navActiveIndex}
+          navTagActiveIndex={this.state.navTagActiveIndex}
+          navTagActiveChange={this.navTagActiveChange}
         />
         <div className="home-container">
           <div className="content">
@@ -134,7 +145,11 @@ class Home extends Component {
     let navData = this.state.navData;
     navData.forEach((i, ind) => {
       if (index === ind) {
-        this.setState({ navActiveIndex: index, web_id: i.web_id }, () => {
+        this.setState({
+          navActiveIndex: index,
+          navTagActiveIndex: 0,
+          web_id: i.web_id
+        }, () => {
           this.getListData();
         })
       }
@@ -175,10 +190,21 @@ class Home extends Component {
   }
 
   // 导航详情跳转
-  navDetailsJump(e, title) {
+  navDetailsJump(e, ind, index) {
     // 阻止事件冒泡
     e.stopPropagation();
-    React.Message.info(title);
+    this.navActiveChange(index);
+    this.setState({
+      navTagActiveIndex: ind
+    });
+  }
+
+  // 标签改变
+  navTagActiveChange(ind) {
+    this.setState({
+      navTagActiveIndex: ind
+    });
+    this.getListData();
   }
 
   bindHandleScroll(event) {

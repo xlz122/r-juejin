@@ -6,7 +6,7 @@ function childNavBarUi(props) {
   // 父组件传递
   const { navData, navMouseOver, navMouseOut, navDetailsJump } =  props;
   // redux传递
-  const { navActiveIndex, navActiveChange } = props;
+  const { navActiveIndex, navTagActiveIndex, navActiveChange } = props;
   return (
     <div className="child-nav-bar">
       <ul className="nav-list">
@@ -33,10 +33,10 @@ function childNavBarUi(props) {
                         }
                         return (
                           <li
-                            className="details-item"
+                            className={`details-item ${ind === navTagActiveIndex ? 'details-active-item' : ''}`}
                             key={ind + i}
                           >
-                            <span className="details-link" onClick={event => { navDetailsJump(event, i.title); }}>{i.title}</span>
+                            <span className="details-link" onClick={event => { navDetailsJump(event, ind, index); }}>{i.title}</span>
                             <span className="auxiliary"></span>
                           </li>
                         )
