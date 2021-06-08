@@ -6,7 +6,7 @@ function topicUi(props) {
   const { listData } = props;
   // 事件
   const { titleClick, followClick } = props;
-  console.log('dsa')
+
   return (
     <div className="topic">
       <div className="topic-container">

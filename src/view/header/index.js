@@ -11,7 +11,9 @@ class Header extends Component {
       searchIsFocus: false, // 搜索框时候聚焦
       articleStatus: false, // 写文章弹框
       loginType: 'login', // 登录/注册
-      loginStatus: false // 登录弹框
+      loginStatus: false, // 登录弹框
+      userDropdownShow: false, // 用户设置
+      isLogin: false
     }
     // 搜索
     this.searchInputFocus = this.searchInputFocus.bind(this);
@@ -25,6 +27,9 @@ class Header extends Component {
     this.loginShow = this.loginShow.bind(this);
     this.registerShow = this.registerShow.bind(this);
     this.loginClose = this.loginClose.bind(this);
+    // 用户设置
+    this.userDropdown = this.userDropdown.bind(this);
+    this.logout = this.logout.bind(this);
   }
 
   componentDidMount() {
@@ -57,6 +62,10 @@ class Header extends Component {
           articleStart={this.articleStart}
           loginShow={this.loginShow}
           registerShow={this.registerShow}
+          isLogin={this.state.isLogin}
+          userDropdown={this.userDropdown}
+          userDropdownShow={this.state.userDropdownShow}
+          logout={this.logout}
         />
         {
           this.state.loginStatus &&
@@ -85,8 +94,10 @@ class Header extends Component {
   }
 
   // 监听document点击，关闭写文章弹框
+  // 关闭用户设置
   setArticleShow() {
     this.setState({ articleStatus: false });
+    this.setState({ userDropdownShow: false });
   }
 
   // 写文章弹框
@@ -124,6 +135,24 @@ class Header extends Component {
   // 登录/注册框关闭
   loginClose() {
     this.setState({ loginStatus: false });
+  }
+
+  // 用户设置
+  userDropdown(e) {
+    e.nativeEvent.stopImmediatePropagation();
+
+    if (this.state.userDropdownShow) {
+      this.setState({ userDropdownShow: false });
+    } else {
+      this.setState({ userDropdownShow: true });
+    }
+  }
+
+  // 退出
+  logout(e) {
+    e.nativeEvent.stopImmediatePropagation();
+    e.stopPropagation(); //阻止事件冒泡
+    React.Message.info('退出登录');
   }
 }
 

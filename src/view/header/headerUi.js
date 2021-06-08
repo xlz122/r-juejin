@@ -15,8 +15,8 @@ import './index.less';
 
 function HeaderUi(props) {
   // 父组件传递
-  const { navListData, searchArticle, articleShow, articleStatus, panelClick, articleStart, loginShow, registerShow } = props;
-  const { searchIsFocus, searchInputFocus, searchInputBlur } = props;
+  const { navListData, searchArticle, articleShow, articleStatus, panelClick, articleStart, loginShow, registerShow, isLogin, userDropdownShow } = props;
+  const { searchIsFocus, searchInputFocus, searchInputBlur, userDropdown, logout } = props;
   // redux传递
   const { headerNavActiveIndex, navListChange } = props;
   return (
@@ -64,10 +64,67 @@ function HeaderUi(props) {
             />
           }
         </div>
-        <div className="auth">
-          <span className="text login-text" onClick={loginShow}>登录</span>
-          <span className="text" onClick={registerShow}>注册</span>
-        </div>
+        {
+          !isLogin &&
+          <div className="auth">
+            <span className="text login-text" onClick={loginShow}>登录</span>
+            <span className="text" onClick={registerShow}>注册</span>
+          </div>
+        }
+        {
+          isLogin &&
+          <div className="avatar" onClick={userDropdown}>
+            <img className="img-avatar" src="https://user-gold-cdn.xitu.io/2020/5/29/1725f85d251ec3f1?imageView2/1/w/100/h/100/q/85/format/webp/interlace/1" alt="" />
+            {
+              userDropdownShow &&
+              <div className="user-dropdown-list" onClick={panelClick}>
+                <div className="nav-menu-item-group">
+                  <div className="item-group">
+                    <span className="group-text">写文章</span>
+                  </div>
+                  <div className="item-group">
+                    <span className="group-text">草稿</span>
+                  </div>
+                </div>
+                <div className="nav-menu-item-group">
+                  <div className="item-group">
+                    <span className="group-text">我的主页</span>
+                  </div>
+                  <div className="item-group">
+                    <span className="group-text">我赞过的</span>
+                  </div>
+                  <div className="item-group">
+                    <span className="group-text">我的小册</span>
+                  </div>
+                  <div className="item-group">
+                    <span className="group-text">我的收藏集</span>
+                  </div>
+                  <div className="item-group">
+                    <span className="group-text">标签管理</span>
+                  </div>
+                </div>
+                <div className="nav-menu-item-group">
+                  <div className="item-group">
+                    <span className="group-text">字学</span>
+                  </div>
+                </div>
+                <div className="nav-menu-item-group">
+                  <div className="item-group">
+                    <span className="group-text">设置</span>
+                  </div>
+                  <div className="item-group">
+                    <span className="group-text">关于</span>
+                  </div>
+                </div>
+                <div className="nav-menu-item-group">
+                  <div className="item-group" onClick={logout}>
+                    <span className="group-text">登出</span>
+                  </div>
+                </div>
+              </div>
+            }
+          </div>
+        }
       </div>
     </div>
   );
