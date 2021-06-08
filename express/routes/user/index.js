@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var verifify = require('../verifify.js');
 
 // 生成随机token
 function randomString(len) {
@@ -18,6 +19,9 @@ router.post('/login', function (req, res, next) {
   let imageBaseUrl = 'http://localhost:9001/images/avatar';
   let i = Math.floor(Math.random() * 3 + 1) - 1;
 
+  // 非空校验
+  verifify.nonEmptyField(req, res);
+
   res.json({
     code: 200,
     data: {
@@ -31,8 +35,12 @@ router.post('/login', function (req, res, next) {
 
 /* 注册 */
 router.post('/register', function (req, res, next) {
-  // res.writeHead(401, { "Content-Type": "text/plain" });
-  // res.end("Welcome to the homepage!\n")
+  // 非空校验
+  verifify.nonEmptyField(req, res);
+
+  // 手机号格式校验
+  verifify.phoneRegex(req.body.phone, res);
+
   res.json({
     code: 200,
     msg: '注册成功'

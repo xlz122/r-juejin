@@ -231,6 +231,7 @@ class Login extends Component {
           .then(res => {
             if (res.code === 200) {
               React.Message.success(res.msg);
+              this.props.close();
             }
           })
       })
@@ -272,7 +273,6 @@ class Login extends Component {
           if (data.length === 0) {
             // 第一次注册直接添加
             insertData('juejinDB', 'user', { username, phone, password });
-            this.props.close();
             resolve();
           } else {
             // 后续添加进行对比
@@ -284,7 +284,6 @@ class Login extends Component {
               reject('手机号已被注册，请更换手机号!');
             } else {
               insertData('juejinDB', 'user', { username, phone, password });
-              this.props.close();
               resolve();
             }
           }
