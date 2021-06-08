@@ -193,8 +193,16 @@ class Home extends Component {
   navDetailsJump(e, ind, index) {
     // 阻止事件冒泡
     e.stopPropagation();
+    // 点击后标签框关闭
+    const navData = this.state.navData;
+    navData.forEach(item => {
+      item.isShow = false;
+    })
+    // 刷新列表
     this.navActiveChange(index);
+    // 详情选中
     this.setState({
+      navData,
       navTagActiveIndex: ind
     });
   }
