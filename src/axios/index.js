@@ -1,3 +1,4 @@
+import React from 'react';
 import axios from 'axios';
 
 // 标识请求
@@ -76,6 +77,12 @@ class HttpRequest {
         return Promise.resolve(data);
       },
       error => {
+        if (
+          error.response.status === 405 ||
+          error.response.status === 406
+        ) {
+          React.Message.error(error.response.data);
+        }
         return Promise.reject(error);
       });
   }
