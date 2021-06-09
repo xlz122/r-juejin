@@ -10,91 +10,93 @@ function auth(req, res, next) {
   }
 }
 
-// 请求方式校验
-function requestMethod(req, method, res) {
-  if (req.method !== method) {
-    res
-      .status(405)
-      .send('Illegal request,Wrong way to request');
-  }
-}
-
-// 必传参数校验
-function requiredParams(params, req, res) {
-  // 获取请求参数
-  let reqParams = null;
-  if (req.method === 'GET') {
-    reqParams = req.query;
-  }
-  if (req.method === 'POST') {
-    reqParams = req.body;
-  }
-
-  // 获取请求参数key
-  const field = Object.keys(reqParams);
-
-  // 判断某个数组中是否包含另一个数组
-  function isContained(a, b) {
-    if (!(a instanceof Array) || !(b instanceof Array)) return false;
-    if (a.length < b.length) return false;
-    const aStr = a.toString();
-    for (let i = 0, len = b.length; i < len; i++) {
-      if (aStr.indexOf(b[i]) == -1) return false;
+// 必需参数校验
+function requiredParams(params) {
+  return requiredParams[params] || (requiredParams[params] = function(req, res, next) {
+    // 获取请求参数
+    let reqParams = null;
+    if (req.method === 'GET') {
+      reqParams = req.query;
     }
-    return true;
-  }
+    if (req.method === 'POST') {
+      reqParams = req.body;
+    }
 
-  // 缺少必需参数
-  if (!isContained(field, params)) {
-    res
-      .status(409)
-      .send(`Missing required parameter,The required parameter is ${params}`);
-  }
+    // 获取请求参数key
+    const field = Object.keys(reqParams);
+
+    // 判断某个数组中是否包含另一个数组
+    function isContained(a, b) {
+      if (!(a instanceof Array) || !(b instanceof Array)) return false;
+      if (a.length < b.length) return false;
+      const aStr = a.toString();
+      for (let i = 0, len = b.length; i < len; i++) {
+        if (aStr.indexOf(b[i]) == -1) return false;
+      }
+      return true;
+    }
+
+    if (isContained(field, params)) {
+      next();
+    } else {
+      // 缺少必需参数
+      res
+        .status(409)
+        .send(`Missing required parameter,The required parameter is ${params}`);
+    }
+  });
 }
 
 // 参数非空校验
-function nonEmptyField(params, req, res) {
-  // 获取请求参数
-  let reqParams = null;
-  if (req.method === 'GET') {
-    reqParams = req.query;
-  }
-  if (req.method === 'POST') {
-    reqParams = req.body;
-  }
+function nonEmptyField(params) {
+  return nonEmptyField[params] || (nonEmptyField[params] = function(req, res, next) {
+    // 获取请求参数
+    let reqParams = null;
+    if (req.method === 'GET') {
+      reqParams = req.query;
+    }
+    if (req.method === 'POST') {
+      reqParams = req.body;
+    }
 
-  // 空字段
-  const emptyField = [];
-  for (let i in reqParams) {
-    // 需要验证的字段
-    if (params.includes(i)) {
-      if (!reqParams[i].replace(/(^\s+)|(\s+$)/g, '')) {
-        emptyField.push(i);
+    // 空字段
+    const emptyField = [];
+    for (let i in reqParams) {
+      // 需要验证的字段
+      if (params.includes(i)) {
+        if (!reqParams[i].replace(/(^\s+)|(\s+$)/g, '')) {
+          emptyField.push(i);
+        }
       }
     }
-  }
 
-  // 参数为空
-  if (emptyField.length > 0) {
-    res
-      .status(406)
-      .send(`Parameter cannot be empty,Cannot be null parameter is ${emptyField}`);
-  }
+    // 参数为空
+    if (emptyField.length > 0) {
+      res
+        .status(406)
+        .send(`Parameter cannot be empty,Cannot be null parameter is ${emptyField}`);
+    } else {
+      next();
+    }
+  });
 }
 
 // 手机号格式校验
-function phoneRegex(params, res) {
-  const reg = /^[1][3,4,5,7,8,9][0-9]{9}$/;
+function phoneRegex(params) {
+  return phoneRegex[params] || (phoneRegex[params] = function(req, res, next) {
+    const reg = /^[1][3,4,5,7,8,9][0-9]{9}$/;
 
-  if (!reg.test(params)) {
-    res
-      .status(406)
-      .send('Param error,手机号不合法!');
-  }
+    if (!reg.test(req.body.phone)) {
+      next();
+    } else {
+      res
+        .status(406)
+        .send('Param error,手机号不合法!');
+    }
+  });
 }
 
 exports.auth = auth;
-exports.requestMethod = requestMethod;
 exports.requiredParams = requiredParams;
 exports.nonEmptyField = nonEmptyField;
 exports.phoneRegex = phoneRegex;

@@ -3,11 +3,13 @@ var router = express.Router();
 // 验证
 var verifify = require('../verifify.js');
 
-/* 话题列表 */
-router.get('/topic-list', function (req, res, next) {
-  // 权限校验
-  verifify.auth(req, res, next);
+// 中间件设置
+const app = express();
+// 权限
+app.use(verifify.auth);
 
+/* 话题列表 */
+router.get('/topic-list', verifify.auth, function (req, res, next) {
   let imageBaseUrl = 'http://localhost:9001/images/topic';
   let itemArr = [
     {

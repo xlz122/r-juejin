@@ -5,6 +5,13 @@ var verifify = require('../verifify.js');
 // 列表数据
 var entryList = require('./entry-list.js');
 
+// 中间件设置
+const app = express();
+// 必需参数
+app.use(verifify.requiredParams);
+// 非空
+app.use(verifify.nonEmptyField);
+
 /* 首页子导航 */
 router.get('/child-nav-bar', function (req, res, next) {
   res.json({
@@ -225,56 +232,44 @@ router.get('/category-nav-list', function (req, res, next) {
 });
 
 /* 首页 - 列表条目 */
-router.get('/entry-list', function (req, res, next) {
-  // 必需参数校验
-  verifify.requiredParams([
-    'web_id',
-    'web_c_id',
-    'entryType',
-    'entryTime'
-  ], req, res);
-
-  // 非空校验
-  verifify.nonEmptyField([
-    'web_id',
-    'web_c_id',
-    'entryType'
-  ], req, res);
-
-  // 数据处理
-  let columnEntryList = [];
-  let page = req.query.page || 1; // 页数
-  let pageSize = req.query.pageSize || 10; // 条数
-  let len = (1000 - pageSize * (page - 1)) < pageSize ? (1000 - pageSize * (page - 1)) : pageSize; // 返回条数
-  for (i = 0; i < len; i++) {
-    // 随机返回数组一项
-    let n = Math.floor(Math.random() * entryList.list.length + 1) - 1;
-    columnEntryList.push(entryList.list[n]);
-  }
-
-  // 模拟延迟返回数据
-  setTimeout(() => {
-    // 推荐有广告列表
-    if (Number(req.query.web_id) === 91) {
-      res.json({
-        code: 200,
-        data: {
-          adEntryList: entryList.adEntryList,
-          columnEntryList
-        },
-        msg: '成功'
-      });
-    } else {
-      res.json({
-        code: 200,
-        data: {
-          columnEntryList
-        },
-        msg: '成功'
-      });
+router.get(
+  '/entry-list',
+  verifify.requiredParams(['web_id', 'web_c_id', 'entryType', 'entryTime']),
+  verifify.nonEmptyField(['web_id', 'web_c_id', 'entryType']),
+  function (req, res, next) {
+    // 数据处理
+    let columnEntryList = [];
+    let page = req.query.page || 1; // 页数
+    let pageSize = req.query.pageSize || 10; // 条数
+    let len = (1000 - pageSize * (page - 1)) < pageSize ? (1000 - pageSize * (page - 1)) : pageSize; // 返回条数
+    for (i = 0; i < len; i++) {
+      // 随机返回数组一项
+      let n = Math.floor(Math.random() * entryList.list.length + 1) - 1;
+      columnEntryList.push(entryList.list[n]);
     }
-    
-  }, 500);
-});
+
+    // 模拟延迟返回数据
+    setTimeout(() => {
+      // 推荐有广告列表
+      if (Number(req.query.web_id) === 91) {
+        res.json({
+          code: 200,
+          data: {
+            adEntryList: entryList.adEntryList,
+            columnEntryList
+          },
+          msg: '成功'
+        });
+      } else {
+        res.json({
+          code: 200,
+          data: {
+            columnEntryList
+          },
+          msg: '成功'
+        });
+      }
+    }, 500);
+  });
 
 module.exports = router;

@@ -2,6 +2,15 @@ var express = require('express');
 var router = express.Router();
 var verifify = require('../verifify.js');
 
+// 中间件设置
+const app = express();
+// 必需参数
+app.use(verifify.requiredParams);
+// 非空
+app.use(verifify.nonEmptyField);
+// 手机号
+app.use(verifify.phoneRegex);
+
 // 生成随机token
 function randomString(len) {
   len = len || 32;
@@ -15,42 +24,36 @@ function randomString(len) {
 }
 
 /* 登录 */
-router.post('/login', function (req, res, next) {
-  // 必需参数校验
-  verifify.requiredParams(['username', 'password'], req, res);
+router.post(
+  '/login',
+  verifify.requiredParams(['username', 'password']),
+  verifify.nonEmptyField(['username', 'password']),
+  function (req, res, next) {
+    let imageBaseUrl = 'http://localhost:9001/images/avatar';
+    let i = Math.floor(Math.random() * 3 + 1) - 1;
 
-  // 非空校验
-  verifify.nonEmptyField(['username', 'password'], req, res);
-
-  let imageBaseUrl = 'http://localhost:9001/images/avatar';
-  let i = Math.floor(Math.random() * 3 + 1) - 1;
-
-  res.json({
-    code: 200,
-    data: {
-      token: randomString(32),
-      username: req.body.username,
-      avatarUrl: `${imageBaseUrl}/avatar${i}.jpg`
-    },
-    msg: '登录成功'
-  });
+    res.json({
+      code: 200,
+      data: {
+        token: randomString(32),
+        username: req.body.username,
+        avatarUrl: `${imageBaseUrl}/avatar${i}.jpg`
+      },
+      msg: '登录成功'
+    });
 });
 
 /* 注册 */
-router.post('/register', function (req, res, next) {
-  // 必需参数校验
-  verifify.requiredParams(['username', 'phone', 'password'], req, res);
-
-  // 非空校验
-  verifify.nonEmptyField(['username', 'phone', 'password'], req, res);
-
-  // 手机号格式校验
-  verifify.phoneRegex(req.body.phone, res);
-
-  res.json({
-    code: 200,
-    msg: '注册成功'
-  });
+router.post(
+  '/register',
+  verifify.requiredParams(['username', 'phone', 'password']),
+  verifify.nonEmptyField(['username', 'phone', 'password']),
+  verifify.phoneRegex,
+  function (req, res, next) {
+    res.json({
+      code: 200,
+      msg: '注册成功'
+    });
 });
 
 module.exports = router;
