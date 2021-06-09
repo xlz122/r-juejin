@@ -20,14 +20,15 @@ class Home extends Component {
       categoryNavListData: [], // 类别导航数据
       categoryActiveIndex: 0, // 类别导航选中下标
       timeChoiceShow: false, // 类别导航时间选择显隐
-      timeChoiceTitle: '', // 类别导航时间选择title
+      timeChoiceTitle: '全部', // 类别导航时间选择title
       timeChoiceMenuShow: false, // 类别导航时间选择下拉菜单显隐
-      entryType: 0, // 条目类型
-      entryTime: '', // 条目时间
+      entryType: 0, // 条目类型id
+      entryTime: 0, // 条目时间范围id
       listLoading: false, // 列表loading
-      web_id: null, // 路由id
+      web_id: 0, // 二级导航id
+      web_c_id: 'all', // 二级子项id
       page: 1, // 列表页数
-      pageSize: 10, // 列表条数
+      pageSize: 15, // 列表条数
       listData: [], // 列表数据
       look: true, // 分页请求开关
       pageLoading: false // 分页时的loading
@@ -64,8 +65,9 @@ class Home extends Component {
         // 导航和路由对比，获取对应id，导航选中
         res.data.forEach((item, index) => {
           if (item.link === this.props.location.pathname) {
-            this.setState({ navActiveIndex: index, web_id: item.web_id }, () => {
-              this.getListData();
+            this.setState({
+              navActiveIndex: index,
+              web_id: item.web_id
             });
           }
         })
@@ -73,7 +75,12 @@ class Home extends Component {
     // 获取分类导航数据
     getHomeCategoryNav()
       .then(res => {
-        this.setState({ categoryNavListData: res.data });
+        this.setState({
+          categoryNavListData: res.data,
+          entryType: res.data.list[0]?.classifyId
+        }, () => {
+          this.getListData();
+        });
       })
 
     // 进行scroll事件的注册，绑定一个函数，让这个函数进行监听处理
@@ -148,7 +155,8 @@ class Home extends Component {
         this.setState({
           navActiveIndex: index,
           navTagActiveIndex: 0,
-          web_id: i.web_id
+          web_id: i.web_id,
+          web_c_id: 'all'
         }, () => {
           this.getListData();
         })
@@ -161,6 +169,7 @@ class Home extends Component {
     this.setState({ listLoading: true });
     getHomeEntryList({
       web_id: this.state.web_id,
+      web_c_id: this.state.web_c_id,
       page: this.state.page,
       pageSize: this.state.pageSize,
       entryType: this.state.entryType,
@@ -190,7 +199,7 @@ class Home extends Component {
   }
 
   // 导航详情跳转
-  navDetailsJump(e, ind, index) {
+  navDetailsJump(e, i, index, ind) {
     // 阻止事件冒泡
     e.stopPropagation();
     // 点击后标签框关闭
@@ -198,18 +207,20 @@ class Home extends Component {
     navData.forEach(item => {
       item.isShow = false;
     })
-    // 刷新列表
+    // 更新子导航
     this.navActiveChange(index);
     // 详情选中
     this.setState({
       navData,
+      web_c_id: i.web_c_id,
       navTagActiveIndex: ind
     });
   }
 
   // 标签改变
-  navTagActiveChange(ind) {
+  navTagActiveChange(i, ind) {
     this.setState({
+      web_c_id: i.web_c_id,
       navTagActiveIndex: ind
     });
     this.getListData();
@@ -239,6 +250,7 @@ class Home extends Component {
       });
       getHomeEntryList({
         web_id: this.state.web_id,
+        web_c_id: this.state.web_c_id,
         page: this.state.page,
         pageSize: this.state.pageSize,
         entryType: this.state.entryType,
@@ -260,9 +272,13 @@ class Home extends Component {
   }
 
   // 类别导航切换
-  categoryNavChange(index) {
+  categoryNavChange(item, index) {
     if (index === 2) {
-      this.setState({ timeChoiceShow: true });
+      this.setState({
+        timeChoiceShow: true,
+        timeChoiceTitle: '全部',
+        entryTime: 'all'
+      });
     } else {
       this.setState({
         timeChoiceShow: false,
@@ -278,7 +294,7 @@ class Home extends Component {
           web_id: i.web_id,
           page: 1,
           pageSize: 15,
-          entryType: index
+          entryType: item.classifyId
         }, () => {
           this.getListData();
         })
@@ -309,7 +325,7 @@ class Home extends Component {
           web_id: i.web_id,
           page: 1,
           pageSize: 15,
-          entryTime: index
+          entryTime: item.timeId
         }, () => {
           this.getListData();
         })

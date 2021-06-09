@@ -54,7 +54,6 @@ function nonEmptyField(params, req, res) {
   for (let i in reqParams) {
     // 需要验证的字段
     if (params.includes(i)) {
-      console.log(reqParams[i]);
       if (!reqParams[i].replace(/(^\s+)|(\s+$)/g, '')) {
         emptyField.push(i);
       }

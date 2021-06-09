@@ -23,8 +23,8 @@ export const getHomeCategoryNav = () => {
 /**
  * @desc 获取首页 - 条目列表数据
  */
-export const getHomeEntryList = ({ web_id, page, pageSize, entryType, entryTime }) => {
-  const params = { web_id, page, pageSize, entryType, entryTime };
+export const getHomeEntryList = ({ web_id, web_c_id, page, pageSize, entryType, entryTime }) => {
+  const params = { web_id, web_c_id, page, pageSize, entryType, entryTime };
   return axios.request({
     url: '/home/entry-list',
     method: 'get',

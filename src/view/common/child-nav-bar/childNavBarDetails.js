@@ -20,7 +20,7 @@ function ChildNavBarDetails(props) {
                 <li
                   className={`details-item ${navTagActiveIndex === ind ? 'details-active-item': ''}`}
                   key={i.title}
-                  onClick={() => {navTagActiveChange(ind);}}
+                  onClick={() => {navTagActiveChange(i, ind);}}
                 >
                   <Link className="details-item-link" to={item.link}>{i.title}</Link>
                   <span className="details-auxiliary"></span>

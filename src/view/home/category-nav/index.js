@@ -18,7 +18,7 @@ function CategoryNav(props) {
               <li
                 className={`li-item ${index === navActiveIndex ? 'li-active-item' : ''} ${index === list.length - 1 ? 'li-last-item' : ''}`}
                 key={index + item}
-                onClick={() => { navListChange(index) }}
+                onClick={() => { navListChange(item, index) }}
               >
                 <span className="item-text">{item.title}</span>
               </li>
@@ -35,6 +35,12 @@ function CategoryNav(props) {
             {
               timeChoiceMenuShow &&
               <ul className="dropdown-menu">
+                <li
+                  className="dropdown-menu-item"
+                  onClick={() => { timeChoiceClick({ timeId: 'all', time: '全部' }) }}
+                >
+                  <span className="item-text">全部</span>
+                </li>
                 {
                   timeChoice &&
                   timeChoice.map((item, index) => {
