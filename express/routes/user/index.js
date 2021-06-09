@@ -16,11 +16,14 @@ function randomString(len) {
 
 /* 登录 */
 router.post('/login', function (req, res, next) {
-  let imageBaseUrl = 'http://localhost:9001/images/avatar';
-  let i = Math.floor(Math.random() * 3 + 1) - 1;
+  // 必需参数验证
+  verifify.requiredParams(['username', 'password'], req, res);
 
   // 非空校验
-  verifify.nonEmptyField(req, res);
+  verifify.nonEmptyField(['username', 'password'], req, res);
+
+  let imageBaseUrl = 'http://localhost:9001/images/avatar';
+  let i = Math.floor(Math.random() * 3 + 1) - 1;
 
   res.json({
     code: 200,
@@ -35,8 +38,11 @@ router.post('/login', function (req, res, next) {
 
 /* 注册 */
 router.post('/register', function (req, res, next) {
+  // 必需参数验证
+  verifify.requiredParams(['username', 'phone', 'password'], req, res);
+
   // 非空校验
-  verifify.nonEmptyField(req, res);
+  verifify.nonEmptyField(['username', 'phone', 'password'], req, res);
 
   // 手机号格式校验
   verifify.phoneRegex(req.body.phone, res);

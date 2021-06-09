@@ -79,7 +79,8 @@ class HttpRequest {
       error => {
         if (
           error.response.status === 405 ||
-          error.response.status === 406
+          error.response.status === 406 ||
+          error.response.status === 407
         ) {
           React.Message.error(error.response.data);
         }
