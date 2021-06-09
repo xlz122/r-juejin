@@ -1,4 +1,15 @@
-// 请求方式检测
+// 权限校验
+function auth(req, res, next) {
+  const token = req.headers.token;
+  if (token) {
+    next();
+  } else {
+    res.writeHead(401, { 'Content-Type': 'text/plain' });
+    res.end('No permission, please log in');
+  }
+}
+
+// 请求方式校验
 function requestMethod(req, method, res) {
   if (req.method !== method) {
     res.writeHead(405, { 'Content-Type': 'text/plain' });
@@ -77,6 +88,7 @@ function phoneRegex(params, res) {
   }
 }
 
+exports.auth = auth;
 exports.requestMethod = requestMethod;
 exports.requiredParams = requiredParams;
 exports.nonEmptyField = nonEmptyField;

@@ -1,8 +1,8 @@
 var express = require('express');
 var router = express.Router();
-// 验证文件
+// 验证
 var verifify = require('../verifify.js');
-// 列表数据文件
+// 列表数据
 var entryList = require('./entry-list.js');
 
 /* 首页子导航 */

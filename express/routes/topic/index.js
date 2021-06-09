@@ -1,8 +1,13 @@
 var express = require('express');
 var router = express.Router();
+// 验证
+var verifify = require('../verifify.js');
 
 /* 话题列表 */
 router.get('/topic-list', function (req, res, next) {
+  // 权限校验
+  verifify.auth(req, res, next);
+
   let imageBaseUrl = 'http://localhost:9001/images/topic';
   let itemArr = [
     {
