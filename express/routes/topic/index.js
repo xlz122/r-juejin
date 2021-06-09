@@ -76,6 +76,7 @@ router.get('/topic-list', function (req, res, next) {
       boilingPointCount: 1192
     }
   ];
+  
   // 生成40组数据
   let data = [];
   for (i = 0; i < 4; i++) {
@@ -83,10 +84,13 @@ router.get('/topic-list', function (req, res, next) {
     itemArr = itemArr.sort(() => Math.random() - 0.5);
     data = data.concat(itemArr);
   }
+
   // 模拟延迟返回数据
   setTimeout(() => {
     res.json({
-      data
+      code: 200,
+      data,
+      msg: '消息'
     });
   }, 500);
 });

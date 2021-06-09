@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
+// 验证文件
 var verifify = require('../verifify.js');
+// 列表数据文件
 var entryList = require('./entry-list.js');
 
 /* 首页子导航 */
@@ -224,7 +226,7 @@ router.get('/category-nav-list', function (req, res, next) {
 
 /* 首页 - 列表条目 */
 router.get('/entry-list', function (req, res, next) {
-  // 必需参数验证
+  // 必需参数校验
   verifify.requiredParams([
     'web_id',
     'web_c_id',

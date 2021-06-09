@@ -77,11 +77,7 @@ class HttpRequest {
         return Promise.resolve(data);
       },
       error => {
-        if (
-          error.response.status === 405 ||
-          error.response.status === 406 ||
-          error.response.status === 407
-        ) {
+        if (error.response.status !== 200) {
           React.Message.error(error.response.data);
         }
         return Promise.reject(error);

@@ -16,7 +16,7 @@ function randomString(len) {
 
 /* 登录 */
 router.post('/login', function (req, res, next) {
-  // 必需参数验证
+  // 必需参数校验
   verifify.requiredParams(['username', 'password'], req, res);
 
   // 非空校验
@@ -38,7 +38,7 @@ router.post('/login', function (req, res, next) {
 
 /* 注册 */
 router.post('/register', function (req, res, next) {
-  // 必需参数验证
+  // 必需参数校验
   verifify.requiredParams(['username', 'phone', 'password'], req, res);
 
   // 非空校验

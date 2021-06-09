@@ -6,7 +6,7 @@ function requestMethod(req, method, res) {
   }
 }
 
-// 必传参数验证
+// 必传参数校验
 function requiredParams(params, req, res) {
   // 获取请求参数
   let reqParams = null;
@@ -38,7 +38,7 @@ function requiredParams(params, req, res) {
   }
 }
 
-// 参数非空检测
+// 参数非空校验
 function nonEmptyField(params, req, res) {
   // 获取请求参数
   let reqParams = null;
@@ -67,7 +67,7 @@ function nonEmptyField(params, req, res) {
   }
 }
 
-// 手机号格式检测
+// 手机号格式校验
 function phoneRegex(params, res) {
   const reg = /^[1][3,4,5,7,8,9][0-9]{9}$/;
 

@@ -16,9 +16,9 @@ class Brochure extends Component {
       navData: [], // 导航数据
       navActiveIndex: 0, // 导航选中
       listLoading: false, // 列表loading
-      ssid: null, // 路由id
+      ssid: 0, // 导航id
       page: 1, // 列表页数
-      pageSize: 10, // 列表条数
+      pageSize: 8, // 列表条数
       listData: [], // 列表数据
       look: true, // 分页请求开关
       pageLoading: false // 分页时的loading
@@ -106,13 +106,18 @@ class Brochure extends Component {
     let navData = this.state.navData;
     navData.forEach((i, ind) => {
       if (index === ind) {
-        this.setState({ navActiveIndex: index, ssid: i.ssid }, () => {
+        this.setState({
+          navActiveIndex: index,
+          ssid: i.ssid,
+          page: 1,
+          pageSize: 8
+        }, () => {
           this.getListData();
         })
       }
     })
     // 导航点击，重置分页开关
-    this.setState({ look: false });
+    this.setState({ look: true });
   }
 
   // 获取列表数据
@@ -150,7 +155,7 @@ class Brochure extends Component {
   navDetailsJump(e) {
     //阻止事件冒泡
     e.stopPropagation();
-    alert('点击了详情跳转');
+    React.Message.info('详情');
   }
 
   // 页面滚动监听
@@ -182,6 +187,7 @@ class Brochure extends Component {
         pageSize: 5
       });
       getBrochureBooksList({
+        ssid: this.state.ssid,
         page: this.state.page,
         pageSize: this.state.pageSize
       })

@@ -16,7 +16,7 @@ class BoilingPoint extends Component {
       navData: [], // 导航数据
       navActiveIndex: 0, // 导航选中下标
       listLoading: false, // 列表loading
-      app_id: null, // 路由id
+      app_id: null, // 导航id
       page: 1, // 列表页数
       pageSize: 6, // 列表条数
       listData: [], // 列表数据
@@ -103,7 +103,11 @@ class BoilingPoint extends Component {
     let navData = this.state.navData;
     navData.forEach((i, ind) => {
       if (index === ind) {
-        this.setState({ navActiveIndex: index, app_id: i.app_id }, () => {
+        this.setState({
+          navActiveIndex: index,
+          app_id: i.app_id,
+          page: 1
+        }, () => {
           this.getListData();
         })
       }
