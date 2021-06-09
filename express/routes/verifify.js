@@ -4,16 +4,18 @@ function auth(req, res, next) {
   if (token) {
     next();
   } else {
-    res.writeHead(401, { 'Content-Type': 'text/plain' });
-    res.end('No permission, please log in');
+    res.status(401).send('No permission, please log in');
+    // res.writeHead(401, { 'Content-Type': 'text/plain' });
+    // res.end('No permission, please log in');
   }
 }
 
 // 请求方式校验
 function requestMethod(req, method, res) {
   if (req.method !== method) {
-    res.writeHead(405, { 'Content-Type': 'text/plain' });
-    res.end('Illegal request,Wrong way to request')
+    res
+      .status(405)
+      .send('Illegal request,Wrong way to request');
   }
 }
 
@@ -44,8 +46,9 @@ function requiredParams(params, req, res) {
 
   // 缺少必需参数
   if (!isContained(field, params)) {
-    res.writeHead(409, { 'Content-Type': 'text/plain' });
-    res.end(`Missing required parameter,The required parameter is ${params}`);
+    res
+      .status(409)
+      .send(`Missing required parameter,The required parameter is ${params}`);
   }
 }
 
@@ -73,8 +76,9 @@ function nonEmptyField(params, req, res) {
 
   // 参数为空
   if (emptyField.length > 0) {
-    res.writeHead(406, { 'Content-Type': 'text/plain' });
-    res.end(`Parameter cannot be empty,Cannot be null parameter is ${emptyField}`)
+    res
+      .status(406)
+      .send(`Parameter cannot be empty,Cannot be null parameter is ${emptyField}`);
   }
 }
 
@@ -83,8 +87,9 @@ function phoneRegex(params, res) {
   const reg = /^[1][3,4,5,7,8,9][0-9]{9}$/;
 
   if (!reg.test(params)) {
-    res.writeHead(406, { 'Content-Type': 'text/plain' });
-    res.end('Param error,手机号不合法!')
+    res
+      .status(406)
+      .send('Param error,手机号不合法!');
   }
 }
 
