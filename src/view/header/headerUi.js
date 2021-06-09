@@ -65,7 +65,7 @@ function HeaderUi(props) {
           }
         </div>
         {
-          !React.store.userInfo.token &&
+          !props.userInfo.token &&
           <div className="auth">
             <span className="text login-text" onClick={loginShow}>登录</span>
             <span className="text" onClick={registerShow}>注册</span>
@@ -73,7 +73,7 @@ function HeaderUi(props) {
           </div>
         }
         {
-          React.store.userInfo.token &&
+          props.userInfo.token &&
           <div className="avatar" onClick={userDropdown}>
             <img className="img-avatar" src="https://user-gold-cdn.xitu.io/2020/5/29/1725f85d251ec3f1?imageView2/1/w/100/h/100/q/85/format/webp/interlace/1" alt="" />
             {
@@ -133,6 +133,7 @@ function HeaderUi(props) {
 
 const mapStateToProps = (state) => {
   return {
+    userInfo: state.userInfo,
     headerNavActiveIndex: state.headerNavActiveIndex
   }
 }

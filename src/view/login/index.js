@@ -149,7 +149,8 @@ class Login extends Component {
           .then(res => {
             if (res.code === 200) {
               React.Message.success(res.msg);
-              React.store.userInfo = res.data;
+              React.store.setUserInfo(res.data);
+              sessionStorage.setItem('userInfo', JSON.stringify(res.data));
             }
           })
       })

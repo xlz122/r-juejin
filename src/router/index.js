@@ -2,6 +2,9 @@ import React from 'react';
 // import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import { HashRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import asyncComponent from './asyncComponent';
+import { userInfoAction, headerNavAction } from '@store/actionCreators';
+// 引入react-redux连接器
+import { connect } from 'react-redux';
 import './index.less';
 
 // 引入全局弹框组件
@@ -16,7 +19,9 @@ const Topic = asyncComponent(() => import('@view/topic'));
 const Brochure = asyncComponent(() => import('@view/brochure'));
 const Activity = asyncComponent(() => import('@view/activity'));
 
-function AppRouter() {
+function AppRouter(props) {
+  React.store = props;
+  console.log(React.store);
   return (
     <Router>
       <div className="header">
@@ -37,4 +42,26 @@ function AppRouter() {
   )
 }
 
-export default AppRouter;
+// redux数据挂载到props上
+const mapStateToProps = state => {
+  return {
+    userInfo: state.userInfo,
+    headerNavActiveIndex: state.headerNavActiveIndex
+  };
+};
+const mapDispatchToProps = dispatch => {
+  return {
+    // 设置用户信息
+    setUserInfo(userinfo) {
+      const action = userInfoAction(userinfo);
+      dispatch(action);
+    },
+    // 设置头部导航
+    setHeaderNavActive(index) {
+      const action = headerNavAction(index);
+      dispatch(action);
+    }
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(AppRouter);
