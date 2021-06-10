@@ -61,36 +61,6 @@ class Login extends Component {
     }
   }
 
-  render() {
-    return (
-      <Fragment>
-        <LoginUi
-          isLogin={this.state.isLogin}
-          panfishImgType={this.state.panfishImgType}
-          close={this.props.close}
-          logonHandover={this.logonHandover}
-          accountValue={this.state.accountValue}
-          accountChange={this.accountChange}
-          accountFocus={this.accountFocus}
-          accountBlur={this.accountBlur}
-          passwordValue={this.state.passwordValue}
-          passwordChange={this.passwordChange}
-          passwordFocus={this.passwordFocus}
-          passwordBlur={this.passwordBlur}
-          submit={this.submit}
-          registerAccountValue={this.state.registerAccountValue}
-          registerAccountChange={this.registerAccountChange}
-          registerPhoneValue={this.state.registerPhoneValue}
-          registerPhoneChange={this.registerPhoneChange}
-          registerPasswordValue={this.state.registerPasswordValue}
-          registerPasswordChange={this.registerPasswordChange}
-          register={this.register}
-          forgetPassword={this.forgetPassword}
-        />
-      </Fragment>
-    );
-  }
-
   // 登录/注册切换
   logonHandover(type) {
     // 用于区分父组件点击还是子组件切换
@@ -299,6 +269,36 @@ class Login extends Component {
   // 忘记密码
   forgetPassword() {
     React.Message.info('暂不支持找回密码，请重新注册！');
+  }
+
+  render() {
+    return (
+      <Fragment>
+        <LoginUi
+          isLogin={this.state.isLogin}
+          panfishImgType={this.state.panfishImgType}
+          close={this.props.close}
+          logonHandover={this.logonHandover}
+          accountValue={this.state.accountValue}
+          accountChange={this.accountChange}
+          accountFocus={this.accountFocus}
+          accountBlur={this.accountBlur}
+          passwordValue={this.state.passwordValue}
+          passwordChange={this.passwordChange}
+          passwordFocus={this.passwordFocus}
+          passwordBlur={this.passwordBlur}
+          submit={this.submit}
+          registerAccountValue={this.state.registerAccountValue}
+          registerAccountChange={this.registerAccountChange}
+          registerPhoneValue={this.state.registerPhoneValue}
+          registerPhoneChange={this.registerPhoneChange}
+          registerPasswordValue={this.state.registerPasswordValue}
+          registerPasswordChange={this.registerPasswordChange}
+          register={this.register}
+          forgetPassword={this.forgetPassword}
+        />
+      </Fragment>
+    );
   }
 }
 

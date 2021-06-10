@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import { getHomeChildNav, getHomeCategoryNav, getHomeEntryList } from '@api/home';
+import { getPageBottomHeight } from '@/utils/utils';
 import ChildNavBar from '@view/common/child-nav-bar';
 import ChildNavBarDetails from '@view/common/child-nav-bar/childNavBarDetails';
 import SidebarUi from './sidebar';
@@ -96,57 +97,6 @@ class Home extends Component {
     };
   }
 
-  render() {
-    const childProps = {
-      categoryNavListData: this.state.categoryNavListData,
-      categoryActiveIndex: this.state.categoryActiveIndex,
-      timeChoiceShow: this.state.timeChoiceShow,
-      timeChoiceTitle: this.state.timeChoiceTitle,
-      timeChoiceMenuShow: this.state.timeChoiceMenuShow,
-      categoryNavChange: this.categoryNavChange,
-      timeChoiceToggle: this.timeChoiceToggle,
-      timeChoiceClick: this.timeChoiceClick,
-      listLoading: this.state.listLoading,
-      listData: this.state.listData,
-      pageLoading: this.state.pageLoading
-    }
-    return (
-      <div className="home">
-        <ChildNavBar
-          navData={this.state.navData}
-          navActiveIndex={this.state.navActiveIndex}
-          navTagActiveIndex={this.state.navTagActiveIndex}
-          navActiveChange={this.navActiveChange}
-          navMouseOver={this.navMouseOver}
-          navMouseOut={this.navMouseOut}
-          navDetailsJump={this.navDetailsJump}
-        />
-        <ChildNavBarDetails
-          navData={this.state.navData}
-          navActiveIndex={this.state.navActiveIndex}
-          navTagActiveIndex={this.state.navTagActiveIndex}
-          navTagActiveChange={this.navTagActiveChange}
-        />
-        <div className="home-container">
-          <div className="content">
-            <Route exact path="/home" render={props => <ListContainer {...props} {...childProps} />} />
-            <Route path="/home/backend" render={props => <ListContainer {...props} {...childProps} />} />
-            <Route path="/home/frontend" render={props => <ListContainer {...props} {...childProps} />} />
-            <Route path="/home/android" render={props => <ListContainer {...props} {...childProps} />} />
-            <Route path="/home/ios" render={props => <ListContainer {...props} {...childProps} />} />
-            <Route path="/home/ai" render={props => <ListContainer {...props} {...childProps} />} />
-            <Route path="/home/freebie" render={props => <ListContainer {...props} {...childProps} />} />
-            <Route path="/home/career" render={props => <ListContainer {...props} {...childProps} />} />
-            <Route path="/home/article" render={props => <ListContainer {...props} {...childProps} />} />
-          </div>
-          <div className="sidebar">
-            <SidebarUi />
-          </div>
-        </div>
-      </div>
-    );
-  }
-
   // 导航变化
   navActiveChange(index) {
     let navData = this.state.navData;
@@ -227,17 +177,9 @@ class Home extends Component {
   }
 
   bindHandleScroll(event) {
-    // 总的滚动的高度
-    let scrollHeight = (event.srcElement ? event.srcElement.documentElement.scrollHeight : false)
-      || (event.srcElement ? event.srcElement.body.scrollHeight : 0);
-    // 视口高度
-    let clientHeight = (event.srcElement ? event.srcElement.documentElement.clientHeight : false)
-      || (event.srcElement ? event.srcElement.body.clientHeight : 0);
-    // 当前滚动的高度
-    let scrollTop = (event.srcElement ? event.srcElement.documentElement.scrollTop : false)
-      || (event.srcElement ? event.srcElement.body.scrollTop : 0);
-    // 距离底部高度(总的高度 - 视口高度 - 滚动高度)
-    let bottomHeight = scrollHeight - clientHeight - scrollTop;
+    // 滚动条距离页面底部的高度
+    const bottomHeight = getPageBottomHeight(event);
+    
     if (bottomHeight <= 60 && this.state.look) {
       // 分页数据请求
       let page = this.state.page;
@@ -331,6 +273,57 @@ class Home extends Component {
         })
       }
     })
+  }
+
+  render() {
+    const childProps = {
+      categoryNavListData: this.state.categoryNavListData,
+      categoryActiveIndex: this.state.categoryActiveIndex,
+      timeChoiceShow: this.state.timeChoiceShow,
+      timeChoiceTitle: this.state.timeChoiceTitle,
+      timeChoiceMenuShow: this.state.timeChoiceMenuShow,
+      categoryNavChange: this.categoryNavChange,
+      timeChoiceToggle: this.timeChoiceToggle,
+      timeChoiceClick: this.timeChoiceClick,
+      listLoading: this.state.listLoading,
+      listData: this.state.listData,
+      pageLoading: this.state.pageLoading
+    }
+    return (
+      <div className="home">
+        <ChildNavBar
+          navData={this.state.navData}
+          navActiveIndex={this.state.navActiveIndex}
+          navTagActiveIndex={this.state.navTagActiveIndex}
+          navActiveChange={this.navActiveChange}
+          navMouseOver={this.navMouseOver}
+          navMouseOut={this.navMouseOut}
+          navDetailsJump={this.navDetailsJump}
+        />
+        <ChildNavBarDetails
+          navData={this.state.navData}
+          navActiveIndex={this.state.navActiveIndex}
+          navTagActiveIndex={this.state.navTagActiveIndex}
+          navTagActiveChange={this.navTagActiveChange}
+        />
+        <div className="home-container">
+          <div className="content">
+            <Route exact path="/home" render={props => <ListContainer {...props} {...childProps} />} />
+            <Route path="/home/backend" render={props => <ListContainer {...props} {...childProps} />} />
+            <Route path="/home/frontend" render={props => <ListContainer {...props} {...childProps} />} />
+            <Route path="/home/android" render={props => <ListContainer {...props} {...childProps} />} />
+            <Route path="/home/ios" render={props => <ListContainer {...props} {...childProps} />} />
+            <Route path="/home/ai" render={props => <ListContainer {...props} {...childProps} />} />
+            <Route path="/home/freebie" render={props => <ListContainer {...props} {...childProps} />} />
+            <Route path="/home/career" render={props => <ListContainer {...props} {...childProps} />} />
+            <Route path="/home/article" render={props => <ListContainer {...props} {...childProps} />} />
+          </div>
+          <div className="sidebar">
+            <SidebarUi />
+          </div>
+        </div>
+      </div>
+    );
   }
 }
 

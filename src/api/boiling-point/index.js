@@ -1,7 +1,7 @@
 import axios from '@axios';
 
 /**
- * @desc 获取沸点左侧导航数据
+ * @description 获取沸点左侧导航数据
  */
 export const getBoilingPointPinNav = () => {
   return axios.request({
@@ -11,7 +11,10 @@ export const getBoilingPointPinNav = () => {
 }
 
 /**
- * @desc 获取沸点列表数据
+ * @description 获取沸点列表数据
+ * @param { Number } app_id 沸点左侧导航id
+ * @param { Number } page 页数
+ * @param { Number } pageSize 条数
  */
 export const getBoilingPointPinList = ({ app_id, page, pageSize }) => {
   const params = { app_id, page, pageSize };

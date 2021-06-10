@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import { getBoilingPointPinNav, getBoilingPointPinList } from '@api/boiling-point';
+import { getPageBottomHeight } from '@/utils/utils';
 import PinNav from './pin-nav';
 import Sidebar from './sidebar';
 import './index.less';
@@ -63,41 +64,6 @@ class BoilingPoint extends Component {
     };
   }
 
-  render() {
-    const childProps = {
-      listLoading: this.state.listLoading,
-      listData: this.state.listData,
-      pageLoading: this.state.pageLoading
-    }
-    return (
-      <div className="boiling-point">
-        <div className="boiling-point-container">
-          <div className="dock-nav">
-            <PinNav
-              navData={this.state.navData}
-              navActiveIndex={this.state.navActiveIndex}
-              navActiveChange={this.navActiveChange}
-            />
-          </div>
-          <div className="content">
-            <Route exact path="/boiling-point" render={props => <PinList {...props} {...childProps} />} />
-            <Route exact path="/boiling-point/hot" render={props => <PinList {...props} {...childProps} />} />
-            <Route exact path="/boiling-point/following" render={props => <PinList {...props} {...childProps} />} />
-            <Route exact path="/boiling-point/open-source" render={props => <PinList {...props} {...childProps} />} />
-            <Route exact path="/boiling-point/recruit" render={props => <PinList {...props} {...childProps} />} />
-            <Route exact path="/boiling-point/blind-date" render={props => <PinList {...props} {...childProps} />} />
-            <Route exact path="/boiling-point/idle" render={props => <PinList {...props} {...childProps} />} />
-            <Route exact path="/boiling-point/amway" render={props => <PinList {...props} {...childProps} />} />
-            <Route exact path="/boiling-point/tool" render={props => <PinList {...props} {...childProps} />} />
-          </div>
-          <div className="sidebar">
-            <Sidebar />
-          </div>
-        </div>
-      </div>
-    );
-  }
-
   // 导航变化
   navActiveChange(index) {
     let navData = this.state.navData;
@@ -132,17 +98,9 @@ class BoilingPoint extends Component {
 
   // 页面滚动监听
   bindHandleScroll(event) {
-    // 总的滚动的高度
-    let scrollHeight = (event.srcElement ? event.srcElement.documentElement.scrollHeight : false)
-      || (event.srcElement ? event.srcElement.body.scrollHeight : 0);
-    // 视口高度
-    let clientHeight = (event.srcElement ? event.srcElement.documentElement.clientHeight : false)
-      || (event.srcElement ? event.srcElement.body.clientHeight : 0);
-    // 当前滚动的高度
-    let scrollTop = (event.srcElement ? event.srcElement.documentElement.scrollTop : false)
-      || (event.srcElement ? event.srcElement.body.scrollTop : 0);
-    // 距离底部高度(总的高度 - 视口高度 - 滚动高度)
-    let bottomHeight = scrollHeight - clientHeight - scrollTop;
+    // 滚动条距离页面底部的高度
+    const bottomHeight = getPageBottomHeight(event);
+
     if (bottomHeight <= 60 && this.state.look) {
       // 分页数据请求
       let page = this.state.page;
@@ -171,6 +129,41 @@ class BoilingPoint extends Component {
           this.setState({ look: true });
         })
     }
+  }
+
+  render() {
+    const childProps = {
+      listLoading: this.state.listLoading,
+      listData: this.state.listData,
+      pageLoading: this.state.pageLoading
+    }
+    return (
+      <div className="boiling-point">
+        <div className="boiling-point-container">
+          <div className="dock-nav">
+            <PinNav
+              navData={this.state.navData}
+              navActiveIndex={this.state.navActiveIndex}
+              navActiveChange={this.navActiveChange}
+            />
+          </div>
+          <div className="content">
+            <Route exact path="/boiling-point" render={props => <PinList {...props} {...childProps} />} />
+            <Route exact path="/boiling-point/hot" render={props => <PinList {...props} {...childProps} />} />
+            <Route exact path="/boiling-point/following" render={props => <PinList {...props} {...childProps} />} />
+            <Route exact path="/boiling-point/open-source" render={props => <PinList {...props} {...childProps} />} />
+            <Route exact path="/boiling-point/recruit" render={props => <PinList {...props} {...childProps} />} />
+            <Route exact path="/boiling-point/blind-date" render={props => <PinList {...props} {...childProps} />} />
+            <Route exact path="/boiling-point/idle" render={props => <PinList {...props} {...childProps} />} />
+            <Route exact path="/boiling-point/amway" render={props => <PinList {...props} {...childProps} />} />
+            <Route exact path="/boiling-point/tool" render={props => <PinList {...props} {...childProps} />} />
+          </div>
+          <div className="sidebar">
+            <Sidebar />
+          </div>
+        </div>
+      </div>
+    );
   }
 }
 

@@ -47,36 +47,6 @@ class Header extends Component {
     document.removeEventListener('click', this.setArticleShow);
   }
 
-  render() {
-    return (
-      <Fragment>
-        <HeaderUi
-          navListData={this.state.navListData}
-          searchIsFocus={this.state.searchIsFocus}
-          searchInputFocus={this.searchInputFocus}
-          searchInputBlur={this.searchInputBlur}
-          searchArticle={this.searchArticle}
-          articleShow={this.articleShow}
-          articleStatus={this.state.articleStatus}
-          panelClick={this.panelClick}
-          articleStart={this.articleStart}
-          loginShow={this.loginShow}
-          registerShow={this.registerShow}
-          userDropdown={this.userDropdown}
-          userDropdownShow={this.state.userDropdownShow}
-          logout={this.logout}
-        />
-        {
-          this.state.loginStatus &&
-          <Login
-            loginType={this.state.loginType}
-            close={this.loginClose}
-          />
-        }
-      </Fragment>
-    );
-  }
-
   // 搜索框聚焦
   searchInputFocus() {
     this.setState({ searchIsFocus: true });
@@ -163,6 +133,36 @@ class Header extends Component {
       .catch(err => {
         React.Message.error(err);
       });
+  }
+
+  render() {
+    return (
+      <Fragment>
+        <HeaderUi
+          navListData={this.state.navListData}
+          searchIsFocus={this.state.searchIsFocus}
+          searchInputFocus={this.searchInputFocus}
+          searchInputBlur={this.searchInputBlur}
+          searchArticle={this.searchArticle}
+          articleShow={this.articleShow}
+          articleStatus={this.state.articleStatus}
+          panelClick={this.panelClick}
+          articleStart={this.articleStart}
+          loginShow={this.loginShow}
+          registerShow={this.registerShow}
+          userDropdown={this.userDropdown}
+          userDropdownShow={this.state.userDropdownShow}
+          logout={this.logout}
+        />
+        {
+          this.state.loginStatus &&
+          <Login
+            loginType={this.state.loginType}
+            close={this.loginClose}
+          />
+        }
+      </Fragment>
+    );
   }
 }
 

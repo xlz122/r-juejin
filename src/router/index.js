@@ -47,6 +47,7 @@ const mapStateToProps = state => {
     headerNavActiveIndex: state.headerNavActiveIndex
   };
 };
+
 const mapDispatchToProps = dispatch => {
   return {
     // 设置用户信息

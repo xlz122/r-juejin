@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import { getBrochureChildNav, getBrochureBooksList } from '@api/brochure';
+import { getPageBottomHeight } from '@/utils/utils';
 import ChildNavBar from '@view/common/child-nav-bar';
 import Sidebar from './sidebar';
 import './index.less';
@@ -65,36 +66,6 @@ class Brochure extends Component {
     };
   }
 
-  render() {
-    const childProps = {
-      listLoading: this.state.listLoading,
-      listData: this.state.listData,
-      pageLoading: this.state.pageLoading
-    }
-    return (
-      <div className="brochure">
-        <ChildNavBar
-          navData={this.state.navData}
-          navActiveIndex={this.state.navActiveIndex}
-          navActiveChange={this.navActiveChange}
-        />
-        <div className="brochure-container">
-          <div className="content">
-            <Route exact path="/brochure" render={props => <BooksList {...props} {...childProps} />} />
-            <Route path="/brochure/frontend" render={props => <BooksList {...props} {...childProps} />} />
-            <Route path="/brochure/backend" render={props => <BooksList {...props} {...childProps} />} />
-            <Route path="/brochure/mobile" render={props => <BooksList {...props} {...childProps} />} />
-            <Route path="/brochure/blockchain" render={props => <BooksList {...props} {...childProps} />} />
-            <Route path="/brochure/general" render={props => <BooksList {...props} {...childProps} />} />
-          </div>
-          <div className="sidebar">
-            <Sidebar />
-          </div>
-        </div>
-      </div>
-    );
-  }
-
   // 导航变化
   navActiveChange(index) {
     let navData = this.state.navData;
@@ -132,17 +103,9 @@ class Brochure extends Component {
 
   // 页面滚动监听
   bindHandleScroll(event) {
-    // 总的滚动的高度
-    let scrollHeight = (event.srcElement ? event.srcElement.documentElement.scrollHeight : false)
-      || (event.srcElement ? event.srcElement.body.scrollHeight : 0);
-    // 视口高度
-    let clientHeight = (event.srcElement ? event.srcElement.documentElement.clientHeight : false)
-      || (event.srcElement ? event.srcElement.body.clientHeight : 0);
-    // 当前滚动的高度
-    let scrollTop = (event.srcElement ? event.srcElement.documentElement.scrollTop : false)
-      || (event.srcElement ? event.srcElement.body.scrollTop : 0);
-    // 距离底部高度(总的高度 - 视口高度 - 滚动高度)
-    let bottomHeight = scrollHeight - clientHeight - scrollTop;
+    // 滚动条距离页面底部的高度
+    const bottomHeight = getPageBottomHeight(event);
+    
     if (bottomHeight <= 60 && this.state.look) {
       // 分页数据请求，最大45条数据
       let page = this.state.page;
@@ -176,6 +139,36 @@ class Brochure extends Component {
           this.setState({ look: true });
         })
     }
+  }
+
+  render() {
+    const childProps = {
+      listLoading: this.state.listLoading,
+      listData: this.state.listData,
+      pageLoading: this.state.pageLoading
+    }
+    return (
+      <div className="brochure">
+        <ChildNavBar
+          navData={this.state.navData}
+          navActiveIndex={this.state.navActiveIndex}
+          navActiveChange={this.navActiveChange}
+        />
+        <div className="brochure-container">
+          <div className="content">
+            <Route exact path="/brochure" render={props => <BooksList {...props} {...childProps} />} />
+            <Route path="/brochure/frontend" render={props => <BooksList {...props} {...childProps} />} />
+            <Route path="/brochure/backend" render={props => <BooksList {...props} {...childProps} />} />
+            <Route path="/brochure/mobile" render={props => <BooksList {...props} {...childProps} />} />
+            <Route path="/brochure/blockchain" render={props => <BooksList {...props} {...childProps} />} />
+            <Route path="/brochure/general" render={props => <BooksList {...props} {...childProps} />} />
+          </div>
+          <div className="sidebar">
+            <Sidebar />
+          </div>
+        </div>
+      </div>
+    );
   }
 }
 

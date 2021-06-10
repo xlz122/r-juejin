@@ -19,22 +19,6 @@ class SideBar extends Component {
     this.localRegister = this.localRegister.bind(this);
   }
 
-  render() {
-    return (
-      <Fragment>
-        <SideBarUi
-          registerAccountValue={this.state.registerAccountValue}
-          registerAccountChange={this.registerAccountChange}
-          registerPhoneValue={this.state.registerPhoneValue}
-          registerPhoneChange={this.registerPhoneChange}
-          registerPasswordValue={this.registerPasswordValue}
-          registerPasswordChange={this.registerPasswordChange}
-          register={this.register}
-        />
-      </Fragment>
-    );
-  }
-
   // 注册账号
   registerAccountChange(e) {
     this.setState({ registerAccountValue: e.target.value });
@@ -132,6 +116,22 @@ class SideBar extends Component {
         })
       }
     })
+  }
+
+  render() {
+    return (
+      <Fragment>
+        <SideBarUi
+          registerAccountValue={this.state.registerAccountValue}
+          registerAccountChange={this.registerAccountChange}
+          registerPhoneValue={this.state.registerPhoneValue}
+          registerPhoneChange={this.registerPhoneChange}
+          registerPasswordValue={this.registerPasswordValue}
+          registerPasswordChange={this.registerPasswordChange}
+          register={this.register}
+        />
+      </Fragment>
+    );
   }
 }
 

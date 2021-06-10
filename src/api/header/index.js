@@ -1,7 +1,7 @@
 import axios from '@axios';
 
 /**
- * @desc 获取头部导航nav数据
+ * @description 获取头部导航nav数据
  */
 export const getHeaderNav = () => {
   return axios.request({

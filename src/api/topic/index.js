@@ -1,7 +1,7 @@
 import axios from '@axios';
 
 /**
- * @desc 获取数据
+ * @description 获取数据
  */
 export const getTopicList = () => {
   return axios.request({

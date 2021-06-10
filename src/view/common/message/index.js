@@ -18,27 +18,6 @@ class Message extends Component {
     this.info = this.info.bind(this);
   }
 
-  render() {
-    const { listData } = this.state;
-    return (
-      <ul className="message-list">
-        {
-          listData &&
-          listData.map((item, index) => {
-            return (
-              <li
-                className={`message-item ${this.setClass(item.type)}`}
-                key={index + item}
-              >
-                <span className="text">{item.title}</span>
-              </li>
-            )
-          })
-        }
-      </ul>
-    );
-  }
-
   // 动态设置class
   setClass(type) {
     if (type === 0) {
@@ -100,6 +79,27 @@ class Message extends Component {
       self.setState({ listData: list });
       clearTimeout(timer);
     }, time);
+  }
+
+  render() {
+    const { listData } = this.state;
+    return (
+      <ul className="message-list">
+        {
+          listData &&
+          listData.map((item, index) => {
+            return (
+              <li
+                className={`message-item ${this.setClass(item.type)}`}
+                key={index + item}
+              >
+                <span className="text">{item.title}</span>
+              </li>
+            )
+          })
+        }
+      </ul>
+    );
   }
 }
 
