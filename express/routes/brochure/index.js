@@ -15,43 +15,46 @@ app.use(verifify.requiredParams);
 app.use(verifify.nonEmptyField);
 
 /* 小册导航 */
-router.get('/child-nav-bar', function (req, res, next) {
-  res.json({
-    code: 200,
-    data: [
-      {
-        ssid: 32,
-        title: '全部',
-        link: '/brochure'
-      },
-      {
-        ssid: 97,
-        title: '前端',
-        link: '/brochure/frontend'
-      },
-      {
-        ssid: 45,
-        title: '后端',
-        link: '/brochure/backend'
-      },
-      {
-        ssid: 76,
-        title: '移动开发',
-        link: '/brochure/mobile'
-      },
-      {
-        ssid: 53,
-        title: '区块链',
-        link: '/brochure/blockchain'
-      },
-      {
-        ssid: 56,
-        title: '通用',
-        link: '/brochure/general'
-      }
-    ],
-    msg: '成功'
-  });
+router.get(
+  '/child-nav-bar',
+  verifify.auth,
+  function (req, res, next) {
+    res.json({
+      code: 200,
+      data: [
+        {
+          ssid: 32,
+          title: '全部',
+          link: '/brochure'
+        },
+        {
+          ssid: 97,
+          title: '前端',
+          link: '/brochure/frontend'
+        },
+        {
+          ssid: 45,
+          title: '后端',
+          link: '/brochure/backend'
+        },
+        {
+          ssid: 76,
+          title: '移动开发',
+          link: '/brochure/mobile'
+        },
+        {
+          ssid: 53,
+          title: '区块链',
+          link: '/brochure/blockchain'
+        },
+        {
+          ssid: 56,
+          title: '通用',
+          link: '/brochure/general'
+        }
+      ],
+      msg: '成功'
+    });
 });
 
 /* 小册书籍列表 */

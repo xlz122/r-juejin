@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import { withRouter } from 'react-router-dom';
 import { accountLogin, accountRegister } from '@api/user';
 import { createDB, insertData, getAllData } from '@indexDB';
 import LoginUi from './loginUi.js';
@@ -151,6 +152,8 @@ class Login extends Component {
               React.Message.success(res.msg);
               React.store.setUserInfo(res.data);
               sessionStorage.setItem('userInfo', JSON.stringify(res.data));
+              // 登录后刷新页面
+              this.props.history.replace('/');
             }
           })
       })
@@ -299,4 +302,4 @@ class Login extends Component {
   }
 }
 
-export default Login;
+export default withRouter(Login);

@@ -65,6 +65,12 @@ class HttpRequest {
           pending[requestData] = c;
         });
 
+        // 请求携带token
+        const userInfo = JSON.parse(sessionStorage.getItem('userInfo')) || {};
+        if (userInfo?.token) {
+          config.headers.token = userInfo.token;
+        }
+
         return Promise.resolve(config);
       },
       error => {
@@ -77,8 +83,8 @@ class HttpRequest {
         return Promise.resolve(data);
       },
       error => {
-        if (error.response.status !== 200) {
-          React.Message.error(error.response.data);
+        if (error?.response?.status !== 200) {
+          React.Message.error(error?.response?.data);
         }
         return Promise.reject(error);
       });

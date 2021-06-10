@@ -75,7 +75,7 @@ function HeaderUi(props) {
         {
           props.userInfo.token &&
           <div className="avatar" onClick={userDropdown}>
-            <img className="img-avatar" src="https://user-gold-cdn.xitu.io/2020/5/29/1725f85d251ec3f1?imageView2/1/w/100/h/100/q/85/format/webp/interlace/1" alt="" />
+            <img className="img-avatar" src={props.userInfo.avatarUrl} alt="" />
             {
               userDropdownShow &&
               <div className="user-dropdown-list" onClick={panelClick}>

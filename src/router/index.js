@@ -1,6 +1,5 @@
 import React from 'react';
-// import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
-import { HashRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import asyncComponent from './asyncComponent';
 import { userInfoAction, headerNavAction } from '@store/actionCreators';
 // 引入react-redux连接器
@@ -21,7 +20,6 @@ const Activity = asyncComponent(() => import('@view/activity'));
 
 function AppRouter(props) {
   React.store = props;
-  console.log(React.store);
   return (
     <Router>
       <div className="header">
