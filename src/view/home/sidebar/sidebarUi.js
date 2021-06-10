@@ -23,6 +23,7 @@ function SidebarUi(props) {
   const { registerAccountValue, registerPhoneValue, registerPasswordValue } = props;
   // 事件
   const { registerAccountChange, registerPhoneChange, registerPasswordChange, register } = props;
+  
   return (
     <div className="sidebar-container">
       {/* 注册部分 */}
@@ -179,7 +180,7 @@ function SidebarUi(props) {
   )
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     userInfo: state.userInfo
   }

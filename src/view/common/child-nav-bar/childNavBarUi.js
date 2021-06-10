@@ -7,6 +7,7 @@ function childNavBarUi(props) {
   const { navData, navMouseOver, navMouseOut, navDetailsJump } =  props;
   // redux传递
   const { navActiveIndex, navTagActiveIndex, navActiveChange } = props;
+  
   return (
     <div className="child-nav-bar">
       <ul className="nav-list">
@@ -19,7 +20,16 @@ function childNavBarUi(props) {
                 onMouseOver={() => { navMouseOver && navMouseOver(index) }}
                 onMouseLeave={() => { navMouseOut && navMouseOut(index) }}
               >
-                <Link className="item-link" to={item.link} replace onClick={() => { navActiveChange(index) }}>{item.title}</Link>
+                <Link
+                  className="item-link"
+                  to={item.link}
+                  replace
+                  onClick={() => {
+                    navActiveChange(index);
+                  }}
+                >
+                  {item.title}
+                </Link>
                 <span className="auxiliary"></span>
                 {
                   // 存在子项 && 是否显示 && 是否选中项
@@ -33,10 +43,20 @@ function childNavBarUi(props) {
                         }
                         return (
                           <li
-                            className={`details-item ${ind === navTagActiveIndex ? 'details-active-item' : ''}`}
+                            className={`
+                              details-item
+                              ${ind === navTagActiveIndex ? 'details-active-item' : ''}
+                            `}
                             key={ind + i}
                           >
-                            <span className="details-link" onClick={event => { navDetailsJump(event, i, index, ind); }}>{i.title}</span>
+                            <span
+                              className="details-link"
+                              onClick={event => {
+                                navDetailsJump(event, i, index, ind);
+                              }}
+                            >
+                              {i.title}
+                            </span>
                             <span className="auxiliary"></span>
                           </li>
                         )

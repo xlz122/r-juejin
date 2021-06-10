@@ -1,19 +1,17 @@
-import React, { Component } from 'react';
+import React from 'react';
 import ChildNavBarUi from './childNavBarUi';
 
-class ChildNavBar extends Component {
-  render() {
-    return (
-      <ChildNavBarUi
-        navData={this.props.navData}
-        navActiveIndex={this.props.navActiveIndex}
-        navActiveChange={this.props.navActiveChange}
-        navMouseOver={this.props.navMouseOver}
-        navMouseOut={this.props.navMouseOut}
-        navDetailsJump={this.props.navDetailsJump}
-      />
-    );
-  }
+function ChildNavBar(props) {
+  return (
+    <ChildNavBarUi
+      navData={props.navData}
+      navActiveIndex={props.navActiveIndex}
+      navActiveChange={props.navActiveChange}
+      navMouseOver={props.navMouseOver}
+      navMouseOut={props.navMouseOut}
+      navDetailsJump={props.navDetailsJump}
+    />
+  );
 }
 
 export default ChildNavBar;

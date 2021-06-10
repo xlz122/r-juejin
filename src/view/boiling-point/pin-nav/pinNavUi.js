@@ -7,6 +7,7 @@ function PinNavUi(props) {
   const { navData, navActiveIndex } = props;
   // 事件
   const { navActiveChange } = props;
+  
   return (
     <ul className="pin-nav-list">
       {
@@ -14,9 +15,15 @@ function PinNavUi(props) {
         navData.map((item, index) => {
           return (
             <li
-              className={`li-item ${index === 0 ? 'li-first-item' : ''} ${index === parseInt(navActiveIndex) ? 'li-active-item' : ''}`}
+              className={`
+                li-item
+                ${index === 0 ? 'li-first-item' : ''}
+                ${index === parseInt(navActiveIndex) ? 'li-active-item' : ''}
+              `}
               key={index + item}
-              onClick={() => { navActiveChange(index) }}
+              onClick={() => {
+                navActiveChange(index);
+              }}
             >
               <Link className="item-link" to={item.link}>{item.title}</Link>
             </li>

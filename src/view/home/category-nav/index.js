@@ -8,6 +8,7 @@ function CategoryNav(props) {
   const { navActiveIndex, timeChoiceShow, timeChoiceTitle, timeChoiceMenuShow } = props;
   // 事件
   const { navListChange, timeChoiceToggle, timeChoiceClick } = props;
+
   return (
     <div className="category-nav">
       <ul className="nav-list">
@@ -16,9 +17,15 @@ function CategoryNav(props) {
           list.map((item, index) => {
             return (
               <li
-                className={`li-item ${index === navActiveIndex ? 'li-active-item' : ''} ${index === list.length - 1 ? 'li-last-item' : ''}`}
+                className={`
+                  li-item
+                  ${index === navActiveIndex ? 'li-active-item' : ''}
+                  ${index === list.length - 1 ? 'li-last-item' : ''}
+                `}
                 key={index + item}
-                onClick={() => { navListChange(item, index) }}
+                onClick={() => {
+                  navListChange(item, index);
+                }}
               >
                 <span className="item-text">{item.title}</span>
               </li>

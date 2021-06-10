@@ -14,11 +14,23 @@ import './index.less';
 
 
 function HeaderUi(props) {
-  // 父组件传递
-  const { navListData, searchArticle, articleShow, articleStatus, panelClick, articleStart, loginShow, registerShow, userDropdownShow } = props;
+  // 数据
+  const {
+    navListData,
+    searchArticle,
+    articleShow,
+    articleStatus,
+    panelClick,
+    articleStart,
+    loginShow,
+    registerShow,
+    userDropdownShow
+  } = props;
+  // 事件
   const { searchIsFocus, searchInputFocus, searchInputBlur, userDropdown, logout } = props;
   // redux传递
   const { headerNavActiveIndex, navListChange } = props;
+
   return (
     <div className="header-container">
       <Link className="logo-bg" to="/">
@@ -30,7 +42,10 @@ function HeaderUi(props) {
           navListData.map((item, index) => {
             return (
               <li
-                className={`li-item ${index === parseInt(headerNavActiveIndex) ? 'li-active-item ' : ''}`}
+                className={`
+                  li-item
+                  ${index === parseInt(headerNavActiveIndex) ? 'li-active-item ' : ''}
+                `}
                 key={index + item}
                 onClick={() => { navListChange(index) }}
               >
@@ -49,7 +64,12 @@ function HeaderUi(props) {
             onBlur={searchInputBlur}
             placeholder="搜索掘金"
           />
-          <img className="search-icon" src={searchIsFocus ? searchActiveIcon : searchIcon} onClick={searchArticle} alt="search" />
+          <img
+            className="search-icon"
+            src={searchIsFocus ? searchActiveIcon : searchIcon}
+            onClick={searchArticle}
+            alt="search"
+          />
         </div>
       </div>
       <div className="sidebar">
@@ -131,14 +151,14 @@ function HeaderUi(props) {
   );
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     userInfo: state.userInfo,
     headerNavActiveIndex: state.headerNavActiveIndex
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
     // 设置头部导航下标
     navListChange(index) {

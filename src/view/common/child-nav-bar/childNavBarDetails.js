@@ -3,8 +3,10 @@ import { Link } from 'react-router-dom';
 import './childNavBarDetails.less';
 
 function ChildNavBarDetails(props) {
-  // 父组件传递
-  const { navData, navActiveIndex, navTagActiveIndex, navTagActiveChange } = props;
+  // 数据
+  const { navData, navActiveIndex, navTagActiveIndex } = props;
+  // 事件
+  const { navTagActiveChange } = props;
 
   return (
     <div className="child-nav-bar-details">
@@ -15,7 +17,6 @@ function ChildNavBarDetails(props) {
               return false;
             }
             return item?.children?.map((i, ind) => {
-              // navTagActiveIndex
               return (
                 <li
                   className={`details-item ${navTagActiveIndex === ind ? 'details-active-item': ''}`}

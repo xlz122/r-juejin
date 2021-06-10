@@ -80,7 +80,7 @@ class Message extends Component {
    * @param { String } title - 提示内容
    */
   handleData(type, title) {
-    // 空消息过来
+    // 空消息过滤
     if (!title) {
       return false;
     }

@@ -6,6 +6,7 @@ function EntryListUi(props) {
   const { adEntryList, columnEntryList } = props.entryList;
   // 事件
   const { adEntryItemClick, columnEntryItemClick, likeCountClick, commentsCountClick } = props;
+
   return (
     <div className="entry-list">
       <ul className="ad-entry-list">
@@ -77,13 +78,21 @@ function EntryListUi(props) {
                     <ul className="action-row">
                       <li className="item first-item">
                         <div className="item-link" onClick={likeCountClick}>
-                          <img className="img" src="https://b-gold-cdn.xitu.io/v3/static/img/zan.e9d7698.svg" alt="action" />
+                          <img
+                            className="img"
+                            src="https://b-gold-cdn.xitu.io/v3/static/img/zan.e9d7698.svg"
+                            alt="action"
+                          />
                           <span className="count">{item.likeCount}</span>
                         </div>
                       </li>
                       <li className="item">
                         <div className="item-link" onClick={commentsCountClick}>
-                          <img className="img" src="https://b-gold-cdn.xitu.io/v3/static/img/comment.4d5744f.svg" alt="action" />
+                          <img
+                            className="img"
+                            src="https://b-gold-cdn.xitu.io/v3/static/img/comment.4d5744f.svg"
+                            alt="action"
+                          />
                           <span className="count">{item.commentsCount}</span>
                         </div>
                       </li>
