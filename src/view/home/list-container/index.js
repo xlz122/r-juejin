@@ -53,18 +53,18 @@ class ListContainer extends Component {
     React.Message.info('专栏');
   }
 
-  // 专栏条目喜欢点击
+  // 专栏条目点赞
   likeCountClick(e) {
     // 阻止事件冒泡
     e.stopPropagation();
-    React.Message.info('点击了喜欢');
+    React.Message.info('点赞');
   }
 
-  // 专栏条目不喜欢点击
+  // 专栏条目评论
   commentsCountClick(e) {
     // 阻止事件冒泡
     e.stopPropagation();
-    React.Message.info('点击了不喜欢');
+    React.Message.info('评论');
   }
 }
 

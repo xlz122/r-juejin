@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 // 侧边广告
 import sidebarBanner1 from '@images/home/home-sidebar-advertisement1.jpg';
 import sidebarBanner2 from '@images/home/home-sidebar-advertisement2.jpg';
@@ -25,50 +26,53 @@ function SidebarUi(props) {
   return (
     <div className="sidebar-container">
       {/* 注册部分 */}
-      <div className="auth-section">
-        <div className="title">
-          掘金 - juejin.im
+      {
+        !props.userInfo.token &&
+        <div className="auth-section">
+          <div className="title">
+            掘金 - juejin.im
         </div>
-        <div className="slogan">
-          一个帮助开发者成长的社区
+          <div className="slogan">
+            一个帮助开发者成长的社区
         </div>
-        <div className="input-group">
-          <div className="input-box">
-            <input
-              className="input"
-              type="text"
-              value={registerAccountValue}
-              onChange={registerAccountChange}
-              placeholder="用户名"
-            />
+          <div className="input-group">
+            <div className="input-box">
+              <input
+                className="input"
+                type="text"
+                value={registerAccountValue}
+                onChange={registerAccountChange}
+                placeholder="用户名"
+              />
+            </div>
+            <div className="input-box">
+              <input
+                className="input"
+                type="text"
+                value={registerPhoneValue}
+                onChange={registerPhoneChange}
+                placeholder="手机号"
+              />
+            </div>
+            <div className="input-box">
+              <input
+                className="input"
+                placeholder="密码（不少于6位）"
+                value={registerPasswordValue}
+                onChange={registerPasswordChange}
+              />
+            </div>
+            <button className="submit-btn" onClick={register}>立即注册</button>
           </div>
-          <div className="input-box">
-            <input
-              className="input"
-              type="text"
-              value={registerPhoneValue}
-              onChange={registerPhoneChange}
-              placeholder="手机号"
-            />
+          <div className="agreement-box">
+            <p>注册登录即表示</p>
+            <span>同意</span>
+            <span className="clickable">用户协议</span>
+            <span>、</span>
+            <span className="clickable">隐私政策</span>
           </div>
-          <div className="input-box">
-            <input
-              className="input"
-              placeholder="密码（不少于6位）"
-              value={registerPasswordValue}
-              onChange={registerPasswordChange}
-            />
-          </div>
-          <button className="submit-btn" onClick={register}>立即注册</button>
         </div>
-        <div className="agreement-box">
-          <p>注册登录即表示</p>
-          <span>同意</span>
-          <span className="clickable">用户协议</span>
-          <span>、</span>
-          <span className="clickable">隐私政策</span>
-        </div>
-      </div>
+      }
       {/* 广告部分 */}
       <div className="banner-section">
         <div className="banner-link">
@@ -175,4 +179,10 @@ function SidebarUi(props) {
   )
 }
 
-export default SidebarUi;
+const mapStateToProps = (state) => {
+  return {
+    userInfo: state.userInfo
+  }
+}
+
+export default connect(mapStateToProps)(SidebarUi);
