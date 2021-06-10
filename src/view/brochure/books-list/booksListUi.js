@@ -2,7 +2,9 @@ import React from 'react';
 import './index.less';
 
 function BooksListUi(props) {
+  // 数据
   const { listData, children } = props;
+  // 事件
   const { bookClick } = props;
   return (
     <div className="books">

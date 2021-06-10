@@ -16,8 +16,8 @@ function childNavBarUi(props) {
               <li
                 className={`li-item ${index === parseInt(navActiveIndex) ? 'li-active-item ' : ''}`}
                 key={index + item}
-                onMouseOver={() => { navMouseOver(index) }}
-                onMouseLeave={() => { navMouseOut(index) }}
+                onMouseOver={() => { navMouseOver && navMouseOver(index) }}
+                onMouseLeave={() => { navMouseOut && navMouseOut(index) }}
               >
                 <Link className="item-link" to={item.link} replace onClick={() => { navActiveChange(index) }}>{item.title}</Link>
                 <span className="auxiliary"></span>

@@ -80,8 +80,18 @@ class Message extends Component {
    * @param { String } title - 提示内容
    */
   handleData(type, title) {
+    // 空消息过来
+    if (!title) {
+      return false;
+    }
+    // 处理来自axios重复请求消息
+    if (title?.message) {
+      title = title.message;
+    }
+
     // 添加数据
     let { listData: list, time } = self.state;
+
     list.push({ type, title });
     self.setState({ listData: list });
     // 定时清除

@@ -49,4 +49,3 @@ function topicUi(props) {
 }
 
 export default topicUi;
-

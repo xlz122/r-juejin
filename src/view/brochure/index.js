@@ -25,9 +25,6 @@ class Brochure extends Component {
     }
     // 导航事件
     this.navActiveChange = this.navActiveChange.bind(this);
-    this.navMouseOver = this.navMouseOver.bind(this);
-    this.navMouseOut = this.navMouseOut.bind(this);
-    this.navDetailsJump = this.navDetailsJump.bind(this);
     // 列表事件
     this.getListData = this.getListData.bind(this);
     // 滚动条监听
@@ -80,9 +77,6 @@ class Brochure extends Component {
           navData={this.state.navData}
           navActiveIndex={this.state.navActiveIndex}
           navActiveChange={this.navActiveChange}
-          navMouseOver={this.navMouseOver}
-          navMouseOut={this.navMouseOut}
-          navDetailsJump={this.navDetailsJump}
         />
         <div className="brochure-container">
           <div className="content">
@@ -134,28 +128,6 @@ class Brochure extends Component {
           listLoading: false
         });
       })
-  }
-
-  // 导航划过
-  // 深拷贝：解决子组件使用connect之后，父组件更新，不会触发子组件更新
-  navMouseOver(index) {
-    let list = this.state.navData;
-    list[index].isShow = true;
-    this.setState({ navData: list });
-  }
-
-  // 导航划出
-  navMouseOut(index) {
-    let list = this.state.navData;
-    list[index].isShow = false;
-    this.setState({ navData: list });
-  }
-
-  // 导航详情跳转
-  navDetailsJump(e) {
-    //阻止事件冒泡
-    e.stopPropagation();
-    React.Message.info('详情');
   }
 
   // 页面滚动监听
