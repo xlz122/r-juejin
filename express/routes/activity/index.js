@@ -2,8 +2,7 @@ var express = require('express');
 var router = express.Router();
 // 验证
 var verifify = require('../verifify.js');
-// 列表数据
-var booksList = require('./books-list.js');
+var activityList = require('./activity-list.js');
 
 // 中间件设置
 const app = express();
@@ -14,7 +13,7 @@ app.use(verifify.requiredParams);
 // 非空
 app.use(verifify.nonEmptyField);
 
-/* 小册导航 */
+/* 活动导航 */
 router.get(
   '/child-nav-bar',
   verifify.auth,
@@ -23,34 +22,34 @@ router.get(
       code: 200,
       data: [
         {
-          ssid: 32,
-          title: '全部',
-          link: '/brochure'
+          city_id: 26,
+          title: '热门活动',
+          link: '/activity'
         },
         {
-          ssid: 97,
-          title: '前端',
-          link: '/brochure/frontend'
+          city_id: 56,
+          title: '北京',
+          link: '/activity/beijing'
         },
         {
-          ssid: 45,
-          title: '后端',
-          link: '/brochure/backend'
+          city_id: 23,
+          title: '上海',
+          link: '/activity/shanghai'
         },
         {
-          ssid: 76,
-          title: '移动开发',
-          link: '/brochure/mobile'
+          city_id: 13,
+          title: '广州',
+          link: '/activity/guangzhou'
         },
         {
-          ssid: 53,
-          title: '区块链',
-          link: '/brochure/blockchain'
+          city_id: 88,
+          title: '深圳',
+          link: '/activity/shenzhen'
         },
         {
-          ssid: 56,
-          title: '通用',
-          link: '/brochure/general'
+          city_id: 18,
+          title: '杭州',
+          link: '/activity/hangzhou'
         }
       ],
       msg: '成功'
@@ -58,12 +57,12 @@ router.get(
   }
 );
 
-/* 小册书籍列表 */
+/* 活动列表 */
 router.get(
-  '/books-list',
+  '/activity-list',
   verifify.auth,
-  verifify.requiredParams(['ssid']),
-  verifify.nonEmptyField(['ssid']),
+  verifify.requiredParams(['city_id']),
+  verifify.nonEmptyField(['city_id']),
   function (req, res, next) {
     // 数据处理
     let data = [];
@@ -72,16 +71,8 @@ router.get(
     let len = (1000 - pageSize * (page - 1)) < pageSize ? (1000 - pageSize * (page - 1)) : pageSize; // 返回条数
     for (i = 0; i < len; i++) {
       // 随机返回数组一项
-      let n = Math.floor(Math.random() * booksList.list.length + 1) - 1;
-      data.push(booksList.list[n]);
-    }
-
-    if (page > 5) {
-      data = data.splice(0, 3);
-    }
-
-    if (page > 6) {
-      data = [];
+      let n = Math.floor(Math.random() * activityList.list.length + 1) - 1;
+      data.push(activityList.list[n]);
     }
 
     // 模拟延迟返回数据

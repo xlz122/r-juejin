@@ -239,7 +239,7 @@ class Login extends Component {
 
       let indexedDB = window.indexedDB || window.webkitIndexedDB || window.mozIndexedDB || window.msIndexedDB;
       if (!indexedDB) {
-        throw new Error('当前浏览器不支持 indexed 数据库, 请更换高级浏览器！！！');
+        throw new Error('当前浏览器不支持 indexDB 数据库, 请更换高级浏览器！！！');
       } else {
         createDB('juejinDB', 'user', 1);
         // 进行数据查询

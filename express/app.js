@@ -4,7 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-// 头部接口文件
+// 用户接口文件
 var userRouter = require('./routes/user/index');
 // 头部接口文件
 var headerRouter = require('./routes/header/index');
@@ -16,6 +16,8 @@ var boilingPointRouter = require('./routes/boiling-point/index');
 var topicRouter = require('./routes/topic/index');
 // 小册接口文件
 var brochureRouter = require('./routes/brochure/index');
+// 活动接口文件
+var activityRouter = require('./routes/activity/index');
 
 var app = express();
 
@@ -55,6 +57,8 @@ app.use('/boiling-point', boilingPointRouter);
 app.use('/topic', topicRouter);
 // 小册接口
 app.use('/brochure', brochureRouter);
+// 活动接口
+app.use('/activity', activityRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
