@@ -270,6 +270,7 @@ router.get(
         });
       }
     }, 500);
-  });
+  }
+);
 
 module.exports = router;
