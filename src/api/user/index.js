@@ -28,3 +28,13 @@ export const accountRegister = ({ username, phone, password }) => {
     data
   });
 }
+
+/**
+ * @desc 退出登录
+ */
+export const accountLogout = () => {
+  return axios.request({
+    url: '/user/logout',
+    method: 'post'
+  });
+}

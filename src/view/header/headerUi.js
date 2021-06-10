@@ -142,7 +142,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     // 设置头部导航下标
     navListChange(index) {
-      sessionStorage.setItem('headerNavActiveIndex', index);
+      localStorage.setItem('headerNavActiveIndex', index);
       const action = headerNavAction(index);
       dispatch(action);
     }

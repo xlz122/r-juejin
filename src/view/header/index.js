@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import { accountLogout } from '@api/user/index.js';
 import { getHeaderNav } from '@api/header/index.js';
 import HeaderUi from './headerUi.js';
 import Login from '@view/login';
@@ -150,7 +151,18 @@ class Header extends Component {
   logout(e) {
     e.nativeEvent.stopImmediatePropagation();
     e.stopPropagation(); //阻止事件冒泡
-    React.Message.info('退出登录');
+
+    accountLogout()
+      .then(res => {
+        if (res.code === 200) {
+          React.store.setUserInfo({});
+          localStorage.setItem('userInfo', '');
+          React.Message.success('退出成功');
+        }
+      })
+      .catch(err => {
+        React.Message.error(err);
+      });
   }
 }
 

@@ -1,9 +1,16 @@
 import lodash from 'lodash';
 import { USER_INFO, HEADER_NAV_LIST } from './actionTypes.js';
 
+// 本地存储容错处理
+function faultTolerant(name) {
+  if (localStorage.getItem(name)) {
+    return JSON.parse(localStorage.getItem(name));
+  }
+}
+
 const defaultState = {
-  userInfo: JSON.parse(sessionStorage.getItem('userInfo')) || {}, // 用户信息
-  headerNavActiveIndex: sessionStorage.getItem('headerNavActiveIndex') || 0 // 头部导航栏下标
+  userInfo: faultTolerant('userInfo') || {}, // 用户信息
+  headerNavActiveIndex: localStorage.getItem('headerNavActiveIndex') || 0 // 头部导航栏下标
 };
 
 const reducer = (state = defaultState, action) => {

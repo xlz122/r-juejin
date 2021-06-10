@@ -83,7 +83,7 @@ router.get('/topic-list', verifify.auth, function (req, res, next) {
       boilingPointCount: 1192
     }
   ];
-  
+
   // 生成40组数据
   let data = [];
   for (i = 0; i < 4; i++) {

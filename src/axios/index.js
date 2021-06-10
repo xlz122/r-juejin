@@ -66,9 +66,8 @@ class HttpRequest {
         });
 
         // 请求携带token
-        const userInfo = JSON.parse(sessionStorage.getItem('userInfo')) || {};
-        if (userInfo?.token) {
-          config.headers.token = userInfo.token;
+        if (React.store?.userInfo?.token) {
+          config.headers.token = React.store?.userInfo?.token;
         }
 
         return Promise.resolve(config);

@@ -55,7 +55,7 @@ router.get(
       ],
       msg: '成功'
     });
-});
+  });
 
 /* 小册书籍列表 */
 router.get(
@@ -74,7 +74,7 @@ router.get(
       let n = Math.floor(Math.random() * booksList.list.length + 1) - 1;
       data.push(booksList.list[n]);
     }
-    
+
     if (page > 5) {
       data = data.splice(0, 3);
     }
@@ -91,6 +91,6 @@ router.get(
         msg: '成功'
       });
     }, 500);
-});
+  });
 
 module.exports = router;

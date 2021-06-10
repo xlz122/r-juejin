@@ -92,6 +92,6 @@ router.get(
         msg: '成功'
       });
     }, 500);
-});
+  });
 
 module.exports = router;

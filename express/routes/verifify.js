@@ -12,7 +12,7 @@ function auth(req, res, next) {
 
 // 必需参数校验
 function requiredParams(params) {
-  return requiredParams[params] || (requiredParams[params] = function(req, res, next) {
+  return requiredParams[params] || (requiredParams[params] = function (req, res, next) {
     // 获取请求参数
     let reqParams = null;
     if (req.method === 'GET') {
@@ -49,7 +49,7 @@ function requiredParams(params) {
 
 // 参数非空校验
 function nonEmptyField(params) {
-  return nonEmptyField[params] || (nonEmptyField[params] = function(req, res, next) {
+  return nonEmptyField[params] || (nonEmptyField[params] = function (req, res, next) {
     // 获取请求参数
     let reqParams = null;
     if (req.method === 'GET') {
@@ -83,7 +83,7 @@ function nonEmptyField(params) {
 
 // 手机号格式校验
 function phoneRegex(params) {
-  return phoneRegex[params] || (phoneRegex[params] = function(req, res, next) {
+  return phoneRegex[params] || (phoneRegex[params] = function (req, res, next) {
     const reg = /^[1][3,4,5,7,8,9][0-9]{9}$/;
 
     if (!reg.test(req.body.phone)) {

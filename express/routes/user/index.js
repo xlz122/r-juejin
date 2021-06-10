@@ -41,7 +41,7 @@ router.post(
       },
       msg: '登录成功'
     });
-});
+  });
 
 /* 注册 */
 router.post(
@@ -54,6 +54,14 @@ router.post(
       code: 200,
       msg: '注册成功'
     });
+  });
+
+/* 退出登录 */
+router.post('/logout', function (req, res, next) {
+  res.json({
+    code: 200,
+    msg: '成功'
+  });
 });
 
 module.exports = router;

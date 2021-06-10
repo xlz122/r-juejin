@@ -151,7 +151,7 @@ class Login extends Component {
             if (res.code === 200) {
               React.Message.success(res.msg);
               React.store.setUserInfo(res.data);
-              sessionStorage.setItem('userInfo', JSON.stringify(res.data));
+              localStorage.setItem('userInfo', JSON.stringify(res.data));
               // 登录后刷新页面
               this.props.history.replace('/');
             }
