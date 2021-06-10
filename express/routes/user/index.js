@@ -8,8 +8,6 @@ const app = express();
 app.use(verifify.requiredParams);
 // 非空
 app.use(verifify.nonEmptyField);
-// 手机号
-app.use(verifify.phoneRegex);
 
 // 生成随机token
 function randomString(len) {
@@ -48,7 +46,6 @@ router.post(
   '/register',
   verifify.requiredParams(['username', 'phone', 'password']),
   verifify.nonEmptyField(['username', 'phone', 'password']),
-  verifify.phoneRegex,
   function (req, res, next) {
     res.json({
       code: 200,

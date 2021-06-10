@@ -1,10 +1,10 @@
 import React from 'react';
 
 /**
- * @desc 创建数据库
- * @params dbName - 数据库名
- * @params objectStoreName - 数据库 - 表名
- * @params version - 版本号
+ * @description 创建数据库
+ * @param { String } dbName - 数据库名
+ * @param { String } objectStoreName - 数据库 - 表名
+ * @param { String } version - 版本号
  */
 export function createDB(dbName, objectStoreName, version) {
   // 数据库存在则打开，否则创建
@@ -27,10 +27,10 @@ export function createDB(dbName, objectStoreName, version) {
 }
 
 /**
- * @desc 新增数据
- * @params dbName - 数据库名称
- * @params objectStoreName - 数据库 - 表名
- * @params argument - 传入的参数
+ * @description 新增数据
+ * @param { String } dbName - 数据库名称
+ * @param { String } objectStoreName - 数据库 - 表名
+ * @param params - 传入的参数
  */
 export function insertData(dbName, objectStoreName, params) {
   // 数据库存在则打开，否则创建
@@ -72,10 +72,10 @@ export function insertData(dbName, objectStoreName, params) {
 }
 
 /**
- * @desc 查询全部数据
- * @params dbName - 数据库名称
- * @params objectStoreName - 数据库 - 表名
- * @params callback - 回调函数，返回查询的所有数据
+ * @description 查询全部数据
+ * @param { String } dbName - 数据库名称
+ * @param { String } objectStoreName - 数据库 - 表名
+ * @param { Function } callback - 回调函数，返回查询的所有数据
  */
 export function getAllData(dbName, objectStoreName, callback) {
   // 数据库存在则打开，否则创建
@@ -120,10 +120,11 @@ export function getAllData(dbName, objectStoreName, callback) {
 }
 
 /**
- * @desc 更新数据
- * @params dbName - 数据库名称
- * @params objectStoreName - 数据库 - 表名
- * @params callback - 回调函数,数据更新完成
+ * @description 更新数据
+ * @param { String } dbName - 数据库名称
+ * @param { String } objectStoreName - 数据库 - 表名
+ * @param newsData - 需要更新的数据
+ * @param { Function } callback - 回调函数,数据更新完成
  */
 export function updateData(dbName, objectStoreName, newsData, callback) {
   // 数据库存在则打开，否则创建
@@ -170,9 +171,9 @@ export function updateData(dbName, objectStoreName, newsData, callback) {
 }
 
 /**
- * @desc 清空表数据
- * @params dbName - 数据库名称
- * @params objectStoreName - 数据库 - 表名
+ * @description 清空表数据
+ * @param { String } dbName - 数据库名称
+ * @param { String } objectStoreName - 数据库 - 表名
  */
 export function clearAllData(dbName, objectStoreName) {
   // 数据库存在则打开，否则创建
@@ -196,16 +197,16 @@ export function clearAllData(dbName, objectStoreName) {
 
 
 /**
- * @desc 关闭数据库
- * @params dbName - 数据库名称
+ * @description 关闭数据库
+ * @param { String } dbName - 数据库名称
  */
 export function colseDB(dbName) {
   dbName.close();
 }
 
 /**
- * @desc 删除数据库
- * @params dbName - 数据库名称
+ * @description 删除数据库
+ * @param { String } dbName - 数据库名称
  */
 export function deleteDB(dbName) {
   try {

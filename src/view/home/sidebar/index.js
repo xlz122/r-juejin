@@ -1,49 +1,41 @@
-import React, { Component, Fragment } from 'react';
+import React, { useState } from 'react';
 import { accountRegister } from '@api/user';
 import { createDB, insertData, getAllData } from '@indexDB';
 import SideBarUi from './sidebarUi';
 
-class SideBar extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      registerAccountValue: '', // 注册账号value
-      registerPhoneValue: '', // 注册手机号value
-      registerPasswordValue: '' // 注册密码value
-    }
-    // 注册部分
-    this.registerAccountChange = this.registerAccountChange.bind(this);
-    this.registerPhoneChange = this.registerPhoneChange.bind(this);
-    this.registerPasswordChange = this.registerPasswordChange.bind(this);
-    this.register = this.register.bind(this);
-    this.localRegister = this.localRegister.bind(this);
-  }
+function SideBar(props) {
+  // 注册账号，手机号，密码
+  const [formData, setFormData] = useState({
+    account: '',
+    phone: '',
+    password: ''
+  });
 
   // 注册账号
-  registerAccountChange(e) {
-    this.setState({ registerAccountValue: e.target.value });
+  const registerAccountChange = e => {
+    setFormData({ ...formData, account: e.target.value });
   }
 
   // 注册手机号
-  registerPhoneChange(e) {
-    this.setState({ registerPhoneValue: e.target.value });
+  const registerPhoneChange = e => {
+    setFormData({ ...formData, phone: e.target.value });
   }
 
   // 注册密码
-  registerPasswordChange(e) {
-    this.setState({ registerPasswordValue: e.target.value });
+  const registerPasswordChange = e => {
+    setFormData({ ...formData, password: e.target.value });
   }
 
   // 注册
-  register() {
+  const register = () => {
     const {
-      registerAccountValue: username,
-      registerPhoneValue: phone,
-      registerPasswordValue: password
-    } = this.state;
+      account: username,
+      phone,
+      password
+    } = formData;
 
     // 本地注册，注册成功进行请求
-    this.localRegister({
+    localRegister({
       username,
       phone,
       password
@@ -57,21 +49,26 @@ class SideBar extends Component {
           .then(res => {
             if (res.code === 200) {
               React.Message.success(res.msg);
+              // 重置数据
+              setFormData({
+                account: '',
+                phone: '',
+                password: ''
+              });
             }
           })
       })
       .catch(err => {
-        console.log(err);
         React.Message.error(err);
       });
   }
 
   // 本地注册
-  localRegister({
+  const localRegister = ({
     username,
     phone,
     password
-  }) {
+  }) => {
     return new Promise((resolve, reject) => {
       // 数据校验
       let reg = /^[1][3,4,5,7,8,9][0-9]{9}$/;
@@ -118,21 +115,17 @@ class SideBar extends Component {
     })
   }
 
-  render() {
-    return (
-      <Fragment>
-        <SideBarUi
-          registerAccountValue={this.state.registerAccountValue}
-          registerAccountChange={this.registerAccountChange}
-          registerPhoneValue={this.state.registerPhoneValue}
-          registerPhoneChange={this.registerPhoneChange}
-          registerPasswordValue={this.registerPasswordValue}
-          registerPasswordChange={this.registerPasswordChange}
-          register={this.register}
-        />
-      </Fragment>
-    );
-  }
+  return (
+    <SideBarUi
+      registerAccountValue={formData.account}
+      registerAccountChange={registerAccountChange}
+      registerPhoneValue={formData.phone}
+      registerPhoneChange={registerPhoneChange}
+      registerPasswordValue={formData.password}
+      registerPasswordChange={registerPasswordChange}
+      register={register}
+    />
+  );
 }
 
 export default SideBar;

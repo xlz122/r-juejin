@@ -81,7 +81,7 @@ function nonEmptyField(params) {
   });
 }
 
-// 手机号格式校验
+// 手机号格式校验(有bug，暂未处理)
 function phoneRegex(params) {
   return phoneRegex[params] || (phoneRegex[params] = function (req, res, next) {
     const reg = /^[1][3,4,5,7,8,9][0-9]{9}$/;

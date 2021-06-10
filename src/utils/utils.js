@@ -3,7 +3,6 @@
  * @param { MouseEvent } event 滚动条事件对象
  */
 export function getPageBottomHeight(event) {
-  console.log(event);
   // 总的滚动的高度
   let scrollHeight = (event.target ? event.target.documentElement.scrollHeight : false)
     || (event.target ? event.target.body.scrollHeight : 0);

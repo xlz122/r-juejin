@@ -54,9 +54,9 @@ class Message extends Component {
   }
 
   /**
-   * @desc - 数据处理
+   * @description - 数据处理
    * @param { Number } type - 提示类型 0-info, 1-wraning, 2-success, 3-error
-   * @param { String } title - 提示内容
+   * @param { String | Object } title - 提示内容
    */
   handleData(type, title) {
     // 空消息过滤
