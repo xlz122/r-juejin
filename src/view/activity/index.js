@@ -7,7 +7,7 @@ import './index.less';
 
 // 引入导航组件
 import asyncComponent from '@router/asyncComponent.js';
-const BooksList = asyncComponent(() => import('@view/brochure/books-list'));
+const ActivityList = asyncComponent(() => import('@view/activity/activity-list'));
 
 class Activity extends Component {
   constructor(props) {
@@ -41,10 +41,10 @@ class Activity extends Component {
     getActivityChildNav()
       .then(res => {
         // 数据存储前进行数据修改
-        res.data.map(item => item.isShow = false);
+        res.data.banner_citys.map(item => item.isShow = false);
         this.setState({ navData: res.data });
         // 导航和路由对比，获取对应id，导航选中
-        res.data.forEach((item, index) => {
+        res.data.banner_citys.forEach((item, index) => {
           if (item.link === this.props.location.pathname) {
             this.setState({ navActiveIndex: index, city_id: item.city_id }, () => {
               this.getListData();
@@ -68,7 +68,7 @@ class Activity extends Component {
   // 导航变化
   navActiveChange(index) {
     let navData = this.state.navData;
-    navData.forEach((i, ind) => {
+    navData.banner_citys.forEach((i, ind) => {
       if (index === ind) {
         this.setState({
           navActiveIndex: index,
@@ -151,12 +151,12 @@ class Activity extends Component {
         />
         <div className="activity-container">
           <div className="content">
-            <Route exact path="/activity" render={props => <BooksList {...props} {...childProps} />} />
-            <Route path="/activity/beijing" render={props => <BooksList {...props} {...childProps} />} />
-            <Route path="/activity/shanghai" render={props => <BooksList {...props} {...childProps} />} />
-            <Route path="/activity/guangzhou" render={props => <BooksList {...props} {...childProps} />} />
-            <Route path="/activity/shenzhen" render={props => <BooksList {...props} {...childProps} />} />
-            <Route path="/activity/hangzhou" render={props => <BooksList {...props} {...childProps} />} />
+            <Route exact path="/activity" render={props => <ActivityList {...props} {...childProps} />} />
+            <Route path="/activity/beijing" render={props => <ActivityList {...props} {...childProps} />} />
+            <Route path="/activity/shanghai" render={props => <ActivityList {...props} {...childProps} />} />
+            <Route path="/activity/guangzhou" render={props => <ActivityList {...props} {...childProps} />} />
+            <Route path="/activity/shenzhen" render={props => <ActivityList {...props} {...childProps} />} />
+            <Route path="/activity/hangzhou" render={props => <ActivityList {...props} {...childProps} />} />
           </div>
         </div>
       </div>

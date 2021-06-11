@@ -12,7 +12,7 @@ function ChildNavBarUi(props) {
     <div className="activity-child-nav">
       <ul className="nav-list">
         {
-          navData.map((item, index) => {
+          navData?.banner_citys?.map((item, index) => {
             return (
               <li
                 className={`li-item ${index === parseInt(navActiveIndex) ? 'li-active-item ' : ''}`}
