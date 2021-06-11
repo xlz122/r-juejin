@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 // 验证
 var verifify = require('../verifify.js');
+var cityList = require('./city-list.js');
 var activityList = require('./activity-list.js');
 
 // 中间件设置
@@ -20,54 +21,7 @@ router.get(
   function (req, res, next) {
     res.json({
       code: 200,
-      data: {
-        banner_citys: [
-          {
-            city_id: 26,
-            title: '热门活动',
-            link: '/activity'
-          },
-          {
-            city_id: 56,
-            title: '北京',
-            link: '/activity/beijing'
-          },
-          {
-            city_id: 23,
-            title: '上海',
-            link: '/activity/shanghai'
-          },
-          {
-            city_id: 13,
-            title: '广州',
-            link: '/activity/guangzhou'
-          },
-          {
-            city_id: 88,
-            title: '深圳',
-            link: '/activity/shenzhen'
-          },
-          {
-            city_id: 18,
-            title: '杭州',
-            link: '/activity/hangzhou'
-          }
-        ],
-        other_citys: [
-          {
-            city_id: 12,
-            title: '长沙'
-          },
-          {
-            city_id: 36,
-            title: '成都'
-          },
-          {
-            city_id: 28,
-            title: '重庆'
-          }
-        ]
-      },
+      data: cityList.list,
       msg: '成功'
     });
   }
@@ -80,15 +34,51 @@ router.get(
   verifify.requiredParams(['city_id']),
   verifify.nonEmptyField(['city_id']),
   function (req, res, next) {
+    // 获取参数
+    const city_id = req.query.city_id;
+    // 所有城市
+    const cityLists = [...cityList.list.banner_citys, ...cityList.list.other_citys];
+
+    const city = cityLists.find(c => Number(c.city_id) === Number(city_id));
+    // 传递的城市id匹配不到
+    if (!city) {
+      setTimeout(() => {
+        res.json({
+          code: 200,
+          data: [],
+          msg: '成功'
+        });
+      }, 500);
+      return false;
+    }
+
+    // 查找对应城市数据
+    const activityData = activityList.list.find(a => Number(a.city_id) === Number(city_id));
+    // 所在城市没有数据
+    if (!activityData) {
+      setTimeout(() => {
+        res.json({
+          code: 200,
+          data: [],
+          msg: '成功'
+        });
+      }, 500);
+      return false;
+    }
+
     // 数据处理
     let data = [];
-    let page = req.query.page || 1; // 页数
-    let pageSize = req.query.pageSize || 10; // 条数
-    let len = (1000 - pageSize * (page - 1)) < pageSize ? (1000 - pageSize * (page - 1)) : pageSize; // 返回条数
-    for (i = 0; i < len; i++) {
-      // 随机返回数组一项
-      let n = Math.floor(Math.random() * activityList.list.length + 1) - 1;
-      data.push(activityList.list[n]);
+    // 页数
+    let page = req.query.page || 1;
+    // 条数
+    let pageSize = req.query.pageSize || 8;
+    // 返回条数
+    let len = (activityData.list.length - pageSize * (page - 1)) < pageSize
+      ? (activityData.list.length - pageSize * (page - 1))
+      : pageSize;
+
+    for (let i = 0; i < len; i++) {
+      data.push(activityData.list[(page - 1) * pageSize + (i + 1) - 1]);
     }
 
     // 模拟延迟返回数据

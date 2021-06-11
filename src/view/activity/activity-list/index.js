@@ -3,15 +3,9 @@ import { Skeleton } from 'antd';
 import ActivityListUi from './activityListUi';
 
 function ActivityList(props) {
-  console.log(props);
   // 活动点击
-  const activityClick = type => {
-    if (type === 0) {
-      React.Message.info('报名活动');
-    }
-    if (type === 1) {
-      React.Message.info('活动详情');
-    }
+  const activityClick = detailUrl => {
+    window.open(detailUrl, '_blank')
   }
 
   return (

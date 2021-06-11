@@ -93,10 +93,20 @@ class Activity extends Component {
       pageSize: this.state.pageSize
     })
       .then(res => {
-        this.setState({
-          listData: res.data,
-          listLoading: false
-        });
+        // 数据长度小于条数
+        if (res.data.length < this.state.pageSize) {
+          this.setState({
+            look: false,
+            listData: res.data,
+            listLoading: false
+          });
+        } else {
+          this.setState({
+            look: true,
+            listData: res.data,
+            listLoading: false
+          });
+        }
       })
   }
 
@@ -114,7 +124,7 @@ class Activity extends Component {
         pageLoading: true,
         city_id: this.state.city_id,
         page,
-        pageSize: 5
+        pageSize: 4
       });
       getActiviryList({
         city_id: this.state.city_id,
@@ -122,13 +132,24 @@ class Activity extends Component {
         pageSize: this.state.pageSize
       })
         .then(res => {
-          let listData = this.state.listData;
-          listData = listData.concat(res.data);
-          this.setState({
-            look: true,
-            pageLoading: false,
-            listData
-          });
+          if (res.code === 200) {
+            let listData = this.state.listData;
+            listData = listData.concat(res.data);
+            // 数据长度小于条数
+            if (res.data.length < this.state.pageSize) {
+              this.setState({
+                look: false,
+                pageLoading: false,
+                listData
+              });
+            } else {
+              this.setState({
+                look: true,
+                pageLoading: false,
+                listData
+              });
+            }
+          }
         })
         .catch(() => {
           this.setState({ look: true });

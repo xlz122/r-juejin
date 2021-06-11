@@ -154,7 +154,7 @@ class Login extends Component {
         let userResult = data.find(item => username === item.username);
         let phoneResult = data.find(item => username === item.phone);
         if (userResult || phoneResult) {
-          if (userResult.password === password) {
+          if (userResult?.password === password) {
             this.props.close();
             resolve();
           } else {

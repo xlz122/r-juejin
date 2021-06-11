@@ -1,4 +1,5 @@
 import React from 'react';
+import { formatDate, DateWeek } from '@/utils/utils';
 import listDateIcon from '@images/activity/date.png';
 import listAddressIcon from '@images/activity/address.png';
 import './index.less';
@@ -19,7 +20,7 @@ function ChildNavBar(props) {
                 className="list-warp-item"
                 key={index}
                 onClick={() => {
-                  activityClick(item.endOrNot ? 1 : 0);
+                  activityClick(item.detailUrl);
                 }}
               >
                 <img className="item-img" src={item.imgUrl} alt="" />
@@ -27,7 +28,14 @@ function ChildNavBar(props) {
                   <div className="content-title">{item.title}</div>
                   <div className="content-date">
                     <img className="content-date-icon" src={listDateIcon} alt="img" />
-                    <span className="content-date-text">{item.date} {item.week}</span>
+                    <span className="content-date-text">
+                      {
+                        formatDate({ date: item.date, formatStr: 'MM-dd' })
+                      }
+                    </span>
+                    <span className="content-week-text">
+                      { DateWeek(item.date)}
+                    </span>
                   </div>
                   <div className="content-address">
                     <img className="content-address-icon" src={listAddressIcon} alt="img" />
