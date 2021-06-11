@@ -2,11 +2,11 @@
 const imageBaseUrl = 'http://localhost:9001/images/activity';
 
 // 热门
-const hot = {
+const unlimited = {
   city_id: 0,
   list: [
     {
-      imgUrl: `${imageBaseUrl}/hot/hot-image1.image`,
+      imgUrl: `${imageBaseUrl}/unlimited/unlimited-image1.image`,
       title: 'GWB 腾讯独立游戏大奖赛',
       date: '2021-03-22 09:30:00',
       address: '不限',
@@ -14,7 +14,7 @@ const hot = {
       endOrNot: false,
     },
     {
-      imgUrl: `${imageBaseUrl}/hot/hot-image2.image`,
+      imgUrl: `${imageBaseUrl}/unlimited/unlimited-image2.image`,
       title: '【语音识别】算法常规赛',
       date: '2021-04-08 15:00:00',
       address: '不限',
@@ -22,7 +22,7 @@ const hot = {
       endOrNot: false
     },
     {
-      imgUrl: `${imageBaseUrl}/hot/hot-image3.image`,
+      imgUrl: `${imageBaseUrl}/unlimited/unlimited-image3.image`,
       title: 'CRMEB 首届 UI 设计大赛',
       date: '2021-05-12 09:30:00',
       address: '不限',
@@ -30,7 +30,7 @@ const hot = {
       endOrNot: false
     },
     {
-      imgUrl: `${imageBaseUrl}/hot/hot-image4.image`,
+      imgUrl: `${imageBaseUrl}/unlimited/unlimited-image4.image`,
       title: '火山引擎 veMARS 体验有礼',
       date: '2021-06-01 14:30:00',
       address: '不限',
@@ -38,7 +38,7 @@ const hot = {
       endOrNot: false
     },
     {
-      imgUrl: `${imageBaseUrl}/hot/hot-image5.image`,
+      imgUrl: `${imageBaseUrl}/unlimited/unlimited-image5.image`,
       title: '技术直播课——架构篇：大数据平台架构分享',
       date: '2021-06-24 10:20:00',
       address: '不限',
@@ -46,7 +46,7 @@ const hot = {
       endOrNot: false
     },
     {
-      imgUrl: `${imageBaseUrl}/hot/hot-image6.image`,
+      imgUrl: `${imageBaseUrl}/unlimited/unlimited-image6.image`,
       title: '亿级 DAU 背后的音视频技术最佳实践',
       date: '2021-06-26 08:30:00',
       address: '不限',
@@ -54,7 +54,7 @@ const hot = {
       endOrNot: false
     },
     {
-      imgUrl: `${imageBaseUrl}/hot/hot-image7.image`,
+      imgUrl: `${imageBaseUrl}/unlimited/unlimited-image7.image`,
       title: 'Apache 亚洲大会 2021',
       date: '2021-08-06 09:00:00',
       address: '不限',
@@ -62,7 +62,7 @@ const hot = {
       endOrNot: false
     },
     {
-      imgUrl: `${imageBaseUrl}/hot/hot-image8.image`,
+      imgUrl: `${imageBaseUrl}/unlimited/unlimited-image8.image`,
       title: '字节跳动 Byte Camp 夏令营',
       date: '2021-05-17 14:30:00',
       address: '不限',
@@ -70,7 +70,7 @@ const hot = {
       endOrNot: true
     },
     {
-      imgUrl: `${imageBaseUrl}/hot/hot-image9.image`,
+      imgUrl: `${imageBaseUrl}/unlimited/unlimited-image9.image`,
       title: 'Java主题直播：揭秘JDK并行堆扫描算法',
       date: '2021-06-10 08:30:00',
       address: '不限',
@@ -78,7 +78,7 @@ const hot = {
       endOrNot: true
     },
     {
-      imgUrl: `${imageBaseUrl}/hot/hot-image10.image`,
+      imgUrl: `${imageBaseUrl}/unlimited/unlimited-image10.image`,
       title: '又拍云Open Talk：使用go-zero快速开发微服务',
       date: '2021-06-10 10:30:00',
       address: '不限',
@@ -86,7 +86,7 @@ const hot = {
       endOrNot: true
     },
     {
-      imgUrl: `${imageBaseUrl}/hot/hot-image11.image`,
+      imgUrl: `${imageBaseUrl}/unlimited/unlimited-image11.image`,
       title: 'AI 应用与异构内存编程挑战赛总动员',
       date: '2021-06-10 14:30:00',
       address: '不限',
@@ -94,7 +94,7 @@ const hot = {
       endOrNot: true
     },
     {
-      imgUrl: `${imageBaseUrl}/hot/hot-image12.image`,
+      imgUrl: `${imageBaseUrl}/unlimited/unlimited-image12.image`,
       title: '第二十七届前端早早聊大会',
       date: '2021-06-05 09:00:00',
       address: '不限',
@@ -102,7 +102,7 @@ const hot = {
       endOrNot: true
     },
     {
-      imgUrl: `${imageBaseUrl}/hot/hot-image13.image`,
+      imgUrl: `${imageBaseUrl}/unlimited/unlimited-image13.image`,
       title: '在域外数据（out-of-domain data）上的3D人体重建',
       date: '2021-06-03 08:30:00',
       address: '不限',
@@ -110,7 +110,7 @@ const hot = {
       endOrNot: true
     },
     {
-      imgUrl: `${imageBaseUrl}/hot/hot-image14.image`,
+      imgUrl: `${imageBaseUrl}/unlimited/unlimited-image14.image`,
       title: '“王炸”阵容带你 5 天入门实时数仓，结营抢独家好礼',
       date: '2021-05-24 08:30:00',
       address: '不限',
@@ -118,7 +118,7 @@ const hot = {
       endOrNot: true
     },
     {
-      imgUrl: `${imageBaseUrl}/hot/hot-image15.image`,
+      imgUrl: `${imageBaseUrl}/unlimited/unlimited-image15.image`,
       title: '长安行系列活动-长安链携联盟开发者走进北航',
       date: '2021-05-28 10:30:00',
       address: '不限',
@@ -329,6 +329,24 @@ const hangzhou = {
     }
   ]
 };
+
+// 混淆数组
+function randomArray(arr) {
+  return arr.sort(() => Math.random() - 0.5);
+}
+
+// 热门是全部数据
+const hot = {
+  city_id: 0,
+  list: randomArray([
+    ...unlimited.list,
+    ...beijing.list,
+    ...shanghai.list,
+    ...guangzhou.list,
+    ...shenzhen.list,
+    ...hangzhou.list
+  ])
+}
 
 exports.list = [
   hot,
