@@ -106,7 +106,10 @@ class Home extends Component {
           navActiveIndex: index,
           navTagActiveIndex: 0,
           web_id: i.web_id,
-          web_c_id: 'all'
+          web_c_id: 'all',
+          timeChoiceShow: false,
+          entryType: this.state.categoryNavListData.list[0]?.classifyId,
+          entryTime: 'all'
         }, () => {
           this.getListData();
         })
@@ -163,7 +166,11 @@ class Home extends Component {
     this.setState({
       navData,
       web_c_id: i.web_c_id,
-      navTagActiveIndex: ind
+      navTagActiveIndex: ind,
+      categoryActiveIndex: 0,
+      timeChoiceShow: false,
+      entryType: this.state.categoryNavListData.list[0]?.classifyId,
+      entryTime: 'all'
     });
   }
 
@@ -171,9 +178,14 @@ class Home extends Component {
   navTagActiveChange(i, ind) {
     this.setState({
       web_c_id: i.web_c_id,
-      navTagActiveIndex: ind
+      navTagActiveIndex: ind,
+      categoryActiveIndex: 0,
+      timeChoiceShow: false,
+      entryType: this.state.categoryNavListData.list[0]?.classifyId,
+      entryTime: 'all'
+    }, () => {
+      this.getListData();
     });
-    this.getListData();
   }
 
   bindHandleScroll(event) {
