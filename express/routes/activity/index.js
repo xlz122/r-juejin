@@ -44,9 +44,9 @@ router.get(
     if (!city) {
       setTimeout(() => {
         res.json({
-          code: 200,
+          code: -1,
           data: [],
-          msg: '成功'
+          msg: 'please pass correct ID'
         });
       }, 500);
       return false;
