@@ -50,6 +50,9 @@ class Home extends Component {
     this.getListData = this.getListData.bind(this);
     // 滚动条监听
     this.bindHandleScroll = this.bindHandleScroll.bind(this);
+
+    // 子组件事件
+    this.likeCountClick = this.likeCountClick.bind(this);
   }
 
   componentDidMount() {
@@ -294,6 +297,28 @@ class Home extends Component {
     })
   }
 
+  // 专栏条目点赞
+  likeCountClick(item) {
+    const listData = this.state.listData;
+    listData.columnEntryList.forEach(l => {
+      if (l.id === item.id) {
+        l.like = !item.like;
+        // 点赞数增减
+        if (item.like) {
+          l.likeCount++;
+          React.Message.info('点赞');
+        } else {
+          l.likeCount--;
+          React.Message.info('取消点赞');
+        }
+      }
+    });
+
+    this.setState({
+      listData
+    });
+  }
+
   render() {
     const childProps = {
       categoryNavListData: this.state.categoryNavListData,
@@ -305,6 +330,7 @@ class Home extends Component {
       timeChoiceToggle: this.timeChoiceToggle,
       timeChoiceClick: this.timeChoiceClick,
       listLoading: this.state.listLoading,
+      likeCountClick: this.likeCountClick,
       listData: this.state.listData,
       pageLoading: this.state.pageLoading
     }

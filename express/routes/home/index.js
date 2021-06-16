@@ -103,6 +103,8 @@ router.get(
     for (i = 0; i < len; i++) {
       // 随机返回数组一项
       const n = Math.floor(Math.random() * entryList.list.length + 1) - 1;
+      // 为数据项增加唯一id
+      entryList.list[n].id = (page - 1) * pageSize + (i + 1);
       columnEntryList.push(entryList.list[n]);
     }
 

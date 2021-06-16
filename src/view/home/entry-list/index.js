@@ -1,4 +1,5 @@
 import React from 'react';
+import likeIcon from '@images/home/home-content-link.png';
 import './index.less';
 
 function EntryListUi(props) {
@@ -77,13 +78,33 @@ function EntryListUi(props) {
                     </div>
                     <ul className="action-row">
                       <li className="item first-item">
-                        <div className="item-link" onClick={likeCountClick}>
-                          <img
-                            className="img"
-                            src="https://b-gold-cdn.xitu.io/v3/static/img/zan.e9d7698.svg"
-                            alt="action"
-                          />
-                          <span className="count">{item.likeCount}</span>
+                        <div
+                          className="item-link"
+                          onClick={event => {
+                            likeCountClick(event, item);
+                          }}
+                        >
+                          {/* {
+                            item.like &&
+                            <>
+                              <img
+                                className="img like-img"
+                                src={likeIcon}
+                                alt="action"
+                              />
+                              <span className="count">{item.likeCount}</span>
+                            </>
+                          } */}
+                          {
+                            <>
+                              <img
+                                className="img"
+                                src="https://b-gold-cdn.xitu.io/v3/static/img/zan.e9d7698.svg"
+                                alt="action"
+                              />
+                              <span className="count">{item.likeCount}</span>
+                            </>
+                          }
                         </div>
                       </li>
                       <li className="item">

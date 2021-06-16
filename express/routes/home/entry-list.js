@@ -18,6 +18,7 @@ const list = [
     name: 'JavaScript',
     imgUrl: '',
     title: '鼠标选中文本划词高亮、再次选中划词取消高亮效果',
+    like: true,
     likeCount: 10,
     commentsCount: 3
   },
@@ -27,6 +28,7 @@ const list = [
     name: '面试/Java',
     imgUrl: `${imageBaseUrl}/column-entry-list-image1.jpg`,
     title: '面试官：说一下公平锁和非公平锁的区别？',
+    like: false,
     likeCount: 75,
     commentsCount: 7
   },
@@ -36,6 +38,7 @@ const list = [
     name: '面试/前端',
     imgUrl: '',
     title: '写给女朋友的中级前端面试秘籍（含详细答案，15k级别）',
+    like: false,
     likeCount: 110,
     commentsCount: 27
   },
@@ -45,6 +48,7 @@ const list = [
     name: 'JavaScript/前端',
     imgUrl: `${imageBaseUrl}/column-entry-list-image3.jpg`,
     title: '（建议精读）HTTP灵魂之问，巩固你的 HTTP 知识体系',
+    like: false,
     likeCount: 876,
     commentsCount: 36
   },
@@ -54,6 +58,7 @@ const list = [
     name: '面试',
     imgUrl: '',
     title: '面试被问项目经验不用慌，按这个步骤回答绝对惊艳',
+    like: false,
     likeCount: 76,
     commentsCount: 8
   },
@@ -63,6 +68,7 @@ const list = [
     name: 'Android',
     imgUrl: `${imageBaseUrl}/column-entry-list-image4.jpg`,
     title: '深入探索 Android 内存优化（炼狱级别）',
+    like: false,
     likeCount: 199,
     commentsCount: 34
   },
@@ -72,6 +78,7 @@ const list = [
     name: 'iOS',
     imgUrl: '',
     title: 'iOS底层原理：weak的实现原理',
+    like: false,
     likeCount: 10,
     commentsCount: 2
   },
@@ -81,6 +88,7 @@ const list = [
     name: '人工智能',
     imgUrl: `${imageBaseUrl}/column-entry-list-image2.jpg`,
     title: 'iOS底层原理：weak的实现原理',
+    like: false,
     likeCount: 10,
     commentsCount: 2
   },
@@ -90,6 +98,7 @@ const list = [
     name: '程序员',
     imgUrl: '',
     title: '你也看不起做外包的程序员？',
+    like: false,
     likeCount: 28,
     commentsCount: 4
   },
@@ -99,6 +108,7 @@ const list = [
     name: 'GitHub',
     imgUrl: `${imageBaseUrl}/column-entry-list-image5.jpg`,
     title: '2020 还不会泡 Github 你就落伍了',
+    like: false,
     likeCount: 127,
     commentsCount: 52
   },
@@ -108,6 +118,7 @@ const list = [
     name: '微信小程序',
     imgUrl: '',
     title: '使用发布订阅模式+globalData实现小程序全局实时状态管理',
+    like: false,
     likeCount: 12,
     commentsCount: 2
   },
@@ -117,6 +128,7 @@ const list = [
     name: 'Android',
     imgUrl: '',
     title: 'Android消息机制的冷门知识点',
+    like: false,
     likeCount: 6,
     commentsCount: 2
   },
@@ -126,6 +138,7 @@ const list = [
     name: '前端',
     imgUrl: '',
     title: '前端Nginx那些事',
+    like: false,
     likeCount: 144,
     commentsCount: 5
   },
@@ -135,6 +148,7 @@ const list = [
     name: 'TypeScript',
     imgUrl: '',
     title: '【开源】一个 React + TS 项目模板',
+    like: false,
     likeCount: 79,
     commentsCount: 20
   },
@@ -144,6 +158,7 @@ const list = [
     name: 'iOS',
     imgUrl: '',
     title: 'Runloop分享',
+    like: false,
     likeCount: 4,
     commentsCount: 2
   },
@@ -153,6 +168,7 @@ const list = [
     name: 'Android',
     imgUrl: '',
     title: '杀不掉的知乎 - 聊一聊 Android 的多任务',
+    like: false,
     likeCount: 53,
     commentsCount: 18
   },
@@ -162,6 +178,7 @@ const list = [
     name: '面试/程序员',
     imgUrl: '',
     title: '《我们一起进大厂》系列-大厂需求研发/开发流程',
+    like: false,
     likeCount: 53,
     commentsCount: 18
   },
@@ -171,6 +188,7 @@ const list = [
     name: 'Java',
     imgUrl: '',
     title: '知己知彼，百战不殆：“金三银四”横扫BAT面试之Spring108问！',
+    like: false,
     likeCount: 332,
     commentsCount: 20
   },
@@ -180,6 +198,7 @@ const list = [
     name: 'iOS',
     imgUrl: '',
     title: 'iOS探索--类的结构分析(二)',
+    like: false,
     likeCount: 205,
     commentsCount: 35
   },
@@ -189,6 +208,7 @@ const list = [
     name: '前端',
     imgUrl: '',
     title: '面试官：你了解过移动端适配吗？',
+    like: false,
     likeCount: 1067,
     commentsCount: 122
   }

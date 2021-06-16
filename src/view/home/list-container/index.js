@@ -16,14 +16,14 @@ function ListContainer(props) {
   }
 
   // 专栏条目点赞
-  const likeCountClick = (e) => {
+  const likeCountClick = (e, item) => {
     // 阻止事件冒泡
     e.stopPropagation();
-    React.Message.info('点赞');
+    props.likeCountClick(item);
   }
 
   // 专栏条目评论
-  const commentsCountClick = (e) => {
+  const commentsCountClick = e => {
     // 阻止事件冒泡
     e.stopPropagation();
     React.Message.info('评论');
