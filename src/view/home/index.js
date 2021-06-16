@@ -306,10 +306,8 @@ class Home extends Component {
         // 点赞数增减
         if (item.like) {
           l.likeCount++;
-          React.Message.info('点赞');
         } else {
           l.likeCount--;
-          React.Message.info('取消点赞');
         }
       }
     });
