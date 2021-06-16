@@ -2,6 +2,8 @@ var express = require('express');
 var router = express.Router();
 // 验证
 var verifify = require('../verifify.js');
+// 导航数据
+var navList = require('./nav-list.js');
 // 列表数据
 var booksList = require('./books-list.js');
 
@@ -21,38 +23,7 @@ router.get(
   function (req, res, next) {
     res.json({
       code: 200,
-      data: [
-        {
-          ssid: 32,
-          title: '全部',
-          link: '/brochure'
-        },
-        {
-          ssid: 97,
-          title: '前端',
-          link: '/brochure/frontend'
-        },
-        {
-          ssid: 45,
-          title: '后端',
-          link: '/brochure/backend'
-        },
-        {
-          ssid: 76,
-          title: '移动开发',
-          link: '/brochure/mobile'
-        },
-        {
-          ssid: 53,
-          title: '区块链',
-          link: '/brochure/blockchain'
-        },
-        {
-          ssid: 56,
-          title: '通用',
-          link: '/brochure/general'
-        }
-      ],
+      data: navList.list,
       msg: '成功'
     });
   }
@@ -65,23 +36,31 @@ router.get(
   verifify.requiredParams(['ssid']),
   verifify.nonEmptyField(['ssid']),
   function (req, res, next) {
+    // 获取参数
+    const ssid = req.query.ssid;
+
+    const nav = navList.list.find(c => Number(c.ssid) === Number(ssid));
+    // 传递的导航id匹配不到
+    if (!nav) {
+      setTimeout(() => {
+        res.json({
+          code: -1,
+          data: [],
+          msg: 'please pass correct ID'
+        });
+      }, 500);
+      return false;
+    }
+
     // 数据处理
     let data = [];
     let page = req.query.page || 1; // 页数
-    let pageSize = req.query.pageSize || 10; // 条数
+    let pageSize = req.query.pageSize || 5; // 条数
     let len = (1000 - pageSize * (page - 1)) < pageSize ? (1000 - pageSize * (page - 1)) : pageSize; // 返回条数
     for (i = 0; i < len; i++) {
       // 随机返回数组一项
       let n = Math.floor(Math.random() * booksList.list.length + 1) - 1;
       data.push(booksList.list[n]);
-    }
-
-    if (page > 5) {
-      data = data.splice(0, 3);
-    }
-
-    if (page > 6) {
-      data = [];
     }
 
     // 模拟延迟返回数据
