@@ -3,32 +3,32 @@ const list = {
     {
       city_id: 0,
       title: '热门活动',
-      link: '/activity'
+      link: '/xlz/activity'
     },
     {
       city_id: 56,
       title: '北京',
-      link: '/activity/beijing'
+      link: '/xlz/activity/beijing'
     },
     {
       city_id: 23,
       title: '上海',
-      link: '/activity/shanghai'
+      link: '/xlz/activity/shanghai'
     },
     {
       city_id: 13,
       title: '广州',
-      link: '/activity/guangzhou'
+      link: '/xlz/activity/guangzhou'
     },
     {
       city_id: 88,
       title: '深圳',
-      link: '/activity/shenzhen'
+      link: '/xlz/activity/shenzhen'
     },
     {
       city_id: 18,
       title: '杭州',
-      link: '/activity/hangzhou'
+      link: '/xlz/activity/hangzhou'
     }
   ],
   other_citys: [

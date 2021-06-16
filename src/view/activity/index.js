@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import { getActivityChildNav, getActiviryList } from '@api/activity';
 import { getPageBottomHeight } from '@/utils/utils';
 import ChildNavBar from './child-nav-bar';
@@ -172,12 +172,15 @@ class Activity extends Component {
         />
         <div className="activity-container">
           <div className="content">
-            <Route exact path="/activity" render={props => <ActivityList {...props} {...childProps} />} />
-            <Route path="/activity/beijing" render={props => <ActivityList {...props} {...childProps} />} />
-            <Route path="/activity/shanghai" render={props => <ActivityList {...props} {...childProps} />} />
-            <Route path="/activity/guangzhou" render={props => <ActivityList {...props} {...childProps} />} />
-            <Route path="/activity/shenzhen" render={props => <ActivityList {...props} {...childProps} />} />
-            <Route path="/activity/hangzhou" render={props => <ActivityList {...props} {...childProps} />} />
+            <Switch>
+              <Route exact={true} path="/xlz/activity" render={props => <ActivityList {...props} {...childProps} />} />
+              <Route exact={true} path="/xlz/activity/beijing" render={props => <ActivityList {...props} {...childProps} />} />
+              <Route exact={true} path="/xlz/activity/shanghai" render={props => <ActivityList {...props} {...childProps} />} />
+              <Route exact={true} path="/xlz/activity/guangzhou" render={props => <ActivityList {...props} {...childProps} />} />
+              <Route exact={true} path="/xlz/activity/shenzhen" render={props => <ActivityList {...props} {...childProps} />} />
+              <Route exact={true} path="/xlz/activity/hangzhou" render={props => <ActivityList {...props} {...childProps} />} />
+              <Redirect from="*" to="/404" />
+            </Switch>
           </div>
         </div>
       </div>

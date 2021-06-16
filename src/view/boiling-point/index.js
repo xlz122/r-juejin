@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import { getBoilingPointPinNav, getBoilingPointPinList } from '@api/boiling-point';
 import { getPageBottomHeight } from '@/utils/utils';
 import PinNav from './pin-nav';
@@ -148,15 +148,18 @@ class BoilingPoint extends Component {
             />
           </div>
           <div className="content">
-            <Route exact path="/boiling-point" render={props => <PinList {...props} {...childProps} />} />
-            <Route exact path="/boiling-point/hot" render={props => <PinList {...props} {...childProps} />} />
-            <Route exact path="/boiling-point/following" render={props => <PinList {...props} {...childProps} />} />
-            <Route exact path="/boiling-point/open-source" render={props => <PinList {...props} {...childProps} />} />
-            <Route exact path="/boiling-point/recruit" render={props => <PinList {...props} {...childProps} />} />
-            <Route exact path="/boiling-point/blind-date" render={props => <PinList {...props} {...childProps} />} />
-            <Route exact path="/boiling-point/idle" render={props => <PinList {...props} {...childProps} />} />
-            <Route exact path="/boiling-point/amway" render={props => <PinList {...props} {...childProps} />} />
-            <Route exact path="/boiling-point/tool" render={props => <PinList {...props} {...childProps} />} />
+            <Switch>
+              <Route exact={true} path="/xlz/boiling-point" render={props => <PinList {...props} {...childProps} />} />
+              <Route exact={true} path="/xlz/boiling-point/hot" render={props => <PinList {...props} {...childProps} />} />
+              <Route exact={true} path="/xlz/boiling-point/following" render={props => <PinList {...props} {...childProps} />} />
+              <Route exact={true} path="/xlz/boiling-point/open-source" render={props => <PinList {...props} {...childProps} />} />
+              <Route exact={true} path="/xlz/boiling-point/recruit" render={props => <PinList {...props} {...childProps} />} />
+              <Route exact={true} path="/xlz/boiling-point/blind-date" render={props => <PinList {...props} {...childProps} />} />
+              <Route exact={true} path="/xlz/boiling-point/idle" render={props => <PinList {...props} {...childProps} />} />
+              <Route exact={true} path="/xlz/boiling-point/amway" render={props => <PinList {...props} {...childProps} />} />
+              <Route exact={true} path="/xlz/boiling-point/tool" render={props => <PinList {...props} {...childProps} />} />
+              <Redirect from="*" to="/404" />
+            </Switch>
           </div>
           <div className="sidebar">
             <Sidebar />

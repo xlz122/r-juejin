@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import { getHomeChildNav, getHomeCategoryNav, getHomeEntryList } from '@api/home';
 import { getPageBottomHeight } from '@/utils/utils';
 import ChildNavBar from '@view/common/child-nav-bar';
@@ -191,7 +191,7 @@ class Home extends Component {
   bindHandleScroll(event) {
     // 滚动条距离页面底部的高度
     const bottomHeight = getPageBottomHeight(event);
-    
+
     if (bottomHeight <= 60 && this.state.look) {
       // 分页数据请求
       let page = this.state.page;
@@ -320,15 +320,18 @@ class Home extends Component {
         />
         <div className="home-container">
           <div className="content">
-            <Route exact path="/home" render={props => <ListContainer {...props} {...childProps} />} />
-            <Route path="/home/backend" render={props => <ListContainer {...props} {...childProps} />} />
-            <Route path="/home/frontend" render={props => <ListContainer {...props} {...childProps} />} />
-            <Route path="/home/android" render={props => <ListContainer {...props} {...childProps} />} />
-            <Route path="/home/ios" render={props => <ListContainer {...props} {...childProps} />} />
-            <Route path="/home/ai" render={props => <ListContainer {...props} {...childProps} />} />
-            <Route path="/home/freebie" render={props => <ListContainer {...props} {...childProps} />} />
-            <Route path="/home/career" render={props => <ListContainer {...props} {...childProps} />} />
-            <Route path="/home/article" render={props => <ListContainer {...props} {...childProps} />} />
+            <Switch>
+              <Route exact={true} path="/xlz/home" render={props => <ListContainer {...props} {...childProps} />} />
+              <Route exact={true} path="/xlz/home/backend" render={props => <ListContainer {...props} {...childProps} />} />
+              <Route exact={true} path="/xlz/home/frontend" render={props => <ListContainer {...props} {...childProps} />} />
+              <Route exact={true} path="/xlz/home/android" render={props => <ListContainer {...props} {...childProps} />} />
+              <Route exact={true} path="/xlz/home/ios" render={props => <ListContainer {...props} {...childProps} />} />
+              <Route exact={true} path="/xlz/home/ai" render={props => <ListContainer {...props} {...childProps} />} />
+              <Route exact={true} path="/xlz/home/freebie" render={props => <ListContainer {...props} {...childProps} />} />
+              <Route exact={true} path="/xlz/home/career" render={props => <ListContainer {...props} {...childProps} />} />
+              <Route exact={true} path="/xlz/home/article" render={props => <ListContainer {...props} {...childProps} />} />
+              <Redirect from="*" to="/404" />
+            </Switch>
           </div>
           <div className="sidebar">
             <SidebarUi />

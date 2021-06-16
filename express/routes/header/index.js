@@ -6,11 +6,11 @@ router.get('/nav-list', function (req, res, next) {
   res.json({
     code: 200,
     data: [
-      { id: 16, title: '首页', link: '/' },
-      { id: 21, title: '沸点', link: '/boiling-point' },
-      { id: 25, title: '话题', link: '/topic' },
-      { id: 59, title: '小册', link: '/brochure' },
-      { id: 80, title: '活动', link: '/activity' }
+      { id: 16, title: '首页', link: '/xlz/home' },
+      { id: 21, title: '沸点', link: '/xlz/boiling-point' },
+      { id: 25, title: '话题', link: '/xlz/topic' },
+      { id: 59, title: '小册', link: '/xlz/brochure' },
+      { id: 80, title: '活动', link: '/xlz/activity' }
     ],
     msg: '成功'
   });

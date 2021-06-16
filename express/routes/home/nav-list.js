@@ -2,12 +2,12 @@ const list = [
   {
     web_id: 91,
     title: '推荐',
-    link: '/home'
+    link: '/xlz/home'
   },
   {
     web_id: 25,
     title: '后端',
-    link: '/home/backend',
+    link: '/xlz/home/backend',
     children: [
       { web_c_id: 185, title: '全部' },
       { web_c_id: 593, title: 'Java' },
@@ -30,7 +30,7 @@ const list = [
   {
     web_id: 43,
     title: '前端',
-    link: '/home/frontend',
+    link: '/xlz/home/frontend',
     children: [
       { web_c_id: 471, title: '全部' },
       { web_c_id: 220, title: 'JavaScript' },
@@ -53,7 +53,7 @@ const list = [
   {
     web_id: 24,
     title: 'Android',
-    link: '/home/android',
+    link: '/xlz/home/android',
     children: [
       { web_c_id: 395, title: '全部' },
       { web_c_id: 772, title: 'Flutter' },
@@ -76,7 +76,7 @@ const list = [
   {
     web_id: 85,
     title: 'iOS',
-    link: '/home/ios',
+    link: '/xlz/home/ios',
     children: [
       { web_c_id: 974, title: '全部' },
       { web_c_id: 484, title: 'Swift' },
@@ -99,7 +99,7 @@ const list = [
   {
     web_id: 16,
     title: '人工智能',
-    link: '/home/ai',
+    link: '/xlz/home/ai',
     children: [
       { web_c_id: 293, title: '全部' },
       { web_c_id: 685, title: '深度学习' },
@@ -122,7 +122,7 @@ const list = [
   {
     web_id: 70,
     title: '开发工具',
-    link: '/home/freebie',
+    link: '/xlz/home/freebie',
     children: [
       { web_c_id: 965, title: '全部' },
       { web_c_id: 319, title: 'Linux' },
@@ -145,7 +145,7 @@ const list = [
   {
     web_id: 48,
     title: '代码人生',
-    link: '/home/career',
+    link: '/xlz/home/career',
     children: [
       { web_c_id: 408, title: '全部' },
       { web_c_id: 397, title: '程序员' },
@@ -168,7 +168,7 @@ const list = [
   {
     web_id: 73,
     title: '阅读',
-    link: '/home/article',
+    link: '/xlz/home/article',
     children: [
       { web_c_id: 603, title: '全部' },
       { web_c_id: 502, title: '程序员' },

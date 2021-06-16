@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import { getBrochureChildNav, getBrochureBooksList } from '@api/brochure';
 import { getPageBottomHeight } from '@/utils/utils';
 import ChildNavBar from '@view/common/child-nav-bar';
@@ -105,7 +105,7 @@ class Brochure extends Component {
   bindHandleScroll(event) {
     // 滚动条距离页面底部的高度
     const bottomHeight = getPageBottomHeight(event);
-    
+
     if (bottomHeight <= 60 && this.state.look) {
       // 分页数据请求，最大45条数据
       let page = this.state.page;
@@ -156,12 +156,15 @@ class Brochure extends Component {
         />
         <div className="brochure-container">
           <div className="content">
-            <Route exact path="/brochure" render={props => <BooksList {...props} {...childProps} />} />
-            <Route path="/brochure/frontend" render={props => <BooksList {...props} {...childProps} />} />
-            <Route path="/brochure/backend" render={props => <BooksList {...props} {...childProps} />} />
-            <Route path="/brochure/mobile" render={props => <BooksList {...props} {...childProps} />} />
-            <Route path="/brochure/blockchain" render={props => <BooksList {...props} {...childProps} />} />
-            <Route path="/brochure/general" render={props => <BooksList {...props} {...childProps} />} />
+            <Switch>
+              <Route exact={true} path="/xlz/brochure" render={props => <BooksList {...props} {...childProps} />} />
+              <Route exact={true} path="/xlz/brochure/frontend" render={props => <BooksList {...props} {...childProps} />} />
+              <Route exact={true} path="/xlz/brochure/backend" render={props => <BooksList {...props} {...childProps} />} />
+              <Route exact={true} path="/xlz/brochure/mobile" render={props => <BooksList {...props} {...childProps} />} />
+              <Route exact={true} path="/xlz/brochure/blockchain" render={props => <BooksList {...props} {...childProps} />} />
+              <Route exact={true} path="/xlz/brochure/general" render={props => <BooksList {...props} {...childProps} />} />
+              <Redirect from="*" to="/404" />
+            </Switch>
           </div>
           <div className="sidebar">
             <Sidebar />
