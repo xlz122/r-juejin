@@ -39,9 +39,9 @@ router.get(
     // 获取参数
     const ssid = req.query.ssid;
 
-    const nav = navList.list.find(c => Number(c.ssid) === Number(ssid));
     // 传递的导航id匹配不到
-    if (!nav) {
+    const navItem = navList.list.find(n => Number(n.ssid) === Number(ssid));
+    if (!navItem) {
       setTimeout(() => {
         res.json({
           code: -1,
@@ -53,13 +53,19 @@ router.get(
     }
 
     // 数据处理
-    let data = [];
-    let page = req.query.page || 1; // 页数
-    let pageSize = req.query.pageSize || 5; // 条数
-    let len = (1000 - pageSize * (page - 1)) < pageSize ? (1000 - pageSize * (page - 1)) : pageSize; // 返回条数
+    const data = [];
+    // 页数
+    const page = req.query.page || 1;
+    // 条数
+    const pageSize = req.query.pageSize || 5;
+    // 返回条数
+    const len = (1000 - pageSize * (page - 1)) < pageSize
+      ? (1000 - pageSize * (page - 1))
+      : pageSize;
+
     for (i = 0; i < len; i++) {
       // 随机返回数组一项
-      let n = Math.floor(Math.random() * booksList.list.length + 1) - 1;
+      const n = Math.floor(Math.random() * booksList.list.length + 1) - 1;
       data.push(booksList.list[n]);
     }
 

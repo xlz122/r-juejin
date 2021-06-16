@@ -39,9 +39,9 @@ router.get(
     // 所有城市
     const cityLists = [...cityList.list.banner_citys, ...cityList.list.other_citys];
 
-    const city = cityLists.find(c => Number(c.city_id) === Number(city_id));
     // 传递的城市id匹配不到
-    if (!city) {
+    const cityItem = cityLists.find(c => Number(c.city_id) === Number(city_id));
+    if (!cityItem) {
       setTimeout(() => {
         res.json({
           code: -1,
@@ -67,13 +67,13 @@ router.get(
     }
 
     // 数据处理
-    let data = [];
+    const data = [];
     // 页数
-    let page = req.query.page || 1;
+    const page = req.query.page || 1;
     // 条数
-    let pageSize = req.query.pageSize || 8;
+    const pageSize = req.query.pageSize || 8;
     // 返回条数
-    let len = (activityData.list.length - pageSize * (page - 1)) < pageSize
+    const len = (activityData.list.length - pageSize * (page - 1)) < pageSize
       ? (activityData.list.length - pageSize * (page - 1))
       : pageSize;
 

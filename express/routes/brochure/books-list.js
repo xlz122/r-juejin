@@ -1,6 +1,6 @@
 // 书籍数据数组
-let imageBaseUrl = 'http://localhost:9001/images/brochure';
-let itemArr = [
+const imageBaseUrl = 'http://localhost:9001/images/brochure';
+const list = [
   {
     imgUrl: `${imageBaseUrl}/book-image1.jpg`,
     title: '深入浅出 PWA',
@@ -198,4 +198,4 @@ let itemArr = [
   },
 ];
 
-exports.list = itemArr;
+exports.list = list;

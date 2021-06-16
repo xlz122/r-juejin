@@ -1,6 +1,6 @@
 // 书籍数据数组
-let imageBaseUrl = 'http://localhost:9001/images/boiling-point';
-let itemArr = [
+const imageBaseUrl = 'http://localhost:9001/images/boiling-point';
+const list = [
   {
     userImg: `${imageBaseUrl}/boiling-point-user-image1.jpg`,
     username: 'web小学生',
@@ -186,4 +186,4 @@ let itemArr = [
   }
 ];
 
-exports.list = itemArr;
+exports.list = list;

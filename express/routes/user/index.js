@@ -16,8 +16,8 @@ router.post(
   verifify.requiredParams(['username', 'password']),
   verifify.nonEmptyField(['username', 'password']),
   function (req, res, next) {
-    let imageBaseUrl = 'http://localhost:9001/images/avatar';
-    let i = Math.floor(Math.random() * 10 + 1) - 1;
+    const imageBaseUrl = 'http://localhost:9001/images/avatar';
+    const i = Math.floor(Math.random() * 10 + 1) - 1;
 
     res.json({
       code: 200,

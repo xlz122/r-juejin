@@ -1,5 +1,5 @@
 // 广告列表条目数据
-let adEntryList = [
+const adEntryList = [
   {
     username: '掘金酱',
     time: '1天前',
@@ -10,8 +10,8 @@ let adEntryList = [
 ];
 
 // 列表数据
-let imageBaseUrl = 'http://localhost:9001/images/home';
-let itemArr = [
+const imageBaseUrl = 'http://localhost:9001/images/home';
+const list = [
   {
     username: 'Keely',
     time: '23小时前',
@@ -195,4 +195,4 @@ let itemArr = [
 ];
 
 exports.adEntryList = adEntryList;
-exports.list = itemArr;
+exports.list = list;
