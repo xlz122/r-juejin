@@ -35,6 +35,7 @@ class Home extends Component {
       pageLoading: false // 分页时的loading
     }
     // 导航
+    this.getHomeCategoryNavData = this.getHomeCategoryNavData.bind(this);
     this.navActiveChange = this.navActiveChange.bind(this);
     this.navMouseOver = this.navMouseOver.bind(this);
     this.navMouseOut = this.navMouseOut.bind(this);
@@ -69,19 +70,12 @@ class Home extends Component {
             this.setState({
               navActiveIndex: index,
               web_id: item.web_id
+            }, () => {
+              // 获取分类导航数据
+              this.getHomeCategoryNavData();
             });
           }
         })
-      })
-    // 获取分类导航数据
-    getHomeCategoryNav()
-      .then(res => {
-        this.setState({
-          categoryNavListData: res.data,
-          entryType: res.data.list[0]?.classifyId
-        }, () => {
-          this.getListData();
-        });
       })
 
     // 进行scroll事件的注册，绑定一个函数，让这个函数进行监听处理
@@ -95,6 +89,19 @@ class Home extends Component {
     this.setState = () => {
       return;
     };
+  }
+
+  // 获取分类导航数据
+  getHomeCategoryNavData() {
+    getHomeCategoryNav()
+      .then(res => {
+        this.setState({
+          categoryNavListData: res.data,
+          entryType: res.data.list[0]?.classifyId
+        }, () => {
+          this.getListData();
+        });
+      })
   }
 
   // 导航变化
