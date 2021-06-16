@@ -46,6 +46,7 @@ yarn dev
 ![](./src/images/design-sketch/boiling-point.png)
 ![](./src/images/design-sketch/topic.png)
 ![](./src/images/design-sketch/brochure.png)
+![](./src/images/design-sketch/activity.png)
 ## 写在最后
 
 * 本项目仅用于学习使用，切勿用于商业用途，否则产生的法律后果与作者无关。
