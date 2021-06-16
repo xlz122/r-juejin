@@ -122,9 +122,8 @@ class Login extends Component {
               React.Message.success(res.msg);
               React.store.setUserInfo(res.data);
               localStorage.setItem('userInfo', JSON.stringify(res.data));
-              // 登录后刷新页面
-              this.props.history.replace('/');
-              React.store.setHeaderNavActive(0);
+              // 刷新页面
+              this.props.history.go(0);
             }
           })
       })
