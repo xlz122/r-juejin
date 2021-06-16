@@ -104,7 +104,7 @@ router.get(
       // 随机返回数组一项
       const n = Math.floor(Math.random() * entryList.list.length + 1) - 1;
       // 为数据项增加唯一id
-      entryList.list[n].id = (page - 1) * pageSize + (i + 1);
+      entryList.list[n].id = new Date().getTime();
       columnEntryList.push(entryList.list[n]);
     }
 
