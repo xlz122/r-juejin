@@ -33,14 +33,16 @@ module.exports = {
     "max-len": [2, { code: 120 }], // 单行代码/字符串最大长度
     // "indent": [2, 2], // 缩进2个空格
     "react/jsx-indent": [2, 2], // jsx缩进2个空格
-    "eol-last": 2, // 文件末尾强制换行
+    "eol-last": [2, "always"], // 文件末尾空行
+
     // react配置
     "react/jsx-props-no-spreading": [0], // 取消<Component {...this.props} />检查
     "react/jsx-no-bind": [0], // 取消JSX中不允许使用箭头函数和bind
     "react/jsx-filename-extension": [0, { "extensions": [".js, .jsx"] }],
     "react/destructuring-assignment": [0],
     "react/sort-comp": [2], // 强制组件方法顺序
-    "react/self-closing-comp": [2], // 防止没有children的组件的额外结束标签<Text></Text>
+    // 结束标签，组件省略闭合标签，html不省略闭合标签
+    "react/self-closing-comp": [2, { "component": true, "html": false }],
     "react-hooks/rules-of-hooks": [2], // 检查 Hook 的规则，不允许在if for里面使用
     "react-hooks/exhaustive-deps": [0] // 检查 effect 的依赖
   }

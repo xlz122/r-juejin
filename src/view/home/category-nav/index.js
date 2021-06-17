@@ -5,15 +5,19 @@ function CategoryNav(props) {
   // json数据
   const { list, timeChoice } = props.navListData;
   // 数据
-  const { navActiveIndex, timeChoiceShow, timeChoiceTitle, timeChoiceMenuShow } = props;
+  const {
+    navActiveIndex,
+    timeChoiceShow,
+    timeChoiceTitle,
+    timeChoiceMenuShow
+  } = props;
   // 事件
   const { navListChange, timeChoiceToggle, timeChoiceClick } = props;
 
   return (
     <div className="category-nav">
       <ul className="nav-list">
-        {
-          list &&
+        {list &&
           list.map((item, index) => {
             return (
               <li
@@ -29,46 +33,49 @@ function CategoryNav(props) {
               >
                 <span className="item-text">{item.title}</span>
               </li>
-            )
-          })
-        }
-        {
-          timeChoiceShow &&
+            );
+          })}
+        {timeChoiceShow && (
           <div className="time-choice">
             <div className="dropdown-toggle" onClick={timeChoiceToggle}>
               {timeChoiceTitle}
-              <i className={`icon-arrow ${timeChoiceMenuShow ? 'icon-arrow-lower' : ''}`}></i>
+              <i
+                className={`icon-arrow ${
+                  timeChoiceMenuShow ? 'icon-arrow-lower' : ''
+                }`}
+              ></i>
             </div>
-            {
-              timeChoiceMenuShow &&
+            {timeChoiceMenuShow && (
               <ul className="dropdown-menu">
                 <li
                   className="dropdown-menu-item"
-                  onClick={() => { timeChoiceClick({ timeId: 'all', time: '全部' }) }}
+                  onClick={() => {
+                    timeChoiceClick({ timeId: 'all', time: '全部' });
+                  }}
                 >
                   <span className="item-text">全部</span>
                 </li>
-                {
-                  timeChoice &&
+                {timeChoice &&
                   timeChoice.map((item, index) => {
                     return (
                       <li
                         className="dropdown-menu-item"
                         key={index + item}
-                        onClick={() => { timeChoiceClick(item, index) }}
+                        onClick={() => {
+                          timeChoiceClick(item, index);
+                        }}
                       >
                         <span className="item-text">{item.time}</span>
                       </li>
-                    )
-                  })
-                }
+                    );
+                  })}
               </ul>
-            }
+            )}
           </div>
-        }
+        )}
       </ul>
     </div>
-  )
+  );
 }
 
 export default CategoryNav;

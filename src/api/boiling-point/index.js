@@ -8,7 +8,7 @@ export const getBoilingPointPinNav = () => {
     url: '/boiling-point/pin-nav',
     methods: 'get'
   });
-}
+};
 
 /**
  * @description 获取沸点列表数据
@@ -23,4 +23,4 @@ export const getBoilingPointPinList = ({ app_id, page, pageSize }) => {
     methods: 'get',
     params
   });
-}
+};

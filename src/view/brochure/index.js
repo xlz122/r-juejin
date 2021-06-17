@@ -7,7 +7,7 @@ import Sidebar from './sidebar';
 import './index.less';
 
 // 引入导航组件
-import asyncComponent from '@router/asyncComponent.js';
+import asyncComponent from '@router/asyncComponent';
 const BooksList = asyncComponent(() => import('@view/brochure/books-list'));
 
 class Brochure extends Component {
@@ -23,7 +23,7 @@ class Brochure extends Component {
       listData: [], // 列表数据
       look: true, // 分页请求开关
       pageLoading: false // 分页时的loading
-    }
+    };
     // 导航事件
     this.navActiveChange = this.navActiveChange.bind(this);
     // 列表事件
@@ -34,25 +34,34 @@ class Brochure extends Component {
 
   componentDidMount() {
     // 动态计算当前页面高度
-    let pageHeight = document.querySelector(".brochure");
+    let pageHeight = document.querySelector('.brochure');
     if (pageHeight) {
-      pageHeight.style.minHeight = (window.innerHeight - pageHeight.offsetTop) + 'px';
+      pageHeight.style.minHeight =
+        window.innerHeight - pageHeight.offsetTop + 'px';
     }
     // 获取导航数据
     getBrochureChildNav()
       .then(res => {
         // 数据存储前进行数据修改
-        res.data.map(item => item.isShow = false);
+        res.data.map(item => (item.isShow = false));
         this.setState({ navData: res.data });
         // 导航和路由对比，获取对应id，导航选中
         res.data.forEach((item, index) => {
           if (item.link === this.props.location.pathname) {
-            this.setState({ navActiveIndex: index, ssid: item.ssid }, () => {
-              this.getListData();
-            });
+            this.setState(
+              {
+                navActiveIndex: index,
+                ssid: item.ssid
+              },
+              () => {
+                this.getListData();
+              }
+            );
           }
-        })
+        });
       })
+      .catch(() => {});
+
     // 进行scroll事件的注册，绑定一个函数，让这个函数进行监听处理
     window.addEventListener('scroll', this.bindHandleScroll);
   }
@@ -71,16 +80,19 @@ class Brochure extends Component {
     let navData = this.state.navData;
     navData.forEach((i, ind) => {
       if (index === ind) {
-        this.setState({
-          navActiveIndex: index,
-          ssid: i.ssid,
-          page: 1,
-          pageSize: 8
-        }, () => {
-          this.getListData();
-        })
+        this.setState(
+          {
+            navActiveIndex: index,
+            ssid: i.ssid,
+            page: 1,
+            pageSize: 8
+          },
+          () => {
+            this.getListData();
+          }
+        );
       }
-    })
+    });
     // 导航点击，重置分页开关
     this.setState({ look: true });
   }
@@ -99,6 +111,7 @@ class Brochure extends Component {
           listLoading: false
         });
       })
+      .catch(() => {});
   }
 
   // 页面滚动监听
@@ -137,7 +150,7 @@ class Brochure extends Component {
         })
         .catch(() => {
           this.setState({ look: true });
-        })
+        });
     }
   }
 
@@ -146,7 +159,7 @@ class Brochure extends Component {
       listLoading: this.state.listLoading,
       listData: this.state.listData,
       pageLoading: this.state.pageLoading
-    }
+    };
     return (
       <div className="brochure">
         <ChildNavBar
@@ -157,12 +170,36 @@ class Brochure extends Component {
         <div className="brochure-container">
           <div className="content">
             <Switch>
-              <Route exact={true} path="/xlz/brochure" render={props => <BooksList {...props} {...childProps} />} />
-              <Route exact={true} path="/xlz/brochure/frontend" render={props => <BooksList {...props} {...childProps} />} />
-              <Route exact={true} path="/xlz/brochure/backend" render={props => <BooksList {...props} {...childProps} />} />
-              <Route exact={true} path="/xlz/brochure/mobile" render={props => <BooksList {...props} {...childProps} />} />
-              <Route exact={true} path="/xlz/brochure/blockchain" render={props => <BooksList {...props} {...childProps} />} />
-              <Route exact={true} path="/xlz/brochure/general" render={props => <BooksList {...props} {...childProps} />} />
+              <Route
+                exact={true}
+                path="/xlz/brochure"
+                render={props => <BooksList {...props} {...childProps} />}
+              />
+              <Route
+                exact={true}
+                path="/xlz/brochure/frontend"
+                render={props => <BooksList {...props} {...childProps} />}
+              />
+              <Route
+                exact={true}
+                path="/xlz/brochure/backend"
+                render={props => <BooksList {...props} {...childProps} />}
+              />
+              <Route
+                exact={true}
+                path="/xlz/brochure/mobile"
+                render={props => <BooksList {...props} {...childProps} />}
+              />
+              <Route
+                exact={true}
+                path="/xlz/brochure/blockchain"
+                render={props => <BooksList {...props} {...childProps} />}
+              />
+              <Route
+                exact={true}
+                path="/xlz/brochure/general"
+                render={props => <BooksList {...props} {...childProps} />}
+              />
               <Redirect from="*" to="/404" />
             </Switch>
           </div>

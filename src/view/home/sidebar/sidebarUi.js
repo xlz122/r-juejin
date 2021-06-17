@@ -20,7 +20,8 @@ import './index.less';
 
 function SidebarUi(props) {
   // 数据
-  const { registerAccountValue, registerPhoneValue, registerPasswordValue } = props;
+  const { registerAccountValue, registerPhoneValue, registerPasswordValue } =
+    props;
   // 事件
   const {
     registerAccountChange,

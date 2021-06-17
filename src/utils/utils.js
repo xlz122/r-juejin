@@ -1,3 +1,4 @@
+/* eslint-disable */
 /**
  * @description 获取滚动条距离页面底部的高度
  * @param { MouseEvent } event 滚动条事件对象

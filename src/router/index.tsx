@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import { useHistory } from 'react-router-dom';
 import App from '@/App';
 
-function AppRouter() {
+function AppRouter(): React.ReactElement {
   const history = useHistory();
   const pathname = useRef();
 

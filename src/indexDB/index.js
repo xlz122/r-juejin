@@ -10,20 +10,20 @@ export function createDB(dbName, objectStoreName, version) {
   // 数据库存在则打开，否则创建
   let request = indexedDB.open(dbName, version);
   // 请求数据库成功的回调函数
-  request.onsuccess = function (success) { }
+  request.onsuccess = function () {};
   // 请求数据库失败的回调函数
-  request.onerror = function (err) {
+  request.onerror = function () {
     React.Message.error('打开数据库失败');
-  }
+  };
   // 数据库版本更新时的回调函数
   request.onupgradeneeded = function (event) {
     let db = event.target.result;
     // 创建信息对象存储空间,指定keyPath选项为Id(即主键为Id)
     db.createObjectStore(objectStoreName, {
-      keyPath: "id",
+      keyPath: 'id',
       autoIncrement: true
     });
-  }
+  };
 }
 
 /**
@@ -34,17 +34,17 @@ export function createDB(dbName, objectStoreName, version) {
  */
 export function insertData(dbName, objectStoreName, params) {
   // 数据库存在则打开，否则创建
-  let request = indexedDB.open(dbName); 
+  let request = indexedDB.open(dbName);
 
   // 创建数据库表
   request.onupgradeneeded = function (event) {
     let db = event.target.result;
     // 创建信息对象存储空间,指定keyPath选项为Id(即主键为Id)
     db.createObjectStore(objectStoreName, {
-      keyPath: "id",
+      keyPath: 'id',
       autoIncrement: true
     });
-  }
+  };
 
   //数据库打开成功的回调函数
   request.onsuccess = function (event) {
@@ -52,23 +52,23 @@ export function insertData(dbName, objectStoreName, params) {
     let db = event.target.result;
 
     // 创建事务
-    let transaction = db.transaction(objectStoreName, "readwrite")
-    request = transaction.objectStore(objectStoreName).add(params)
+    let transaction = db.transaction(objectStoreName, 'readwrite');
+    request = transaction.objectStore(objectStoreName).add(params);
 
-    request.onsuccess = function (event) {}
+    request.onsuccess = function () {};
 
-    request.onerror = function (event) {
-      React.Message.error("数据插入失败")
-    }
+    request.onerror = function () {
+      React.Message.error('数据插入失败');
+    };
 
     transaction.oncomplete = function () {
       // console.info("事务完成!")
-    }
+    };
 
     transaction.onerror = function () {
       // console.error("事务未执行完成")
-    }
-  }
+    };
+  };
 }
 
 /**
@@ -86,10 +86,10 @@ export function getAllData(dbName, objectStoreName, callback) {
     let db = event.target.result;
     // 创建信息对象存储空间,指定keyPath选项为Id(即主键为Id)
     db.createObjectStore(objectStoreName, {
-      keyPath: "id",
+      keyPath: 'id',
       autoIncrement: true
-    })
-  }
+    });
+  };
 
   // 请求打开数据库的回调函数
   request.onsuccess = function (success) {
@@ -109,14 +109,14 @@ export function getAllData(dbName, objectStoreName, callback) {
         if (callback && data) {
           callback(data);
         } else {
-          callback('未查询到数据!')
+          callback('未查询到数据!');
         }
       }
-    }
+    };
     cursor.onerror = function () {
       React.Message.error('查询数据库失败');
     };
-  }
+  };
 }
 
 /**
@@ -135,10 +135,10 @@ export function updateData(dbName, objectStoreName, newsData, callback) {
     let db = event.target.result;
     // 创建信息对象存储空间,指定keyPath选项为Id(即主键为Id)
     db.createObjectStore(objectStoreName, {
-      keyPath: "id",
+      keyPath: 'id',
       autoIncrement: true
-    })
-  }
+    });
+  };
 
   // 请求打开数据库的回调函数
   request.onsuccess = function (success) {
@@ -163,11 +163,11 @@ export function updateData(dbName, objectStoreName, newsData, callback) {
           callback();
         }
       }
-    }
+    };
     cursor.onerror = function () {
       React.Message.error('数据更新失败');
     };
-  }
+  };
 }
 
 /**
@@ -190,11 +190,12 @@ export function clearAllData(dbName, objectStoreName) {
     let clearResult = objectStore.clear();
     // 清除成功的回调函数
     clearResult.onsuccess = function (e) {
-      console.log('表名[' + objectStoreName + ']数据清除成功,状态为：' + e.isTrusted);
-    }
-  }
+      console.log(
+        '表名[' + objectStoreName + ']数据清除成功,状态为：' + e.isTrusted
+      );
+    };
+  };
 }
-
 
 /**
  * @description 关闭数据库
@@ -214,10 +215,10 @@ export function deleteDB(dbName) {
     let request = indexedDB.deleteDatabase(dbName);
     request.onsuccess = function () {
       console.log('删除[' + dbName + ']数据库成功!!!!');
-    }
+    };
     request.onerror = function () {
       console.log('删除[' + dbName + ']数据库失败!!!!');
-    }
+    };
   } catch (e) {
     console.log('删除[' + dbName + ']数据库出现错误，' + e.getMessage);
   }

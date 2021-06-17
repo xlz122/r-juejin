@@ -12,7 +12,7 @@ export const accountLogin = ({ username, password }) => {
     method: 'post',
     data
   });
-}
+};
 
 /**
  * @description 账号注册
@@ -27,7 +27,7 @@ export const accountRegister = ({ username, phone, password }) => {
     method: 'post',
     data
   });
-}
+};
 
 /**
  * @description 退出登录
@@ -37,4 +37,4 @@ export const accountLogout = () => {
     url: '/user/logout',
     method: 'post'
   });
-}
+};

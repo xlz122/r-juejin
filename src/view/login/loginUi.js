@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import './index.less';
 // 顶部河豚
 import panfishImg1 from '@images/login/panfish1.png';

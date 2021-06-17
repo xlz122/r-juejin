@@ -82,14 +82,17 @@ declare interface Window {
 
 // 给React增加属性
 declare namespace React {
-  let store: unknown;
+  type StoreType = {
+    userInfo: unknown;
+  };
+  let store: StoreType;
 
   type MessageType = {
     info: (title: string) => void;
     wraning: (title: string) => void;
     success: (title: string) => void;
     error: (title: string) => void;
-  }
+  };
 
   let Message: MessageType;
 }

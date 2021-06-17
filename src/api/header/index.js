@@ -8,4 +8,4 @@ export const getHeaderNav = () => {
     url: '/header/nav-list',
     method: 'get'
   });
-}
+};

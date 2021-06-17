@@ -8,7 +8,7 @@ export const getActivityChildNav = () => {
     url: '/activity/child-nav-bar',
     methods: 'get'
   });
-}
+};
 
 /**
  * @description 获取活动列表数据
@@ -23,4 +23,4 @@ export const getActiviryList = ({ city_id, page, pageSize }) => {
     methods: 'get',
     params
   });
-}
+};

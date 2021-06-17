@@ -12,7 +12,7 @@ import SidebarUi from './sidebar';
 import './index.less';
 
 // 引入列表组件
-import asyncComponent from '@router/asyncComponent.js';
+import asyncComponent from '@router/asyncComponent';
 const ListContainer = asyncComponent(() => import('@view/home/list-container'));
 
 class Home extends Component {

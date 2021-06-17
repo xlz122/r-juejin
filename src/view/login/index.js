@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { accountLogin, accountRegister } from '@api/user';
 import { createDB, insertData, getAllData } from '@indexDB';
@@ -275,7 +275,7 @@ class Login extends Component {
 
   render() {
     return (
-      <Fragment>
+      <>
         <LoginUi
           isLogin={this.state.isLogin}
           panfishImgType={this.state.panfishImgType}
@@ -299,7 +299,7 @@ class Login extends Component {
           register={this.register}
           forgetPassword={this.forgetPassword}
         />
-      </Fragment>
+      </>
     );
   }
 }

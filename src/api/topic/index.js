@@ -8,4 +8,4 @@ export const getTopicList = () => {
     url: '/topic/topic-list',
     methods: 'get'
   });
-}
+};

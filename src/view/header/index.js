@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { accountLogout } from '@api/user/index.js';
 import { getHeaderNav } from '@api/header/index.js';
 import HeaderUi from './headerUi.js';
@@ -14,7 +14,7 @@ class Header extends Component {
       loginType: 'login', // 登录/注册
       loginStatus: false, // 登录弹框
       userDropdownShow: false // 用户设置
-    }
+    };
     // 搜索
     this.searchInputFocus = this.searchInputFocus.bind(this);
     this.searchInputBlur = this.searchInputBlur.bind(this);
@@ -40,6 +40,7 @@ class Header extends Component {
       .then(res => {
         this.setState({ navListData: res.data });
       })
+      .catch(() => {});
   }
 
   componentWillUnmount() {
@@ -137,7 +138,7 @@ class Header extends Component {
 
   render() {
     return (
-      <Fragment>
+      <>
         <HeaderUi
           navListData={this.state.navListData}
           searchIsFocus={this.state.searchIsFocus}
@@ -154,14 +155,10 @@ class Header extends Component {
           userDropdownShow={this.state.userDropdownShow}
           logout={this.logout}
         />
-        {
-          this.state.loginStatus &&
-          <Login
-            loginType={this.state.loginType}
-            close={this.loginClose}
-          />
-        }
-      </Fragment>
+        {this.state.loginStatus && (
+          <Login loginType={this.state.loginType} close={this.loginClose} />
+        )}
+      </>
     );
   }
 }

@@ -1,18 +1,22 @@
 import React from 'react';
-import likeIcon from '@images/home/home-content-link.png';
+// import likeIcon from '@images/home/home-content-link.png';
 import './index.less';
 
 function EntryListUi(props) {
   // 数据
   const { adEntryList, columnEntryList } = props.entryList;
   // 事件
-  const { adEntryItemClick, columnEntryItemClick, likeCountClick, commentsCountClick } = props;
+  const {
+    adEntryItemClick,
+    columnEntryItemClick,
+    likeCountClick,
+    commentsCountClick
+  } = props;
 
   return (
     <div className="entry-list">
       <ul className="ad-entry-list">
-        {
-          adEntryList &&
+        {adEntryList &&
           adEntryList.map((item, index) => {
             return (
               <li
@@ -23,15 +27,9 @@ function EntryListUi(props) {
                 <div className="item-link">
                   <div className="info-box">
                     <ul className="meta-row">
-                      <li className="item tag">
-                        广告
-                      </li>
-                      <li className="item">
-                        {item.username}
-                      </li>
-                      <li className="item last-item">
-                        {item.time}
-                      </li>
+                      <li className="item tag">广告</li>
+                      <li className="item">{item.username}</li>
+                      <li className="item last-item">{item.time}</li>
                     </ul>
                     <div className="info-row">
                       <div className="title">{item.title}</div>
@@ -43,13 +41,11 @@ function EntryListUi(props) {
                   </div>
                 </div>
               </li>
-            )
-          })
-        }
+            );
+          })}
       </ul>
       <ul className="column-entry-list">
-        {
-          columnEntryList &&
+        {columnEntryList &&
           columnEntryList.map((item, index) => {
             return (
               <li
@@ -60,18 +56,10 @@ function EntryListUi(props) {
                 <div className="item-link">
                   <div className="info-box">
                     <ul className="meta-row">
-                      <li className="item column">
-                        专栏
-                      </li>
-                      <li className="item">
-                        {item.username}
-                      </li>
-                      <li className="item">
-                        {item.time}
-                      </li>
-                      <li className="item last-item">
-                        {item.name}
-                      </li>
+                      <li className="item column">专栏</li>
+                      <li className="item">{item.username}</li>
+                      <li className="item">{item.time}</li>
+                      <li className="item last-item">{item.name}</li>
                     </ul>
                     <div className="info-row">
                       <div className="title link">{item.title}</div>
@@ -120,19 +108,17 @@ function EntryListUi(props) {
                     </ul>
                   </div>
                   <div className="info-img">
-                    {
-                      item.imgUrl &&
+                    {item.imgUrl && (
                       <img className="img" src={item.imgUrl} alt="column" />
-                    }
+                    )}
                   </div>
                 </div>
               </li>
-            )
-          })
-        }
+            );
+          })}
       </ul>
     </div>
-  )
+  );
 }
 
 export default EntryListUi;

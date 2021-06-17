@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React from 'react';
 import './index.less';
 
@@ -64,7 +65,7 @@ function Sidebar() {
         <span className="pin-guide-text">如何玩转沸点</span>
       </div>
     </>
-  )
+  );
 }
 
 export default Sidebar;

@@ -1,19 +1,31 @@
 import lodash from 'lodash';
-import { USER_INFO, HEADER_NAV_LIST } from './actionTypes.js';
+import { USER_INFO, HEADER_NAV_LIST } from './actionTypes';
+
+export type ReduxState = {
+  userInfo: unknown;
+  headerNavActiveIndex: number | string;
+};
+
+type ReduxAction = {
+  type: string;
+  [index: string]: unknown;
+};
+
+export type ReduxDispatch = (action: ReduxAction) => void;
 
 // 本地存储容错处理
-function faultTolerant(name) {
+function faultTolerant(name: string) {
   if (localStorage.getItem(name)) {
-    return JSON.parse(localStorage.getItem(name));
+    return JSON.parse(localStorage.getItem(name) as string);
   }
 }
 
-const defaultState = {
+const defaultState: ReduxState = {
   userInfo: faultTolerant('userInfo') || {}, // 用户信息
   headerNavActiveIndex: localStorage.getItem('headerNavActiveIndex') || 0 // 头部导航栏下标
 };
 
-const reducer = (state = defaultState, action) => {
+const reducer = (state: ReduxState = defaultState, action: ReduxAction) => {
   // 设置用户信息
   if (action.type === USER_INFO) {
     let cloneState = lodash.cloneDeep(state);
@@ -29,6 +41,6 @@ const reducer = (state = defaultState, action) => {
   }
 
   return state;
-}
+};
 
 export default reducer;

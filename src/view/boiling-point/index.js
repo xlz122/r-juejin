@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
-import { getBoilingPointPinNav, getBoilingPointPinList } from '@api/boiling-point';
+import {
+  getBoilingPointPinNav,
+  getBoilingPointPinList
+} from '@api/boiling-point';
 import { getPageBottomHeight } from '@/utils/utils';
 import PinNav from './pin-nav';
 import Sidebar from './sidebar';
 import './index.less';
 
 // 引入列表组件
-import asyncComponent from '@router/asyncComponent.js';
+import asyncComponent from '@router/asyncComponent';
 const PinList = asyncComponent(() => import('./pin-list'));
 
 class BoilingPoint extends Component {
@@ -23,7 +26,7 @@ class BoilingPoint extends Component {
       listData: [], // 列表数据
       look: true, // 分页请求开关
       pageLoading: false // 分页时的loading
-    }
+    };
     // 导航事件
     this.navActiveChange = this.navActiveChange.bind(this);
     // 列表事件
@@ -36,7 +39,8 @@ class BoilingPoint extends Component {
     // 动态计算当前页面高度
     let pageHeight = document.querySelector('.boiling-point');
     if (pageHeight) {
-      pageHeight.style.minHeight = (window.innerHeight - pageHeight.offsetTop) + 'px';
+      pageHeight.style.minHeight =
+        window.innerHeight - pageHeight.offsetTop + 'px';
     }
     // 获取左侧导航数据
     getBoilingPointPinNav()
@@ -45,12 +49,19 @@ class BoilingPoint extends Component {
         // 导航和路由对比，获取对应id，导航选中
         res.data.forEach((item, index) => {
           if (item.link === this.props.location.pathname) {
-            this.setState({ navActiveIndex: index, app_id: item.app_id }, () => {
-              this.getListData();
-            });
+            this.setState(
+              {
+                navActiveIndex: index,
+                app_id: item.app_id
+              },
+              () => {
+                this.getListData();
+              }
+            );
           }
-        })
+        });
       })
+      .catch(() => {});
     // 进行scroll事件的注册，绑定一个函数，让这个函数进行监听处理
     window.addEventListener('scroll', this.bindHandleScroll);
   }
@@ -69,15 +80,18 @@ class BoilingPoint extends Component {
     let navData = this.state.navData;
     navData.forEach((i, ind) => {
       if (index === ind) {
-        this.setState({
-          navActiveIndex: index,
-          app_id: i.app_id,
-          page: 1
-        }, () => {
-          this.getListData();
-        })
+        this.setState(
+          {
+            navActiveIndex: index,
+            app_id: i.app_id,
+            page: 1
+          },
+          () => {
+            this.getListData();
+          }
+        );
       }
-    })
+    });
   }
 
   // 获取列表数据
@@ -94,6 +108,7 @@ class BoilingPoint extends Component {
           listLoading: false
         });
       })
+      .catch(() => {});
   }
 
   // 页面滚动监听
@@ -127,7 +142,7 @@ class BoilingPoint extends Component {
         })
         .catch(() => {
           this.setState({ look: true });
-        })
+        });
     }
   }
 
@@ -136,7 +151,7 @@ class BoilingPoint extends Component {
       listLoading: this.state.listLoading,
       listData: this.state.listData,
       pageLoading: this.state.pageLoading
-    }
+    };
     return (
       <div className="boiling-point">
         <div className="boiling-point-container">
@@ -149,15 +164,51 @@ class BoilingPoint extends Component {
           </div>
           <div className="content">
             <Switch>
-              <Route exact={true} path="/xlz/boiling-point" render={props => <PinList {...props} {...childProps} />} />
-              <Route exact={true} path="/xlz/boiling-point/hot" render={props => <PinList {...props} {...childProps} />} />
-              <Route exact={true} path="/xlz/boiling-point/following" render={props => <PinList {...props} {...childProps} />} />
-              <Route exact={true} path="/xlz/boiling-point/open-source" render={props => <PinList {...props} {...childProps} />} />
-              <Route exact={true} path="/xlz/boiling-point/recruit" render={props => <PinList {...props} {...childProps} />} />
-              <Route exact={true} path="/xlz/boiling-point/blind-date" render={props => <PinList {...props} {...childProps} />} />
-              <Route exact={true} path="/xlz/boiling-point/idle" render={props => <PinList {...props} {...childProps} />} />
-              <Route exact={true} path="/xlz/boiling-point/amway" render={props => <PinList {...props} {...childProps} />} />
-              <Route exact={true} path="/xlz/boiling-point/tool" render={props => <PinList {...props} {...childProps} />} />
+              <Route
+                exact={true}
+                path="/xlz/boiling-point"
+                render={props => <PinList {...props} {...childProps} />}
+              />
+              <Route
+                exact={true}
+                path="/xlz/boiling-point/hot"
+                render={props => <PinList {...props} {...childProps} />}
+              />
+              <Route
+                exact={true}
+                path="/xlz/boiling-point/following"
+                render={props => <PinList {...props} {...childProps} />}
+              />
+              <Route
+                exact={true}
+                path="/xlz/boiling-point/open-source"
+                render={props => <PinList {...props} {...childProps} />}
+              />
+              <Route
+                exact={true}
+                path="/xlz/boiling-point/recruit"
+                render={props => <PinList {...props} {...childProps} />}
+              />
+              <Route
+                exact={true}
+                path="/xlz/boiling-point/blind-date"
+                render={props => <PinList {...props} {...childProps} />}
+              />
+              <Route
+                exact={true}
+                path="/xlz/boiling-point/idle"
+                render={props => <PinList {...props} {...childProps} />}
+              />
+              <Route
+                exact={true}
+                path="/xlz/boiling-point/amway"
+                render={props => <PinList {...props} {...childProps} />}
+              />
+              <Route
+                exact={true}
+                path="/xlz/boiling-point/tool"
+                render={props => <PinList {...props} {...childProps} />}
+              />
               <Redirect from="*" to="/404" />
             </Switch>
           </div>

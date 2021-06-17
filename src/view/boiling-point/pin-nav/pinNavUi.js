@@ -7,11 +7,9 @@ function PinNavUi(props) {
   const { navData, navActiveIndex } = props;
   // 事件
   const { navActiveChange } = props;
-  
   return (
     <ul className="pin-nav-list">
-      {
-        navData &&
+      {navData &&
         navData.map((item, index) => {
           return (
             <li
@@ -25,13 +23,14 @@ function PinNavUi(props) {
                 navActiveChange(index);
               }}
             >
-              <Link className="item-link" to={item.link}>{item.title}</Link>
+              <Link className="item-link" to={item.link}>
+                {item.title}
+              </Link>
             </li>
-          )
-        })
-      }
+          );
+        })}
     </ul>
-  )
+  );
 }
 
 export default PinNavUi;

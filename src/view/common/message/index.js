@@ -9,7 +9,7 @@ class Message extends Component {
     this.state = {
       listData: [],
       time: 3000
-    }
+    };
     // 改成全局方法，this被改变
     self = this;
     // 设置class
@@ -85,8 +85,7 @@ class Message extends Component {
     const { listData } = this.state;
     return (
       <ul className="message-list">
-        {
-          listData &&
+        {listData &&
           listData.map((item, index) => {
             return (
               <li
@@ -95,9 +94,8 @@ class Message extends Component {
               >
                 <span className="text">{item.title}</span>
               </li>
-            )
-          })
-        }
+            );
+          })}
       </ul>
     );
   }

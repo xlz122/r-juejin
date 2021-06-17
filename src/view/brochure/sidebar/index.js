@@ -10,7 +10,9 @@ function Sidebar() {
     <div className="sticky-section">
       <div className="slogan">
         <div className="title">掘金小册是什么？</div>
-        <div className="desc">一个小篇幅、高浓度、成体系、有收益的技术学习平台</div>
+        <div className="desc">
+          一个小篇幅、高浓度、成体系、有收益的技术学习平台
+        </div>
       </div>
       <div className="wechat-qr">
         <div className="title">关注公众号 领取优惠码</div>
@@ -34,7 +36,7 @@ function Sidebar() {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 export default Sidebar;

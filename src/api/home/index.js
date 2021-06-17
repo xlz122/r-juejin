@@ -8,7 +8,7 @@ export const getHomeChildNav = () => {
     url: '/home/child-nav-bar',
     methods: 'get'
   });
-}
+};
 
 /**
  * @description 获取首页 - 分类导航数据
@@ -18,7 +18,7 @@ export const getHomeCategoryNav = () => {
     url: '/home/category-nav-list',
     method: 'get'
   });
-}
+};
 
 /**
  * @description 获取首页 - 条目列表数据
@@ -29,11 +29,18 @@ export const getHomeCategoryNav = () => {
  * @param { Number } entryType 分类导航id
  * @param { Number | String } entryTime 分类导航时间范围id,全部传all
  */
-export const getHomeEntryList = ({ web_id, web_c_id, page, pageSize, entryType, entryTime }) => {
+export const getHomeEntryList = ({
+  web_id,
+  web_c_id,
+  page,
+  pageSize,
+  entryType,
+  entryTime
+}) => {
   const params = { web_id, web_c_id, page, pageSize, entryType, entryTime };
   return axios.request({
     url: '/home/entry-list',
     method: 'get',
     params
   });
-}
+};

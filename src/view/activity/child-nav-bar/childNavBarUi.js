@@ -11,28 +11,28 @@ function ChildNavBarUi(props) {
   return (
     <div className="activity-child-nav">
       <ul className="nav-list">
-        {
-          navData?.banner_citys?.map((item, index) => {
-            return (
-              <li
-                className={`li-item ${index === parseInt(navActiveIndex) ? 'li-active-item ' : ''}`}
-                key={index + item}
+        {navData?.banner_citys?.map((item, index) => {
+          return (
+            <li
+              className={`li-item ${
+                index === parseInt(navActiveIndex) ? 'li-active-item ' : ''
+              }`}
+              key={index + item}
+            >
+              <Link
+                className="item-link"
+                to={item.link}
+                replace
+                onClick={() => {
+                  navActiveChange(index);
+                }}
               >
-                <Link
-                  className="item-link"
-                  to={item.link}
-                  replace
-                  onClick={() => {
-                    navActiveChange(index);
-                  }}
-                >
-                  {item.title}
-                </Link>
-                <span className="auxiliary"></span>
-              </li>
-            );
-          })
-        }
+                {item.title}
+              </Link>
+              <span className="auxiliary"></span>
+            </li>
+          );
+        })}
       </ul>
     </div>
   );

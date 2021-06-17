@@ -6,8 +6,10 @@ import ChildNavBar from './child-nav-bar';
 import './index.less';
 
 // 引入导航组件
-import asyncComponent from '@router/asyncComponent.js';
-const ActivityList = asyncComponent(() => import('@view/activity/activity-list'));
+import asyncComponent from '@router/asyncComponent';
+const ActivityList = asyncComponent(() =>
+  import('@view/activity/activity-list')
+);
 
 class Activity extends Component {
   constructor(props) {
@@ -22,7 +24,7 @@ class Activity extends Component {
       listData: [], // 列表数据
       look: true, // 分页请求开关
       pageLoading: false // 分页时的loading
-    }
+    };
     // 导航事件
     this.navActiveChange = this.navActiveChange.bind(this);
     // 列表事件
@@ -33,25 +35,33 @@ class Activity extends Component {
 
   componentDidMount() {
     // 动态计算当前页面高度
-    let pageHeight = document.querySelector(".activity");
+    let pageHeight = document.querySelector('.activity');
     if (pageHeight) {
-      pageHeight.style.minHeight = (window.innerHeight - pageHeight.offsetTop) + 'px';
+      pageHeight.style.minHeight =
+        window.innerHeight - pageHeight.offsetTop + 'px';
     }
     // 获取导航数据
     getActivityChildNav()
       .then(res => {
         // 数据存储前进行数据修改
-        res.data.banner_citys.map(item => item.isShow = false);
+        res.data.banner_citys.map(item => (item.isShow = false));
         this.setState({ navData: res.data });
         // 导航和路由对比，获取对应id，导航选中
         res.data.banner_citys.forEach((item, index) => {
           if (item.link === this.props.location.pathname) {
-            this.setState({ navActiveIndex: index, city_id: item.city_id }, () => {
-              this.getListData();
-            });
+            this.setState(
+              {
+                navActiveIndex: index,
+                city_id: item.city_id
+              },
+              () => {
+                this.getListData();
+              }
+            );
           }
-        })
+        });
       })
+      .catch(() => {});
     // 进行scroll事件的注册，绑定一个函数，让这个函数进行监听处理
     window.addEventListener('scroll', this.bindHandleScroll);
   }
@@ -70,16 +80,19 @@ class Activity extends Component {
     let navData = this.state.navData;
     navData.banner_citys.forEach((i, ind) => {
       if (index === ind) {
-        this.setState({
-          navActiveIndex: index,
-          city_id: i.city_id,
-          page: 1,
-          pageSize: 8
-        }, () => {
-          this.getListData();
-        })
+        this.setState(
+          {
+            navActiveIndex: index,
+            city_id: i.city_id,
+            page: 1,
+            pageSize: 8
+          },
+          () => {
+            this.getListData();
+          }
+        );
       }
-    })
+    });
     // 导航点击，重置分页开关
     this.setState({ look: true });
   }
@@ -108,6 +121,7 @@ class Activity extends Component {
           });
         }
       })
+      .catch(() => {});
   }
 
   // 页面滚动监听
@@ -153,7 +167,7 @@ class Activity extends Component {
         })
         .catch(() => {
           this.setState({ look: true });
-        })
+        });
     }
   }
 
@@ -162,7 +176,7 @@ class Activity extends Component {
       listLoading: this.state.listLoading,
       listData: this.state.listData,
       pageLoading: this.state.pageLoading
-    }
+    };
     return (
       <div className="activity">
         <ChildNavBar
@@ -173,12 +187,36 @@ class Activity extends Component {
         <div className="activity-container">
           <div className="content">
             <Switch>
-              <Route exact={true} path="/xlz/activity" render={props => <ActivityList {...props} {...childProps} />} />
-              <Route exact={true} path="/xlz/activity/beijing" render={props => <ActivityList {...props} {...childProps} />} />
-              <Route exact={true} path="/xlz/activity/shanghai" render={props => <ActivityList {...props} {...childProps} />} />
-              <Route exact={true} path="/xlz/activity/guangzhou" render={props => <ActivityList {...props} {...childProps} />} />
-              <Route exact={true} path="/xlz/activity/shenzhen" render={props => <ActivityList {...props} {...childProps} />} />
-              <Route exact={true} path="/xlz/activity/hangzhou" render={props => <ActivityList {...props} {...childProps} />} />
+              <Route
+                exact={true}
+                path="/xlz/activity"
+                render={props => <ActivityList {...props} {...childProps} />}
+              />
+              <Route
+                exact={true}
+                path="/xlz/activity/beijing"
+                render={props => <ActivityList {...props} {...childProps} />}
+              />
+              <Route
+                exact={true}
+                path="/xlz/activity/shanghai"
+                render={props => <ActivityList {...props} {...childProps} />}
+              />
+              <Route
+                exact={true}
+                path="/xlz/activity/guangzhou"
+                render={props => <ActivityList {...props} {...childProps} />}
+              />
+              <Route
+                exact={true}
+                path="/xlz/activity/shenzhen"
+                render={props => <ActivityList {...props} {...childProps} />}
+              />
+              <Route
+                exact={true}
+                path="/xlz/activity/hangzhou"
+                render={props => <ActivityList {...props} {...childProps} />}
+              />
               <Redirect from="*" to="/404" />
             </Switch>
           </div>

@@ -8,7 +8,7 @@ export const getBrochureChildNav = () => {
     url: '/brochure/child-nav-bar',
     methods: 'get'
   });
-}
+};
 
 /**
  * @description 获取小册数据列表数据
@@ -23,4 +23,4 @@ export const getBrochureBooksList = ({ ssid, page, pageSize }) => {
     methods: 'get',
     params
   });
-}
+};

@@ -12,7 +12,6 @@ import articleIcon from '@images/header/article-icon.svg';
 import ArticleUi from '@view/header/article';
 import './index.less';
 
-
 function HeaderUi(props) {
   // 数据
   const {
@@ -27,7 +26,13 @@ function HeaderUi(props) {
     userDropdownShow
   } = props;
   // 事件
-  const { searchIsFocus, searchInputFocus, searchInputBlur, userDropdown, logout } = props;
+  const {
+    searchIsFocus,
+    searchInputFocus,
+    searchInputBlur,
+    userDropdown,
+    logout
+  } = props;
   // redux传递
   const { headerNavActiveIndex, navListChange } = props;
 
@@ -38,26 +43,33 @@ function HeaderUi(props) {
         <span className="auxiliary"></span>
       </Link>
       <ul className="nav-list">
-        {
-          navListData.map((item, index) => {
-            return (
-              <li
-                className={`
-                  li-item
-                  ${index === parseInt(headerNavActiveIndex) ? 'li-active-item ' : ''}
-                `}
-                key={index + item}
-                onClick={() => { navListChange(index) }}
-              >
-                <Link className="item-link" to={item.link} replace>{item.title}</Link>
-                <span className="auxiliary"></span>
-              </li>
-            );
-          })
-        }
+        {navListData.map((item, index) => {
+          return (
+            <li
+              className={`li-item ${
+                index === parseInt(headerNavActiveIndex)
+                  ? 'li-active-item '
+                  : ''
+              }`}
+              key={index + item}
+              onClick={() => {
+                navListChange(index);
+              }}
+            >
+              <Link className="item-link" to={item.link} replace>
+                {item.title}
+              </Link>
+              <span className="auxiliary"></span>
+            </li>
+          );
+        })}
       </ul>
       <div className="nav-search">
-        <div className={`search-container ${searchIsFocus ? 'search-active-container' : ''}`}>
+        <div
+          className={`search-container ${
+            searchIsFocus ? 'search-active-container' : ''
+          }`}
+        >
           <input
             className="search-input"
             onFocus={searchInputFocus}
@@ -75,29 +87,28 @@ function HeaderUi(props) {
       <div className="sidebar">
         <div className="article">
           <img className="artile-img" src={articleIcon} alt="article" />
-          <span className="text" onClick={articleShow}>写文章</span>
-          {
-            articleStatus &&
-            <ArticleUi
-              panelClick={panelClick}
-              articleStart={articleStart}
-            />
-          }
+          <span className="text" onClick={articleShow}>
+            写文章
+          </span>
+          {articleStatus && (
+            <ArticleUi panelClick={panelClick} articleStart={articleStart} />
+          )}
         </div>
-        {
-          !props.userInfo.token &&
+        {!props.userInfo.token && (
           <div className="auth">
-            <span className="text login-text" onClick={loginShow}>登录</span>
-            <span className="text" onClick={registerShow}>注册</span>
+            <span className="text login-text" onClick={loginShow}>
+              登录
+            </span>
+            <span className="text" onClick={registerShow}>
+              注册
+            </span>
             <p>{React.store.userInfo.token}</p>
           </div>
-        }
-        {
-          props.userInfo.token &&
+        )}
+        {props.userInfo.token && (
           <div className="avatar" onClick={userDropdown}>
             <img className="img-avatar" src={props.userInfo.avatarUrl} alt="" />
-            {
-              userDropdownShow &&
+            {userDropdownShow && (
               <div className="user-dropdown-list" onClick={panelClick}>
                 <div className="nav-menu-item-group">
                   <div className="item-group">
@@ -143,9 +154,9 @@ function HeaderUi(props) {
                   </div>
                 </div>
               </div>
-            }
+            )}
           </div>
-        }
+        )}
       </div>
     </div>
   );
@@ -155,8 +166,8 @@ const mapStateToProps = state => {
   return {
     userInfo: state.userInfo,
     headerNavActiveIndex: state.headerNavActiveIndex
-  }
-}
+  };
+};
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -166,7 +177,7 @@ const mapDispatchToProps = dispatch => {
       const action = headerNavAction(index);
       dispatch(action);
     }
-  }
-}
+  };
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(HeaderUi);
