@@ -16,7 +16,7 @@ class Login extends Component {
       registerAccountValue: '', // 注册账号value
       registerPhoneValue: '', // 注册手机号value
       registerPasswordValue: '' // 注册密码value
-    }
+    };
 
     // 登录/注册切换
     this.logonHandover = this.logonHandover.bind(this);
@@ -47,15 +47,15 @@ class Login extends Component {
     if (props.loginType === 'login' && curState.isInit) {
       return {
         isLogin: true
-      }
+      };
     } else if (props.loginType === 'register' && curState.isInit) {
       return {
         isLogin: false
-      }
+      };
     } else if (props.loginType === 'register' && curState.isLogin) {
       return {
         isLogin: true
-      }
+      };
     } else {
       return null;
     }
@@ -126,6 +126,7 @@ class Login extends Component {
               this.props.history.go(0);
             }
           })
+          .catch(() => {});
       })
       .catch(err => {
         React.Message.error(err);
@@ -133,10 +134,7 @@ class Login extends Component {
   }
 
   // 本地查询
-  localLogin({
-    username,
-    password
-  }) {
+  localLogin({ username, password }) {
     return new Promise((resolve, reject) => {
       // 数据校验
       if (!username) {
@@ -163,8 +161,8 @@ class Login extends Component {
         } else {
           reject('该账号没有被注册！');
         }
-      })
-    })
+      });
+    });
   }
 
   // 注册账号
@@ -208,6 +206,7 @@ class Login extends Component {
               this.props.close();
             }
           })
+          .catch(() => {});
       })
       .catch(err => {
         React.Message.error(err);
@@ -215,11 +214,7 @@ class Login extends Component {
   }
 
   // 本地注册
-  localRegister({
-    username,
-    phone,
-    password
-  }) {
+  localRegister({ username, phone, password }) {
     return new Promise((resolve, reject) => {
       // 数据校验
       let reg = /^[1][3,4,5,7,8,9][0-9]{9}$/;
@@ -237,9 +232,16 @@ class Login extends Component {
         return false;
       }
 
-      let indexedDB = window.indexedDB || window.webkitIndexedDB || window.mozIndexedDB || window.msIndexedDB;
+      let indexedDB =
+        window.indexedDB ||
+        window.webkitIndexedDB ||
+        window.mozIndexedDB ||
+        window.msIndexedDB;
+
       if (!indexedDB) {
-        throw new Error('当前浏览器不支持 indexDB 数据库, 请更换高级浏览器！！！');
+        throw new Error(
+          '当前浏览器不支持 indexDB 数据库, 请更换高级浏览器！！！'
+        );
       } else {
         createDB('juejinDB', 'user', 1);
         // 进行数据查询
@@ -261,9 +263,9 @@ class Login extends Component {
               resolve();
             }
           }
-        })
+        });
       }
-    })
+    });
   }
 
   // 忘记密码

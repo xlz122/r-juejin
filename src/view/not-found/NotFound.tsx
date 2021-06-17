@@ -3,10 +3,10 @@ import { useHistory } from 'react-router-dom';
 import { Button, Result } from 'antd';
 import './not-found.less';
 
-function NotFound() {
+function NotFound(): React.ReactElement {
   const history = useHistory();
 
-  const goHome = () => {
+  const goHome = (): void => {
     history.push('/xlz/home');
   };
 
@@ -16,11 +16,9 @@ function NotFound() {
       title="404"
       subTitle="对不起，您访问的页面不存在。"
       extra={
-        (
-          <Button type="primary" onClick={goHome}>
-            返回首页
-          </Button>
-        )
+        <Button type="primary" onClick={goHome}>
+          返回首页
+        </Button>
       }
     />
   );

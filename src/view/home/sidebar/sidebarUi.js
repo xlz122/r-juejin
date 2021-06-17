@@ -22,20 +22,20 @@ function SidebarUi(props) {
   // 数据
   const { registerAccountValue, registerPhoneValue, registerPasswordValue } = props;
   // 事件
-  const { registerAccountChange, registerPhoneChange, registerPasswordChange, register } = props;
-  
+  const {
+    registerAccountChange,
+    registerPhoneChange,
+    registerPasswordChange,
+    register
+  } = props;
+
   return (
     <div className="sidebar-container">
       {/* 注册部分 */}
-      {
-        !props.userInfo.token &&
+      {!props.userInfo.token && (
         <div className="auth-section">
-          <div className="title">
-            掘金 - juejin.im
-        </div>
-          <div className="slogan">
-            一个帮助开发者成长的社区
-        </div>
+          <div className="title">掘金 - juejin.im</div>
+          <div className="slogan">一个帮助开发者成长的社区</div>
           <div className="input-group">
             <div className="input-box">
               <input
@@ -63,7 +63,9 @@ function SidebarUi(props) {
                 onChange={registerPasswordChange}
               />
             </div>
-            <button className="submit-btn" onClick={register}>立即注册</button>
+            <button className="submit-btn" onClick={register}>
+              立即注册
+            </button>
           </div>
           <div className="agreement-box">
             <p>注册登录即表示</p>
@@ -73,7 +75,7 @@ function SidebarUi(props) {
             <span className="clickable">隐私政策</span>
           </div>
         </div>
-      }
+      )}
       {/* 广告部分 */}
       <div className="banner-section">
         <div className="banner-link">
@@ -177,13 +179,13 @@ function SidebarUi(props) {
         </ul>
       </div>
     </div>
-  )
+  );
 }
 
 const mapStateToProps = state => {
   return {
     userInfo: state.userInfo
-  }
-}
+  };
+};
 
 export default connect(mapStateToProps)(SidebarUi);

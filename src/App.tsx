@@ -4,9 +4,10 @@ import renderRoutes from '@router/renderRoutes';
 // 路由数据
 import { routes } from '@router/routes';
 // 404页面
-import NotFound from '@view/not-found/NotFound';
+import NotFound from '@/view/not-found/NotFound';
+import { Props } from '@/type/index';
 
-function App() {
+function App(): React.ReactElement {
   return (
     <>
       <Switch>
@@ -18,7 +19,7 @@ function App() {
 }
 
 // 重定向以及404
-const RedirectAs404 = ({ location }) => {
+const RedirectAs404 = ({ location }: Props) => {
   if (location?.pathname === '/') {
     return <Redirect exact to="/xlz/home" from="/" />;
   }

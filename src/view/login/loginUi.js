@@ -9,7 +9,7 @@ import oauthBg1 from '@images/login/oauth-bg1.svg';
 import oauthBg2 from '@images/login/oauth-bg2.svg';
 import oauthBg3 from '@images/login/oauth-bg3.svg';
 
-const setPanfishImgType = (type) => {
+const setPanfishImgType = type => {
   if (type === 1) {
     return panfishImg1;
   } else if (type === 2) {
@@ -17,25 +17,27 @@ const setPanfishImgType = (type) => {
   } else if (type === 3) {
     return panfishImg3;
   }
-}
+};
 
 function LoginUi(props) {
   return (
     <div className="login">
       <div className="login-container">
         <div className="panfish">
-          {
-            props.isLogin &&
-            <img className="panfish-img" src={setPanfishImgType(props.panfishImgType)} alt="panfish" />
-          }
+          {props.isLogin && (
+            <img
+              className="panfish-img"
+              src={setPanfishImgType(props.panfishImgType)}
+              alt="panfish"
+            />
+          )}
         </div>
         <div className="close-btn" title="关闭" onClick={props.close}>
           X
         </div>
         <div className="panel">
-          {
-            props.isLogin &&
-            <Fragment>
+          {props.isLogin && (
+            <>
               <p className="title">登录</p>
               <div className="input-group">
                 <input
@@ -57,12 +59,13 @@ function LoginUi(props) {
                   placeholder="请输入密码"
                 />
               </div>
-              <button className="submit-btn" onClick={props.submit}>登录</button>
-            </Fragment>
-          }
-          {
-            !props.isLogin &&
-            <Fragment>
+              <button className="submit-btn" onClick={props.submit}>
+                登录
+              </button>
+            </>
+          )}
+          {!props.isLogin && (
+            <>
               <p className="title">注册</p>
               <div className="input-group">
                 <input
@@ -87,23 +90,42 @@ function LoginUi(props) {
                   placeholder="请输入密码，不少于6位"
                 />
               </div>
-              <button className="submit-btn" onClick={props.register}>注册</button>
-            </Fragment>
-          }
+              <button className="submit-btn" onClick={props.register}>
+                注册
+              </button>
+            </>
+          )}
         </div>
         <div className="prompt-box">
-          {
-            props.isLogin &&
-            <Fragment>
+          {props.isLogin && (
+            <>
               <span>没有账号？</span>
-              <span className="clickable" onClick={() => { props.logonHandover('login') }}>注册</span>
-              <span className="clickable forget-password" onClick={props.forgetPassword}>忘记密码</span>
-            </Fragment>
-          }
-          {
-            !props.isLogin &&
-            <div className="clickable register" onClick={() => { props.logonHandover('register') }}>已有账号登录</div>
-          }
+              <span
+                className="clickable"
+                onClick={() => {
+                  props.logonHandover('login');
+                }}
+              >
+                注册
+              </span>
+              <span
+                className="clickable forget-password"
+                onClick={props.forgetPassword}
+              >
+                忘记密码
+              </span>
+            </>
+          )}
+          {!props.isLogin && (
+            <div
+              className="clickable register"
+              onClick={() => {
+                props.logonHandover('register');
+              }}
+            >
+              已有账号登录
+            </div>
+          )}
         </div>
         <div className="oauth-box">
           <p>第三方账号登录：</p>

@@ -3,7 +3,7 @@ import { accountRegister } from '@api/user';
 import { createDB, insertData, getAllData } from '@indexDB';
 import SideBarUi from './sidebarUi';
 
-function SideBar(props) {
+function SideBar() {
   // 注册账号，手机号，密码
   const [formData, setFormData] = useState({
     account: '',
@@ -14,25 +14,21 @@ function SideBar(props) {
   // 注册账号
   const registerAccountChange = e => {
     setFormData({ ...formData, account: e.target.value });
-  }
+  };
 
   // 注册手机号
   const registerPhoneChange = e => {
     setFormData({ ...formData, phone: e.target.value });
-  }
+  };
 
   // 注册密码
   const registerPasswordChange = e => {
     setFormData({ ...formData, password: e.target.value });
-  }
+  };
 
   // 注册
   const register = () => {
-    const {
-      account: username,
-      phone,
-      password
-    } = formData;
+    const { account: username, phone, password } = formData;
 
     // 本地注册，注册成功进行请求
     localRegister({
@@ -41,11 +37,7 @@ function SideBar(props) {
       password
     })
       .then(() => {
-        accountRegister({
-          username,
-          phone,
-          password
-        })
+        accountRegister({ username, phone, password })
           .then(res => {
             if (res.code === 200) {
               React.Message.success(res.msg);
@@ -57,18 +49,15 @@ function SideBar(props) {
               });
             }
           })
+          .catch(() => {});
       })
       .catch(err => {
         React.Message.error(err);
       });
-  }
+  };
 
   // 本地注册
-  const localRegister = ({
-    username,
-    phone,
-    password
-  }) => {
+  const localRegister = ({ username, phone, password }) => {
     return new Promise((resolve, reject) => {
       // 数据校验
       let reg = /^[1][3,4,5,7,8,9][0-9]{9}$/;
@@ -86,9 +75,15 @@ function SideBar(props) {
         return false;
       }
 
-      let indexedDB = window.indexedDB || window.webkitIndexedDB || window.mozIndexedDB || window.msIndexedDB;
+      let indexedDB =
+        window.indexedDB ||
+        window.webkitIndexedDB ||
+        window.mozIndexedDB ||
+        window.msIndexedDB;
       if (!indexedDB) {
-        throw new Error('当前浏览器不支持 indexDB 数据库, 请更换高级浏览器！！！');
+        throw new Error(
+          '当前浏览器不支持 indexDB 数据库, 请更换高级浏览器！！！'
+        );
       } else {
         createDB('juejinDB', 'user', 1);
         // 进行数据查询
@@ -110,10 +105,10 @@ function SideBar(props) {
               resolve();
             }
           }
-        })
+        });
       }
-    })
-  }
+    });
+  };
 
   return (
     <SideBarUi

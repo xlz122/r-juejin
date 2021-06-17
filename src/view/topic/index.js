@@ -11,25 +11,27 @@ function Topic() {
       .then(res => {
         setList(res.data);
       })
+      .catch(() => {});
   }, []);
 
   // 动态计算当前页面高度
   useEffect(() => {
     let pageHeight = document.querySelector('.topic');
     if (pageHeight) {
-      pageHeight.style.minHeight = (window.innerHeight - pageHeight.offsetTop) + 'px';
+      pageHeight.style.minHeight =
+        window.innerHeight - pageHeight.offsetTop + 'px';
     }
   }, []);
 
   // 标题
   const titleClick = function (title) {
     React.Message.info(title);
-  }
+  };
 
   // 关注
   const followClick = function () {
     React.Message.info('关注');
-  }
+  };
   return (
     <TopicUi
       listData={list}

@@ -8,26 +8,26 @@ function ListContainer(props) {
   // 广告条目点击
   const adEntryItemClick = () => {
     React.Message.info('广告');
-  }
+  };
 
   // 专栏条目点击
   const columnEntryItemClick = () => {
     React.Message.info('专栏');
-  }
+  };
 
   // 专栏条目点赞
   const likeCountClick = (e, item) => {
     // 阻止事件冒泡
     e.stopPropagation();
     props.likeCountClick(item);
-  }
+  };
 
   // 专栏条目评论
   const commentsCountClick = e => {
     // 阻止事件冒泡
     e.stopPropagation();
     React.Message.info('评论');
-  }
+  };
   return (
     <div className="list-container">
       <CategoryNav
@@ -48,7 +48,7 @@ function ListContainer(props) {
           likeCountClick={likeCountClick}
           commentsCountClick={commentsCountClick}
         />
-        <Skeleton active loading={props.pageLoading} paragraph={{ rows: 2 }}></Skeleton>
+        <Skeleton active loading={props.pageLoading} paragraph={{ rows: 2 }} />
       </Skeleton>
     </div>
   );

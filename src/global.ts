@@ -1,5 +1,5 @@
 import React from 'react';
-import Message from '@view/common/message';
+import Message from '@/view/common/message';
 
 // 注册Message提示全局方法
 React.Message = {

@@ -13,14 +13,10 @@ function topicUi(props) {
         <div className="topic-list">
           <div className="title">全部话题</div>
           <ul className="list">
-            {
-              listData &&
+            {listData &&
               listData.map((item, index) => {
                 return (
-                  <li
-                    className="item"
-                    key={index + item}
-                  >
+                  <li className="item" key={index + item}>
                     <img className="img" src={item.imgUrl} alt="topic" />
                     <div className="content">
                       <div
@@ -35,17 +31,18 @@ function topicUi(props) {
                       <div className="count">
                         {`${item.followCount} 关注 · ${item.boilingPointCount} 沸点`}
                       </div>
-                      <div className="subscribe" onClick={followClick}>+ 关注</div>
+                      <div className="subscribe" onClick={followClick}>
+                        + 关注
+                      </div>
                     </div>
                   </li>
                 );
-              })
-            }
+              })}
           </ul>
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 export default topicUi;

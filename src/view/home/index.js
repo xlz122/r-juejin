@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
-import { getHomeChildNav, getHomeCategoryNav, getHomeEntryList } from '@api/home';
+import {
+  getHomeChildNav,
+  getHomeCategoryNav,
+  getHomeEntryList
+} from '@api/home';
 import { getPageBottomHeight } from '@/utils/utils';
 import ChildNavBar from '@view/common/child-nav-bar';
 import ChildNavBarDetails from '@view/common/child-nav-bar/childNavBarDetails';
@@ -33,7 +37,7 @@ class Home extends Component {
       listData: [], // 列表数据
       look: true, // 分页请求开关
       pageLoading: false // 分页时的loading
-    }
+    };
     // 导航
     this.getHomeCategoryNavData = this.getHomeCategoryNavData.bind(this);
     this.navActiveChange = this.navActiveChange.bind(this);
@@ -57,29 +61,34 @@ class Home extends Component {
 
   componentDidMount() {
     // 动态计算当前页面高度
-    let pageHeight = document.querySelector(".home");
+    let pageHeight = document.querySelector('.home');
     if (pageHeight) {
-      pageHeight.style.minHeight = (window.innerHeight - pageHeight.offsetTop) + 'px';
+      pageHeight.style.minHeight =
+        window.innerHeight - pageHeight.offsetTop + 'px';
     }
     // 获取导航数据
     getHomeChildNav()
       .then(res => {
         // 数据存储前进行数据修改
-        res.data.map(item => item.isShow = false);
+        res.data.map(item => (item.isShow = false));
         this.setState({ navData: res.data });
         // 导航和路由对比，获取对应id，导航选中
         res.data.forEach((item, index) => {
           if (item.link === this.props.location.pathname) {
-            this.setState({
-              navActiveIndex: index,
-              web_id: item.web_id
-            }, () => {
-              // 获取分类导航数据
-              this.getHomeCategoryNavData();
-            });
+            this.setState(
+              {
+                navActiveIndex: index,
+                web_id: item.web_id
+              },
+              () => {
+                // 获取分类导航数据
+                this.getHomeCategoryNavData();
+              }
+            );
           }
-        })
+        });
       })
+      .catch(() => {});
 
     // 进行scroll事件的注册，绑定一个函数，让这个函数进行监听处理
     window.addEventListener('scroll', this.bindHandleScroll);
@@ -98,13 +107,17 @@ class Home extends Component {
   getHomeCategoryNavData() {
     getHomeCategoryNav()
       .then(res => {
-        this.setState({
-          categoryNavListData: res.data,
-          entryType: res.data.list[0]?.classifyId
-        }, () => {
-          this.getListData();
-        });
+        this.setState(
+          {
+            categoryNavListData: res.data,
+            entryType: res.data.list[0]?.classifyId
+          },
+          () => {
+            this.getListData();
+          }
+        );
       })
+      .catch(() => {});
   }
 
   // 导航变化
@@ -112,19 +125,22 @@ class Home extends Component {
     let navData = this.state.navData;
     navData.forEach((i, ind) => {
       if (index === ind) {
-        this.setState({
-          navActiveIndex: index,
-          navTagActiveIndex: 0,
-          web_id: i.web_id,
-          web_c_id: 'all',
-          timeChoiceShow: false,
-          entryType: this.state.categoryNavListData.list[0]?.classifyId,
-          entryTime: 'all'
-        }, () => {
-          this.getListData();
-        })
+        this.setState(
+          {
+            navActiveIndex: index,
+            navTagActiveIndex: 0,
+            web_id: i.web_id,
+            web_c_id: 'all',
+            timeChoiceShow: false,
+            entryType: this.state.categoryNavListData.list[0]?.classifyId,
+            entryTime: 'all'
+          },
+          () => {
+            this.getListData();
+          }
+        );
       }
-    })
+    });
   }
 
   // 获取列表数据
@@ -144,6 +160,7 @@ class Home extends Component {
           listLoading: false
         });
       })
+      .catch(() => {});
   }
 
   // 导航划过
@@ -169,7 +186,7 @@ class Home extends Component {
     const navData = this.state.navData;
     navData.forEach(item => {
       item.isShow = false;
-    })
+    });
     // 更新子导航
     this.navActiveChange(index);
     // 详情选中
@@ -186,16 +203,19 @@ class Home extends Component {
 
   // 标签改变
   navTagActiveChange(i, ind) {
-    this.setState({
-      web_c_id: i.web_c_id,
-      navTagActiveIndex: ind,
-      categoryActiveIndex: 0,
-      timeChoiceShow: false,
-      entryType: this.state.categoryNavListData.list[0]?.classifyId,
-      entryTime: 'all'
-    }, () => {
-      this.getListData();
-    });
+    this.setState(
+      {
+        web_c_id: i.web_c_id,
+        navTagActiveIndex: ind,
+        categoryActiveIndex: 0,
+        timeChoiceShow: false,
+        entryType: this.state.categoryNavListData.list[0]?.classifyId,
+        entryTime: 'all'
+      },
+      () => {
+        this.getListData();
+      }
+    );
   }
 
   bindHandleScroll(event) {
@@ -222,7 +242,9 @@ class Home extends Component {
       })
         .then(res => {
           let listData = this.state.listData;
-          listData.columnEntryList = listData.columnEntryList.concat(res.data.columnEntryList);
+          listData.columnEntryList = listData.columnEntryList.concat(
+            res.data.columnEntryList
+          );
           this.setState({
             look: true,
             pageLoading: false,
@@ -231,7 +253,7 @@ class Home extends Component {
         })
         .catch(() => {
           this.setState({ look: true });
-        })
+        });
     }
   }
 
@@ -253,17 +275,20 @@ class Home extends Component {
     let navData = this.state.navData;
     navData.forEach(i => {
       if (i.link === this.props.location.pathname) {
-        this.setState({
-          categoryActiveIndex: index,
-          web_id: i.web_id,
-          page: 1,
-          pageSize: 15,
-          entryType: item.classifyId
-        }, () => {
-          this.getListData();
-        })
+        this.setState(
+          {
+            categoryActiveIndex: index,
+            web_id: i.web_id,
+            page: 1,
+            pageSize: 15,
+            entryType: item.classifyId
+          },
+          () => {
+            this.getListData();
+          }
+        );
       }
-    })
+    });
   }
 
   // 类别导航 - 时间选择菜单显隐
@@ -282,19 +307,22 @@ class Home extends Component {
     let navData = this.state.navData;
     navData.forEach(i => {
       if (i.link === this.props.location.pathname) {
-        this.setState({
-          categoryActiveIndex: index,
-          timeChoiceTitle: item.time,
-          timeChoiceMenuShow: false,
-          web_id: i.web_id,
-          page: 1,
-          pageSize: 15,
-          entryTime: item.timeId
-        }, () => {
-          this.getListData();
-        })
+        this.setState(
+          {
+            categoryActiveIndex: index,
+            timeChoiceTitle: item.time,
+            timeChoiceMenuShow: false,
+            web_id: i.web_id,
+            page: 1,
+            pageSize: 15,
+            entryTime: item.timeId
+          },
+          () => {
+            this.getListData();
+          }
+        );
       }
-    })
+    });
   }
 
   // 专栏条目点赞
@@ -331,7 +359,7 @@ class Home extends Component {
       likeCountClick: this.likeCountClick,
       listData: this.state.listData,
       pageLoading: this.state.pageLoading
-    }
+    };
     return (
       <div className="home">
         <ChildNavBar
@@ -352,15 +380,51 @@ class Home extends Component {
         <div className="home-container">
           <div className="content">
             <Switch>
-              <Route exact={true} path="/xlz/home" render={props => <ListContainer {...props} {...childProps} />} />
-              <Route exact={true} path="/xlz/home/backend" render={props => <ListContainer {...props} {...childProps} />} />
-              <Route exact={true} path="/xlz/home/frontend" render={props => <ListContainer {...props} {...childProps} />} />
-              <Route exact={true} path="/xlz/home/android" render={props => <ListContainer {...props} {...childProps} />} />
-              <Route exact={true} path="/xlz/home/ios" render={props => <ListContainer {...props} {...childProps} />} />
-              <Route exact={true} path="/xlz/home/ai" render={props => <ListContainer {...props} {...childProps} />} />
-              <Route exact={true} path="/xlz/home/freebie" render={props => <ListContainer {...props} {...childProps} />} />
-              <Route exact={true} path="/xlz/home/career" render={props => <ListContainer {...props} {...childProps} />} />
-              <Route exact={true} path="/xlz/home/article" render={props => <ListContainer {...props} {...childProps} />} />
+              <Route
+                exact={true}
+                path="/xlz/home"
+                render={props => <ListContainer {...props} {...childProps} />}
+              />
+              <Route
+                exact={true}
+                path="/xlz/home/backend"
+                render={props => <ListContainer {...props} {...childProps} />}
+              />
+              <Route
+                exact={true}
+                path="/xlz/home/frontend"
+                render={props => <ListContainer {...props} {...childProps} />}
+              />
+              <Route
+                exact={true}
+                path="/xlz/home/android"
+                render={props => <ListContainer {...props} {...childProps} />}
+              />
+              <Route
+                exact={true}
+                path="/xlz/home/ios"
+                render={props => <ListContainer {...props} {...childProps} />}
+              />
+              <Route
+                exact={true}
+                path="/xlz/home/ai"
+                render={props => <ListContainer {...props} {...childProps} />}
+              />
+              <Route
+                exact={true}
+                path="/xlz/home/freebie"
+                render={props => <ListContainer {...props} {...childProps} />}
+              />
+              <Route
+                exact={true}
+                path="/xlz/home/career"
+                render={props => <ListContainer {...props} {...childProps} />}
+              />
+              <Route
+                exact={true}
+                path="/xlz/home/article"
+                render={props => <ListContainer {...props} {...childProps} />}
+              />
               <Redirect from="*" to="/404" />
             </Switch>
           </div>
