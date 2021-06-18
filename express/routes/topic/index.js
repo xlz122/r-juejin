@@ -25,7 +25,7 @@ router.get('/topic-list', verifify.auth, function (req, res, next) {
     res.json({
       code: 200,
       data,
-      msg: '消息'
+      msg: '成功'
     });
   }, 500);
 });
