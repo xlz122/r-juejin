@@ -1,16 +1,19 @@
+var config = require('../config.js');
+
 // 广告列表条目数据
 const adEntryList = [
   {
     username: '掘金酱',
     time: '1天前',
-    imgUrl: 'http://localhost:9001/images/home/column-entry-list-ad.jpg',
+    imgUrl: `${config.imageBaseUrl}/home/column-entry-list-ad.jpg`,
     title: '面试不用愁，掘友能解忧，一批大厂面试经验新鲜出炉啦~',
     bstract: '有面试需求的小伙伴再也不用发愁找不到攻略啦。这一次面试，掘友帮你忙。'
   }
 ];
 
 // 列表数据
-const imageBaseUrl = 'http://localhost:9001/images/home';
+const imageBaseUrl = `${config.imageBaseUrl}/home`;
+
 const list = [
   {
     username: 'Keely',

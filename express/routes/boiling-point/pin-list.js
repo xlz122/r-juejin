@@ -1,5 +1,7 @@
 // 书籍数据数组
-const imageBaseUrl = 'http://localhost:9001/images/boiling-point';
+var config = require('../config.js');
+const imageBaseUrl = `${config.imageBaseUrl}/boiling-point`;
+
 const list = [
   {
     userImg: `${imageBaseUrl}/boiling-point-user-image1.jpg`,

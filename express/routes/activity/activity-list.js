@@ -1,5 +1,6 @@
 // 活动列表
-const imageBaseUrl = 'http://localhost:9001/images/activity';
+var config = require('../config.js');
+const imageBaseUrl = `${config.imageBaseUrl}/activity`;
 
 // 热门
 const unlimited = {

@@ -1,4 +1,6 @@
-const imageBaseUrl = 'http://localhost:9001/images/topic';
+var config = require('../config.js');
+const imageBaseUrl = `${config.imageBaseUrl}/topic`;
+
 const list = [
   {
     imgUrl: `${imageBaseUrl}/list-image1.jpg`,

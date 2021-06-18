@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var config = require('../config.js');
 var verifify = require('../verifify.js');
 var utils = require('../utils.js');
 
@@ -16,7 +17,7 @@ router.post(
   verifify.requiredParams(['username', 'password']),
   verifify.nonEmptyField(['username', 'password']),
   function (req, res, next) {
-    const imageBaseUrl = 'http://localhost:9001/images/avatar';
+    const imageBaseUrl = `${config.imageBaseUrl}/avatar`;
     const i = Math.floor(Math.random() * 10 + 1) - 1;
 
     res.json({

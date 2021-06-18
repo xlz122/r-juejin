@@ -1,5 +1,7 @@
 // 书籍数据数组
-const imageBaseUrl = 'http://localhost:9001/images/brochure';
+var config = require('../config.js');
+const imageBaseUrl = `${config.imageBaseUrl}/brochure`;
+
 const list = [
   {
     imgUrl: `${imageBaseUrl}/book-image1.jpg`,

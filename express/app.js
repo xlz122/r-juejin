@@ -34,13 +34,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // 上传到服务器启用，Access-Control-Allow-Origin 改为服务器公网IP
 // app.use(function(req,res,next){
-//   res.header('Access-Control-Allow-Origin', 'http://47.98.250.26'); // *
+//   res.header('Access-Control-Allow-Origin', 'http://182.61.139.248'); // *
 //   res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
 //   res.header('Access-Control-Allow-Headers', 'Content-Type');
 //   res.header("Content-Type", "application/json;charset=utf-8");
 //   res.header('Access-Control-Allow-Credentials','true');
 //   next();
-// })
+// });
 
 /**
  * 这里的路径作为主路径，文件里 / 作为默认路径，可写子路径
