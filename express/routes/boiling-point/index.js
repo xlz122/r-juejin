@@ -37,7 +37,7 @@ router.get(
     if (!navItem) {
       setTimeout(() => {
         res.json({
-          code: -1,
+          code: -3,
           data: [],
           msg: 'please pass correct ID'
         });

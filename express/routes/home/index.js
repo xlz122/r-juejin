@@ -53,7 +53,7 @@ router.get(
     if (!navItem) {
       setTimeout(() => {
         res.json({
-          code: -1,
+          code: -3,
           data: [],
           msg: 'please pass correct ID, The parameter is web_id'
         });
@@ -67,7 +67,7 @@ router.get(
       if (!navDetailItem) {
         setTimeout(() => {
           res.json({
-            code: -1,
+            code: -3,
             data: [],
             msg: 'please pass correct ID, The parameter is web_c_id'
           });
@@ -81,7 +81,7 @@ router.get(
     if (!categoryItem) {
       setTimeout(() => {
         res.json({
-          code: -1,
+          code: -3,
           data: [],
           msg: 'please pass correct ID, The parameter is entryType'
         });

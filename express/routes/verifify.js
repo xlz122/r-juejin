@@ -1,21 +1,30 @@
 // 权限校验
 function auth(req, res, next) {
-  const token = req.headers.token;
+  // 请求头token
+  const headerToken = req.headers.token;
+  // cookie中token
+  const  cookieToken = req.cookies.token;
 
-  // 请求头token和cookie中token一致
-  if (token && token === req.cookies.token) {
+  // 请求头token与cookie中token一致
+  if (headerToken && cookieToken && headerToken === cookieToken) {
     next();
   }
 
-  // 请求头token和cookie中token不一致
-  if (token && token !== req.cookies.token) {
+  // 请求头token与cookie中token不一致
+  if (headerToken && cookieToken && headerToken !== cookieToken) {
     res.status(403).send('Wrong token');
   }
 
+  // 登录失效
+  if (headerToken && !cookieToken) {
+    res.status(402).send('Token invalid, please log in');
+  }
+
   // 无权限
-  if (!token) {
+  if (!headerToken) {
     res.status(401).send('No permission, please log in');
   }
+
   // res.writeHead(401, { 'Content-Type': 'text/plain' });
   // res.end('No permission, please log in');
 }
@@ -50,9 +59,13 @@ function requiredParams(params) {
       next();
     } else {
       // 缺少必需参数
-      res
-        .status(409)
-        .send(`Missing required parameter,The required parameter is ${params}`);
+      res.json({
+        code: -1,
+        msg: `Missing required parameter,The required parameter is ${params}`
+      });
+      // res
+      //   .status(409)
+      //   .send(`Missing required parameter,The required parameter is ${params}`);
     }
   });
 }
@@ -82,9 +95,13 @@ function nonEmptyField(params) {
 
     // 参数为空
     if (emptyField.length > 0) {
-      res
-        .status(406)
-        .send(`Parameter cannot be empty,Cannot be null parameter is ${emptyField}`);
+      res.json({
+        code: -2,
+        msg: `Parameter cannot be empty,Cannot be null parameter is ${emptyField}`
+      });
+      // res
+      //   .status(406)
+      //   .send(`Parameter cannot be empty,Cannot be null parameter is ${emptyField}`);
     } else {
       next();
     }

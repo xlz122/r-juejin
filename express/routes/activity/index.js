@@ -44,7 +44,7 @@ router.get(
     if (!cityItem) {
       setTimeout(() => {
         res.json({
-          code: -1,
+          code: -3,
           data: [],
           msg: 'please pass correct ID'
         });
