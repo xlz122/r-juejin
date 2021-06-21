@@ -20,10 +20,15 @@ router.post(
     const imageUrl = `${config.imageBaseUrl}/avatar`;
     const i = Math.floor(Math.random() * 10 + 1) - 1;
 
+    const token = utils.randomString(32);
+
+    // 设置 cookie 与 httpOnly 
+    res.cookie('token', token, { maxAge: 86400000, httpOnly: true });
+
     res.json({
       code: 200,
       data: {
-        token: utils.randomString(32),
+        token,
         username: req.body.username,
         avatarUrl: `${imageUrl}/avatar${i}.jpg`
       },
@@ -46,6 +51,9 @@ router.post(
 
 /* 退出登录 */
 router.post('/logout', function (req, res, next) {
+  // 删除cookie
+  res.clearCookie('token');
+
   res.json({
     code: 200,
     msg: '成功'

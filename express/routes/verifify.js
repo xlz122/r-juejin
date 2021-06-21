@@ -1,13 +1,23 @@
 // 权限校验
 function auth(req, res, next) {
   const token = req.headers.token;
-  if (token) {
+
+  // 请求头token和cookie中token一致
+  if (token && token === req.cookies.token) {
     next();
-  } else {
-    res.status(401).send('No permission, please log in');
-    // res.writeHead(401, { 'Content-Type': 'text/plain' });
-    // res.end('No permission, please log in');
   }
+
+  // 请求头token和cookie中token不一致
+  if (token && token !== req.cookies.token) {
+    res.status(403).send('Wrong token');
+  }
+
+  // 无权限
+  if (!token) {
+    res.status(401).send('No permission, please log in');
+  }
+  // res.writeHead(401, { 'Content-Type': 'text/plain' });
+  // res.end('No permission, please log in');
 }
 
 // 必需参数校验
