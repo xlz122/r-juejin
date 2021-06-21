@@ -17,7 +17,7 @@ router.post(
   verifify.requiredParams(['username', 'password']),
   verifify.nonEmptyField(['username', 'password']),
   function (req, res, next) {
-    const imageBaseUrl = `${config.imageBaseUrl}/avatar`;
+    const imageUrl = `${config.imageBaseUrl}/avatar`;
     const i = Math.floor(Math.random() * 10 + 1) - 1;
 
     res.json({
@@ -25,7 +25,7 @@ router.post(
       data: {
         token: utils.randomString(32),
         username: req.body.username,
-        avatarUrl: `${imageBaseUrl}/avatar${i}.jpg`
+        avatarUrl: `${imageUrl}/avatar${i}.jpg`
       },
       msg: '登录成功'
     });

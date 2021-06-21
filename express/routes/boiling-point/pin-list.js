@@ -1,15 +1,15 @@
 // 书籍数据数组
 var config = require('../config.js');
-const imageBaseUrl = `${config.imageBaseUrl}/boiling-point`;
+const imageUrl = `${config.imageBaseUrl}/boiling-point`;
 
 const list = [
   {
-    userImg: `${imageBaseUrl}/boiling-point-user-image1.jpg`,
+    userImg: `${imageUrl}/boiling-point-user-image1.jpg`,
     username: 'web小学生',
     desc: 'web前端开发工程师 @ 金文科技',
     time: '6小时前',
     content: '周六了，出去踏踏青',
-    contentImg: `${imageBaseUrl}/boiling-point-content-image1.jpg`,
+    contentImg: `${imageUrl}/boiling-point-content-image1.jpg`,
     labelList: [
       { title: '上班摸鱼' }
     ],
@@ -17,7 +17,7 @@ const list = [
     commentCount: 9
   },
   {
-    userImg: `${imageBaseUrl}/boiling-point-user-image2.jpg`,
+    userImg: `${imageUrl}/boiling-point-user-image2.jpg`,
     username: '重庆崽儿brand',
     desc: '公众号 @ 九零后重庆崽儿 @ 前端打字员',
     time: '7小时前',
@@ -30,7 +30,7 @@ const list = [
     commentCount: ''
   },
   {
-    userImg: `${imageBaseUrl}/boiling-point-user-image3.jpg`,
+    userImg: `${imageUrl}/boiling-point-user-image3.jpg`,
     username: 'VijayAdam',
     desc: '程序员 @ 福禄网络',
     time: '7小时前',
@@ -41,18 +41,18 @@ const list = [
     commentCount: 2
   },
   {
-    userImg: `${imageBaseUrl}/boiling-point-user-image4.jpg`,
+    userImg: `${imageUrl}/boiling-point-user-image4.jpg`,
     username: 'yoodu',
     desc: '交互设计  |  独立开发',
     time: '8小时前',
     content: '别人失眠是睡不着，我失眠是早醒，每天45点就醒，不知闹钟是何物。看了1个多小时的书，反而更精神了',
-    contentImg: `${imageBaseUrl}/boiling-point-content-image2.jpg`,
+    contentImg: `${imageUrl}/boiling-point-content-image2.jpg`,
     labelList: [],
     fabulousCount: 4,
     commentCount: 2
   },
   {
-    userImg: `${imageBaseUrl}/boiling-point-user-image5.jpg`,
+    userImg: `${imageUrl}/boiling-point-user-image5.jpg`,
     username: '树洞robot',
     desc: '自动匿名机器人 @ #树洞一下#',
     time: '14小时前',
@@ -65,7 +65,7 @@ const list = [
     commentCount: 11
   },
   {
-    userImg: `${imageBaseUrl}/boiling-point-user-image6.jpg`,
+    userImg: `${imageUrl}/boiling-point-user-image6.jpg`,
     username: '小智菌',
     desc: '喜欢写代码的摄影师 @ xx科技',
     time: '14小时前',
@@ -78,18 +78,18 @@ const list = [
     commentCount: 35
   },
   {
-    userImg: `${imageBaseUrl}/boiling-point-user-image7.jpg`,
+    userImg: `${imageUrl}/boiling-point-user-image7.jpg`,
     username: '敲代码的蔡徐圆',
     desc: '祖安前端工程师 @ 祖安',
     time: '14小时前',
     content: '公司前端妹子离职了，我接手项目两天实在改不动了，推翻重新写。',
-    contentImg: `${imageBaseUrl}/boiling-point-content-image3.jpg`,
+    contentImg: `${imageUrl}/boiling-point-content-image3.jpg`,
     labelList: [],
     fabulousCount: 5,
     commentCount: 16
   },
   {
-    userImg: `${imageBaseUrl}/boiling-point-user-image8.jpg`,
+    userImg: `${imageUrl}/boiling-point-user-image8.jpg`,
     username: 'ALLmama',
     desc: '',
     time: '14小时前',
@@ -100,12 +100,12 @@ const list = [
     commentCount: 8
   },
   {
-    userImg: `${imageBaseUrl}/boiling-point-user-image9.jpg`,
+    userImg: `${imageUrl}/boiling-point-user-image9.jpg`,
     username: '懒成铁',
     desc: 'Web前端开发工程师 @ 网龙',
     time: '14小时前',
     content: '今日份的快乐',
-    contentImg: `${imageBaseUrl}/boiling-point-content-image4.jpg`,
+    contentImg: `${imageUrl}/boiling-point-content-image4.jpg`,
     labelList: [
       { title: '今天学到了' }
     ],
@@ -113,12 +113,12 @@ const list = [
     commentCount: 5
   },
   {
-    userImg: `${imageBaseUrl}/boiling-point-user-image10.jpg`,
+    userImg: `${imageUrl}/boiling-point-user-image10.jpg`,
     username: '嘟小乾',
     desc: 'web_cv',
     time: '15小时前',
     content: '那个注释比代码还多的项目搞到git上了',
-    contentImg: `${imageBaseUrl}/boiling-point-content-image5.jpg`,
+    contentImg: `${imageUrl}/boiling-point-content-image5.jpg`,
     labelList: [
       { title: '今天学到了' }
     ],
@@ -126,23 +126,23 @@ const list = [
     commentCount: 4
   },
   {
-    userImg: `${imageBaseUrl}/boiling-point-user-image11.jpg`,
+    userImg: `${imageUrl}/boiling-point-user-image11.jpg`,
     username: 'z00keeper',
     desc: '',
     time: '16小时前',
     content: '武汉互联网公司，在家帮办公一个半月了，非要现在回武汉，园区还是管制状态。没有复工证明，回去要居家隔离14天，还是要远程办公，到底要我们回去干啥子！！！',
-    contentImg: `${imageBaseUrl}/boiling-point-content-image5.jpg`,
+    contentImg: `${imageUrl}/boiling-point-content-image5.jpg`,
     labelList: [],
     fabulousCount: 1,
     commentCount: 6
   },
   {
-    userImg: `${imageBaseUrl}/boiling-point-user-image12.jpg`,
+    userImg: `${imageUrl}/boiling-point-user-image12.jpg`,
     username: '不一样的科技宅',
     desc: 'JAVA搬砖 @ 口袋零钱',
     time: '16小时前',
     content: '本想记录下到10000阅读量的时刻，可惜超了',
-    contentImg: `${imageBaseUrl}/boiling-point-content-image6.jpg`,
+    contentImg: `${imageUrl}/boiling-point-content-image6.jpg`,
     labelList: [
       { title: '上班摸鱼' }
     ],
@@ -150,12 +150,12 @@ const list = [
     commentCount: 6
   },
   {
-    userImg: `${imageBaseUrl}/boiling-point-user-image13.jpg`,
+    userImg: `${imageUrl}/boiling-point-user-image13.jpg`,
     username: 'wubaiqing',
     desc: '研发经理 @ 禧云信息',
     time: '16小时前',
     content: '【每日时报】2020.03.27, [文章] 这篇文章讲解了 Webpack5 的新特性，模块联邦，主要解决了微前端公共依赖抽取的问题，弄了一个新概念叫中心应用',
-    contentImg: `${imageBaseUrl}/boiling-point-content-image7.jpg`,
+    contentImg: `${imageUrl}/boiling-point-content-image7.jpg`,
     labelList: [
       { title: '好文推荐' }
     ],
@@ -163,18 +163,18 @@ const list = [
     commentCount: ''
   },
   {
-    userImg: `${imageBaseUrl}/boiling-point-user-image14.jpg`,
+    userImg: `${imageUrl}/boiling-point-user-image14.jpg`,
     username: '小泡芙66',
     desc: '打杂 @ 。。',
     time: '17小时前',
     content: '我真的真的好羡慕那些名校毕业的人',
-    contentImg: `${imageBaseUrl}/boiling-point-content-image8.jpg`,
+    contentImg: `${imageUrl}/boiling-point-content-image8.jpg`,
     labelList: [],
     fabulousCount: 3,
     commentCount: 17
   },
   {
-    userImg: `${imageBaseUrl}/boiling-point-user-image15.jpg`,
+    userImg: `${imageUrl}/boiling-point-user-image15.jpg`,
     username: '树洞robot',
     desc: '自动匿名机器人 @ #树洞一下#',
     time: '17小时前',

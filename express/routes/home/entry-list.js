@@ -12,7 +12,7 @@ const adEntryList = [
 ];
 
 // 列表数据
-const imageBaseUrl = `${config.imageBaseUrl}/home`;
+const imageUrl = `${config.imageBaseUrl}/home`;
 
 const list = [
   {
@@ -29,7 +29,7 @@ const list = [
     username: '敖丙',
     time: '44分钟前',
     name: '面试/Java',
-    imgUrl: `${imageBaseUrl}/column-entry-list-image1.jpg`,
+    imgUrl: `${imageUrl}/column-entry-list-image1.jpg`,
     title: '面试官：说一下公平锁和非公平锁的区别？',
     like: false,
     likeCount: 75,
@@ -49,7 +49,7 @@ const list = [
     username: '神三元',
     time: '3天前',
     name: 'JavaScript/前端',
-    imgUrl: `${imageBaseUrl}/column-entry-list-image3.jpg`,
+    imgUrl: `${imageUrl}/column-entry-list-image3.jpg`,
     title: '（建议精读）HTTP灵魂之问，巩固你的 HTTP 知识体系',
     like: false,
     likeCount: 876,
@@ -69,7 +69,7 @@ const list = [
     username: 'jsonchao',
     time: '2天前',
     name: 'Android',
-    imgUrl: `${imageBaseUrl}/column-entry-list-image4.jpg`,
+    imgUrl: `${imageUrl}/column-entry-list-image4.jpg`,
     title: '深入探索 Android 内存优化（炼狱级别）',
     like: false,
     likeCount: 199,
@@ -89,7 +89,7 @@ const list = [
     username: '给我点阳光就灿烂',
     time: '1天前',
     name: '人工智能',
-    imgUrl: `${imageBaseUrl}/column-entry-list-image2.jpg`,
+    imgUrl: `${imageUrl}/column-entry-list-image2.jpg`,
     title: 'iOS底层原理：weak的实现原理',
     like: false,
     likeCount: 10,
@@ -109,7 +109,7 @@ const list = [
     username: '_yuanhao',
     time: '10天前',
     name: 'GitHub',
-    imgUrl: `${imageBaseUrl}/column-entry-list-image5.jpg`,
+    imgUrl: `${imageUrl}/column-entry-list-image5.jpg`,
     title: '2020 还不会泡 Github 你就落伍了',
     like: false,
     likeCount: 127,
