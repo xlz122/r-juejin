@@ -33,9 +33,9 @@ app.use(cookieParser());
 // 配置express静态文件目录
 app.use(express.static(path.join(__dirname, 'public')));
 
-// 上传到服务器启用，Access-Control-Allow-Origin 改为服务器公网IP
+// Access-Control-Allow-Origin 改为域名/服务器公网IP
 // app.use(function(req,res,next){
-//   res.header('Access-Control-Allow-Origin', 'http://182.61.139.248'); // *
+//   res.header('Access-Control-Allow-Origin', 'http://j.xlz122.cn');
 //   res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
 //   res.header('Access-Control-Allow-Headers', 'Content-Type');
 //   res.header("Content-Type", "application/json;charset=utf-8");
