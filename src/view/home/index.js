@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { headerNavAction } from '@store/actionCreators';
 import { getHomeChildNav, getHomeCategoryNav, getHomeEntryList } from '@api/home';
 import { getPageBottomHeight } from '@/utils/utils';
 import ChildNavBar from '@view/common/child-nav-bar';
@@ -61,6 +63,10 @@ class Home extends Component {
     if (pageHeight) {
       pageHeight.style.minHeight = (window.innerHeight - pageHeight.offsetTop) + 'px';
     }
+
+    // 重置顶部导航
+    this.props.navListChange(0);
+
     // 获取导航数据
     getHomeChildNav()
       .then(res => {
@@ -373,4 +379,15 @@ class Home extends Component {
   }
 }
 
-export default Home;
+const mapDispatchToProps = dispatch => {
+  return {
+    // 设置头部导航下标
+    navListChange(index) {
+      localStorage.setItem('headerNavActiveIndex', index);
+      const action = headerNavAction(index);
+      dispatch(action);
+    }
+  }
+}
+
+export default connect(() => {}, mapDispatchToProps)(Home);
