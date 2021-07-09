@@ -1,5 +1,5 @@
 import React from 'react';
-import likeIcon from '@images/home/home-content-link.png';
+// import likeIcon from '@images/home/home-content-link.png';
 import './index.less';
 
 function EntryListUi(props) {
