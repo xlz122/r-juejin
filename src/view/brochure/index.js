@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
 import { getBrochureChildNav, getBrochureBooksList } from '@api/brochure';
 import { getPageBottomHeight } from '@/utils/utils';
 import ChildNavBar from '@view/common/child-nav-bar';
@@ -149,30 +150,41 @@ class Brochure extends Component {
     }
     return (
       <div className="brochure">
-        <ChildNavBar
-          navData={this.state.navData}
-          navActiveIndex={this.state.navActiveIndex}
-          navActiveChange={this.navActiveChange}
-        />
-        <div className="brochure-container">
-          <div className="content">
-            <Switch>
-              <Route exact={true} path="/xlz/brochure" render={props => <BooksList {...props} {...childProps} />} />
-              <Route exact={true} path="/xlz/brochure/frontend" render={props => <BooksList {...props} {...childProps} />} />
-              <Route exact={true} path="/xlz/brochure/backend" render={props => <BooksList {...props} {...childProps} />} />
-              <Route exact={true} path="/xlz/brochure/mobile" render={props => <BooksList {...props} {...childProps} />} />
-              <Route exact={true} path="/xlz/brochure/blockchain" render={props => <BooksList {...props} {...childProps} />} />
-              <Route exact={true} path="/xlz/brochure/general" render={props => <BooksList {...props} {...childProps} />} />
-              <Redirect from="*" to="/404" />
-            </Switch>
-          </div>
-          <div className="sidebar">
-            <Sidebar />
-          </div>
-        </div>
+        {
+          this.props.userInfo.token &&
+          <>
+            <ChildNavBar
+              navData={this.state.navData}
+              navActiveIndex={this.state.navActiveIndex}
+              navActiveChange={this.navActiveChange}
+            />
+            <div className="brochure-container">
+              <div className="content">
+                <Switch>
+                  <Route exact={true} path="/xlz/brochure" render={props => <BooksList {...props} {...childProps} />} />
+                  <Route exact={true} path="/xlz/brochure/frontend" render={props => <BooksList {...props} {...childProps} />} />
+                  <Route exact={true} path="/xlz/brochure/backend" render={props => <BooksList {...props} {...childProps} />} />
+                  <Route exact={true} path="/xlz/brochure/mobile" render={props => <BooksList {...props} {...childProps} />} />
+                  <Route exact={true} path="/xlz/brochure/blockchain" render={props => <BooksList {...props} {...childProps} />} />
+                  <Route exact={true} path="/xlz/brochure/general" render={props => <BooksList {...props} {...childProps} />} />
+                  <Redirect from="*" to="/404" />
+                </Switch>
+              </div>
+              <div className="sidebar">
+                <Sidebar />
+              </div>
+            </div>
+          </>
+        }
       </div>
     );
   }
 }
 
-export default Brochure;
+const mapStateToProps = state => { 
+  return {
+    userInfo: state.userInfo
+  }
+}
+
+export default connect(mapStateToProps, () => ({}))(Brochure);

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
 import { getActivityChildNav, getActiviryList } from '@api/activity';
 import { getPageBottomHeight } from '@/utils/utils';
 import ChildNavBar from './child-nav-bar';
@@ -165,27 +166,38 @@ class Activity extends Component {
     }
     return (
       <div className="activity">
-        <ChildNavBar
-          navData={this.state.navData}
-          navActiveIndex={this.state.navActiveIndex}
-          navActiveChange={this.navActiveChange}
-        />
-        <div className="activity-container">
-          <div className="content">
-            <Switch>
-              <Route exact={true} path="/xlz/activity" render={props => <ActivityList {...props} {...childProps} />} />
-              <Route exact={true} path="/xlz/activity/beijing" render={props => <ActivityList {...props} {...childProps} />} />
-              <Route exact={true} path="/xlz/activity/shanghai" render={props => <ActivityList {...props} {...childProps} />} />
-              <Route exact={true} path="/xlz/activity/guangzhou" render={props => <ActivityList {...props} {...childProps} />} />
-              <Route exact={true} path="/xlz/activity/shenzhen" render={props => <ActivityList {...props} {...childProps} />} />
-              <Route exact={true} path="/xlz/activity/hangzhou" render={props => <ActivityList {...props} {...childProps} />} />
-              <Redirect from="*" to="/404" />
-            </Switch>
-          </div>
-        </div>
+        {
+          this.props.userInfo.token &&
+          <>
+            <ChildNavBar
+              navData={this.state.navData}
+              navActiveIndex={this.state.navActiveIndex}
+              navActiveChange={this.navActiveChange}
+            />
+            <div className="activity-container">
+              <div className="content">
+                <Switch>
+                  <Route exact={true} path="/xlz/activity" render={props => <ActivityList {...props} {...childProps} />} />
+                  <Route exact={true} path="/xlz/activity/beijing" render={props => <ActivityList {...props} {...childProps} />} />
+                  <Route exact={true} path="/xlz/activity/shanghai" render={props => <ActivityList {...props} {...childProps} />} />
+                  <Route exact={true} path="/xlz/activity/guangzhou" render={props => <ActivityList {...props} {...childProps} />} />
+                  <Route exact={true} path="/xlz/activity/shenzhen" render={props => <ActivityList {...props} {...childProps} />} />
+                  <Route exact={true} path="/xlz/activity/hangzhou" render={props => <ActivityList {...props} {...childProps} />} />
+                  <Redirect from="*" to="/404" />
+                </Switch>
+              </div>
+            </div>
+          </>
+        }
       </div>
     );
   }
 }
 
-export default Activity;
+const mapStateToProps = state => { 
+  return {
+    userInfo: state.userInfo
+  }
+}
+
+export default connect(mapStateToProps, () => ({}))(Activity);
