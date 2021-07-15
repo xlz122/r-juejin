@@ -12,7 +12,7 @@ const unlimited = {
       date: '2021-03-22 09:30:00',
       address: '不限',
       detailUrl: 'https://gwb.tencent.com/awards2021',
-      endOrNot: false,
+      endOrNot: true,
     },
     {
       imgUrl: `${imageUrl}/unlimited/unlimited-image2.image`,
@@ -84,7 +84,7 @@ const unlimited = {
       date: '2021-06-10 10:30:00',
       address: '不限',
       detailUrl: 'https://4531742596636.huodongxing.com/event/6600438421622',
-      endOrNot: true
+      endOrNot: false
     },
     {
       imgUrl: `${imageUrl}/unlimited/unlimited-image11.image`,
@@ -108,7 +108,7 @@ const unlimited = {
       date: '2021-06-03 08:30:00',
       address: '不限',
       detailUrl: 'https://www.slidestalk.com/w/430',
-      endOrNot: true
+      endOrNot: false
     },
     {
       imgUrl: `${imageUrl}/unlimited/unlimited-image14.image`,
@@ -187,7 +187,7 @@ const beijing = {
       date: '2021-05-22 10:30:00',
       address: '北京',
       detailUrl: 'https://mp.weixin.qq.com/s/erQo44jCfJ-QooYFodpxXQ',
-      endOrNot: true
+      endOrNot: false
     },
     {
       imgUrl: `${imageUrl}/beijing/beijing-image8.image`,
@@ -211,7 +211,7 @@ const beijing = {
       date: '2021-04-23 08:30:00',
       address: '北京',
       detailUrl: 'https://www.huodongxing.com/event/4593637203422',
-      endOrNot: true
+      endOrNot: false
     }
   ]
 };
@@ -305,20 +305,20 @@ const hangzhou = {
       endOrNot: false
     },
     {
-      imgUrl: `${imageUrl}/hangzhou/hangzhou-image2.image`,
-      title: 'ECUG Meetup 第 1 期丨2021 音视频技术最佳实践·杭州站',
-      date: '2021-06-26 15:20:00',
-      address: '杭州',
-      detailUrl: 'https://7754169426883.huodongxing.com/event/4600691622000',
-      endOrNot: false
-    },
-    {
       imgUrl: `${imageUrl}/hangzhou/hangzhou-image3.image`,
       title: '阿里云开发者大会 体验实验室专场',
       date: '2021-05-22 15:20:00',
       address: '杭州',
       detailUrl: 'https://developer.aliyun.com/article/784245',
       endOrNot: true
+    },
+    {
+      imgUrl: `${imageUrl}/hangzhou/hangzhou-image2.image`,
+      title: 'ECUG Meetup 第 1 期丨2021 音视频技术最佳实践·杭州站',
+      date: '2021-06-26 15:20:00',
+      address: '杭州',
+      detailUrl: 'https://7754169426883.huodongxing.com/event/4600691622000',
+      endOrNot: false
     },
     {
       imgUrl: `${imageUrl}/hangzhou/hangzhou-image4.image`,
