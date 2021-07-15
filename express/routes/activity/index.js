@@ -67,17 +67,15 @@ router.get(
     }
     
     // 对热门活动数据进行处理
-    if (Number(city_id) === 0) {
-      activityData.list.forEach((item, index) => {
-        if (!item.endOrNot) {
-          activityData.list.unshift(item);
-          activityData.list.splice(index, 1);
-        } else {
-          activityData.list.push(item);
-          activityData.list.splice(index, 1);
-        }
-      });
-    }
+    activityData.list.forEach((item, index) => {
+      if (!item.endOrNot) {
+        activityData.list.unshift(item);
+        activityData.list.splice(index, 1);
+      } else {
+        activityData.list.push(item);
+        activityData.list.splice(index, 1);
+      }
+    });
 
     // 数据处理
     const data = [];

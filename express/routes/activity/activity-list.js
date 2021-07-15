@@ -204,14 +204,6 @@ const beijing = {
       address: '北京',
       detailUrl: 'https://www.huodongxing.com/event/6592667770300',
       endOrNot: true
-    },
-    {
-      imgUrl: `${imageUrl}/beijing/beijing-image10.image`,
-      title: '云原生技术及可观测实践闭门会',
-      date: '2021-04-23 08:30:00',
-      address: '北京',
-      detailUrl: 'https://www.huodongxing.com/event/4593637203422',
-      endOrNot: false
     }
   ]
 };
